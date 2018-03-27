@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.com.n2s</groupId>
+  <artifactId>digital-vallery-chronos</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <distributionManagement>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>DESKTOP-4SVL9LL-snapshots</name>
+			<url>http://192.169.1.2:8081/artifactory/br.com.n2s</url>
+
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
+	
+	<repositories>
+		<repository>
+			<id>central2</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>DESKTOP-4SVL9LL-releases</name>
+			<url>http://192.169.1.2:8081/artifactory/br.com.n2s</url>
+		</repository>
+	</repositories>
+  
+    <dependencies>
+		<dependency>
+			<groupId>br.com.n2s</groupId>
+			<artifactId>core.n2s</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4.1212</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+  </dependencies>
+</project>
