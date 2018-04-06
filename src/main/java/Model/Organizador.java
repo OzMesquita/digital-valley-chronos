@@ -9,6 +9,10 @@ public class Organizador extends Pessoa{
 	private ArrayList<Atividade> atividadeRelacionadas;
 	private EnumNivel nivel;
 	
+	public Organizador(EnumNivel nivel) {
+		this.nivel = nivel;
+	}
+
 	public ArrayList<Atividade> getAtividadeRelacionadas() {
 		return atividadeRelacionadas;
 	}
