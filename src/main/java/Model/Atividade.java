@@ -63,7 +63,10 @@ public class Atividade {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		if(!vazio(nome))
+			this.nome = nome;
+		else
+			throw new IllegalArgumentException("Erro: o campo nome não pode estar vazio");
 	}
 
 	public String getDescricao() {
@@ -71,7 +74,10 @@ public class Atividade {
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		if(!vazio(descricao))
+			this.descricao = descricao;
+		else
+			throw new IllegalArgumentException("Erro: o campo descricao não pode estar vazio");
 	}
 
 	public Atividade getPai() {
@@ -159,7 +165,10 @@ public class Atividade {
 	}
 
 	public void setLocal(String local) {
-		Local = local;
+		if(!vazio(local))
+			Local = local;
+		else
+			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio");
 	}
 
 	public int getTipoPagamento() {
@@ -186,5 +195,9 @@ public class Atividade {
 		this.organizadores = organizadores;
 	}
 	
-
+	private boolean vazio(String string) {
+		if(string==null||string.equals(""))
+			return false;
+		return true;
+	}
 }

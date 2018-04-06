@@ -21,7 +21,10 @@ public class Apoio {
 	}
 
 	public void setNomeInstituicao(String nomeInstituicao) {
-		this.nomeInstituicao = nomeInstituicao;
+		if(!vazio(nomeInstituicao))
+			this.nomeInstituicao = nomeInstituicao;
+		else
+			throw new IllegalArgumentException("Erro: o campo nome da instituicao não pode estar vazio");
 	}
 
 	public String getLogo() {
@@ -37,7 +40,10 @@ public class Apoio {
 	}
 
 	public void setTipoApoio(String tipoApoio) {
-		this.tipoApoio = tipoApoio;
+		if(!vazio(tipoApoio))
+			this.tipoApoio = tipoApoio;
+		else
+			throw new IllegalArgumentException("Erro: o campo tipo de apoio não pode estar vazio");
 	}
 
 	public float getValorApoio() {
@@ -64,5 +70,9 @@ public class Apoio {
 		this.siteInstituicao = siteInstituicao;
 	}
 	
-
+	private boolean vazio(String string) {
+		if(string==null||string.equals(""))
+			return false;
+		return true;
+	}
 }
