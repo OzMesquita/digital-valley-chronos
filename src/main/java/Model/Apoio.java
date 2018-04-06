@@ -16,6 +16,15 @@ public class Apoio {
 
 	private String siteInstituicao;
 
+	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDate dataPagamento, String siteInstituicao) {
+		setDataPagamento(dataPagamento);
+		setLogo(logo);
+		setNomeInstituicao(nomeInstituicao);
+		setSiteInstituicao(siteInstituicao);
+		setTipoApoio(tipoApoio);
+		setValorApoio(valorApoio);
+	}
+
 	public String getNomeInstituicao() {
 		return nomeInstituicao;
 	}

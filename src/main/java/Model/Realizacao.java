@@ -8,6 +8,11 @@ public class Realizacao {
 	private LocalDateTime horaFinal;
 	private LocalDate data;
 	
+	public Realizacao(LocalDateTime horaInicio, LocalDateTime horaFinal, LocalDate data) {
+		this.horaInicio = horaInicio;
+		this.horaFinal = horaFinal;
+		this.data = data;
+	}
 	public LocalDateTime getHoraInicio() {
 		return horaInicio;
 	}
