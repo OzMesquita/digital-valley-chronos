@@ -17,19 +17,28 @@ public class Realizacao {
 		return horaInicio;
 	}
 	public void setHoraInicio(LocalDateTime horaInicio) {
-		this.horaInicio = horaInicio;
+		if(horaInicio!=null)
+			this.horaInicio = horaInicio;
+		else
+			throw new IllegalArgumentException("Erro: o campo hora de inicio não pode estar vazio");
 	}
 	public LocalDateTime getHoraFinal() {
 		return horaFinal;
 	}
 	public void setHoraFinal(LocalDateTime horaFinal) {
-		this.horaFinal = horaFinal;
+		if(horaFinal!=null)
+			this.horaFinal = horaFinal;
+		else
+			throw new IllegalArgumentException("Erro: o campo hora final não pode estar vazio");
 	}
 	public LocalDate getData() {
 		return data;
 	}
 	public void setData(LocalDate data) {
-		this.data = data;
+		if(data!=null)
+			this.data = data;
+		else
+			throw new IllegalArgumentException("Erro: o campo data não pode estar vazio");
 	}
 	
 }
