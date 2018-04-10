@@ -30,10 +30,10 @@ public class Apoio {
 	}
 
 	public void setNomeInstituicao(String nomeInstituicao) {
-		if(!vazio(nomeInstituicao))
+		if(!isEmpty(nomeInstituicao))
 			this.nomeInstituicao = nomeInstituicao;
 		else
-			throw new IllegalArgumentException("Erro: o campo nome da instituicao não pode estar vazio");
+			throw new IllegalArgumentException("Erro: o campo nome da instituicao nao pode estar vazio");
 	}
 
 	public String getLogo() {
@@ -49,10 +49,10 @@ public class Apoio {
 	}
 
 	public void setTipoApoio(String tipoApoio) {
-		if(!vazio(tipoApoio))
+		if(!isEmpty(tipoApoio))
 			this.tipoApoio = tipoApoio;
 		else
-			throw new IllegalArgumentException("Erro: o campo tipo de apoio não pode estar vazio");
+			throw new IllegalArgumentException("Erro: o campo tipo de apoio nao pode estar vazio.");
 	}
 
 	public float getValorApoio() {
@@ -60,7 +60,10 @@ public class Apoio {
 	}
 
 	public void setValorApoio(float valorApoio) {
-		this.valorApoio = valorApoio;
+		if(valorApoio < 0) 
+			throw new IllegalArgumentException("Erro: o campo valor do apoio nao pode ser negativo.");
+		else
+			this.valorApoio = valorApoio;
 	}
 
 	public LocalDate getDataPagamento() {
@@ -79,7 +82,7 @@ public class Apoio {
 		this.siteInstituicao = siteInstituicao;
 	}
 	
-	private boolean vazio(String string) {
+	private boolean isEmpty(String string) {
 		if(string==null||string.equals(""))
 			return false;
 		return true;

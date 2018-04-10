@@ -26,7 +26,10 @@ public class Organizador extends Pessoa{
 	}
 
 	public void setNivel(EnumNivel nivel) {
-		this.nivel = nivel;
+		if(nivel == null)
+			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio");
+		else
+			this.nivel = nivel;
 	}
 
 }
