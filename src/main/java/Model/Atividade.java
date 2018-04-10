@@ -54,6 +54,10 @@ public class Atividade {
 	public void setSubAtividade(ArrayList<Atividade> subAtividade) {
 		this.subAtividade = subAtividade;
 	}
+	
+	public void addSubAtividade(Atividade subAtividade) {
+		this.subAtividade.add(subAtividade);
+	}
 
 	public int getID() {
 		return ID;
@@ -118,6 +122,13 @@ public class Atividade {
 	public void setRealizacao(ArrayList<Realizacao> realizacao) {
 		this.realizacao = realizacao;
 	}
+	
+	public void addRealizacao(Realizacao realizacao) {
+		if(realizacao == null)
+			throw new IllegalArgumentException("Erro: o campo realizacao não pode ser nulo.");
+		else
+			this.realizacao.add(realizacao);
+	}
 
 	public EnumTipoAtividade getTipoAtividade() {
 		return tipoAtividade;
@@ -141,6 +152,10 @@ public class Atividade {
 
 	public void setPreRequisitos(ArrayList<Atividade> preRequisitos) {
 		this.preRequisitos = preRequisitos;
+	}
+	
+	public void addPreRequisito(Atividade preRequisito) {
+		preRequisitos.add(preRequisito);
 	}
 
 	public Responsavel getResponsavel() {
@@ -208,13 +223,26 @@ public class Atividade {
 	public void setApoiadores(ArrayList<Apoio> apoiadores) {
 		this.apoiadores = apoiadores;
 	}
-
+	
+	public void addApoaidor(Apoio apoiador) {
+		if(apoiador == null)
+			throw new IllegalArgumentException("Erro: o campo apoiador não pode ser nulo.");
+		else
+			apoiadores.add(apoiador);
+	}
 	public ArrayList<Organizador> getOrganizadores() {
 		return organizadores;
 	}
 
 	public void setOrganizadores(ArrayList<Organizador> organizadores) {
 		this.organizadores = organizadores;
+	}
+	
+	public void addOrganizador(Organizador organizador) {
+		if(organizador == null)
+			throw new IllegalArgumentException("Erro: o campo organizador não pode ser nulo.");
+		else
+			organizadores.add(organizador);
 	}
 	
 	private boolean isEmpty(String string) {

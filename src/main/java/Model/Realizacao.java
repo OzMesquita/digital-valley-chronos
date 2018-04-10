@@ -1,18 +1,15 @@
 package Model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Realizacao {
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFinal;
-	private LocalDate data;
+
 	
-	public Realizacao(LocalDateTime horaInicio, LocalDateTime horaFinal, LocalDate data) {
-		this.data = data;
-		this.horaInicio = horaInicio;
-		this.horaFinal = horaFinal;
-		
+	public Realizacao(LocalDateTime horaInicio, LocalDateTime horaFinal) {
+		setHoraInicio(horaInicio);
+		setHoraFinal(horaFinal);
 	}
 	
 	public LocalDateTime getHoraInicio() {
@@ -21,10 +18,11 @@ public class Realizacao {
 	
 	public void setHoraInicio(LocalDateTime horaInicio) {
 		if(horaInicio == null)
-			throw new IllegalArgumentException("Erro: o campo hora de inicio não pode estar vazio.");
+			throw new IllegalArgumentException("Erro: o campo da hora inicial não pode estar vazio.");
+		else if(horaInicio.isBefore(LocalDateTime.now()))
+			throw new IllegalArgumentException("Erro: o campo da hora inicial deve ser posterior a data atual.");
 		else
-			this.horaInicio = horaInicio;
-			
+			this.horaInicio = horaInicio;		
 	}
 	
 	public LocalDateTime getHoraFinal() {
@@ -40,17 +38,5 @@ public class Realizacao {
 			throw new IllegalArgumentException("Erro: o campo hora final não pode ser antes do campo da hora inicial.");			
 		else
 			this.horaFinal = horaFinal;
-	}
-	
-	public LocalDate getData() {
-		return data;
-	}
-	
-	public void setData(LocalDate data) {
-		if(data!=null)
-			this.data = data;
-		else
-			throw new IllegalArgumentException("Erro: o campo data não pode estar vazio");
-	}
-	
+	}	
 }
