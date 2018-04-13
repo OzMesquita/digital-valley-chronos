@@ -23,7 +23,7 @@ public class Organizador extends Pessoa{
 
 	public void addAtividadeRelacionada(Atividade atividadeRelacionada) {
 		if(atividadeRelacionada == null)
-			throw new IllegalArgumentException("Erro: o campo atividade relacionada não estar vazio.");
+			throw new IllegalArgumentException("Erro: o campo atividade relacionada não pode estar vazio.");
 		else
 			atividadeRelacionadas.add(atividadeRelacionada);
 	}

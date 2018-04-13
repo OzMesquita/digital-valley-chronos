@@ -2,6 +2,8 @@ package Model;
 
 import java.time.LocalDate;
 
+import Facade.Facade;
+
 public class Apoio {
 
 	private String nomeInstituicao;
@@ -30,7 +32,7 @@ public class Apoio {
 	}
 
 	public void setNomeInstituicao(String nomeInstituicao) {
-		if(!isEmpty(nomeInstituicao))
+		if(!Facade.isEmpty(nomeInstituicao))
 			this.nomeInstituicao = nomeInstituicao;
 		else
 			throw new IllegalArgumentException("Erro: o campo nome da instituicao nao pode estar vazio");
@@ -49,7 +51,7 @@ public class Apoio {
 	}
 
 	public void setTipoApoio(String tipoApoio) {
-		if(!isEmpty(tipoApoio))
+		if(!Facade.isEmpty(tipoApoio))
 			this.tipoApoio = tipoApoio;
 		else
 			throw new IllegalArgumentException("Erro: o campo tipo de apoio nao pode estar vazio.");
@@ -80,11 +82,5 @@ public class Apoio {
 
 	public void setSiteInstituicao(String siteInstituicao) {
 		this.siteInstituicao = siteInstituicao;
-	}
-	
-	private boolean isEmpty(String string) {
-		if(string==null||string.equals(""))
-			return false;
-		return true;
 	}
 }

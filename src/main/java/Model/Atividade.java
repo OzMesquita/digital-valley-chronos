@@ -1,7 +1,8 @@
 package Model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import Facade.Facade;
 import model.Pessoa;
 
 public class Atividade {
@@ -45,8 +46,59 @@ public class Atividade {
 	//Construir primeiro o numero total de vagas de cada de atividade e depois o total de vagas da comunidade.
 	public Atividade() {
 		
-	}	
+	}
+
+	/**Atividade Raiz (Evento)
+	 * */
+	public Atividade(int iD, String nome, String descricao, String sigla,
+			ArrayList<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
+			ArrayList<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String local, EnumTipoPagamento tipoPagamento, ArrayList<Apoio> apoiadores,
+			ArrayList<Organizador> organizadores) {
+		setID(iD);
+		setNome(nome);
+		setDescricao(descricao);
+		setSigla(sigla);
+		setRealizacao(realizacao);
+		setTotalHoras();
+		setTipoAtividade(tipoAtividade);
+		setCampoAtivdade(campoAtivdade);
+		setPreRequisitos(preRequisitos);
+		setResponsavel(responsavel);
+		setTotalVagas(totalVagas);
+		setTotalVagasComunidade(totalVagasComunidade);
+		setLocal(local);
+		setTipoPagamento(tipoPagamento);
+		setApoiadores(apoiadores);
+		setOrganizadores(organizadores);
+	}
 	
+	/**Demais Atividades
+	 * */
+	public Atividade(int iD, String nome, String descricao, Atividade pai, String sigla, float totalHoras,
+			ArrayList<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
+			ArrayList<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String local, EnumTipoPagamento tipoPagamento, ArrayList<Apoio> apoiadores,
+			ArrayList<Organizador> organizadores) {
+		setID(iD);
+		setNome(nome);
+		setDescricao(descricao);
+		setPai(pai);
+		setSigla(sigla);
+		setRealizacao(realizacao);
+		setTotalHoras();
+		setTipoAtividade(tipoAtividade);
+		setCampoAtivdade(campoAtivdade);
+		setPreRequisitos(preRequisitos);
+		setResponsavel(responsavel);
+		setTotalVagas(totalVagas);
+		setTotalVagasComunidade(totalVagasComunidade);
+		setLocal(local);
+		setTipoPagamento(tipoPagamento);
+		setApoiadores(apoiadores);
+		setOrganizadores(organizadores);
+	}
+
 	public ArrayList<Atividade> getSubAtividade() {
 		return subAtividade;
 	}
@@ -72,7 +124,7 @@ public class Atividade {
 	}
 
 	public void setNome(String nome) {
-		if(!isEmpty(nome))
+		if(!Facade.isEmpty(nome))
 			this.nome = nome;
 		else
 			throw new IllegalArgumentException("Erro: o campo nome não pode estar vazio");
@@ -83,7 +135,7 @@ public class Atividade {
 	}
 
 	public void setDescricao(String descricao) {
-		if(!isEmpty(descricao))
+		if(!Facade.isEmpty(descricao))
 			this.descricao = descricao;
 		else
 			throw new IllegalArgumentException("Erro: o campo descricao não pode estar vazio");
@@ -111,10 +163,10 @@ public class Atividade {
 	}
 	
 	//Setar automaticamente esta variavel usando os atributos horaInicial e horaFinal da classe "Realização", !
-	public void setTotalHoras(float totalHoras) {
-		this.totalHoras = totalHoras;
+	public void setTotalHoras() {
+		totalHoras = ( realizacao.get(realizacao.size()-1).getHoraFinal().getHour() ) - ( realizacao.get(0).getHoraInicio().getHour() );
 	}
-
+	
 	public ArrayList<Realizacao> getRealizacao() {
 		return realizacao;
 	}
@@ -188,7 +240,7 @@ public class Atividade {
 	public void setTotalVagasComunidade(int totalVagasComunidade) {
 		if(totalVagasComunidade < 0) 
 			throw new IllegalArgumentException("Erro: o campo total de vagas da comunidade nao pode ser negativa.");
-		else if(totalVagasComunidade >= getTotalVagas())
+		else if(totalVagasComunidade > getTotalVagas())
 			throw new IllegalArgumentException("Erro: o campo total de vagas da comunidade nao pode ser maior que o total de vagas.");
 		else
 			this.totalVagasComunidade = totalVagasComunidade;
@@ -199,7 +251,7 @@ public class Atividade {
 	}
 
 	public void setLocal(String local) {
-		if(!isEmpty(local))
+		if(!Facade.isEmpty(local))
 			Local = local;
 		else
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
@@ -211,7 +263,7 @@ public class Atividade {
 
 	public void setTipoPagamento(EnumTipoPagamento tipoPagamento) {
 		if(tipoPagamento == null)
-			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
+			throw new IllegalArgumentException("Erro: o campo pagamento não pode estar vazio.");
 		else
 			this.tipoPagamento = tipoPagamento;
 	}
@@ -243,11 +295,5 @@ public class Atividade {
 			throw new IllegalArgumentException("Erro: o campo organizador não pode ser nulo.");
 		else
 			organizadores.add(organizador);
-	}
-	
-	private boolean isEmpty(String string) {
-		if(string==null||string.equals(""))
-			return false;
-		return true;
 	}
 }

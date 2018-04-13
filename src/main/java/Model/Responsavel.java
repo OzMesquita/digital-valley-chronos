@@ -2,6 +2,7 @@ package Model;
 
 import java.time.LocalDate;
 
+import Facade.Facade;
 import model.Pessoa;
 import model.Usuario;
 
@@ -19,15 +20,9 @@ public class Responsavel extends Pessoa{
 	}
 
 	public void setMiniCurriculo(String miniCurriculo) {
-		if(!isEmpty(miniCurriculo))
+		if(!Facade.isEmpty(miniCurriculo))
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
 		else
 			this.miniCurriculo = miniCurriculo;
-	}
-	
-	private boolean isEmpty(String string) {
-		if(string==null||string.equals(""))
-			return false;
-		return true;
 	}
 }
