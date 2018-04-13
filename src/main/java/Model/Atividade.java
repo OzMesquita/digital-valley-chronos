@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import Facade.Facade;
@@ -164,7 +165,12 @@ public class Atividade implements Comparable<Atividade>{
 	
 	//Setar automaticamente esta variavel usando os atributos horaInicial e horaFinal da classe "Realização", !
 	public void setTotalHoras() {
-		totalHoras = ( realizacao.get(realizacao.size()-1).getHoraFinal().getHour() ) - ( realizacao.get(0).getHoraInicio().getHour() );
+		int minutos = 0;
+		for (int i = 0; i < realizacao.size(); i++) {
+			totalHoras+=realizacao.get(i).getHoraFinal().getHour() - realizacao.get(i).getHoraInicio().getHour();
+			minutos +=realizacao.get(i).getHoraFinal().getMinute() - realizacao.get(i).getHoraInicio().getMinute();
+		}
+		totalHoras+=(int)(minutos/60)+((minutos%60)/100.0);
 	}
 	
 	public ArrayList<Realizacao> getRealizacao() {
