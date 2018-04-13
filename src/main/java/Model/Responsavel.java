@@ -6,7 +6,7 @@ import Facade.Facade;
 import model.Pessoa;
 import model.Usuario;
 
-public class Responsavel extends Pessoa{
+public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	
 	private String miniCurriculo;
 
@@ -24,5 +24,10 @@ public class Responsavel extends Pessoa{
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
 		else
 			this.miniCurriculo = miniCurriculo;
+	}
+
+	@Override
+	public int compareTo(Pessoa o) {
+		return this.getNome().compareTo(o.getNome());
 	}
 }

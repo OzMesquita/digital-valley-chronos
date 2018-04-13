@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Facade.Facade;
 import model.Pessoa;
 
-public class Atividade {
+public class Atividade implements Comparable<Atividade>{
 
 	private ArrayList<Atividade> subAtividade;
 
@@ -295,5 +295,10 @@ public class Atividade {
 			throw new IllegalArgumentException("Erro: o campo organizador não pode ser nulo.");
 		else
 			organizadores.add(organizador);
+	}
+
+	@Override
+	public int compareTo(Atividade o) {
+		return this.getNome().compareTo(o.getNome());
 	}
 }

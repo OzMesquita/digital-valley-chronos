@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import model.Pessoa;
 
-public class Organizador extends Pessoa{
+public class Organizador extends Pessoa implements Comparable<Pessoa>{
 
 	private ArrayList<Atividade> atividadeRelacionadas;
 	private EnumNivel nivel;
@@ -37,6 +37,11 @@ public class Organizador extends Pessoa{
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio");
 		else
 			this.nivel = nivel;
+	}
+
+	@Override
+	public int compareTo(Pessoa o) {
+		return this.getNome().compareTo(o.getNome());
 	}
 
 }

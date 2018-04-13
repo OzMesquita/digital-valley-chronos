@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import Facade.Facade;
 
-public class Apoio {
+public class Apoio implements Comparable<Apoio>{
 
 	private String nomeInstituicao;
 
@@ -82,5 +82,10 @@ public class Apoio {
 
 	public void setSiteInstituicao(String siteInstituicao) {
 		this.siteInstituicao = siteInstituicao;
+	}
+
+	@Override
+	public int compareTo(Apoio a) {
+		return this.getNomeInstituicao().compareTo(a.getNomeInstituicao());
 	}
 }
