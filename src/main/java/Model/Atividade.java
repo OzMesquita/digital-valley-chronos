@@ -1,5 +1,6 @@
 package Model;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class Atividade implements Comparable<Atividade>{
 
 	//Construir primeiro o numero total de vagas de cada de atividade e depois o total de vagas da comunidade.
 	public Atividade() {
-		
+
 	}
 
 	/**Atividade Raiz (Evento)
@@ -73,7 +74,7 @@ public class Atividade implements Comparable<Atividade>{
 		setApoiadores(apoiadores);
 		setOrganizadores(organizadores);
 	}
-	
+
 	/**Demais Atividades
 	 * */
 	public Atividade(int iD, String nome, String descricao, Atividade pai, String sigla, float totalHoras,
@@ -107,7 +108,7 @@ public class Atividade implements Comparable<Atividade>{
 	public void setSubAtividade(ArrayList<Atividade> subAtividade) {
 		this.subAtividade = subAtividade;
 	}
-	
+
 	public void addSubAtividade(Atividade subAtividade) {
 		this.subAtividade.add(subAtividade);
 	}
@@ -115,7 +116,7 @@ public class Atividade implements Comparable<Atividade>{
 	public int getID() {
 		return ID;
 	}
-	
+
 	public void setID(int iD) {
 		ID = iD;
 	}
@@ -145,7 +146,7 @@ public class Atividade implements Comparable<Atividade>{
 	public Atividade getPai() {
 		return pai;
 	}
-	
+
 	//Tratar automaticamente com o sistema!
 	public void setPai(Atividade pai) {
 		this.pai = pai;
@@ -162,7 +163,7 @@ public class Atividade implements Comparable<Atividade>{
 	public float getTotalHoras() {
 		return totalHoras;
 	}
-	
+
 	//Setar automaticamente esta variavel usando os atributos horaInicial e horaFinal da classe "Realização", !
 	public void setTotalHoras() {
 		int minutos = 0;
@@ -173,6 +174,23 @@ public class Atividade implements Comparable<Atividade>{
 		totalHoras+=(int)(minutos/60)+((minutos%60)/100.0);
 	}
 	
+	/**Transforma as horas de float para string no formato padrão
+	 * Ex: 1.5 --> 01:30
+	 * **/
+	public String formataHorasFloatParaString(float valorFinalEmHoras){
+		float tempoM= valorFinalEmHoras*60;
+		int hora=0;
+		int minutos=0;
+		String hora_minutos="00:00";
+		while(tempoM>=60){
+			hora++;
+			tempoM=tempoM-60;         
+		}
+		minutos=(int)tempoM;
+		hora_minutos = hora+":"+minutos;
+		return hora_minutos;
+	}
+
 	public ArrayList<Realizacao> getRealizacao() {
 		return realizacao;
 	}
@@ -211,7 +229,7 @@ public class Atividade implements Comparable<Atividade>{
 	public void setPreRequisitos(ArrayList<Atividade> preRequisitos) {
 		this.preRequisitos = preRequisitos;
 	}
-	
+
 	public void addPreRequisito(Atividade preRequisito) {
 		preRequisitos.add(preRequisito);
 	}
@@ -241,8 +259,8 @@ public class Atividade implements Comparable<Atividade>{
 	public int getTotalVagasComunidade() {
 		return totalVagasComunidade;
 	}
-	
-	
+
+
 	public void setTotalVagasComunidade(int totalVagasComunidade) {
 		if(totalVagasComunidade < 0) 
 			throw new IllegalArgumentException("Erro: o campo total de vagas da comunidade nao pode ser negativa.");
@@ -281,7 +299,7 @@ public class Atividade implements Comparable<Atividade>{
 	public void setApoiadores(ArrayList<Apoio> apoiadores) {
 		this.apoiadores = apoiadores;
 	}
-	
+
 	public void addApoaidor(Apoio apoiador) {
 		if(apoiador == null)
 			throw new IllegalArgumentException("Erro: o campo apoiador não pode ser nulo.");
@@ -295,7 +313,7 @@ public class Atividade implements Comparable<Atividade>{
 	public void setOrganizadores(ArrayList<Organizador> organizadores) {
 		this.organizadores = organizadores;
 	}
-	
+
 	public void addOrganizador(Organizador organizador) {
 		if(organizador == null)
 			throw new IllegalArgumentException("Erro: o campo organizador não pode ser nulo.");

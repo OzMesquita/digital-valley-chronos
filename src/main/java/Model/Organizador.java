@@ -1,13 +1,16 @@
 package Model;
 
 import java.util.ArrayList;
-
 import model.Pessoa;
 
 public class Organizador extends Pessoa implements Comparable<Pessoa>{
 
 	private ArrayList<Atividade> atividadeRelacionadas;
 	private EnumNivel nivel;
+	
+	public Organizador() {
+		
+	}
 	
 	public Organizador(EnumNivel nivel) {
 		this.nivel = nivel;

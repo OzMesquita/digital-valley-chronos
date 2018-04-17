@@ -1,7 +1,6 @@
 package Model;
 
 import java.time.LocalDate;
-
 import Facade.Facade;
 
 public class Apoio implements Comparable<Apoio>{

@@ -1,7 +1,6 @@
 package Model;
 
 import java.time.LocalDate;
-
 import Facade.Facade;
 import model.Pessoa;
 import model.Usuario;
@@ -10,6 +9,10 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	
 	private String miniCurriculo;
 
+	public Responsavel() {
+		
+	}
+	
 	public Responsavel(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento, String miniCurriculo) {
 		super(nome, cpf, email, usuario, dataNascimento);
 		this.miniCurriculo = miniCurriculo;

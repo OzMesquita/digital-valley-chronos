@@ -22,7 +22,7 @@ public class Realizacao {
 		else if(horaInicio.isBefore(LocalDateTime.now()))
 			throw new IllegalArgumentException("Erro: o campo da hora inicial deve ser posterior a data atual.");
 		else
-			this.horaInicio = horaInicio;		
+			this.horaInicio = horaInicio;
 	}
 	
 	public LocalDateTime getHoraFinal() {
@@ -38,5 +38,6 @@ public class Realizacao {
 			throw new IllegalArgumentException("Erro: o campo hora final não pode ser antes do campo da hora inicial.");			
 		else
 			this.horaFinal = horaFinal;
-	}	
+	}
+	
 }
