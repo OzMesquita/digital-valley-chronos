@@ -17,6 +17,10 @@ public class Apoio implements Comparable<Apoio>{
 
 	private String siteInstituicao;
 
+	public Apoio() {
+		
+	}
+	
 	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDate dataPagamento, String siteInstituicao) {
 		setDataPagamento(dataPagamento);
 		setLogo(logo);

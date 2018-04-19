@@ -6,7 +6,10 @@ public class Realizacao implements Comparable<Realizacao> {
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFinal;
 
-
+	public Realizacao() {
+		
+	}
+	
 	public Realizacao(LocalDateTime horaInicio, LocalDateTime horaFinal) {
 		setHoraInicio(horaInicio);
 		setHoraFinal(horaFinal);
