@@ -14,9 +14,10 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 		
 	}
 	
-	public Responsavel(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento, String miniCurriculo) {
+	public Responsavel(int codResponsavel, String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento, String miniCurriculo) {
 		super(nome, cpf, email, usuario, dataNascimento);
 		this.miniCurriculo = miniCurriculo;
+		setCodResponsavel(codResponsavel);
 	}
 
 	public String getMiniCurriculo() {
@@ -28,7 +29,10 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	}
 
 	public void setCodResponsavel(int codResponsavel) {
-		this.codResponsavel = codResponsavel;
+		if(codResponsavel >= 0)
+			this.codResponsavel = codResponsavel;
+		else
+			throw new IllegalArgumentException("Erro: o campo codigo do responsavel nao pode estar vazio");
 	}
 
 	public void setMiniCurriculo(String miniCurriculo) {

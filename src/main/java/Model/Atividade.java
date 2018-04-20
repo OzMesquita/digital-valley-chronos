@@ -114,7 +114,10 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setCodAtividade(int codAtividade) {
-		this.codAtividade = codAtividade;
+		if(codAtividade >= 0)
+			this.codAtividade = codAtividade;
+		else
+			throw new IllegalArgumentException("Erro: o campo codigo da atividade nao pode estar vazio");
 	}
 
 	public String getNome() {

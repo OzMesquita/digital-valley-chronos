@@ -12,9 +12,10 @@ public class Realizacao implements Comparable<Realizacao> {
 		
 	}
 	
-	public Realizacao(LocalDateTime horaInicio, LocalDateTime horaFinal) {
+	public Realizacao(int codRealizacao, LocalDateTime horaInicio, LocalDateTime horaFinal) {
 		setHoraInicio(horaInicio);
 		setHoraFinal(horaFinal);
+		setCodRealizacao(codRealizacao);
 	}
 
 	public int getCodRealizacao() {
@@ -22,7 +23,10 @@ public class Realizacao implements Comparable<Realizacao> {
 	}
 
 	public void setCodRealizacao(int codRealizacao) {
-		this.codRealizacao = codRealizacao;
+		if(codRealizacao >= 0)
+			this.codRealizacao = codRealizacao;
+		else
+			throw new IllegalArgumentException("Erro: o campo codigo da realizacao nao pode estar vazio");
 	}
 
 	public LocalDateTime getHoraInicio() {

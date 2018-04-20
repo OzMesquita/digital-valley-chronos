@@ -30,6 +30,7 @@ public class Apoio implements Comparable<Apoio>{
 		setSiteInstituicao(siteInstituicao);
 		setTipoApoio(tipoApoio);
 		setValorApoio(valorApoio);
+		setCodApoio(codApoio);
 	}
 
 	public int getCodApoio() {
@@ -37,7 +38,10 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setCodApoio(int codApoio) {
-		this.codApoio = codApoio;
+		if(codApoio >= 0)
+			this.codApoio = codApoio;
+		else
+			throw new IllegalArgumentException("Erro: o campo codigo do apoio nao pode estar vazio");
 	}
 
 	public String getNomeInstituicao() {

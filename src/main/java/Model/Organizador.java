@@ -13,8 +13,9 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 		
 	}
 	
-	public Organizador(EnumNivel nivel) {
+	public Organizador(int codOrganizador, EnumNivel nivel) {
 		this.nivel = nivel;
+		setCodOrganizador(codOrganizador);
 	}
 
 	public int getCodOrganizador() {
@@ -22,7 +23,10 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 	}
 
 	public void setCodOrganizador(int codOrganizador) {
-		this.codOrganizador = codOrganizador;
+		if(codOrganizador >= 0)
+			this.codOrganizador = codOrganizador;
+		else
+			throw new IllegalArgumentException("Erro: o campo codigo do organizador nao pode estar vazio");
 	}
 
 	public ArrayList<Atividade> getAtividadeRelacionadas() {
