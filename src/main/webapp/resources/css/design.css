@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    
+}
+body{
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    height: 100%;
+}
+h1{
+    font-size: 26px;
+}
+h2{
+    font-size: 16px;
+}
+h3{
+    font-size: 12px;
+}
+.card{
+    margin-top: 5px;
+}
+.breadcrumb{
+    margin-top: 6px;
+}
+nav{
+    font-size: 14px;
+}
+.dropdown-item{
+    font-size: 12px;
+}
+.btn-group-vertical > .btn{
+    padding: 7px;
+    
+}
+.container-fluid{
+    height: min-content;
+}
+
+form > label{
+    font-size: 15px;
+}
+form > .btn{
+    font-size: 15px;
+}
+.form-control{
+    font-size: 12px;
+}
+
+.btn-group-vertical > button{
+    padding: 10px;
+}
+.btn{
+    cursor: pointer;
+}
+
+.btn-icon{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+.btn-icon i{
+    position: relative;
+    top: 4px; 
+    color: white;
+    font-size: 20px;
+}
+.btn-icon span{
+    left: 5px;
+    position: relative;
+}
+.filtro_tela > i{
+    color: gray;
+}
+.filtro_tela{
+    color: gray;
+    background-color: #f8f9fa;
+    
+}
+
+.filtro_tela:hover{
+    background-color: #e2e6ea;
+}
+.filtro_tela:focus{
+    background-color: #e2e6ea;
+}
+
+.footer{
+    bottom: 0px;
+}
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) { 
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) { 
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container-fluid{
+        min-height: 850px; 
+    }
+}
