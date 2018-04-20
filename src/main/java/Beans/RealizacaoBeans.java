@@ -40,10 +40,8 @@ public class RealizacaoBeans implements Beans {
 	@Override
 	public Object toBusiness() {
 		Realizacao realizacao = new Realizacao();
-
-		if(this.getCodRealizacao() > 0){
-			realizacao.setCodRealizacao(this.getCodRealizacao());
-		}
+		
+		realizacao.setCodRealizacao(this.getCodRealizacao());
 		realizacao.setHoraInicio(this.getHoraInicio());
 		realizacao.setHoraFinal(this.getHoraFinal());
 
@@ -52,18 +50,17 @@ public class RealizacaoBeans implements Beans {
 	
 	@Override
 	public Beans toBeans(Object object) {
-        if(object != null){
-            if(object instanceof Realizacao){
-            	Realizacao realizacao = (Realizacao) object;
-                this.setCodRealizacao(realizacao.getCodRealizacao());
-                this.setHoraInicio(realizacao.getHoraInicio());
-                this.setHoraFinal(realizacao.getHoraFinal());   
-                return this;
-            }else{
-                throw new IllegalArgumentException("O objeto a ser adicionado não é uma Realizacao!");
-            }
-        }else{
-            throw new NullPointerException("A Realizacao não pode ser nula!");
-        }
+        if(object == null)
+        	throw new IllegalArgumentException("O objeto a ser adicionado não é uma Realizacao!");
+        if(!(object instanceof Realizacao))
+        	throw new NullPointerException("A Realizacao não pode ser nula!");
+		
+        Realizacao realizacao = (Realizacao) object;
+		
+        this.setCodRealizacao(realizacao.getCodRealizacao());
+		this.setHoraInicio(realizacao.getHoraInicio());
+		this.setHoraFinal(realizacao.getHoraFinal());   
+		
+		return this;
 	}
 }

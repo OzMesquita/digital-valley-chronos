@@ -206,9 +206,8 @@ public class AtividadeBeans implements Beans {
 	@Override
 	public Object toBusiness() {
 		Atividade atividade = new Atividade();
-		if(this.getCodAtividade() > 0){
-			atividade.setCodAtividade(this.getCodAtividade());
-		}
+		
+		atividade.setCodAtividade(this.getCodAtividade());
 		atividade.setCodAtividade(this.getCodAtividade());
 		atividade.setNome(this.getNome());
 		atividade.setDescricao(this.getDescricao());
@@ -224,43 +223,33 @@ public class AtividadeBeans implements Beans {
 		atividade.setTipoPagamento(this.getTipoPagamento());
 
 		List<Atividade> subAtividade = Collections.synchronizedList(new ArrayList<Atividade>());
-		if (this.getSubAtividade()!=null) {
-			for (int i=0; i<this.getSubAtividade().size();i++) {
+		if (this.getSubAtividade()!=null)
+			for (int i=0; i<this.getSubAtividade().size();i++)
 				subAtividade.add((Atividade) this.getSubAtividade().get(i).toBusiness());
-			}
-		}
 		atividade.setSubAtividade(subAtividade);
 
 		List<Realizacao> realizacao = Collections.synchronizedList(new ArrayList<Realizacao>());
-		if (this.getRealizacao()!=null) {
-			for (int i=0; i<this.getRealizacao().size();i++) {
+		if (this.getRealizacao()!=null)
+			for (int i=0; i<this.getRealizacao().size();i++)
 				realizacao.add((Realizacao) this.getRealizacao().get(i).toBusiness());
-			}
-		}
 		atividade.setRealizacao(realizacao);
 
 		List<Atividade> preRequisitos = Collections.synchronizedList(new ArrayList<Atividade>());
-		if (this.getPreRequisitos()!=null) {
-			for (int i=0; i<this.getPreRequisitos().size();i++) {
+		if (this.getPreRequisitos()!=null)
+			for (int i=0; i<this.getPreRequisitos().size();i++)
 				preRequisitos.add((Atividade) this.getPreRequisitos().get(i).toBusiness());
-			}
-		}
 		atividade.setPreRequisitos(preRequisitos);
 
 		List<Apoio> apoiadores = Collections.synchronizedList(new ArrayList<Apoio>());
-		if (this.getApoiadores()!=null) {
-			for (int i=0; i<this.getApoiadores().size();i++) {
+		if (this.getApoiadores()!=null)
+			for (int i=0; i<this.getApoiadores().size();i++)
 				apoiadores.add((Apoio) this.getApoiadores().get(i).toBusiness());
-			}
-		}
 		atividade.setApoiadores(apoiadores);
 
 		List<Organizador> organizadores = Collections.synchronizedList(new ArrayList<Organizador>());
-		if (this.getOrganizadores()!=null) {
-			for (int i=0; i<this.getOrganizadores().size();i++) {
+		if (this.getOrganizadores()!=null)
+			for (int i=0; i<this.getOrganizadores().size();i++)
 				organizadores.add((Organizador) this.getOrganizadores().get(i).toBusiness());
-			}
-		}
 		atividade.setOrganizadores(organizadores);
 
 		return atividade;
@@ -268,69 +257,57 @@ public class AtividadeBeans implements Beans {
 
 	@Override
 	public Beans toBeans(Object object) {
-		if(object != null){
-			if(object instanceof Atividade){
-				Atividade atividade = (Atividade) object;
-				this.setCodAtividade(atividade.getCodAtividade());
-				this.setNome(atividade.getNome());
-				this.setDescricao(atividade.getDescricao());
-				this.setPai(atividade.getPai());
-				this.setSigla(atividade.getSigla());
-				this.setTotalHoras(atividade.getTotalHoras());
-				this.setTipoAtividade(atividade.getTipoAtividade());
-				this.setCampoAtivdade(atividade.isCampoAtivdade());
-				this.setResponsavel(atividade.getResponsavel());
-				this.setTotalVagas(atividade.getTotalVagas());
-				this.setTotalVagasComunidade(atividade.getTotalVagasComunidade());
-				this.setLocal(atividade.getLocal());
-				this.setTipoPagamento(atividade.getTipoPagamento());
-
-				List<AtividadeBeans> subAtividade = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
-				if (atividade.getSubAtividade() != null) {
-					for (int i = 0; i < atividade.getSubAtividade().size(); i++) {
-						subAtividade.add((AtividadeBeans) new AtividadeBeans().toBeans(atividade.getSubAtividade().get(i)));
-					}
-				}
-				this.setSubAtividade(subAtividade);
-
-				List<RealizacaoBeans> realizacao = Collections.synchronizedList(new ArrayList<RealizacaoBeans>());
-				if (atividade.getRealizacao() != null) {
-					for (int i = 0; i < atividade.getRealizacao().size(); i++) {
-						realizacao.add((RealizacaoBeans) new RealizacaoBeans().toBeans(atividade.getRealizacao().get(i)));
-					}
-				}
-				this.setRealizacao(realizacao);				
-
-				List<AtividadeBeans> preRequisitos = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
-				if (atividade.getPreRequisitos() != null) {
-					for (int i = 0; i < atividade.getPreRequisitos().size(); i++) {
-						preRequisitos.add((AtividadeBeans) new AtividadeBeans().toBeans(atividade.getPreRequisitos().get(i)));
-					}
-				}
-				this.setPreRequisitos(preRequisitos);				
-
-				List<ApoioBeans> apoiadores = Collections.synchronizedList(new ArrayList<ApoioBeans>());
-				if (atividade.getApoiadores() != null) {
-					for (int i = 0; i < atividade.getApoiadores().size(); i++) {
-						apoiadores.add((ApoioBeans) new ApoioBeans().toBeans(atividade.getApoiadores().get(i)));
-					}
-				}
-				this.setApoiadores(apoiadores);				
-
-				List<OrganizadorBeans> organizadores = Collections.synchronizedList(new ArrayList<OrganizadorBeans>());
-				if (atividade.getOrganizadores() != null) {
-					for (int i = 0; i < atividade.getOrganizadores().size(); i++) {
-						organizadores.add((OrganizadorBeans) new OrganizadorBeans().toBeans(atividade.getOrganizadores().get(i)));
-					}
-				}
-				this.setOrganizadores(organizadores);
-				
-				return this;
-			}else{
-				throw new IllegalArgumentException("O objeto a ser adicionado não é uma Atividade!");
-			}
-		}else{
+		if(object == null)
 			throw new NullPointerException("A Atividade não pode ser nula!");
-		}
+		if(!(object instanceof Atividade))
+			throw new IllegalArgumentException("O objeto a ser adicionado não é uma Atividade!");
+		
+		Atividade atividade = (Atividade) object;
+		
+		this.setCodAtividade(atividade.getCodAtividade());
+		this.setNome(atividade.getNome());
+		this.setDescricao(atividade.getDescricao());
+		this.setPai(atividade.getPai());
+		this.setSigla(atividade.getSigla());
+		this.setTotalHoras(atividade.getTotalHoras());
+		this.setTipoAtividade(atividade.getTipoAtividade());
+		this.setCampoAtivdade(atividade.isCampoAtivdade());
+		this.setResponsavel(atividade.getResponsavel());
+		this.setTotalVagas(atividade.getTotalVagas());
+		this.setTotalVagasComunidade(atividade.getTotalVagasComunidade());
+		this.setLocal(atividade.getLocal());
+		this.setTipoPagamento(atividade.getTipoPagamento());
+	
+		List<AtividadeBeans> subAtividade = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		if (atividade.getSubAtividade() != null)
+			for (int i = 0; i < atividade.getSubAtividade().size(); i++)
+				subAtividade.add((AtividadeBeans) new AtividadeBeans().toBeans(atividade.getSubAtividade().get(i)));
+		this.setSubAtividade(subAtividade);
+	
+		List<RealizacaoBeans> realizacao = Collections.synchronizedList(new ArrayList<RealizacaoBeans>());
+		if (atividade.getRealizacao() != null)
+			for (int i = 0; i < atividade.getRealizacao().size(); i++)
+				realizacao.add((RealizacaoBeans) new RealizacaoBeans().toBeans(atividade.getRealizacao().get(i)));
+		this.setRealizacao(realizacao);				
+	
+		List<AtividadeBeans> preRequisitos = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		if (atividade.getPreRequisitos() != null)
+			for (int i = 0; i < atividade.getPreRequisitos().size(); i++)
+				preRequisitos.add((AtividadeBeans) new AtividadeBeans().toBeans(atividade.getPreRequisitos().get(i)));
+		this.setPreRequisitos(preRequisitos);				
+	
+		List<ApoioBeans> apoiadores = Collections.synchronizedList(new ArrayList<ApoioBeans>());
+		if (atividade.getApoiadores() != null)
+			for (int i = 0; i < atividade.getApoiadores().size(); i++)
+				apoiadores.add((ApoioBeans) new ApoioBeans().toBeans(atividade.getApoiadores().get(i)));
+		this.setApoiadores(apoiadores);				
+	
+		List<OrganizadorBeans> organizadores = Collections.synchronizedList(new ArrayList<OrganizadorBeans>());
+		if (atividade.getOrganizadores() != null)
+			for (int i = 0; i < atividade.getOrganizadores().size(); i++)
+				organizadores.add((OrganizadorBeans) new OrganizadorBeans().toBeans(atividade.getOrganizadores().get(i)));
+		this.setOrganizadores(organizadores);
+		
+		return this;
 	}
 }

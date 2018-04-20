@@ -36,18 +36,14 @@ public class OrganizadorBeans implements Beans{
 	@Override
 	public Object toBusiness() {
 		Organizador organizador = new Organizador();
-
-		if(this.getCodOrganizador() > 0){
-			organizador.setCodOrganizador(this.getCodOrganizador());
-		}
+		
+		organizador.setCodOrganizador(this.getCodOrganizador());
 		organizador.setNivel(this.getNivel());
 
 		List<Atividade> atividadesRelacionadas = Collections.synchronizedList(new ArrayList<Atividade>());
-		if (this.getAtividadeRelacionadas()!=null) {
-			for (int i=0; i<this.getAtividadeRelacionadas().size();i++) {
+		if (this.getAtividadeRelacionadas()!=null)
+			for (int i=0; i<this.getAtividadeRelacionadas().size();i++)
 				atividadesRelacionadas.add((Atividade) this.getAtividadeRelacionadas().get(i).toBusiness());
-			}
-		}
 		organizador.setAtividadeRelacionadas(atividadesRelacionadas);
 		
 		return organizador;
@@ -55,25 +51,22 @@ public class OrganizadorBeans implements Beans{
 
 	@Override
 	public Beans toBeans(Object object) {
-		if(object != null){
-			if(object instanceof Organizador){
-				Organizador organizador = (Organizador) object;
-				this.setCodOrganizador(organizador.getCodOrganizador());
-				this.setNivel(organizador.getNivel());
-
-				List<AtividadeBeans> atividadesRelacionadas = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
-				if (organizador.getAtividadeRelacionadas() != null) {
-					for (int i = 0; i < organizador.getAtividadeRelacionadas().size(); i++) {
-						atividadesRelacionadas.add((AtividadeBeans) new AtividadeBeans().toBeans(organizador.getAtividadeRelacionadas().get(i)));
-					}
-				}
-				this.setAtividadeRelacionadas(atividadesRelacionadas);
-				return this;
-			}else{
-				throw new IllegalArgumentException("O objeto a ser adicionado não é um Organizador!");
-			}
-		}else{
+		if(object == null)
+			throw new IllegalArgumentException("O objeto a ser adicionado não é um Organizador!");
+		if(!(object instanceof Organizador))
 			throw new NullPointerException("O Organizador não pode ser nulo!");
-		}
+		
+		Organizador organizador = (Organizador) object;
+		
+		this.setCodOrganizador(organizador.getCodOrganizador());
+		this.setNivel(organizador.getNivel());
+
+		List<AtividadeBeans> atividadesRelacionadas = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		if (organizador.getAtividadeRelacionadas() != null)
+			for (int i = 0; i < organizador.getAtividadeRelacionadas().size(); i++)
+				atividadesRelacionadas.add((AtividadeBeans) new AtividadeBeans().toBeans(organizador.getAtividadeRelacionadas().get(i)));
+		this.setAtividadeRelacionadas(atividadesRelacionadas);
+		
+		return this;
 	}
 }

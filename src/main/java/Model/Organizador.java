@@ -23,10 +23,10 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 	}
 
 	public void setCodOrganizador(int codOrganizador) {
-		if(codOrganizador >= 0)
-			this.codOrganizador = codOrganizador;
-		else
+		if(codOrganizador < 0)
 			throw new IllegalArgumentException("Erro: o campo codigo do organizador nao pode estar vazio");
+		else
+			this.codOrganizador = codOrganizador;
 	}
 
 	public List<Atividade> getAtividadeRelacionadas() {

@@ -114,10 +114,10 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setCodAtividade(int codAtividade) {
-		if(codAtividade >= 0)
-			this.codAtividade = codAtividade;
-		else
+		if(codAtividade < 0)
 			throw new IllegalArgumentException("Erro: o campo codigo da atividade nao pode estar vazio");
+		else
+			this.codAtividade = codAtividade;
 	}
 
 	public String getNome() {
@@ -125,10 +125,10 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setNome(String nome) {
-		if(!Facade.isEmpty(nome))
-			this.nome = nome;
-		else
+		if(Facade.isEmpty(nome))
 			throw new IllegalArgumentException("Erro: o campo nome não pode estar vazio");
+		else
+			this.nome = nome;
 	}
 
 	public String getDescricao() {
@@ -136,10 +136,10 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setDescricao(String descricao) {
-		if(!Facade.isEmpty(descricao))
-			this.descricao = descricao;
-		else
+		if(Facade.isEmpty(descricao))
 			throw new IllegalArgumentException("Erro: o campo descricao não pode estar vazio");
+		else
+			this.descricao = descricao;
 	}
 
 	public Atividade getPai() {
@@ -274,10 +274,10 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setLocal(String local) {
-		if(!Facade.isEmpty(local))
-			Local = local;
-		else
+		if(Facade.isEmpty(local))
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
+		else
+			Local = local;
 	}
 
 	public EnumTipoPagamento getTipoPagamento() {

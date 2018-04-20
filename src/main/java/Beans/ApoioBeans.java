@@ -79,10 +79,8 @@ public class ApoioBeans implements Beans{
 	@Override
 	public Object toBusiness() {
 		Apoio apoio = new Apoio();
-
-		if(this.getCodApoio() > 0){
-			apoio.setCodApoio(this.getCodApoio());
-		}
+		
+		apoio.setCodApoio(this.getCodApoio());
 		apoio.setNomeInstituicao(this.getNomeInstituicao());
 		apoio.setLogo(this.getLogo());
 		apoio.setTipoApoio(this.getTipoApoio());
@@ -95,24 +93,22 @@ public class ApoioBeans implements Beans{
 
 	@Override
 	public Beans toBeans(Object object) {
-        if(object != null){
-            if(object instanceof Apoio){
-            	Apoio apoio = (Apoio) object;
-            	this.setCodApoio(apoio.getCodApoio());
-            	this.setNomeInstituicao(apoio.getNomeInstituicao());
-            	this.setLogo(apoio.getLogo());
-            	this.setTipoApoio(apoio.getTipoApoio());
-            	this.setValorApoio(apoio.getValorApoio());
-            	this.setDataPagamento(apoio.getDataPagamento());
-            	this.setSiteInstituicao(apoio.getSiteInstituicao());
-                return this;
-                
-            }else{
-                throw new IllegalArgumentException("O objeto a ser adicionado não é um Apoio!");
-            }
-        }else{
-            throw new NullPointerException("O Apoio não pode ser nulo!");
-        }
+        if(object == null)
+        	throw new IllegalArgumentException("O objeto a ser adicionado não é um Apoio!");
+        if(!(object instanceof Apoio))
+        	throw new NullPointerException("O Apoio não pode ser nulo!");
+		
+        Apoio apoio = (Apoio) object;
+		
+        this.setCodApoio(apoio.getCodApoio());
+		this.setNomeInstituicao(apoio.getNomeInstituicao());
+		this.setLogo(apoio.getLogo());
+		this.setTipoApoio(apoio.getTipoApoio());
+		this.setValorApoio(apoio.getValorApoio());
+		this.setDataPagamento(apoio.getDataPagamento());
+		this.setSiteInstituicao(apoio.getSiteInstituicao());
+		
+		return this;
 	}
 	
 	

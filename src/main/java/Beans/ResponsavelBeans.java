@@ -38,17 +38,16 @@ public class ResponsavelBeans implements Beans {
 	
 	@Override
 	public Beans toBeans(Object object) {
-        if(object != null){
-            if(object instanceof Responsavel){
-            	Responsavel responsavel = (Responsavel) object;
-            	this.setCodResponsavel(responsavel.getCodResponsavel());
-            	this.setMiniCurriculo(responsavel.getMiniCurriculo());
-                return this;
-            }else{
-                throw new IllegalArgumentException("O objeto a ser adicionado não é uma Responsavel!");
-            }
-        }else{
-            throw new NullPointerException("O Responsavel não pode ser nula!");
-        }
+        if(object == null)
+        	throw new NullPointerException("O Responsavel não pode ser nula!");
+        if(!(object instanceof Responsavel))
+        	throw new IllegalArgumentException("O objeto a ser adicionado não é uma Responsavel!");
+		
+        Responsavel responsavel = (Responsavel) object;
+		
+		this.setCodResponsavel(responsavel.getCodResponsavel());
+		this.setMiniCurriculo(responsavel.getMiniCurriculo());
+		
+		return this;
 	}	
 }

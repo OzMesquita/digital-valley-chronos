@@ -14,9 +14,8 @@ public enum EnumNivel {
 	}
 
 	public int getValorNivel() {
-		if(valorNivel == 0){
+		if(valorNivel == 0)
 			return 2;
-		}
 		return valorNivel;
 	}
 

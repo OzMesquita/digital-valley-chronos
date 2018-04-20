@@ -38,10 +38,10 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setCodApoio(int codApoio) {
-		if(codApoio >= 0)
-			this.codApoio = codApoio;
-		else
+		if(codApoio < 0)
 			throw new IllegalArgumentException("Erro: o campo codigo do apoio nao pode estar vazio");
+		else
+			this.codApoio = codApoio;
 	}
 
 	public String getNomeInstituicao() {
@@ -49,10 +49,10 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setNomeInstituicao(String nomeInstituicao) {
-		if(!Facade.isEmpty(nomeInstituicao))
-			this.nomeInstituicao = nomeInstituicao;
-		else
+		if(Facade.isEmpty(nomeInstituicao))
 			throw new IllegalArgumentException("Erro: o campo nome da instituicao nao pode estar vazio");
+		else
+			this.nomeInstituicao = nomeInstituicao;
 	}
 
 	public String getLogo() {
@@ -68,10 +68,10 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setTipoApoio(String tipoApoio) {
-		if(!Facade.isEmpty(tipoApoio))
-			this.tipoApoio = tipoApoio;
-		else
+		if(Facade.isEmpty(tipoApoio))
 			throw new IllegalArgumentException("Erro: o campo tipo de apoio nao pode estar vazio.");
+		else
+			this.tipoApoio = tipoApoio;
 	}
 
 	public float getValorApoio() {
