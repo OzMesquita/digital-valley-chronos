@@ -7,6 +7,7 @@ import model.Usuario;
 
 public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	
+	private int codResponsavel;
 	private String miniCurriculo;
 
 	public Responsavel() {
@@ -20,6 +21,14 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 
 	public String getMiniCurriculo() {
 		return miniCurriculo;
+	}
+
+	public int getCodResponsavel() {
+		return codResponsavel;
+	}
+
+	public void setCodResponsavel(int codResponsavel) {
+		this.codResponsavel = codResponsavel;
 	}
 
 	public void setMiniCurriculo(String miniCurriculo) {

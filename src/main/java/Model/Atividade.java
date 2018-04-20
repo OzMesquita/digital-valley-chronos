@@ -1,17 +1,13 @@
 package Model;
 
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import Facade.Facade;
-import model.Pessoa;
 
 public class Atividade implements Comparable<Atividade>{
 
 	private ArrayList<Atividade> subAtividade;
 
-	private int ID;
+	private int codAtividade;
 
 	private String nome;
 
@@ -52,12 +48,12 @@ public class Atividade implements Comparable<Atividade>{
 
 	/**Atividade Raiz (Evento)
 	 * */
-	public Atividade(int iD, String nome, String descricao, String sigla,
+	public Atividade(int codAtividade, String nome, String descricao, String sigla,
 			ArrayList<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
 			ArrayList<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
 			String local, EnumTipoPagamento tipoPagamento, ArrayList<Apoio> apoiadores,
 			ArrayList<Organizador> organizadores) {
-		setID(iD);
+		setCodAtividade(codAtividade);
 		setNome(nome);
 		setDescricao(descricao);
 		setSigla(sigla);
@@ -77,12 +73,12 @@ public class Atividade implements Comparable<Atividade>{
 
 	/**Demais Atividades
 	 * */
-	public Atividade(int iD, String nome, String descricao, Atividade pai, String sigla, float totalHoras,
+	public Atividade(int codAtividade, String nome, String descricao, Atividade pai, String sigla, float totalHoras,
 			ArrayList<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
 			ArrayList<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
 			String local, EnumTipoPagamento tipoPagamento, ArrayList<Apoio> apoiadores,
 			ArrayList<Organizador> organizadores) {
-		setID(iD);
+		setCodAtividade(codAtividade);
 		setNome(nome);
 		setDescricao(descricao);
 		setPai(pai);
@@ -113,12 +109,12 @@ public class Atividade implements Comparable<Atividade>{
 		this.subAtividade.add(subAtividade);
 	}
 
-	public int getID() {
-		return ID;
+	public int getCodAtividade() {
+		return codAtividade;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setCodAtividade(int codAtividade) {
+		this.codAtividade = codAtividade;
 	}
 
 	public String getNome() {

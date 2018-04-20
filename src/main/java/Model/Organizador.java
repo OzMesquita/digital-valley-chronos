@@ -5,6 +5,7 @@ import model.Pessoa;
 
 public class Organizador extends Pessoa implements Comparable<Pessoa>{
 
+	private int codOrganizador;
 	private ArrayList<Atividade> atividadeRelacionadas;
 	private EnumNivel nivel;
 	
@@ -14,6 +15,14 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 	
 	public Organizador(EnumNivel nivel) {
 		this.nivel = nivel;
+	}
+
+	public int getCodOrganizador() {
+		return codOrganizador;
+	}
+
+	public void setCodOrganizador(int codOrganizador) {
+		this.codOrganizador = codOrganizador;
 	}
 
 	public ArrayList<Atividade> getAtividadeRelacionadas() {

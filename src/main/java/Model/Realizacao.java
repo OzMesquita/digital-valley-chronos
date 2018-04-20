@@ -3,6 +3,8 @@ package Model;
 import java.time.LocalDateTime;
 
 public class Realizacao implements Comparable<Realizacao> {
+	
+	private int codRealizacao;
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFinal;
 
@@ -13,6 +15,14 @@ public class Realizacao implements Comparable<Realizacao> {
 	public Realizacao(LocalDateTime horaInicio, LocalDateTime horaFinal) {
 		setHoraInicio(horaInicio);
 		setHoraFinal(horaFinal);
+	}
+
+	public int getCodRealizacao() {
+		return codRealizacao;
+	}
+
+	public void setCodRealizacao(int codRealizacao) {
+		this.codRealizacao = codRealizacao;
 	}
 
 	public LocalDateTime getHoraInicio() {

@@ -5,6 +5,8 @@ import Facade.Facade;
 
 public class Apoio implements Comparable<Apoio>{
 
+	private int codApoio;
+	
 	private String nomeInstituicao;
 
 	private String logo;
@@ -21,13 +23,21 @@ public class Apoio implements Comparable<Apoio>{
 		
 	}
 	
-	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDate dataPagamento, String siteInstituicao) {
+	public Apoio(int codApoio,String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDate dataPagamento, String siteInstituicao) {
 		setDataPagamento(dataPagamento);
 		setLogo(logo);
 		setNomeInstituicao(nomeInstituicao);
 		setSiteInstituicao(siteInstituicao);
 		setTipoApoio(tipoApoio);
 		setValorApoio(valorApoio);
+	}
+
+	public int getCodApoio() {
+		return codApoio;
+	}
+
+	public void setCodApoio(int codApoio) {
+		this.codApoio = codApoio;
 	}
 
 	public String getNomeInstituicao() {
