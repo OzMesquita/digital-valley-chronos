@@ -1,12 +1,12 @@
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
 import model.Pessoa;
 
 public class Organizador extends Pessoa implements Comparable<Pessoa>{
 
 	private int codOrganizador;
-	private ArrayList<Atividade> atividadeRelacionadas;
+	private List<Atividade> atividadeRelacionadas;
 	private EnumNivel nivel;
 	
 	public Organizador() {
@@ -29,11 +29,11 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 			throw new IllegalArgumentException("Erro: o campo codigo do organizador nao pode estar vazio");
 	}
 
-	public ArrayList<Atividade> getAtividadeRelacionadas() {
+	public List<Atividade> getAtividadeRelacionadas() {
 		return atividadeRelacionadas;
 	}
 
-	public void setAtividadeRelacionadas(ArrayList<Atividade> atividadeRelacionadas) {
+	public void setAtividadeRelacionadas(List<Atividade> atividadeRelacionadas) {
 		this.atividadeRelacionadas = atividadeRelacionadas;
 	}
 

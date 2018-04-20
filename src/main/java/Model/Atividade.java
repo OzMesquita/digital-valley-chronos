@@ -1,11 +1,11 @@
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
 import Facade.Facade;
 
 public class Atividade implements Comparable<Atividade>{
 
-	private ArrayList<Atividade> subAtividade;
+	private List<Atividade> subAtividade;
 
 	private int codAtividade;
 
@@ -19,13 +19,13 @@ public class Atividade implements Comparable<Atividade>{
 
 	private float totalHoras;
 
-	private ArrayList<Realizacao> realizacao;
+	private List<Realizacao> realizacao;
 
 	private EnumTipoAtividade tipoAtividade;
 
 	private boolean campoAtivdade;
 
-	private ArrayList<Atividade> preRequisitos;
+	private List<Atividade> preRequisitos;
 
 	private Responsavel responsavel;
 
@@ -37,9 +37,9 @@ public class Atividade implements Comparable<Atividade>{
 
 	private EnumTipoPagamento tipoPagamento;
 
-	private ArrayList<Apoio> apoiadores;
+	private List<Apoio> apoiadores;
 
-	private ArrayList<Organizador> organizadores;
+	private List<Organizador> organizadores;
 
 	//Construir primeiro o numero total de vagas de cada de atividade e depois o total de vagas da comunidade.
 	public Atividade() {
@@ -49,10 +49,10 @@ public class Atividade implements Comparable<Atividade>{
 	/**Atividade Raiz (Evento)
 	 * */
 	public Atividade(int codAtividade, String nome, String descricao, String sigla,
-			ArrayList<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
-			ArrayList<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
-			String local, EnumTipoPagamento tipoPagamento, ArrayList<Apoio> apoiadores,
-			ArrayList<Organizador> organizadores) {
+			List<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
+			List<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String local, EnumTipoPagamento tipoPagamento, List<Apoio> apoiadores,
+			List<Organizador> organizadores) {
 		setCodAtividade(codAtividade);
 		setNome(nome);
 		setDescricao(descricao);
@@ -74,10 +74,10 @@ public class Atividade implements Comparable<Atividade>{
 	/**Demais Atividades
 	 * */
 	public Atividade(int codAtividade, String nome, String descricao, Atividade pai, String sigla, float totalHoras,
-			ArrayList<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
-			ArrayList<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
-			String local, EnumTipoPagamento tipoPagamento, ArrayList<Apoio> apoiadores,
-			ArrayList<Organizador> organizadores) {
+			List<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
+			List<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String local, EnumTipoPagamento tipoPagamento, List<Apoio> apoiadores,
+			List<Organizador> organizadores) {
 		setCodAtividade(codAtividade);
 		setNome(nome);
 		setDescricao(descricao);
@@ -97,11 +97,11 @@ public class Atividade implements Comparable<Atividade>{
 		setOrganizadores(organizadores);
 	}
 
-	public ArrayList<Atividade> getSubAtividade() {
+	public List<Atividade> getSubAtividade() {
 		return subAtividade;
 	}
 
-	public void setSubAtividade(ArrayList<Atividade> subAtividade) {
+	public void setSubAtividade(List<Atividade> subAtividade) {
 		this.subAtividade = subAtividade;
 	}
 
@@ -190,11 +190,11 @@ public class Atividade implements Comparable<Atividade>{
 		return hora_minutos;
 	}
 
-	public ArrayList<Realizacao> getRealizacao() {
+	public List<Realizacao> getRealizacao() {
 		return realizacao;
 	}
 
-	public void setRealizacao(ArrayList<Realizacao> realizacao) {
+	public void setRealizacao(List<Realizacao> realizacao) {
 		this.realizacao = realizacao;
 	}
 	
@@ -221,11 +221,11 @@ public class Atividade implements Comparable<Atividade>{
 		this.campoAtivdade = campoAtivdade;
 	}
 
-	public ArrayList<Atividade> getPreRequisitos() {
+	public List<Atividade> getPreRequisitos() {
 		return preRequisitos;
 	}
 
-	public void setPreRequisitos(ArrayList<Atividade> preRequisitos) {
+	public void setPreRequisitos(List<Atividade> preRequisitos) {
 		this.preRequisitos = preRequisitos;
 	}
 
@@ -291,11 +291,11 @@ public class Atividade implements Comparable<Atividade>{
 			this.tipoPagamento = tipoPagamento;
 	}
 
-	public ArrayList<Apoio> getApoiadores() {
+	public List<Apoio> getApoiadores() {
 		return apoiadores;
 	}
 
-	public void setApoiadores(ArrayList<Apoio> apoiadores) {
+	public void setApoiadores(List<Apoio> apoiadores) {
 		this.apoiadores = apoiadores;
 	}
 
@@ -305,11 +305,11 @@ public class Atividade implements Comparable<Atividade>{
 		else
 			apoiadores.add(apoiador);
 	}
-	public ArrayList<Organizador> getOrganizadores() {
+	public List<Organizador> getOrganizadores() {
 		return organizadores;
 	}
 
-	public void setOrganizadores(ArrayList<Organizador> organizadores) {
+	public void setOrganizadores(List<Organizador> organizadores) {
 		this.organizadores = organizadores;
 	}
 
