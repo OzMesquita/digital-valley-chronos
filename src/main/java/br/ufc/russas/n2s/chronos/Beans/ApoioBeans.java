@@ -1,7 +1,7 @@
-package Beans;
+package br.ufc.russas.n2s.chronos.Beans;
 
 import java.time.LocalDate;
-import Model.Apoio;
+import br.ufc.russas.n2s.chronos.Model.Apoio;
 
 public class ApoioBeans implements Beans{
 	

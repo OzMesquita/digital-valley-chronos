@@ -1,4 +1,4 @@
-package Facade;
+package br.ufc.russas.n2s.chronos.Facade;
 
 public class Facade {
 	public static boolean isEmpty(String string) {

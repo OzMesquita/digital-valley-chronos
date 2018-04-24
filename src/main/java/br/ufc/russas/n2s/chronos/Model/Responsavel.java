@@ -1,7 +1,7 @@
-package Model;
+package br.ufc.russas.n2s.chronos.Model;
 
 import java.time.LocalDate;
-import Facade.Facade;
+import br.ufc.russas.n2s.chronos.Facade.Facade;
 import model.Pessoa;
 import model.Usuario;
 

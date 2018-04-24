@@ -1,12 +1,12 @@
-package Beans;
+package br.ufc.russas.n2s.chronos.Beans;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import Model.Atividade;
-import Model.EnumNivel;
-import Model.Organizador;
+import br.ufc.russas.n2s.chronos.Model.Atividade;
+import br.ufc.russas.n2s.chronos.Model.EnumNivel;
+import br.ufc.russas.n2s.chronos.Model.Organizador;
 
 public class OrganizadorBeans implements Beans{
 

@@ -1,4 +1,4 @@
-package Model;
+package br.ufc.russas.n2s.chronos.Model;
 
 public enum EnumTipoAtividade {
 	ENCONTRO(1),

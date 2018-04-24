@@ -1,7 +1,7 @@
-package Beans;
+package br.ufc.russas.n2s.chronos.Beans;
 
 import java.time.LocalDateTime;
-import Model.Realizacao;
+import br.ufc.russas.n2s.chronos.Model.Realizacao;
 
 public class RealizacaoBeans implements Beans {
 

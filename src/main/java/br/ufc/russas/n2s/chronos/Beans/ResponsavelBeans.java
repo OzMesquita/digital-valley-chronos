@@ -1,6 +1,6 @@
-package Beans;
+package br.ufc.russas.n2s.chronos.Beans;
 
-import Model.Responsavel;
+import br.ufc.russas.n2s.chronos.Model.Responsavel;
 
 public class ResponsavelBeans implements Beans {
 
