@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import br.ufc.russas.n2s.chronos.Facade.Facade;
+import br.ufc.russas.n2s.chronos.facade.Facade;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 
 @Entity
