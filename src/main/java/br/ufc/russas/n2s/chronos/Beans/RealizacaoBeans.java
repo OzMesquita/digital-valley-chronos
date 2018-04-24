@@ -1,27 +1,18 @@
-package br.ufc.russas.n2s.chronos.Beans;
+package br.ufc.russas.n2s.chronos.beans;
 
 import java.time.LocalDateTime;
-import br.ufc.russas.n2s.chronos.Model.Realizacao;
+import br.ufc.russas.n2s.chronos.model.Realizacao;
 
 public class RealizacaoBeans implements Beans {
 
-	private int codRealizacao;
+	private long codRealizacao;
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFinal;
 
-	public RealizacaoBeans() {
-	}
-
-	public RealizacaoBeans(int codRealizacao, LocalDateTime horaInicio, LocalDateTime horaFinal) {
-		this.codRealizacao = codRealizacao;
-		this.horaInicio = horaInicio;
-		this.horaFinal = horaFinal;
-	}
-
-	public int getCodRealizacao() {
+	public long getCodRealizacao() {
 		return codRealizacao;
 	}
-	public void setCodRealizacao(int codRealizacao) {
+	public void setCodRealizacao(long codRealizacao) {
 		this.codRealizacao = codRealizacao;
 	}	
 	public LocalDateTime getHoraInicio() {

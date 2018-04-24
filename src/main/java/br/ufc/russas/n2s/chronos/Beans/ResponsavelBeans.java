@@ -1,18 +1,18 @@
-package br.ufc.russas.n2s.chronos.Beans;
+package br.ufc.russas.n2s.chronos.beans;
 
-import br.ufc.russas.n2s.chronos.Model.Responsavel;
+import br.ufc.russas.n2s.chronos.model.Responsavel;
 
 public class ResponsavelBeans implements Beans {
 
-	private int codResponsavel;
+	private long codResponsavel;
 	private String miniCurriculo;
 
 	
-	public int getCodResponsavel() {
+	public long getCodResponsavel() {
 		return codResponsavel;
 	}
 
-	public void setCodResponsavel(int codResponsavel) {
+	public void setCodResponsavel(long codResponsavel) {
 		this.codResponsavel = codResponsavel;
 	}
 	

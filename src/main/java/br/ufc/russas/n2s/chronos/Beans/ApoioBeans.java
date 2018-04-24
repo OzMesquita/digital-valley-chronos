@@ -1,11 +1,11 @@
-package br.ufc.russas.n2s.chronos.Beans;
+package br.ufc.russas.n2s.chronos.beans;
 
 import java.time.LocalDate;
-import br.ufc.russas.n2s.chronos.Model.Apoio;
+import br.ufc.russas.n2s.chronos.model.Apoio;
 
 public class ApoioBeans implements Beans{
 	
-	private int codApoio;
+	private long codApoio;
 	
 	private String nomeInstituicao;
 
@@ -20,11 +20,11 @@ public class ApoioBeans implements Beans{
 	private String siteInstituicao;
 	
 	
-	public int getCodApoio() {
+	public long getCodApoio() {
 		return codApoio;
 	}
 
-	public void setCodApoio(int codApoio) {
+	public void setCodApoio(long codApoio) {
 		this.codApoio = codApoio;
 	}
 	

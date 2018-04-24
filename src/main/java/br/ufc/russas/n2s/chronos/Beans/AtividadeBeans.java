@@ -1,23 +1,21 @@
-package br.ufc.russas.n2s.chronos.Beans;
+package br.ufc.russas.n2s.chronos.beans;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import br.ufc.russas.n2s.chronos.Model.Apoio;
-import br.ufc.russas.n2s.chronos.Model.Atividade;
-import br.ufc.russas.n2s.chronos.Model.EnumTipoAtividade;
-import br.ufc.russas.n2s.chronos.Model.EnumTipoPagamento;
-import br.ufc.russas.n2s.chronos.Model.Organizador;
-import br.ufc.russas.n2s.chronos.Model.Realizacao;
-import br.ufc.russas.n2s.chronos.Model.Responsavel;
+import br.ufc.russas.n2s.chronos.model.Apoio;
+import br.ufc.russas.n2s.chronos.model.Atividade;
+import br.ufc.russas.n2s.chronos.model.EnumTipoAtividade;
+import br.ufc.russas.n2s.chronos.model.EnumTipoPagamento;
+import br.ufc.russas.n2s.chronos.model.Organizador;
+import br.ufc.russas.n2s.chronos.model.Realizacao;
+import br.ufc.russas.n2s.chronos.model.Responsavel;
 
 public class AtividadeBeans implements Beans {
 
-	private int codAtividade;
+	private long codAtividade;
 
 	private List<AtividadeBeans> subAtividade;
-
-	private int ID;
 
 	private String nome;
 
@@ -51,11 +49,11 @@ public class AtividadeBeans implements Beans {
 
 	private List<OrganizadorBeans> organizadores;
 
-	public int getCodAtividade() {
+	public long getCodAtividade() {
 		return codAtividade;
 	}
 
-	public void setCodAtividade(int codAtividade) {
+	public void setCodAtividade(long codAtividade) {
 		this.codAtividade = codAtividade;
 	}
 
@@ -65,14 +63,6 @@ public class AtividadeBeans implements Beans {
 
 	public void setSubAtividade(List<AtividadeBeans> subAtividade) {
 		this.subAtividade = subAtividade;
-	}
-
-	public int getID() {
-		return ID;
-	}
-
-	public void setID(int iD) {
-		ID = iD;
 	}
 
 	public String getNome() {

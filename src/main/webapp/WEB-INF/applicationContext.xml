@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/mvc
+                http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.springframework.org/schema/tx
+                http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+   <!--bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/jdbc.properties" />
+
+<bean id="dataSource"
+    class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+    p:driverClassName="${jdbc.driverClassName}"
+    p:url="${jdbc.url}"
+    p:username="${jdbc.username}"
+    p:password="${jdbc.password}" /-->
+    
+  
+    
+
+   <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+        p:driverClassName="org.postgresql.Driver" p:url="${jdbc.url}"
+        p:username="${jdbc.username}" p:password="${jdbc.password}">
+    </bean>
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>br.ufc.russas.n2s.chronos.model.UsuarioChronos</value>
+                <value>br.ufc.russas.n2s.chronos.model.Apoio</value>
+                <value>br.ufc.russas.n2s.chronos.model.Atividade</value>
+                <value>br.ufc.russas.n2s.chronos.model.Organizador</value>
+                <value>br.ufc.russas.n2s.chronos.model.Realizacao</value>
+                <value>br.ufc.russas.n2s.chronos.model.Responsavel</value>
+                
+            </list>
+        </property>        
+        <property name="configLocation">
+            <value> /WEB-INF/hibernate.cfg.xml</value>
+        </property>
+    </bean>
+    
+    
+    
+    <bean id="transactionManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!--
+    <mvc:interceptors>
+        <bean class="org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor">
+            <property name="sessionFactory" ref="sessionFactory"></property>
+        </bean>
+    </mvc:interceptors>-->
+    <bean id="persistenceExceptionTranslationPostProcessor"
+        class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <bean id="multipartResolver"
+            class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+            <property name="maxUploadSize" value="90000000" />
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+
+</beans>

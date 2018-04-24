@@ -1,23 +1,23 @@
-package br.ufc.russas.n2s.chronos.Beans;
+package br.ufc.russas.n2s.chronos.beans;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.ufc.russas.n2s.chronos.Model.Atividade;
-import br.ufc.russas.n2s.chronos.Model.EnumNivel;
-import br.ufc.russas.n2s.chronos.Model.Organizador;
+import br.ufc.russas.n2s.chronos.model.Atividade;
+import br.ufc.russas.n2s.chronos.model.EnumPermissao;
+import br.ufc.russas.n2s.chronos.model.Organizador;
 
 public class OrganizadorBeans implements Beans{
 
-	private int codOrganizador;
+	private long codOrganizador;
 	private List<AtividadeBeans> atividadeRelacionadas;
-	private EnumNivel nivel;
+	private EnumPermissao permissao;
 
-	public int getCodOrganizador() {
+	public long getCodOrganizador() {
 		return codOrganizador;
 	}
-	public void setCodOrganizador(int codOrganizador) {
+	public void setCodOrganizador(long codOrganizador) {
 		this.codOrganizador = codOrganizador;
 	}
 	public List<AtividadeBeans> getAtividadeRelacionadas() {
@@ -26,11 +26,11 @@ public class OrganizadorBeans implements Beans{
 	public void setAtividadeRelacionadas(List<AtividadeBeans> atividadeRelacionadas) {
 		this.atividadeRelacionadas = atividadeRelacionadas;
 	}
-	public EnumNivel getNivel() {
-		return nivel;
+	public EnumPermissao getPermissao() {
+		return permissao;
 	}
-	public void setNivel(EnumNivel nivel) {
-		this.nivel = nivel;
+	public void setPermissao(EnumPermissao permissao) {
+		this.permissao = permissao;
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class OrganizadorBeans implements Beans{
 		Organizador organizador = new Organizador();
 		
 		organizador.setCodOrganizador(this.getCodOrganizador());
-		organizador.setNivel(this.getNivel());
+		organizador.setPermissao(this.getPermissao());
 
 		List<Atividade> atividadesRelacionadas = Collections.synchronizedList(new ArrayList<Atividade>());
 		if (this.getAtividadeRelacionadas()!=null)
@@ -59,7 +59,7 @@ public class OrganizadorBeans implements Beans{
 		Organizador organizador = (Organizador) object;
 		
 		this.setCodOrganizador(organizador.getCodOrganizador());
-		this.setNivel(organizador.getNivel());
+		this.setPermissao(organizador.getPermissao());
 
 		List<AtividadeBeans> atividadesRelacionadas = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
 		if (organizador.getAtividadeRelacionadas() != null)
