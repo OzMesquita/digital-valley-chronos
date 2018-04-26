@@ -1,0 +1,363 @@
+package br.ufc.russas.n2s.chronos.model;
+
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import br.ufc.russas.n2s.chronos.facade.Facade;
+import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
+
+@Entity
+@Table(name="atividade")
+public class Atividade implements Comparable<Atividade>{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="codAtividade")
+	private long codAtividade;
+	
+	@ManyToMany(targetEntity = Atividade.class, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinTable(name = "subatividades_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
+    inverseJoinColumns = {@JoinColumn(name = "subAtividade", referencedColumnName = "codAtividade")})
+	private List<Atividade> subAtividade;
+
+	private int ID;
+
+	private String nome;
+
+	private String descricao;
+	@ManyToOne(targetEntity = Atividade.class)
+	@JoinColumn(name="pai",referencedColumnName="codAtividade")
+	private Atividade pai;
+
+	private String sigla;
+
+	private float totalHoras;
+
+	@ManyToMany(targetEntity = Realizacao.class, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinTable(name = "realizacoes_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
+    inverseJoinColumns = {@JoinColumn(name = "realizacao", referencedColumnName = "codRealizacao")})
+	private List<Realizacao> realizacao;
+
+	@Enumerated(EnumType.ORDINAL)
+	private EnumTipoAtividade tipoAtividade;
+
+	private boolean campoAtivdade;
+	@ManyToOne(targetEntity = Atividade.class)
+	@JoinColumn(name="preRequisito",referencedColumnName="codAtividade")
+	private List<Atividade> preRequisitos;
+
+	@ManyToOne(targetEntity = Responsavel.class)
+	@JoinColumn(name="responsavel",referencedColumnName="codResponsavel")
+	private Responsavel responsavel;
+
+	private int totalVagas;
+
+	private int totalVagasComunidade;
+
+	private String Local;
+	@Enumerated(EnumType.ORDINAL)
+	private EnumTipoPagamento tipoPagamento;
+	
+	@ManyToMany(targetEntity = Apoio.class, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinTable(name = "apoiadores_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
+    inverseJoinColumns = {@JoinColumn(name = "apoio", referencedColumnName = "codApoio")})
+	private List<Apoio> apoiadores;
+
+	@ManyToMany(targetEntity = Organizador.class, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinTable(name = "organizadores_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
+    inverseJoinColumns = {@JoinColumn(name = "organizador", referencedColumnName = "codOrganizador")})
+	private List<Organizador> organizadores;
+
+	//Construir primeiro o numero total de vagas de cada de atividade e depois o total de vagas da comunidade.
+	public Atividade() {
+		
+	}
+
+	/**Atividade Raiz (Evento)
+	 * */
+	public Atividade(int iD, String nome, String descricao, String sigla,
+			List<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
+			List<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String local, EnumTipoPagamento tipoPagamento, List<Apoio> apoiadores,
+			List<Organizador> organizadores) {
+		setID(iD);
+		setNome(nome);
+		setDescricao(descricao);
+		setSigla(sigla);
+		setRealizacao(realizacao);
+		setTotalHoras();
+		setTipoAtividade(tipoAtividade);
+		setCampoAtivdade(campoAtivdade);
+		setPreRequisitos(preRequisitos);
+		setResponsavel(responsavel);
+		setTotalVagas(totalVagas);
+		setTotalVagasComunidade(totalVagasComunidade);
+		setLocal(local);
+		setTipoPagamento(tipoPagamento);
+		setApoiadores(apoiadores);
+		setOrganizadores(organizadores);
+	}
+	
+	/**Demais Atividades
+	 * */
+	public Atividade(int iD, String nome, String descricao, Atividade pai, String sigla, float totalHoras,
+			List<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
+			List<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String local, EnumTipoPagamento tipoPagamento, List<Apoio> apoiadores,
+			List<Organizador> organizadores) {
+		setID(iD);
+		setNome(nome);
+		setDescricao(descricao);
+		setPai(pai);
+		setSigla(sigla);
+		setRealizacao(realizacao);
+		setTotalHoras();
+		setTipoAtividade(tipoAtividade);
+		setCampoAtivdade(campoAtivdade);
+		setPreRequisitos(preRequisitos);
+		setResponsavel(responsavel);
+		setTotalVagas(totalVagas);
+		setTotalVagasComunidade(totalVagasComunidade);
+		setLocal(local);
+		setTipoPagamento(tipoPagamento);
+		setApoiadores(apoiadores);
+		setOrganizadores(organizadores);
+	}
+
+	public long getCodAtividade() {
+		return codAtividade;
+	}
+	
+	public void setCodAtividade(long codAtividade) {
+		 if(codAtividade>0)
+	            this.codAtividade = codAtividade;
+	        else
+	            throw new IllegalCodeException("Código da atividade deve ser maior de zero!");
+	}
+	
+	public List<Atividade> getSubAtividade() {
+		return subAtividade;
+	}
+
+	public void setSubAtividade(List<Atividade> subAtividade) {
+		this.subAtividade = subAtividade;
+	}
+	
+	public void addSubAtividade(Atividade subAtividade) {
+		this.subAtividade.add(subAtividade);
+	}
+
+	public int getID() {
+		return ID;
+	}
+	
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		if(!Facade.isEmpty(nome))
+			this.nome = nome;
+		else
+			throw new IllegalArgumentException("Erro: o campo nome não pode estar vazio");
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		if(!Facade.isEmpty(descricao))
+			this.descricao = descricao;
+		else
+			throw new IllegalArgumentException("Erro: o campo descricao não pode estar vazio");
+	}
+
+	public Atividade getPai() {
+		return pai;
+	}
+	
+	//Tratar automaticamente com o sistema!
+	public void setPai(Atividade pai) {
+		this.pai = pai;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+
+	public float getTotalHoras() {
+		return totalHoras;
+	}
+	
+	//Setar automaticamente esta variavel usando os atributos horaInicial e horaFinal da classe "Realização", !
+	public void setTotalHoras() {
+		int minutos = 0;
+		for (int i = 0; i < realizacao.size(); i++) {
+			totalHoras+=realizacao.get(i).getHoraFinal().getHour() - realizacao.get(i).getHoraInicio().getHour();
+			minutos +=realizacao.get(i).getHoraFinal().getMinute() - realizacao.get(i).getHoraInicio().getMinute();
+		}
+		totalHoras+=(int)(minutos/60)+((minutos%60)/100.0);
+	}
+	
+	public List<Realizacao> getRealizacao() {
+		return realizacao;
+	}
+
+	public void setRealizacao(List<Realizacao> realizacao) {
+		this.realizacao = realizacao;
+	}
+	
+	public void addRealizacao(Realizacao realizacao) {
+		if(realizacao == null)
+			throw new IllegalArgumentException("Erro: o campo realizacao não pode ser nulo.");
+		else
+			this.realizacao.add(realizacao);
+	}
+
+	public EnumTipoAtividade getTipoAtividade() {
+		return tipoAtividade;
+	}
+
+	public void setTipoAtividade(EnumTipoAtividade tipoAtividade) {
+		this.tipoAtividade = tipoAtividade;
+	}
+
+	public boolean isCampoAtivdade() {
+		return campoAtivdade;
+	}
+
+	public void setCampoAtivdade(boolean campoAtivdade) {
+		this.campoAtivdade = campoAtivdade;
+	}
+
+	public List<Atividade> getPreRequisitos() {
+		return preRequisitos;
+	}
+
+	public void setPreRequisitos(List<Atividade> preRequisitos) {
+		this.preRequisitos = preRequisitos;
+	}
+	
+	public void addPreRequisito(Atividade preRequisito) {
+		preRequisitos.add(preRequisito);
+	}
+
+	public Responsavel getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Responsavel responsavel) {
+		if(responsavel == null)
+			throw new IllegalArgumentException("Erro: a atividade precisa de um responsavel.");
+		else
+			this.responsavel = responsavel;
+	}
+
+	public int getTotalVagas() {
+		return totalVagas;
+	}
+
+	public void setTotalVagas(int totalVagas) {
+		if(totalVagas < 0) 
+			throw new IllegalArgumentException("Erro: o campo total de vagas nao pode ser negativa.");
+		else
+			this.totalVagas = totalVagas;
+	}
+
+	public int getTotalVagasComunidade() {
+		return totalVagasComunidade;
+	}
+	
+	
+	public void setTotalVagasComunidade(int totalVagasComunidade) {
+		if(totalVagasComunidade < 0) 
+			throw new IllegalArgumentException("Erro: o campo total de vagas da comunidade nao pode ser negativa.");
+		else if(totalVagasComunidade > getTotalVagas())
+			throw new IllegalArgumentException("Erro: o campo total de vagas da comunidade nao pode ser maior que o total de vagas.");
+		else
+			this.totalVagasComunidade = totalVagasComunidade;
+	}
+
+	public String getLocal() {
+		return Local;
+	}
+
+	public void setLocal(String local) {
+		if(!Facade.isEmpty(local))
+			Local = local;
+		else
+			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
+	}
+
+	public EnumTipoPagamento getTipoPagamento() {
+		return tipoPagamento;
+	}
+
+	public void setTipoPagamento(EnumTipoPagamento tipoPagamento) {
+		if(tipoPagamento == null)
+			throw new IllegalArgumentException("Erro: o campo pagamento não pode estar vazio.");
+		else
+			this.tipoPagamento = tipoPagamento;
+	}
+
+	public List<Apoio> getApoiadores() {
+		return apoiadores;
+	}
+
+	public void setApoiadores(List<Apoio> apoiadores) {
+		this.apoiadores = apoiadores;
+	}
+	
+	public void addApoaidor(Apoio apoiador) {
+		if(apoiador == null)
+			throw new IllegalArgumentException("Erro: o campo apoiador não pode ser nulo.");
+		else
+			apoiadores.add(apoiador);
+	}
+	public List<Organizador> getOrganizadores() {
+		return organizadores;
+	}
+
+	public void setOrganizadores(List<Organizador> organizadores) {
+		this.organizadores = organizadores;
+	}
+	
+	public void addOrganizador(Organizador organizador) {
+		if(organizador == null)
+			throw new IllegalArgumentException("Erro: o campo organizador não pode ser nulo.");
+		else
+			organizadores.add(organizador);
+	}
+
+	@Override
+	public int compareTo(Atividade o) {
+		return this.getNome().compareTo(o.getNome());
+	}
+}
