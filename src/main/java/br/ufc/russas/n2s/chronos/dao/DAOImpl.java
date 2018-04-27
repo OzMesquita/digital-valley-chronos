@@ -6,6 +6,8 @@
 package br.ufc.russas.n2s.chronos.dao;
 
 import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -122,7 +124,24 @@ public class DAOImpl<T> implements DAOIfc<T> {
             session.close();
         }
     }
-
+    
+    @Override
+	public List<T> listaHqL(String busca) {
+        Session session = getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        try {
+        	Query query = session.createQuery(busca);
+            List<T> objetos = query.list();
+            t.commit();
+            return objetos;
+        } catch (RuntimeException e) {
+            t.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+	}
+    
     @Override
     //@Transactional
     public T getObject(T object, long codObject) {
@@ -141,4 +160,6 @@ public class DAOImpl<T> implements DAOIfc<T> {
             session.close();
         }
     }
+
+	
 }

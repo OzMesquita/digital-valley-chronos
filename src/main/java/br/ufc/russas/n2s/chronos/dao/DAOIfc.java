@@ -74,5 +74,8 @@ public interface DAOIfc<T> {
      * T - objeto genérico que pode assumir a forma de uma classe anotada com
      * Hibernate
      */
+    
+    List<T> listaHqL(String query);
+    
     T getObject(T object, long codObject);
 }
