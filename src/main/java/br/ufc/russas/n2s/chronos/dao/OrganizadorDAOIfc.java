@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.ufc.russas.n2s.chronos.model.Organizador;
 
-public interface OrganizadorIfc {
+public interface OrganizadorDAOIfc {
 	
 	void adicionaOrganizador(Organizador organizador);
 	

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import br.ufc.russas.n2s.chronos.model.Organizador;
 
-public class OrganizadorDAOImpl implements OrganizadorIfc{
+public class OrganizadorDAOImpl implements OrganizadorDAOIfc{
 
 	private DAOIfc<Organizador> daoImpl;
 	
