@@ -57,12 +57,7 @@ public class AutenticadoFiltro implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
             String path = ((HttpServletRequest) request).getServletPath();
-            System.out.println("foi\n\n");
-            System.out.print(path);
-            
-            System.out.println("merda 444444429");
             if (path.endsWith("/autentica")){
-            	System.out.println("merda 44444442");
                     chain.doFilter(request, response);
             }else{
             	 System.out.println("foi\n\n");
@@ -83,18 +78,14 @@ public class AutenticadoFiltro implements Filter {
                                         u.setPermissoes(permissoes);
                                         this.getUsuarioServiceIfc().adicionaUsuario(u);
                                     }
-                                    System.out.println("merda -1");    
                                     session.setAttribute("usuarioChronos", this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()));
                                     chain.doFilter(request, response);
                             }else {
-                            	System.out.println("merda 0");    
                                 ((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao/");
                             }
                     }else if(session.getAttribute("usuario")!= null && DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId())!=null && ((Usuario)session.getAttribute("usuario")).getTokenUsuario().equals(DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId()))){
-                    	System.out.println("merda 1");    
                     	chain.doFilter(request, response);
                     }else {
-                    	System.out.println("merda 2");
                             ((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao/");
                     }
             }				

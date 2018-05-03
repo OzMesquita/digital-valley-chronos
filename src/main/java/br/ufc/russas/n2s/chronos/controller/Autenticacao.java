@@ -26,20 +26,15 @@ public class Autenticacao extends HttpServlet{
                 Gson gson = new GsonBuilder().create();
                 Usuario user = gson.fromJson(json, Usuario.class);
                 Usuario usuario = Facade.buscarPorLogin(user.getLogin());
-                System.out.print(usuario);
-                System.out.println("foi\n\n");
                 usuario.setToken(DAOFactory.criarUsuarioDAO().buscarToken(user.getPessoa().getId()));
                 if(user.getLogin().equals(usuario.getLogin()) && user.getToken().equals(usuario.getToken())){
                         UsuarioDAO userDAO = DAOFactory.criarUsuarioDAO();
                         userDAO.salvarTokenUsuario(Facade.buildToken(), usuario.getPessoa().getId());
-                        System.out.println("Bost 1");
                         response.setStatus(200);
                 }else{
-                	System.out.println("Bost 2");
                         response.setStatus(403);
                 }
             }else{
-            	System.out.println("Bost 3");
                     response.setStatus(403);
             }
 	}

@@ -49,7 +49,7 @@
     </servlet>
     
     
-   <!--   <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.js</url-pattern>
     </servlet-mapping>
@@ -69,7 +69,7 @@
         <servlet-name>default</servlet-name>
         <url-pattern>*.properties</url-pattern>
     </servlet-mapping>
-    -->
+   
     <filter> 
         <filter-name>SetCharacterEncodingFilter</filter-name>  
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  

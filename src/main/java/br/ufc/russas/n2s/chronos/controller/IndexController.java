@@ -39,7 +39,7 @@ public class IndexController {
     
     @RequestMapping(value="/teste", method = RequestMethod.POST)
     public String getPag2(Model model) {
-        return "pag2";
+        return "cadastrar-atividade";
     }
            
 }
