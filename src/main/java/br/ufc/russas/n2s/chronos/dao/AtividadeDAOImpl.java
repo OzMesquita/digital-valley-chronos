@@ -19,13 +19,15 @@ public class AtividadeDAOImpl implements AtividadeDAOIfc{
     public AtividadeDAOImpl(){}
 
     @Override
-    public void adicionaAtividade(Atividade atividade) {
-        this.daoImpl.adiciona(atividade);
+    public Atividade adicionaAtividade(Atividade atividade) {
+        Atividade a = this.daoImpl.adiciona(atividade);
+        return a;
     }
 
     @Override
-    public void atualizaAtividade(Atividade atividade) {
-        this.daoImpl.atualiza(atividade);
+    public Atividade atualizaAtividade(Atividade atividade) {
+        Atividade a = this.daoImpl.atualiza(atividade);
+        return a;
     }
 
     @Override

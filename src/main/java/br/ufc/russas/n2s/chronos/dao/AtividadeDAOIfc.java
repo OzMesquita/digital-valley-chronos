@@ -7,9 +7,9 @@ import br.ufc.russas.n2s.chronos.model.Responsavel;
 
 public interface AtividadeDAOIfc {
 
-	void adicionaAtividade(Atividade atividade);
+	Atividade adicionaAtividade(Atividade atividade);
 	
-	void atualizaAtividade(Atividade atividade);
+	Atividade atualizaAtividade(Atividade atividade);
 	
 	void removeAtividade(Atividade atividade);
 	

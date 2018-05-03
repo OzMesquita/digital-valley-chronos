@@ -355,6 +355,13 @@ public class Atividade implements Comparable<Atividade>{
 		else
 			organizadores.add(organizador);
 	}
+	public Atividade adicionaAtividade() {
+		return this;
+	}
+	
+	public Atividade atualizaAtividade() {
+		return this;
+	}
 
 	@Override
 	public int compareTo(Atividade o) {
