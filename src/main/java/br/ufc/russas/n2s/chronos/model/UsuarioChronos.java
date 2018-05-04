@@ -5,9 +5,6 @@
  */
 package br.ufc.russas.n2s.chronos.model;
 
-import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
-import br.ufc.russas.n2s.chronos.dao.UsuarioDAOIfc;
-import br.ufc.russas.n2s.chronos.dao.UsuarioDAOImpl;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 import java.util.List;
 import javax.persistence.Column;

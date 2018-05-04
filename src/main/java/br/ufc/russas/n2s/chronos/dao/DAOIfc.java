@@ -6,7 +6,6 @@
 package br.ufc.russas.n2s.chronos.dao;
 
 import java.util.List;
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 
 /**
@@ -75,5 +74,8 @@ public interface DAOIfc<T> {
      * T - objeto genérico que pode assumir a forma de uma classe anotada com
      * Hibernate
      */
+    
+    List<T> listaHqL(String query);
+    
     T getObject(T object, long codObject);
 }

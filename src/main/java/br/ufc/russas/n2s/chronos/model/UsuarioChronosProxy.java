@@ -24,7 +24,7 @@ public class UsuarioChronosProxy extends UsuarioChronos{
         if (usuario != null) {
             this.usuario = usuario;
         } else {
-            throw new NullPointerException("Usuário do Darwin não pode ser vazio!");
+            throw new NullPointerException("Usuário do Chronos não pode ser vazio!");
         }
     }
     
@@ -33,7 +33,7 @@ public class UsuarioChronosProxy extends UsuarioChronos{
         if (getUsuario().getPermissoes().contains(EnumPermissao.ADMINISTRADOR)) {
             return super.adicionaNivel(usuario, permissao);
         } else {
-            throw new IllegalAccessException("Você não é um administrador do Darwin!");
+            throw new IllegalAccessException("Você não é um administrador do Chronos!");
         }
     }
     
@@ -42,7 +42,7 @@ public class UsuarioChronosProxy extends UsuarioChronos{
         if (getUsuario().getPermissoes().contains(EnumPermissao.ADMINISTRADOR)) {
             return super.removeNivel(usuario, permissao);
         } else {
-            throw new IllegalAccessException("Você não é um administrador do Darwin!");
+            throw new IllegalAccessException("Você não é um administrador do Chronos!");
         }
     }
 }
