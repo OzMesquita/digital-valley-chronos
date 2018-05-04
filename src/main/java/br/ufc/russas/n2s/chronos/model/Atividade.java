@@ -62,7 +62,7 @@ public class Atividade implements Comparable<Atividade>{
 
 	private boolean campoAtivdade;
 	@ManyToOne(targetEntity = Atividade.class)
-	@JoinColumn(name="preRequisito",referencedColumnName="codAtividade")
+	@JoinColumn(name="preRequisito",referencedColumnName="codAtividade") 
 	private List<Atividade> preRequisitos;
 
 	@ManyToOne(targetEntity = Responsavel.class)

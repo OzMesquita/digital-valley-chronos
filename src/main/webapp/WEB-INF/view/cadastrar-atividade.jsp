@@ -52,6 +52,13 @@
                         </div>
                         <br>
 
+                        <label for="descricaoInput">Sigla*</label>
+                        <textarea class="form-control" name="sigla" id="descricaoInput" placeholder="Digite uma sigla para a atividade" required></textarea>
+                        <div class="invalid-feedback">
+                            
+                        </div>
+                        <br>
+
                         <label for="descricaoInput">Descrição*</label>
                         <textarea class="form-control" name="descricao" id="descricaoInput" placeholder="Digite uma breve descrição sobre a atividade" required></textarea>
                         <div class="invalid-feedback">
