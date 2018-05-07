@@ -21,6 +21,9 @@ public class Realizacao {
 	
 	private LocalDateTime horaFinal;
 	
+	public Realizacao() {
+	}
+
 	public Realizacao(LocalDateTime horaInicio, LocalDateTime horaFinal) {
 		setHoraInicio(horaInicio);
 		setHoraFinal(horaFinal);

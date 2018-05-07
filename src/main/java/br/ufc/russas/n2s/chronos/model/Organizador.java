@@ -38,10 +38,13 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 	private List<Atividade> atividadeRelacionadas;
 	
 	@Enumerated(EnumType.ORDINAL)
-	private EnumPermissao nivel;
+	private EnumPermissao permissao;
 	
-	public Organizador(EnumPermissao nivel) {
-		this.nivel = nivel;
+	public Organizador() {
+	}
+
+	public Organizador(EnumPermissao permissao) {
+		this.permissao = permissao;
 	}
 
 	public long getCodOrganizador() {
@@ -71,15 +74,15 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 			atividadeRelacionadas.add(atividadeRelacionada);
 	}
 	
-	public EnumPermissao getNivel() {
-		return nivel;
+	public EnumPermissao getPermissao() {
+		return permissao;
 	}
 
-	public void setNivel(EnumPermissao nivel) {
-		if(nivel == null)
-			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio");
+	public void setPermissao(EnumPermissao permissao) {
+		if(permissao == null)
+			throw new IllegalArgumentException("Erro: o campo permissão não pode estar vazio");
 		else
-			this.nivel = nivel;
+			this.permissao = permissao;
 	}
 
 	@Override

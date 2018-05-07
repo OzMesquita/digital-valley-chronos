@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.ufc.russas.n2s.chronos.Facade.Facade;
+import br.ufc.russas.n2s.chronos.facade.Facade;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 import model.Pessoa;
 import model.Usuario;
@@ -23,6 +23,10 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	private long codResponsavel;
 	
 	private String miniCurriculo;
+
+	public Responsavel() {
+
+	}
 
 	public Responsavel(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento, String miniCurriculo) {
 		super(nome, cpf, email, usuario, dataNascimento);

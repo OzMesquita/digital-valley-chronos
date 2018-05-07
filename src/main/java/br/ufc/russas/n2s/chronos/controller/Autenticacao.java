@@ -30,11 +30,14 @@ public class Autenticacao extends HttpServlet{
                 if(user.getLogin().equals(usuario.getLogin()) && user.getToken().equals(usuario.getToken())){
                         UsuarioDAO userDAO = DAOFactory.criarUsuarioDAO();
                         userDAO.salvarTokenUsuario(Facade.buildToken(), usuario.getPessoa().getId());
+                        System.out.println("deu 200");
                         response.setStatus(200);
                 }else{
+                	System.out.println("deu 403");
                         response.setStatus(403);
                 }
             }else{
+            	System.out.println("deu 403.2 tbm");
                     response.setStatus(403);
             }
 	}

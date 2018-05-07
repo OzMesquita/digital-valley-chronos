@@ -1,9 +1,6 @@
 package br.ufc.russas.n2s.chronos.model;
 
 import java.util.List;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,7 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import br.ufc.russas.n2s.chronos.Facade.Facade;
+import br.ufc.russas.n2s.chronos.facade.Facade;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 
 @Entity
@@ -357,6 +354,13 @@ public class Atividade implements Comparable<Atividade>{
 			throw new IllegalArgumentException("Erro: o campo organizador não pode ser nulo.");
 		else
 			organizadores.add(organizador);
+	}
+	public Atividade adicionaAtividade() {
+		return this;
+	}
+	
+	public Atividade atualizaAtividade() {
+		return this;
 	}
 
 	@Override

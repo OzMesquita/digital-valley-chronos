@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.ufc.russas.n2s.chronos.Facade.Facade;
+import br.ufc.russas.n2s.chronos.facade.Facade;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 
 @Entity
@@ -31,6 +31,9 @@ public class Apoio implements Comparable<Apoio>{
 	private LocalDate dataPagamento;
 
 	private String siteInstituicao;
+
+	public Apoio() {
+	}
 
 	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDate dataPagamento, String siteInstituicao) {
 		setDataPagamento(dataPagamento);
