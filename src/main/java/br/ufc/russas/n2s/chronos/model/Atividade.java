@@ -81,7 +81,8 @@ public class Atividade implements Comparable<Atividade>{
     @JoinTable(name = "organizadores_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
     inverseJoinColumns = {@JoinColumn(name = "organizador", referencedColumnName = "codOrganizador")})
 	private List<Organizador> organizadores;
-
+	private boolean divulgada;
+	
 	//Construir primeiro o numero total de vagas de cada de atividade e depois o total de vagas da comunidade.
 	public Atividade() {
 		
@@ -350,6 +351,14 @@ public class Atividade implements Comparable<Atividade>{
 		return this;
 	}
 
+    public boolean isDivulgada() {
+        return divulgada;
+    }
+
+    public void setDivulgada(boolean divulgada) {
+        this.divulgada = divulgada;
+    }
+	
 	@Override
 	public int compareTo(Atividade o) {
 		return this.getNome().compareTo(o.getNome());
