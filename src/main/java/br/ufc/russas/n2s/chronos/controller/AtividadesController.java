@@ -52,5 +52,6 @@ public class AtividadesController {
 		session.setAttribute("atividade", atividade);
 		return "atividade";
 	}
+	
            
 }

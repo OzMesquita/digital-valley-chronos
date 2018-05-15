@@ -163,7 +163,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setNome(String nome) {
-		if(isEmpty(nome))
+		if(!isEmpty(nome))
 			this.nome = nome;
 		else
 			throw new IllegalArgumentException("Erro: o campo nome não pode estar vazio");
@@ -174,7 +174,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setDescricao(String descricao) {
-		if(isEmpty(descricao))
+		if(!isEmpty(descricao))
 			this.descricao = descricao;
 		else
 			throw new IllegalArgumentException("Erro: o campo descricao não pode estar vazio");
@@ -286,7 +286,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setLocal(String local) {
-		if(isEmpty(local))
+		if(!isEmpty(local))
 			Local = local;
 		else
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
@@ -308,11 +308,8 @@ public class Atividade implements Comparable<Atividade>{
 	}
 	
 	public void setLocalPagamento(String localPagamento) {
-		if(isEmpty(localPagamento)) {
 			this.localPagamento = localPagamento;
-		}else {
-			throw new IllegalArgumentException("Erro: o campo local de pagamento não pode estar vazio");
-		}
+		
 	}
 
 	public List<Apoio> getApoiadores() {

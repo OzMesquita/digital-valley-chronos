@@ -80,7 +80,7 @@ ul {
                 </c:if>-->
 
 				<!-- Mensagem de solicitando a divulgação da seleção -->
-				<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+				<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR')) and (not atividade.divulgada)}">
 					<!--  and (not atividade.divulgada)}"> -->
 					<div class="jumbotron jumbotron-fluid"
 						style="padding-top: 40px; padding-bottom: 30px;">
@@ -118,7 +118,7 @@ ul {
 									<button type="button" class="btn btn-secondary btn-sm"
 										data-dismiss="modal">Cancelar</button>
 									<a class="btn btn-sm btn-primary"
-										href="/Darwin/editarAtividade/divulga/${atividade.codAtividade}">
+										href="/Chronos/editarAtividade/divulga/${atividade.codAtividade}">
 										Divulgar a atividade</a>
 								</div>
 							</div>
@@ -444,5 +444,29 @@ ul {
         </div>
          -->
 <c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>      
+        <script>
+      $("#navEtapas").addClass(function( index, currentClass ) {
+          var addedClass;
+
+          if (screen.width <= 575) {
+            addedClass = "flex-column";
+          }
+
+          return addedClass;
+      });
+      $("#timeline").removeClass(function( index, currentClass ) {
+          var addedClass;
+
+          if (screen.width <= 575) {
+            addedClass = "timeline";
+          }
+
+          return addedClass;
+      });
+  </script>
+
 </body>
 </html>
