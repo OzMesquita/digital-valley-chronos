@@ -1,7 +1,6 @@
 package br.ufc.russas.n2s.chronos.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,11 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
-import br.ufc.russas.n2s.chronos.facade.Facade;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 
 @Entity
@@ -166,7 +162,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setNome(String nome) {
-		if(!Facade.isEmpty(nome))
+		if(isEmpty(nome))
 			this.nome = nome;
 		else
 			throw new IllegalArgumentException("Erro: o campo nome não pode estar vazio");
@@ -177,7 +173,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setDescricao(String descricao) {
-		if(!Facade.isEmpty(descricao))
+		if(isEmpty(descricao))
 			this.descricao = descricao;
 		else
 			throw new IllegalArgumentException("Erro: o campo descricao não pode estar vazio");
@@ -289,7 +285,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setLocal(String local) {
-		if(!Facade.isEmpty(local))
+		if(isEmpty(local))
 			Local = local;
 		else
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
@@ -311,7 +307,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 	
 	public void setLocalPagamento(String localPagamento) {
-		if(!Facade.isEmpty(localPagamento)) {
+		if(isEmpty(localPagamento)) {
 			this.localPagamento = localPagamento;
 		}else {
 			throw new IllegalArgumentException("Erro: o campo local de pagamento não pode estar vazio");
@@ -357,5 +353,10 @@ public class Atividade implements Comparable<Atividade>{
 	@Override
 	public int compareTo(Atividade o) {
 		return this.getNome().compareTo(o.getNome());
+	}
+	public static boolean isEmpty(String string) {
+		if(string==null||string.equals(""))
+			return true;
+		return false;
 	}
 }
