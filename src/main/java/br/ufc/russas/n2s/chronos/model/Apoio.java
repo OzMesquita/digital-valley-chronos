@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import br.ufc.russas.n2s.chronos.facade.Facade;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 
 @Entity
@@ -61,7 +59,7 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setNomeInstituicao(String nomeInstituicao) {
-		if(!Facade.isEmpty(nomeInstituicao))
+		if(isEmpty(nomeInstituicao))
 			this.nomeInstituicao = nomeInstituicao;
 		else
 			throw new IllegalArgumentException("Erro: o campo nome da instituicao nao pode estar vazio");
@@ -80,7 +78,7 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setTipoApoio(String tipoApoio) {
-		if(!Facade.isEmpty(tipoApoio))
+		if(isEmpty(tipoApoio))
 			this.tipoApoio = tipoApoio;
 		else
 			throw new IllegalArgumentException("Erro: o campo tipo de apoio nao pode estar vazio.");
@@ -116,5 +114,10 @@ public class Apoio implements Comparable<Apoio>{
 	@Override
 	public int compareTo(Apoio a) {
 		return this.getNomeInstituicao().compareTo(a.getNomeInstituicao());
+	}
+	public static boolean isEmpty(String string) {
+		if(string==null||string.equals(""))
+			return true;
+		return false;
 	}
 }

@@ -1,15 +1,12 @@
 package br.ufc.russas.n2s.chronos.model;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import br.ufc.russas.n2s.chronos.facade.Facade;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 import model.Pessoa;
 import model.Usuario;
@@ -48,7 +45,7 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	}
 
 	public void setMiniCurriculo(String miniCurriculo) {
-		if(!Facade.isEmpty(miniCurriculo))
+		if(isEmpty(miniCurriculo))
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
 		else
 			this.miniCurriculo = miniCurriculo;
@@ -57,5 +54,10 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	@Override
 	public int compareTo(Pessoa o) {
 		return this.getNome().compareTo(o.getNome());
+	}
+	public static boolean isEmpty(String string) {
+		if(string==null||string.equals(""))
+			return true;
+		return false;
 	}
 }
