@@ -21,6 +21,7 @@ import util.Facade;
 
 public class Autenticacao extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Entrou autenticacao");
             if(request.getParameter("json")!=null){
                 String json = request.getParameter("json");
                 Gson gson = new GsonBuilder().create();

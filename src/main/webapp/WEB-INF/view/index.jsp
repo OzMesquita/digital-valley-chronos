@@ -10,7 +10,7 @@
 
     <body>
         <p>Esta é a primeira tela do Chronos</p>
-            <form action="teste" method="post">
+            <form action="cadastrarAtividades" method="post">
             	<input type="submit" value="Ir para oputra página">
             </form>
     </body>

@@ -20,7 +20,7 @@
         <div class="navbar-nav">
             <c:set var="permissoes" value="${sessionScope.usuarioChronos.permissoes}"></c:set>
             <a class="nav-item nav-link" href="<%=Constantes.getAppGuardiaoUrl()%>">Guardião</a>
-            <a class="nav-item nav-link" href="<%=Constantes.getAppUrl() %>/minhas_Selecoes">Minhas seleções</a>
+            <a class="nav-item nav-link" href="<%=Constantes.getAppUrl() %>/meusEventos">Meus Eventos</a>
             <c:if test="${fn:contains(permissoes, 'APOIO') or fn:contains(permissoes, 'ADMINISTRADOR')}">
             <div class="btn-group">
                 <a href="" class="nav-item nav-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

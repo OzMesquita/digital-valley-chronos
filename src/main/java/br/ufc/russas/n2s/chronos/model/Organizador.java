@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -40,6 +41,10 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 	@Enumerated(EnumType.ORDINAL)
 	private EnumPermissao permissao;
 	
+	@ManyToOne(targetEntity = UsuarioChronos.class)
+	@JoinColumn(name="usuarioChronos", referencedColumnName="codUsuario")
+	private UsuarioChronos usuarioChronos;
+	
 	public Organizador() {
 	}
 
@@ -58,7 +63,14 @@ public class Organizador extends Pessoa implements Comparable<Pessoa>{
 	            throw new IllegalCodeException("Código do organizador deve ser maior de zero!");
 	}
 	
-	
+	public UsuarioChronos getUsuarioChronos() {
+		return usuarioChronos;
+	}
+
+	public void setUsuarioChronos(UsuarioChronos usuarioChronos) {
+		this.usuarioChronos = usuarioChronos;
+	}
+
 	public List<Atividade> getAtividadeRelacionadas() {
 		return atividadeRelacionadas;
 	}

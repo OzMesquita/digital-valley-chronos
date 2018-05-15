@@ -47,6 +47,10 @@
         <servlet-name>IndexController</servlet-name>
         <servlet-class>br.ufc.russas.n2s.chronos.controller.IndexController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AtividadeController</servlet-name>
+        <servlet-class>br.ufc.russas.n2s.chronos.controller.AtividadeController</servlet-class>
+    </servlet>
     
     
     <servlet-mapping>

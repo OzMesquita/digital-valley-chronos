@@ -31,9 +31,7 @@ public class AtividadeBeans implements Beans {
 
 	private EnumTipoAtividade tipoAtividade;
 
-	private boolean campoAtivdade;
-
-	private List<AtividadeBeans> preRequisitos;
+	private String preRequisitos;
 
 	private Responsavel responsavel;
 
@@ -121,19 +119,11 @@ public class AtividadeBeans implements Beans {
 		this.tipoAtividade = tipoAtividade;
 	}
 
-	public boolean isCampoAtivdade() {
-		return campoAtivdade;
-	}
-
-	public void setCampoAtivdade(boolean campoAtivdade) {
-		this.campoAtivdade = campoAtivdade;
-	}
-
-	public List<AtividadeBeans> getPreRequisitos() {
+	public String getPreRequisitos() {
 		return preRequisitos;
 	}
 
-	public void setPreRequisitos(List<AtividadeBeans> preRequisitos) {
+	public void setPreRequisitos(String preRequisitos) {
 		this.preRequisitos = preRequisitos;
 	}
 
@@ -196,21 +186,30 @@ public class AtividadeBeans implements Beans {
 	@Override
 	public Object toBusiness() {
 		Atividade atividade = new Atividade();
-		
-		atividade.setCodAtividade(this.getCodAtividade());
-		atividade.setCodAtividade(this.getCodAtividade());
+		if(this.getCodAtividade() > 0){
+			atividade.setCodAtividade(this.getCodAtividade());
+		}
 		atividade.setNome(this.getNome());
 		atividade.setDescricao(this.getDescricao());
-		atividade.setPai(this.getPai());
+		if(this.getPai() != null){
+			atividade.setPai(this.getPai());
+		}
 		atividade.setSigla(this.getSigla());
-		atividade.setTotalHoras();
+		if(this.getRealizacao() != null) {
+			atividade.setTotalHoras();
+		}
 		atividade.setTipoAtividade(this.getTipoAtividade());
-		atividade.setCampoAtivdade(this.isCampoAtivdade());
-		atividade.setResponsavel(this.getResponsavel());
+		if(this.getResponsavel() != null) {
+			atividade.setResponsavel(this.getResponsavel());
+		}
 		atividade.setTotalVagas(this.getTotalVagas());
 		atividade.setTotalVagasComunidade(this.getTotalVagasComunidade());
-		atividade.setLocal(this.getLocal());
-		atividade.setTipoPagamento(this.getTipoPagamento());
+		if(this.getLocal() != null) {
+			atividade.setLocal(this.getLocal());
+		}
+		if(this.getTipoPagamento() != null) {
+			atividade.setTipoPagamento(this.getTipoPagamento());
+		}
 
 		List<Atividade> subAtividade = Collections.synchronizedList(new ArrayList<Atividade>());
 		if (this.getSubAtividade()!=null)
@@ -224,11 +223,7 @@ public class AtividadeBeans implements Beans {
 				realizacao.add((Realizacao) this.getRealizacao().get(i).toBusiness());
 		atividade.setRealizacao(realizacao);
 
-		List<Atividade> preRequisitos = Collections.synchronizedList(new ArrayList<Atividade>());
-		if (this.getPreRequisitos()!=null)
-			for (int i=0; i<this.getPreRequisitos().size();i++)
-				preRequisitos.add((Atividade) this.getPreRequisitos().get(i).toBusiness());
-		atividade.setPreRequisitos(preRequisitos);
+		atividade.setPreRequisitos(this.preRequisitos);
 
 		List<Apoio> apoiadores = Collections.synchronizedList(new ArrayList<Apoio>());
 		if (this.getApoiadores()!=null)
@@ -251,9 +246,9 @@ public class AtividadeBeans implements Beans {
 			throw new NullPointerException("A Atividade não pode ser nula!");
 		if(!(object instanceof Atividade))
 			throw new IllegalArgumentException("O objeto a ser adicionado não é uma Atividade!");
-		
+
 		Atividade atividade = (Atividade) object;
-		
+
 		this.setCodAtividade(atividade.getCodAtividade());
 		this.setNome(atividade.getNome());
 		this.setDescricao(atividade.getDescricao());
@@ -261,43 +256,38 @@ public class AtividadeBeans implements Beans {
 		this.setSigla(atividade.getSigla());
 		this.setTotalHoras(atividade.getTotalHoras());
 		this.setTipoAtividade(atividade.getTipoAtividade());
-		this.setCampoAtivdade(atividade.isCampoAtivdade());
 		this.setResponsavel(atividade.getResponsavel());
 		this.setTotalVagas(atividade.getTotalVagas());
 		this.setTotalVagasComunidade(atividade.getTotalVagasComunidade());
 		this.setLocal(atividade.getLocal());
 		this.setTipoPagamento(atividade.getTipoPagamento());
-	
+		this.setPreRequisitos(atividade.getPreRequisitos());
+
 		List<AtividadeBeans> subAtividade = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
 		if (atividade.getSubAtividade() != null)
 			for (int i = 0; i < atividade.getSubAtividade().size(); i++)
 				subAtividade.add((AtividadeBeans) new AtividadeBeans().toBeans(atividade.getSubAtividade().get(i)));
 		this.setSubAtividade(subAtividade);
-	
+
 		List<RealizacaoBeans> realizacao = Collections.synchronizedList(new ArrayList<RealizacaoBeans>());
 		if (atividade.getRealizacao() != null)
 			for (int i = 0; i < atividade.getRealizacao().size(); i++)
 				realizacao.add((RealizacaoBeans) new RealizacaoBeans().toBeans(atividade.getRealizacao().get(i)));
 		this.setRealizacao(realizacao);				
-	
-		List<AtividadeBeans> preRequisitos = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
-		if (atividade.getPreRequisitos() != null)
-			for (int i = 0; i < atividade.getPreRequisitos().size(); i++)
-				preRequisitos.add((AtividadeBeans) new AtividadeBeans().toBeans(atividade.getPreRequisitos().get(i)));
-		this.setPreRequisitos(preRequisitos);				
-	
+				
+
 		List<ApoioBeans> apoiadores = Collections.synchronizedList(new ArrayList<ApoioBeans>());
 		if (atividade.getApoiadores() != null)
 			for (int i = 0; i < atividade.getApoiadores().size(); i++)
 				apoiadores.add((ApoioBeans) new ApoioBeans().toBeans(atividade.getApoiadores().get(i)));
 		this.setApoiadores(apoiadores);				
-	
+
 		List<OrganizadorBeans> organizadores = Collections.synchronizedList(new ArrayList<OrganizadorBeans>());
 		if (atividade.getOrganizadores() != null)
 			for (int i = 0; i < atividade.getOrganizadores().size(); i++)
 				organizadores.add((OrganizadorBeans) new OrganizadorBeans().toBeans(atividade.getOrganizadores().get(i)));
 		this.setOrganizadores(organizadores);
-		
+
 		return this;
 	}
 }

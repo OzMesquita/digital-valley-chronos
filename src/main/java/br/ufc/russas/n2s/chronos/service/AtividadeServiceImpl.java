@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
@@ -15,6 +16,8 @@ import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.AtividadeProxy;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 
+@Service("atividadeServiceIfc")
+@Transactional
 public class AtividadeServiceImpl implements AtividadeServiceIfc {
 
 	private AtividadeDAOIfc atividadeDAOIfc;
@@ -71,7 +74,7 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public AtividadeBeans getAtividade(long codAtividade) {
 		Atividade atividade = new Atividade();
 		atividade.setCodAtividade(codAtividade);

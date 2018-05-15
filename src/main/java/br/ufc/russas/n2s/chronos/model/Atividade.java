@@ -1,6 +1,8 @@
 package br.ufc.russas.n2s.chronos.model;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,8 +37,6 @@ public class Atividade implements Comparable<Atividade>{
     inverseJoinColumns = {@JoinColumn(name = "subAtividade", referencedColumnName = "codAtividade")})
 	private List<Atividade> subAtividade;
 
-	private int ID;
-
 	private String nome;
 
 	private String descricao;
@@ -57,10 +57,8 @@ public class Atividade implements Comparable<Atividade>{
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoAtividade tipoAtividade;
 
-	private boolean campoAtivdade;
-	@ManyToOne(targetEntity = Atividade.class)
-	@JoinColumn(name="preRequisito",referencedColumnName="codAtividade")
-	private List<Atividade> preRequisitos;
+	
+	private String preRequisitos;
 
 	@ManyToOne(targetEntity = Responsavel.class)
 	@JoinColumn(name="responsavel",referencedColumnName="codResponsavel")
@@ -74,13 +72,15 @@ public class Atividade implements Comparable<Atividade>{
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoPagamento tipoPagamento;
 	
+	private String localPagamento;
+	
 	@ManyToMany(targetEntity = Apoio.class, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "apoiadores_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
     inverseJoinColumns = {@JoinColumn(name = "apoio", referencedColumnName = "codApoio")})
 	private List<Apoio> apoiadores;
 
-	@ManyToMany(targetEntity = Organizador.class, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = Organizador.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "organizadores_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
     inverseJoinColumns = {@JoinColumn(name = "organizador", referencedColumnName = "codOrganizador")})
@@ -93,19 +93,17 @@ public class Atividade implements Comparable<Atividade>{
 
 	/**Atividade Raiz (Evento)
 	 * */
-	public Atividade(int iD, String nome, String descricao, String sigla,
+	public Atividade(String nome, String descricao, String sigla,
 			List<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
-			List<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
 			String local, EnumTipoPagamento tipoPagamento, List<Apoio> apoiadores,
 			List<Organizador> organizadores) {
-		setID(iD);
 		setNome(nome);
 		setDescricao(descricao);
 		setSigla(sigla);
 		setRealizacao(realizacao);
 		setTotalHoras();
 		setTipoAtividade(tipoAtividade);
-		setCampoAtivdade(campoAtivdade);
 		setPreRequisitos(preRequisitos);
 		setResponsavel(responsavel);
 		setTotalVagas(totalVagas);
@@ -118,12 +116,11 @@ public class Atividade implements Comparable<Atividade>{
 	
 	/**Demais Atividades
 	 * */
-	public Atividade(int iD, String nome, String descricao, Atividade pai, String sigla, float totalHoras,
+	public Atividade(String nome, String descricao, Atividade pai, String sigla, float totalHoras,
 			List<Realizacao> realizacao, EnumTipoAtividade tipoAtividade, boolean campoAtivdade,
-			List<Atividade> preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
+			String preRequisitos, Responsavel responsavel, int totalVagas, int totalVagasComunidade,
 			String local, EnumTipoPagamento tipoPagamento, List<Apoio> apoiadores,
 			List<Organizador> organizadores) {
-		setID(iD);
 		setNome(nome);
 		setDescricao(descricao);
 		setPai(pai);
@@ -131,7 +128,6 @@ public class Atividade implements Comparable<Atividade>{
 		setRealizacao(realizacao);
 		setTotalHoras();
 		setTipoAtividade(tipoAtividade);
-		setCampoAtivdade(campoAtivdade);
 		setPreRequisitos(preRequisitos);
 		setResponsavel(responsavel);
 		setTotalVagas(totalVagas);
@@ -163,14 +159,6 @@ public class Atividade implements Comparable<Atividade>{
 	
 	public void addSubAtividade(Atividade subAtividade) {
 		this.subAtividade.add(subAtividade);
-	}
-
-	public int getID() {
-		return ID;
-	}
-	
-	public void setID(int iD) {
-		ID = iD;
 	}
 
 	public String getNome() {
@@ -219,9 +207,11 @@ public class Atividade implements Comparable<Atividade>{
 	//Setar automaticamente esta variavel usando os atributos horaInicial e horaFinal da classe "Realização", !
 	public void setTotalHoras() {
 		int minutos = 0;
-		for (int i = 0; i < realizacao.size(); i++) {
-			totalHoras+=realizacao.get(i).getHoraFinal().getHour() - realizacao.get(i).getHoraInicio().getHour();
-			minutos +=realizacao.get(i).getHoraFinal().getMinute() - realizacao.get(i).getHoraInicio().getMinute();
+		if (realizacao!= null) {
+			for (int i = 0; i < realizacao.size(); i++) {
+				totalHoras+=realizacao.get(i).getHoraFinal().getHour() - realizacao.get(i).getHoraInicio().getHour();
+				minutos +=realizacao.get(i).getHoraFinal().getMinute() - realizacao.get(i).getHoraInicio().getMinute();
+			}
 		}
 		totalHoras+=(int)(minutos/60)+((minutos%60)/100.0);
 	}
@@ -249,25 +239,14 @@ public class Atividade implements Comparable<Atividade>{
 		this.tipoAtividade = tipoAtividade;
 	}
 
-	public boolean isCampoAtivdade() {
-		return campoAtivdade;
-	}
-
-	public void setCampoAtivdade(boolean campoAtivdade) {
-		this.campoAtivdade = campoAtivdade;
-	}
-
-	public List<Atividade> getPreRequisitos() {
+	public String getPreRequisitos() {
 		return preRequisitos;
 	}
 
-	public void setPreRequisitos(List<Atividade> preRequisitos) {
+	public void setPreRequisitos(String preRequisitos) {
 		this.preRequisitos = preRequisitos;
 	}
 	
-	public void addPreRequisito(Atividade preRequisito) {
-		preRequisitos.add(preRequisito);
-	}
 
 	public Responsavel getResponsavel() {
 		return responsavel;
@@ -325,6 +304,18 @@ public class Atividade implements Comparable<Atividade>{
 			throw new IllegalArgumentException("Erro: o campo pagamento não pode estar vazio.");
 		else
 			this.tipoPagamento = tipoPagamento;
+	}
+	
+	public String getLocalPagamento(){
+		return localPagamento;
+	}
+	
+	public void setLocalPagamento(String localPagamento) {
+		if(!Facade.isEmpty(localPagamento)) {
+			this.localPagamento = localPagamento;
+		}else {
+			throw new IllegalArgumentException("Erro: o campo local de pagamento não pode estar vazio");
+		}
 	}
 
 	public List<Apoio> getApoiadores() {

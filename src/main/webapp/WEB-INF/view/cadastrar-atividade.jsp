@@ -43,50 +43,66 @@
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
-                    <form method="POST" action="cadastrarSelecao" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate> 
-                        <label for="tituloInput">Titulo*</label>
-                        <input type="text" name="titulo" class="form-control" id="tituloInput" aria-describedby="tituloHelp" placeholder="Digite um titulo para uma atividade" required>
-                        <small id="tituloHelp" class="form-text text-muted">Exemplo: Feira de incentivo a software livre</small>
+                    <form method="POST" action="cadastrarAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate> 
+                        <label for="tituloInput">Nome*</label>
+                        <input type="text" name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" placeholder="Digite o nome da atividade" required>
+                        <small id="nomeHelp" class="form-text text-muted">Exemplo: Feira de incentivo a software livre</small>
                         <div class="invalid-feedback">
-                            
                         </div>
-                        <br>
-
-                        <label for="descricaoInput">Sigla*</label>
-                        <textarea class="form-control" name="sigla" id="descricaoInput" placeholder="Digite uma sigla para a atividade" required></textarea>
-                        <div class="invalid-feedback">
-                            
-                        </div>
-                        <br>
-
+                        
+                         <br>
                         <label for="descricaoInput">Descrição*</label>
                         <textarea class="form-control" name="descricao" id="descricaoInput" placeholder="Digite uma breve descrição sobre a atividade" required></textarea>
                         <div class="invalid-feedback">
                             
                         </div>
                         <br>
-
-                        <label for="preRequisitosInput">Pré Requisitos</label>
-                        <textarea name="descricaoPreRequisitos" class="form-control" id="preRequisitosInput" placeholder="Digite uma breve descrição sobre os pré requisitos para participar da atividade"></textarea>
-                        <br>
-
-                        <label for="categoriaInput">Forma de Pagamento*</label>
-                        <select type="text" name="pagamento" class="form-control custom-select" id="categoriaInput" required>
-                            <option value="" selected="selected" disabled="disabled">Selecione a forma de pagamento da atividade</option>
-                            <option>Gratuito</option>
-                            <option>Dinheiro</option>
-                            <option>Doaçao</option>
-                        </select>
-                        <br>
-
-                        <br>
-                        <label for="areaDeConcentracaoInput">Área de Concentração</label>
-                        <input type="text" name="areaDeConcentracao" class="form-control" id="areaDeConcentracaoInput" aria-describedby="tituloHelp" placeholder="Digite o nome da área de concentração">
-                        <small id="tituloHelp" class="form-text text-muted">Exemplo: Computação, Engenharia Mecânica, LINCE</small>
+                        
+                        <c:if test="${not empty pai}">
+			                        <label for="paiInput">Atividade pai*</label>
+			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" >
+			                        <small id="paiHelp" class="form-text text-muted">Exemplo: Semana de incetivo ao software livre</small>
+			                        <div class="invalid-feedback">
+			                        </div>
+			  						<br>
+  						 </c:if>   
+                       
+                        <label for="siglaInput">Sigla*</label>
+                        <textarea class="form-control" name="sigla" id="descricaoInput" placeholder="Digite uma sigla para a atividade" required></textarea>
                         <div class="invalid-feedback">
                             
                         </div>
                         <br>
+						<label for="totalHorasInput">Total de Horas*</label>
+                        <input type="text" name="totalHoras" class="form-control" id="totalHorasInput" aria-describedby="totalHorasHelp" placeholder="Digite o total de horas prevista para a atividade" required>
+                        <small id="totalHorasHelp" class="form-text text-muted">Exemplo: 2 Horas</small>
+                        <div class="invalid-feedback">
+                        </div>
+                        <br>
+							
+						 <label for="tipoAtividade">Tipo da Atividade*</label>
+    					<select class="form-control" id="tipoAtividadeImput">
+					      <option>Curso</option>
+					      <option>Encontro</option>
+					      <option>Minicurso </option>
+					      <option>Palestra</option>
+					      <option>Semana</option>
+					      <option>Visita Técnica</option>
+					      <option>Workshop</option>
+					    </select>
+					    <br>
+					    
+					    <br>
+                        <label for="localDaAticidadeInput">Local da Atividade*</label>
+                        <input type="text" name="Local" class="form-control" id="localDaAtividadeInput" aria-describedby="localDaAtividadeHelp" placeholder="Digite o local em que a atividade será realizada">
+                        <small id="tituloHelp" class="form-text text-muted">Exemplo: Rua Felipe Santiago - N° 411, Cidade Universitária, Russas - CE, </small>
+                        <div class="invalid-feedback">
+                        </div>
+                        <br>
+							
+						<label for="preRequisitosInput">Pré Requisitos</label>
+                        <textarea name="preRequisitos" class="form-control" id="preRequisitosInput" placeholder="Digite uma breve descrição sobre os pré requisitos para participar da atividade"></textarea>
+                        <br>	
          
                         <div class="card">
                             <div class="card-header col-auto">
@@ -99,85 +115,51 @@
                             </div>
                             
                             <div class="card-body">
-                                <label for="vagasRemuneradasInput">Número de vagas remuneradas</label>
-                                <input type="number" name="vagasRemuneradas" class="form-control col-sm-2 disabled" id="vagasRemuneradasInput" value="0" min="0" max="100" disabled>
+                                <label for="vagasRemuneradasInput">Numero de vagas</label>
+                               <input type="number" name="totalVagas" class="form-control col-sm-2 disabled" id="vagasRemuneradasInput" value="0" min="0" max="100" disabled>
                                 <div class="invalid-feedback" >
                                     
                                 </div>
                                 <br>
 
-                                <label for="vagasVoluntariasInput">Número de vagas voluntárias</label>
-                                <input type="number" name="vagasVoluntarias" class="form-control col-sm-2 disabled" id="vagasVoluntariasInput" value="0" min="0" max="100" disabled>
+                                <label for="vagasVoluntariasInput">Número de vagas reservadas a comunidade</label>
+                                <input type="number" name="totalVagasComunidade" class="form-control col-sm-2 disabled" id="vagasVoluntariasInput" value="0" min="0" max="100" disabled>
                                 <div class="invalid-feedback">
                                     
                                 </div>
                             </div>
                         </div>
-                        <br>                     
-                        <div class="card">
-                            <div class="card-header col-auto">
-                                <span class="custom-control-description" style="margin-top: 4px;">Documentos da seleção</span>
-                            </div>
-
-                            <div class="card-body">
-                                <label for="editalInput">Edital*</label>
-                                <input type="text" name="file" class="form-control" id="arquivoInput" aria-describedby="editalHelp" placeholder="Adicione aqui o link para o edital da seleção"  accept="application/pdf" required>
-                                <small id="tituloHelp" class="form-text text-muted">Ex. http://www.campusrussas.ufc.br/docs/edital.pdf</small>
-                                <div class="invalid-feedback">
-
-                                </div>
-                                <br>
-
-                                <br>
-                                <label for="anexoInput">Anexos</label>
-                                <div class="form-row" style="margin-left: 2px;">
-                                    <input type="text" class="form-control col-md-4" id="nomeAnexoInput" placeholder=" Digite o titulo do anexo da seleção">&nbsp; &nbsp;
-                                    <input type="text" class="form-control col-md-6" id="linkAnexoInput" placeholder=" Adicione aqui o link para acesso deste anexo">&nbsp;
-                                    &nbsp;
-                                    <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaAnexo()" value="Adicionar">                            
-                                </div>
-
-                                <br>
-                                <ul class="list-group col-md-8 " id="listaAnexos">
-                                </ul>
-                                <br>
-                                
-                                <label for="aditivosInput">Aditivos</label>
-                                <div class="form-row">
-                                    <input type="text" class="form-control col-md-4" id="nomeAditivoInput" placeholder=" Digite o titulo do aditivo da seleção">&nbsp; &nbsp;
-                                    <input type="text" class="form-control col-md-6" id="linkAditivoInput" placeholder=" Adicione aqui o link para acesso deste aditivo">&nbsp;
-                                    &nbsp;
-                                    <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaAditivo()" value="Adicionar">                            
-                                </div>
-
-                                <br>
-                                <ul class="list-group col-md-8 " id="listaAditivos">
-                                </ul>
-                                <br>
-                            </div>
-                        </div>
-                        <br>
-                        <hr/>     
+                        <br>        
                         
-                        <!--                     
-                        <label for="responsavelInput">Responsáveis</label>                           
+                        <label for="categoriaInput">Forma de Pagamento*</label>
+                        <select type="text" name="tipoPagamento" class="form-control custom-select" id="categoriaInput" required>
+                            <option value="" selected="selected" disabled="disabled">Selecione a forma de pagamento da atividade</option>
+                            <option>Gratuito</option>
+                            <option>Dinheiro</option>
+                            <option>Doaçao</option>
+                        </select>
+                        <br> <br>
+                          
+                        
+                                           
+                        <label for="responsavelInput">Organizadores</label>                           
                         <div class="form-row">
                             <select id="responsavelInput" class="form-control col-md-8" style="margin-left: 3px">
-                                <option value="" selected="selected" disabled="disabled">Selecione os responsáveis por esta seleção</option>
-                            <c:forEach items="${responsaveis}" var="responsavel">
-                                <option id="responsavelOption-${responsavel.codUsuario}" value="${responsavel.codUsuario}-${responsavel.nome}">${responsavel.nome}</option>
+                                <option value="" selected="selected" disabled="disabled">Selecione o organizador da atividade</option>
+                            <c:forEach items="${organizador}" var="organizador">
+                                <option id="organizadorOption-${organizador.codUsuario}" value="${organizador.codUsuario}-${organizador.nome}">${organizador.nome}</option>
                             </c:forEach>
                             </select>
                             
                             &nbsp;&nbsp;
-                            <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaResponsavel()" value="Adicionar">                            
+                            <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()" value="Adicionar">                            
                         </div>
                         <br>
-                        <ul class="list-group col-md-8" id="listaResponsaveis">
+                        <ul class="list-group col-md-8" id="listaOrganizador">
                         </ul>
-						-->
+										
                         <br>
-                        <a href="/Darwin" type="button" id="enviar" class="btn btn-secondary">
+                        <a href="/Chonos" type="button" id="enviar" class="btn btn-secondary">
                             Cancelar
                         </a>
                         <input type="button"  class="btn btn-primary" value="Salvar e Continuar" data-toggle="modal" data-target="#confirmarSelecao" >
@@ -202,8 +184,10 @@
                                 </div>
                             </div>
                         </div>
-                        
-                    </form>
+                         <hr/>  
+                      
+
+				</form>
                 </div>
             </div>
         </div>

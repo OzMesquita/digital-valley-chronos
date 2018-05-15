@@ -37,7 +37,7 @@ public class IndexController {
         return "index";
     }
     
-    @RequestMapping(value="/teste", method = RequestMethod.POST)
+    @RequestMapping(value="/cadastrarAtividades", method = RequestMethod.POST)
     public String getPag2(Model model) {
         return "cadastrar-atividade";
     }

@@ -9,6 +9,7 @@ package br.ufc.russas.n2s.chronos.controller.filter;
 
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
+import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -79,12 +80,18 @@ public class AutenticadoFiltro implements Filter {
                                         u.setPermissoes(permissoes);
                                         this.getUsuarioServiceIfc().adicionaUsuario(u);
                                     }
+                                    System.out.println("\n\n");
+                                    System.out.println(this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()));
+                                    
+                                    System.out.println(u.getCodUsuario());
+                                    System.out.println(u.getNome());
                                     session.setAttribute("usuarioChronos", this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()));
+                                    System.out.println(((UsuarioBeans)session.getAttribute("usuarioChronos")).getNome());
                                     chain.doFilter(request, response);
                             }else {
                                 ((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao/");
                             }
-                    }else if(session.getAttribute("usuario")!= null && DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId())!=null && ((Usuario)session.getAttribute("usuario")).getTokenUsuario().equals(DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId()))){
+                    }else if(session.getAttribute("usuarioChronos")!= null && DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId())!=null && ((Usuario)session.getAttribute("usuario")).getTokenUsuario().equals(DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId()))){
                     	chain.doFilter(request, response);
                     }else {
                             ((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao/");
