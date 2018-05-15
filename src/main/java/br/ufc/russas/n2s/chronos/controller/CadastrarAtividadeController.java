@@ -82,6 +82,7 @@ public class CadastrarAtividadeController {
 		orgBeans.setPermissao(EnumPermissao.ADMINISTRADOR);
 		atividade.setOrganizadores(organizadores);
 		atividade.getOrganizadores().add(orgBeans);
+		atividade.setDivulgada(false);
 		atividade = this.getAtividadeService().atualizaAtividade(atividade);
 		session.setAttribute("mensagem","Atividade cadastrada com sucesso!");
 		session.setAttribute("status", "sucess");
