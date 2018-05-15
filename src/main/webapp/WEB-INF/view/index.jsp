@@ -11,7 +11,10 @@
     <body>
         <p>Esta é a primeira tela do Chronos</p>
             <form action="cadastrarAtividades" method="post">
-            	<input type="submit" value="Ir para oputra página">
+            	<input type="submit" value="Ir para cadastrarAtividades">
+            </form>
+            <form action="editarAtividades" method="post">
+            	<input type="submit" value="Ir para editarAtividades">
             </form>
     </body>
 </html>
