@@ -73,12 +73,6 @@
                             
                         </div>
                         <br>
-						<label for="totalHorasInput">Total de Horas*</label>
-                        <input type="text" name="totalHoras" class="form-control" id="totalHorasInput" aria-describedby="totalHorasHelp" placeholder="Digite o total de horas prevista para a atividade" required>
-                        <small id="totalHorasHelp" class="form-text text-muted">Exemplo: 2 Horas</small>
-                        <div class="invalid-feedback">
-                        </div>
-                        <br>
 							
 						 <label for="tipoAtividade">Tipo da Atividade*</label>
     					<select class="form-control" id="tipoAtividadeImput">
