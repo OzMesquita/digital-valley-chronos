@@ -9,184 +9,6 @@
 <head>
 
 
-
-<!-- calendar -->
-<style>
-.grid-header {
-	background-color: #aaa;
-	background-size: 34px;
-	border-bottom: 1px solid #ddd;
-	overflow: hidden;
-	box-shadow: 0 0 3px 0;
-	position: fixed;
-	top: 43px;
-	display: block;
-	z-index: 1035;
-}
-
-.grid-header-labels {
-	padding-left: 60px;
-}
-
-.grid-header-label {
-	width: 120px;
-	float: left;
-	padding: 10px 5px;
-	height: 40px;
-	text-align: center;
-	background: #009d97;
-	color: #fff;
-	cursor: pointer;
-	position: relative;
-}
-
-.grid-header-label-divider {
-	border-right: 1px solid #cbcbcb;
-	position: static;
-	right: 0;
-	bottom: 0;
-	height: 22px;
-}
-
-.grid-header-Clock {
-	text-align: left;
-	background-color: #aaa;
-	width: 60px;
-	height: 60px;
-	position: fixed;
-	left: 0;
-	top: 0;
-	font-size: 40px;
-}
-
-.grid-body {
-	position: absolute;
-	top: 40px !important;
-	background: #f7f7f7;
-}
-
-.ui-block {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-
-.grid-times-holder {
-	position: absolute;
-	overflow: hidden;
-	width: 60px;
-	top: 0;
-	display: block;
-	z-index: 200;
-	border-right: 1px solid #ddd;
-	background: #eee;
-	text-align: center;
-}
-
-.grid-date-holder {
-	position: absolute;
-	overflow: hidden;
-	left: 60px;
-	top: 0px;
-	display: block;
-	z-index: 200;
-	border-right: 1px solid #ddd;
-	background: #eee;
-	text-align: center;
-}
-
-.day-label {
-	height: 24px;
-	line-height: 25px;
-	border-bottom: 1px solid #a6a8ab;
-	color: #57585a;
-	background-color: #CBCBCB;
-}
-
-.grid-time-label {
-	height: 50px;
-	top: 10px;
-	line-height: 20px;
-	border-bottom: 1px solid #ddd;
-	padding-left: 0;
-}
-
-.grid-times {
-	
-}
-
-.grid-body-labels {
-	padding-left: 0px;
-}
-
-.grid-body-cell {
-	width: 110px;
-	float: left;
-	padding: 10px 5px;
-	height: 50px;
-	line-height: 49px;
-	border-bottom: 1px solid #ddd;
-	padding-left: 0;
-	text-align: center;
-	color: #fff;
-	background-color: #fff;
-	cursor: pointer;
-	position: relative;
-	border: 1px solid #ddd;
-}
-
-.grid-sessions {
-	position: relative;
-	min-width: 100%;
-}
-
-.grid-sessions-day {
-	position: relative;
-	height: 1525px;
-	background:
-		url(https://farm9.staticflickr.com/8617/16121120332_0c7b48b7c4_o.png)
-		60px 25px;
-	min-width: 100%;
-}
-
-.grid-session-cell {
-	position: absolute;
-	width: 118px;
-	overflow: hidden;
-	border: 1px solid #bbb;
-	font-size: 12px;
-	cursor: pointer;
-	background: rgba(0, 157, 151, .85);
-	color: #fff;
-	font-family: sans-serif;
-}
-
-.grid-session-icon {
-	position: absolute;
-	right: 10px;
-	bottom: 10px;
-	font-size: 24px;
-}
-
-.grid-session-title {
-	padding: 9px;
-	padding-right: 10px;
-	font-weight: bold;
-}
-
-.grid-session-time {
-	padding: 9px;
-}
-</style>
-
-
-<link href="//code.ionicframework.com/nightly/css/ionic.css"
-	rel="stylesheet">
-<script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
-<!-- calendar -->
-
 <meta charset="UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -206,7 +28,10 @@
 	href="${pageContext.request.contextPath}/resources/css/design.css" />
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/timeline.css" />
+	
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <style>
+
 ul {
 	display: block;
 	list-style-type: disc;
@@ -255,7 +80,7 @@ ul {
                 </c:if>-->
 
 				<!-- Mensagem de solicitando a divulgação da seleção -->
-				<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+				<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR')) and (not atividade.divulgada)}">
 					<!--  and (not atividade.divulgada)}"> -->
 					<div class="jumbotron jumbotron-fluid"
 						style="padding-top: 40px; padding-bottom: 30px;">
@@ -293,7 +118,7 @@ ul {
 									<button type="button" class="btn btn-secondary btn-sm"
 										data-dismiss="modal">Cancelar</button>
 									<a class="btn btn-sm btn-primary"
-										href="/Darwin/editarAtividade/divulga/${atividade.codAtividade}">
+										href="/Chronos/editarAtividade/divulga/${atividade.codAtividade}">
 										Divulgar a atividade</a>
 								</div>
 							</div>
@@ -303,9 +128,16 @@ ul {
 
 				<div class="row" style="padding-left: 15px;">
 					<h1 class="text-uppercase" style="font-size: 20px;">${atividade.nome}
-						(${atividade.sigla})</h1>
-
+						(${atividade.sigla})
+					</h1>
+					<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+	                    <a href="/Chronos/editarAtividade/${atividade.codAtividade}" class="btn btn-primary btn-sm" style="height: 33px;margin-left: 30px;margin-top: -4px;">
+	                        Editar Atividade
+	                    </a>                    
+           	 		</c:if>
+	
 				</div>
+				
 				<br>
 				<p class="text-justify">${atividade.descricao}</p>
 				<p class="text-justify">
@@ -353,10 +185,61 @@ ul {
 				</c:if>
 				<hr />
 				</p>
-				<br />
-				<!-- calendar -->
+				<br />				
+				<div class="container">
+		<div class="row ">
+			<div class="col-2 text-right">
+				<h1 class="display-4"><span class="badge badge-secondary">23</span></h1>
+				<h2>OUT</h2>
+			</div>
+			<div class="col-10">
+				<h3 class="text-uppercase"><strong>Ice Cream Social</strong></h3>
+				<ul class="list-inline">
+				    <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> Monday</li>
+					<li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> 12:30 PM - 2:00 PM</li>
+					<li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Cafe</li>
+					<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+	                    <a href="/Chronos/editarAtividade/${atividade.codAtividade}" class="btn btn-primary btn-sm" style="height: 33px;margin-left: 30px;margin-top: -4px;">
+	                        Inscrever-se
+	                    </a>                    
+           	 		</c:if>
+				</ul>
+				<p>Lorem ipsum dolsit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-2 text-right">
+				<h1 class="display-4"><span class="badge badge-secondary">27</span></h1>
+				<h2>OCT</h2>
+			</div>
+			<div class="col-10">
+				<h3 class="text-uppercase"><strong>Operations Meeting</strong></h3>
+				<ul class="list-inline">
+				    <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> Friday</li>
+					<li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> 2:30 PM - 4:00 PM</li>
+					<li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Room 4019</li>
+				</ul>
+				<p>Lorem ipsum dolsit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+		<div class="row row-striped">
+			<div class="col-2 text-right">
+				<h1 class="display-4"><span class="badge badge-secondary">27</span></h1>
+				<h2>OCT</h2>
+			</div>
+			<div class="col-10">
+				<h3 class="text-uppercase"><strong>Operations Meeting</strong></h3>
+				<ul class="list-inline">
+				    <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> Friday</li>
+					<li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> 2:30 PM - 4:00 PM</li>
+					<li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Room 4019</li>
+				</ul>
+				<p>Lorem ipsum dolsit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</div>
+	</div>
 				
-				<!-- calendar -->
+				
 
 <!-- 
                     <c:if test="${(not empty selecao.etapas) or (not empty selecao.inscricao)}">
@@ -561,36 +444,29 @@ ul {
         </div>
          -->
 <c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-	integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	crossorigin="anonymous"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-	crossorigin="anonymous"></script>
-<script>
-            $("#navEtapas").addClass(function( index, currentClass ) {
-                var addedClass;
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>      
+        <script>
+      $("#navEtapas").addClass(function( index, currentClass ) {
+          var addedClass;
 
-                if (screen.width <= 575) {
-                  addedClass = "flex-column";
-                }
+          if (screen.width <= 575) {
+            addedClass = "flex-column";
+          }
 
-                return addedClass;
-            });
-            $("#timeline").removeClass(function( index, currentClass ) {
-                var addedClass;
+          return addedClass;
+      });
+      $("#timeline").removeClass(function( index, currentClass ) {
+          var addedClass;
 
-                if (screen.width <= 575) {
-                  addedClass = "timeline";
-                }
+          if (screen.width <= 575) {
+            addedClass = "timeline";
+          }
 
-                return addedClass;
-            });
-        </script>
+          return addedClass;
+      });
+  </script>
+
 </body>
 </html>

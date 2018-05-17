@@ -46,6 +46,8 @@ public class AtividadeBeans implements Beans {
 	private List<ApoioBeans> apoiadores;
 
 	private List<OrganizadorBeans> organizadores;
+	
+	private boolean divulgada;
 
 	public long getCodAtividade() {
 		return codAtividade;
@@ -182,6 +184,14 @@ public class AtividadeBeans implements Beans {
 	public void setOrganizadores(List<OrganizadorBeans> organizadores) {
 		this.organizadores = organizadores;
 	}
+	
+    public boolean isDivulgada() {
+        return divulgada;
+    }
+
+    public void setDivulgada(boolean divulgada) {
+        this.divulgada = divulgada;
+    }
 
 	@Override
 	public Object toBusiness() {
@@ -210,6 +220,7 @@ public class AtividadeBeans implements Beans {
 		if(this.getTipoPagamento() != null) {
 			atividade.setTipoPagamento(this.getTipoPagamento());
 		}
+		atividade.setDivulgada(this.isDivulgada());
 
 		List<Atividade> subAtividade = Collections.synchronizedList(new ArrayList<Atividade>());
 		if (this.getSubAtividade()!=null)
@@ -262,6 +273,7 @@ public class AtividadeBeans implements Beans {
 		this.setLocal(atividade.getLocal());
 		this.setTipoPagamento(atividade.getTipoPagamento());
 		this.setPreRequisitos(atividade.getPreRequisitos());
+		this.setDivulgada(atividade.isDivulgada());
 
 		List<AtividadeBeans> subAtividade = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
 		if (atividade.getSubAtividade() != null)

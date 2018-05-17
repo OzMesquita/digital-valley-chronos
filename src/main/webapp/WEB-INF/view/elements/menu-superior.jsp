@@ -27,7 +27,7 @@
                     Administração
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="<%=Constantes.getAppUrl() %>/cadastrarSelecao">Cadastrar Seleção</a>
+                    <a class="dropdown-item" href="<%=Constantes.getAppUrl() %>/cadastrarAtividades">Cadastrar Atividade</a>
                     
                     <c:if test="${fn:contains(permissoes, 'ADMINISTRADOR')}">
                     <div class="dropdown-divider"></div>

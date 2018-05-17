@@ -81,7 +81,8 @@ public class Atividade implements Comparable<Atividade>{
     @JoinTable(name = "organizadores_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
     inverseJoinColumns = {@JoinColumn(name = "organizador", referencedColumnName = "codOrganizador")})
 	private List<Organizador> organizadores;
-
+	private boolean divulgada;
+	
 	//Construir primeiro o numero total de vagas de cada de atividade e depois o total de vagas da comunidade.
 	public Atividade() {
 		
@@ -162,7 +163,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setNome(String nome) {
-		if(isEmpty(nome))
+		if(!isEmpty(nome))
 			this.nome = nome;
 		else
 			throw new IllegalArgumentException("Erro: o campo nome não pode estar vazio");
@@ -173,7 +174,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setDescricao(String descricao) {
-		if(isEmpty(descricao))
+		if(!isEmpty(descricao))
 			this.descricao = descricao;
 		else
 			throw new IllegalArgumentException("Erro: o campo descricao não pode estar vazio");
@@ -285,7 +286,7 @@ public class Atividade implements Comparable<Atividade>{
 	}
 
 	public void setLocal(String local) {
-		if(isEmpty(local))
+		if(!isEmpty(local))
 			Local = local;
 		else
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
@@ -307,11 +308,8 @@ public class Atividade implements Comparable<Atividade>{
 	}
 	
 	public void setLocalPagamento(String localPagamento) {
-		if(isEmpty(localPagamento)) {
 			this.localPagamento = localPagamento;
-		}else {
-			throw new IllegalArgumentException("Erro: o campo local de pagamento não pode estar vazio");
-		}
+		
 	}
 
 	public List<Apoio> getApoiadores() {
@@ -350,6 +348,14 @@ public class Atividade implements Comparable<Atividade>{
 		return this;
 	}
 
+    public boolean isDivulgada() {
+        return divulgada;
+    }
+
+    public void setDivulgada(boolean divulgada) {
+        this.divulgada = divulgada;
+    }
+	
 	@Override
 	public int compareTo(Atividade o) {
 		return this.getNome().compareTo(o.getNome());
