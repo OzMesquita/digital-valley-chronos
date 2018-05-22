@@ -83,6 +83,12 @@ public class Atividade implements Comparable<Atividade>{
 	private List<Organizador> organizadores;
 	private boolean divulgada;
 	
+	@ManyToMany(targetEntity = UsuarioChronos.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(FetchMode.SUBSELECT)
+    @JoinTable(name = "participantes_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
+    inverseJoinColumns = {@JoinColumn(name = "participantes", referencedColumnName = "codUsuario")})
+	private List<UsuarioChronos> participantes;
+	
 	//Construir primeiro o numero total de vagas de cada de atividade e depois o total de vagas da comunidade.
 	public Atividade() {
 		
