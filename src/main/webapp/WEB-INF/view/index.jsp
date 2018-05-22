@@ -1,21 +1,86 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<!DOCTYPE HTML">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="n2s">
+        <link rel="icon" href="favicon.ico">
+        <title>Chronos - Inicio </title>
         
-        
-        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/design.css" />
+    </head>
+    
+    <body>
+            
+    <c:import url="elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
+    <div class="container-fluid">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <c:import url="elements/menu-lateral-esquerdo.jsp" charEncoding="UTF-8"></c:import>
+            <div class="col-sm-8">
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">Você está em: </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="/digital-valley-chronos">Início</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">meus eventos</li>
+                    </ol>
+                </nav>
+                <c:if test="${not empty mensagem}">
+                <div class="alert alert-${status} alert-dismissible fade show" role="alert">
+                    ${mensagem}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                </c:if>
+                
+     <!--  CORPO DA PAGINA  -->        
+    
+      <p>Esta é a primeira tela do Chronos</p>
+            <form action="cadastrarAtividades" method="post">
+            	<input type="submit" value="Ir para cadastrarAtividades">
+            </form>
+            <form action="editarAtividades" method="post">
+            	<input type="submit" value="Ir para editarAtividades">
+            </form>
+            
+            
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 
 
-<!-- calendar -->
+
+
+
+<!--  calendar -->
+
+
+<!--  CSS inicio -->
 <style>
+
+.btn{
+color: #3c763d;
+}
+
+
+.js-cal-option{
+color: #3c763d;
+}
+
+.js-cal-years{
+color: #3c763d;
+}
 .calendar-day {
   width: 100px;
   min-width: 100px;
@@ -39,7 +104,7 @@
 .event {
   border-top: 1px solid #b2dba1;
   border-bottom: 1px solid #b2dba1;
-  background-image: linear-gradient(to bottom, #dff0d8 0px, #c8e5bc 100%);
+  background-image: linear-gradient(to bottom, #8cf75d 0px, #b0ff8e 100%);
   background-repeat: repeat-x;
   color: #3c763d;
   border-width: 1px;
@@ -52,7 +117,7 @@
   margin-bottom: 1px;
 }
 .event.begin {
-  border-left: 1px solid #b2dba1;
+  border-left: 1px solid #3c763d;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
@@ -62,20 +127,20 @@
   border-bottom-right-radius: 4px;
 }
 .event.all-day {
-  border-top: 1px solid #9acfea;
-  border-bottom: 1px solid #9acfea;
-  background-image: linear-gradient(to bottom, #d9edf7 0px, #b9def0 100%);
+  border-top: 1px solid #f4f740;
+  border-bottom: 1px solid #f4f740;
+  background-image: linear-gradient(to bottom, #fffdaa 0px, #f5ff49 100%);
   background-repeat: repeat-x;
-  color: #31708f;
+  color: #cccc00;
   border-width: 1px;
 }
 .event.all-day.begin {
-  border-left: 1px solid #9acfea;
+  border-left: 1px solid #6e7000;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
 .event.all-day.end {
-  border-right: 1px solid #9acfea;
+  border-right: 1px solid #6e7000;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
@@ -103,30 +168,19 @@
 }
 
 </style>
-        
-        
-        
-        
-    </head>
 
-    <body>
-        <p>Esta é a primeira tela do Chronos</p>
-            <form action="cadastrarAtividades" method="post">
-            	<input type="submit" value="Ir para cadastrarAtividades">
-            </form>
-            <form action="editarAtividades" method="post">
-            	<input type="submit" value="Ir para editarAtividades">
-            </form>
-            
-            
-            
-            <!-- calendar -->
+
+<!--  CSS fim -->
+
+
+     
+            <!-- CORPO calendar INICIO -->
 				
 				
 				<!------ Include the above in your HEAD tag ---------->
 
 					<div class="container theme-showcase">
-					  	<h1>Calendar</h1>
+					  	<center><h1>Cronograma de atividades</h1></center>
 						<div id="holder" class="row" ></div>
 					</div>
 
@@ -185,7 +239,7 @@
               </td>
               <td style="text-align: right">
                 <span class="btn-group">
-                  <button class="js-cal-option btn btn-default {{: mode==='year'? 'active':'' }}" data-mode="year">Year</button>
+                 <!-- <button class="js-cal-option btn btn-default {{: mode==='year'? 'active':'' }}" data-mode="year">Year</button> -->
                   <button class="js-cal-option btn btn-default {{: mode==='month'? 'active':'' }}" data-mode="month">Month</button>
                   <button class="js-cal-option btn btn-default {{: mode==='week'? 'active':'' }}" data-mode="week">Week</button>
                   <button class="js-cal-option btn btn-default {{: mode==='day'? 'active':'' }}" data-mode="day">Day</button>
@@ -282,28 +336,7 @@
 
 
 
-<div class="container">
-  <hr>
-  <p>Resources</p>
-  <ul>
-    <li><a href="https://github.com/twbs/bootstrap">Bootstrap</a></li>
-    <li><a href="https://bootstrap-calendar.azurewebsites.net/index-bs3.html">another calendar</a></li>
-    <li><a href="http://www.bootply.com/rzNQTlDlFX">another calendar</a></li>
-    <li><a href="http://slipsum.com">lipsum generator</a></li>
-  </ul>
-</div>
-<div class="container">
-  <hr>
-  <p>Notes</p>
-  <ul>
-    <li>clicking on year to open and let you jump around 5ish years, don't care for current ui...</li>
-    <li>work needed on day mode (buggy, unfinished)</li>
-    <li>options missing still for classes</li>
-    <li>not sure about popover contents</li>
-    <li>? use of success state color and info state color ?</li>
-    <li><a href="http://www.reddit.com/r/css/comments/2gvw4n/i_refactored_my_less_to_follow_fats_guidelines/">can do better with css rules</a></li>
-  </ul>
-</div>
+
 <script>
     var $currentPopover = null;
   $(document).on('shown.bs.popover', function (ev) {
@@ -577,12 +610,22 @@ $('#holder').calendar({
 </script>
 				
 				
+				<!-- CORPO calendar FIM -->
 				
 				
-				<!-- calendar -->
-            
-            
-            
-            
-    </body>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>  
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/script.js" ></script>
+    <script src="${pageContext.request.contextPath}/resources/js/scriptCadastrarSelecao.js" ></script>
+</body>
 </html>
