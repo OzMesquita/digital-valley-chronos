@@ -100,26 +100,27 @@
                         <div class="card">
                             <div class="card-header col-auto">
                                 
-                                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" for="isVagasLimitadasInput">
-                                    <input type="checkbox" class="custom-control-input" id="isVagasLimitadasInput" onclick="habilitaCampoVagas()" alt="Definir número de vagas" checked/>
-                                    <span class="custom-control-indicator"></span>
+                                <label class="custom-checkbox mb-2 mr-sm-2 mb-sm-0" for="isVagasLimitadasInput">
+                                    <!--<input type="checkbox" class="custom-control-input" id="isVagasLimitadasInput" onclick="habilitaCampoVagas()" alt="Definir número de vagas" checked/>-->
+                                    <!--<span class="custom-control-indicator"></span>-->
                                     <span class="custom-control-description" style="margin-top: 4px;">Definir o número de vagas</span>
                                 </label>
                             </div>
                             
-                            <div class="card-body">
+                            <div class="card-body">  
+                                                      
                                 <label for="vagasRemuneradasInput">Numero de vagas</label>
+                               
                                <input type="number" name="totalVagas" value="${atividade.totalVagas}" class="form-control col-sm-2 disabled" id="vagasRemuneradasInput"  min="0" max="100" enable>
-                                <div class="invalid-feedback" >
-                                    
+                                <div class="invalid-feedback" >                                    
                                 </div>
                                 <br>
 
                                 <label for="vagasVoluntariasInput">Número de vagas reservadas a comunidade</label>
                                 <input type="number" name="totalVagasComunidade" value="${atividade.totalVagasComunidade}" class="form-control col-sm-2 disabled" id="vagasVoluntariasInput"  min="0" max="100" enable>
-                                <div class="invalid-feedback">
-                                    
+                                <div class="invalid-feedback">                                    
                                 </div>
+                                
                             </div>
                         </div>
                         <br>        
