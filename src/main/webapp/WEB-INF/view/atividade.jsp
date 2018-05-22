@@ -28,16 +28,162 @@
 	href="${pageContext.request.contextPath}/resources/css/design.css" />
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/timeline.css" />
-	
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<style>
 
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+	rel="stylesheet">
+<style>
 ul {
 	display: block;
 	list-style-type: disc;
 	margin-left: 0;
 	margin-right: 0;
 	padding-left: 40px;
+}
+
+.panel {
+	border: 1px solid #ddd;
+	background-color: #fcfcfc;
+}
+
+.panel .btn-group {
+	margin: 15px 0 30px;
+}
+
+.panel .btn-group .btn {
+	transition: background-color .3s ease;
+}
+
+.table-filter {
+	background-color: #fff;
+	border-bottom: 1px solid #eee;
+}
+
+.table-filter tbody tr:hover {
+	cursor: pointer;
+	background-color: #eee;
+}
+
+.table-filter tbody tr td {
+	padding: 10px;
+	vertical-align: middle;
+	border-top-color: #eee;
+}
+
+.table-filter tbody tr.selected td {
+	background-color: #eee;
+}
+
+.table-filter tr td:first-child {
+	width: 38px;
+}
+
+.table-filter tr td:nth-child(2) {
+	width: 35px;
+}
+
+.ckbox {
+	position: relative;
+}
+
+.ckbox input[type="checkbox"] {
+	opacity: 0;
+}
+
+.ckbox label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.ckbox label:before {
+	content: '';
+	top: 1px;
+	left: 0;
+	width: 18px;
+	height: 18px;
+	display: block;
+	position: absolute;
+	border-radius: 2px;
+	border: 1px solid #bbb;
+	background-color: #fff;
+}
+
+.ckbox input[type="checkbox"]:checked+label:before {
+	border-color: #2BBCDE;
+	background-color: #2BBCDE;
+}
+
+.ckbox input[type="checkbox"]:checked+label:after {
+	top: 3px;
+	left: 3.5px;
+	content: '\e013';
+	color: #fff;
+	font-size: 11px;
+	font-family: 'Glyphicons Halflings';
+	position: absolute;
+}
+
+.table-filter .star {
+	color: #ccc;
+	text-align: center;
+	display: block;
+}
+
+.table-filter .star.star-checked {
+	color: #F0AD4E;
+}
+
+.table-filter .star:hover {
+	color: #ccc;
+}
+
+.table-filter .star.star-checked:hover {
+	color: #F0AD4E;
+}
+
+.table-filter .media-photo {
+	width: 35px;
+}
+
+.table-filter .media-body {
+	display: block;
+	/* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+}
+
+.table-filter .media-meta {
+	font-size: 11px;
+	color: #999;
+}
+
+.table-filter .media .title {
+	color: #2BBCDE;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: normal;
+	margin: 0;
+}
+
+.table-filter .media .title span {
+	font-size: .8em;
+	margin-right: 20px;
+}
+
+.table-filter .media .title span.pagado {
+	color: #5cb85c;
+}
+
+.table-filter .media .title span.pendiente {
+	color: #f0ad4e;
+}
+
+.table-filter .media .title span.cancelado {
+	color: #d9534f;
+}
+
+.table-filter .media .summary {
+	font-size: 14px;
 }
 </style>
 </head>
@@ -80,7 +226,8 @@ ul {
                 </c:if>-->
 
 				<!-- Mensagem de solicitando a divulgação da seleção -->
-				<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR')) and (not atividade.divulgada)}">
+				<c:if
+					test="${(fn:contains(permissoes, 'ADMINISTRADOR')) and (not atividade.divulgada)}">
 					<!--  and (not atividade.divulgada)}"> -->
 					<div class="jumbotron jumbotron-fluid"
 						style="padding-top: 40px; padding-bottom: 30px;">
@@ -128,16 +275,16 @@ ul {
 
 				<div class="row" style="padding-left: 15px;">
 					<h1 class="text-uppercase" style="font-size: 20px;">${atividade.nome}
-						(${atividade.sigla})
-					</h1>
+						(${atividade.sigla})</h1>
 					<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
-	                    <a href="/Chronos/editarAtividade/${atividade.codAtividade}" class="btn btn-primary btn-sm" style="height: 33px;margin-left: 30px;margin-top: -4px;">
-	                        Editar Atividade
-	                    </a>                    
-           	 		</c:if>
-	
+						<a href="/Chronos/editarAtividade/${atividade.codAtividade}"
+							class="btn btn-primary btn-sm"
+							style="height: 33px; margin-left: 30px; margin-top: -4px;">
+							Editar Atividade </a>
+					</c:if>
+
 				</div>
-				
+
 				<br>
 				<p class="text-justify">${atividade.descricao}</p>
 				<p class="text-justify">
@@ -185,7 +332,64 @@ ul {
 				</c:if>
 				<hr />
 				</p>
-				<br />				
+				<br />
+				<!-- lista de subatividades -->
+				<div class="container">
+					<div class="row col-md-12 col-md-offset-2 custyle">
+					<i class="glyphicon glyphicon-eye-open"></i>
+					<a href="#">Visualizar cronograma completo</a>
+						<table class="table table-striped custab">
+							<thead>
+								<tr>
+									<th>Atividade</th>
+									<th>Responsável</th>
+									<th>Local</th>
+									<th>Data/Horário</th>
+									<th>Vagas</th>
+									<th class="text-center">Ação</th>
+								</tr>
+							</thead>
+							<tr>
+								<td>Palestra sobre horas complementares</td>
+								<td>Coordenador</td>
+								<td>SALA 8</td>
+								<td>22/05 - 08:00</td>
+								<td>20/20</td>
+								<td class="text-center"><a
+									href="/Chronos/editarAtividade/${atividade.codAtividade}"
+									class="btn btn-primary btn-sm"
+									style="height: 33px; margin-left: 30px; margin-top: -4px;">
+										Inscrever-se </a></td>
+							</tr>
+							<tr>
+								<td>Palestra sobre Engenharia de Software</td>
+								<td>Erley</td>
+								<td>SALA 7</td>
+								<td>22/05 - 08:00</td>
+								<td>20/20</td>
+								<td class="text-center"><a
+									href="/Chronos/editarAtividade/${atividade.codAtividade}"
+									class="btn btn-primary btn-sm"
+									style="height: 33px; margin-left: 30px; margin-top: -4px;">
+										Inscrever-se </a></td>
+							</tr>
+							<tr>
+								<td>Mini-curso de javascript</td>
+								<td>Isaias</td>
+								<td>LAB AUX</td>
+								<td>22/05 - 08:00</td>
+								<td>20/20</td>
+								<td class="text-center"><a
+									href="/Chronos/editarAtividade/${atividade.codAtividade}"
+									class="btn btn-primary btn-sm"
+									style="height: 33px; margin-left: 30px; margin-top: -4px;">
+										Inscrever-se </a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<!-- 		
 				<div class="container">
 		<div class="row ">
 			<div class="col-2 text-right">
@@ -193,7 +397,7 @@ ul {
 				<h2>OUT</h2>
 			</div>
 			<div class="col-10">
-				<h3 class="text-uppercase"><strong>Ice Cream Social</strong></h3>
+				<h3 class="text-uppercase"><strong>Palestra Sobre Dengue</strong></h3>
 				<ul class="list-inline">
 				    <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> Monday</li>
 					<li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> 12:30 PM - 2:00 PM</li>
@@ -241,7 +445,7 @@ ul {
 				
 				
 
-<!-- 
+<!--  darwin
                     <c:if test="${(not empty selecao.etapas) or (not empty selecao.inscricao)}">
                         <ul class="timeline">
                             <c:if test="${not empty selecao.inscricao}">
@@ -443,30 +647,73 @@ ul {
             </div>
         </div>
          -->
-<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>      
-        <script>
-      $("#navEtapas").addClass(function( index, currentClass ) {
-          var addedClass;
+				<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
+				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+					integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+					crossorigin="anonymous"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+					integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+					crossorigin="anonymous"></script>
+				<script
+					src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+					integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+					crossorigin="anonymous"></script>
+				<script>
+					$("#navEtapas").addClass(function(index, currentClass) {
+						var addedClass;
 
-          if (screen.width <= 575) {
-            addedClass = "flex-column";
-          }
+						if (screen.width <= 575) {
+							addedClass = "flex-column";
+						}
 
-          return addedClass;
-      });
-      $("#timeline").removeClass(function( index, currentClass ) {
-          var addedClass;
+						return addedClass;
+					});
+					$("#timeline").removeClass(function(index, currentClass) {
+						var addedClass;
 
-          if (screen.width <= 575) {
-            addedClass = "timeline";
-          }
+						if (screen.width <= 575) {
+							addedClass = "timeline";
+						}
 
-          return addedClass;
-      });
-  </script>
+						return addedClass;
+					});
+				</script>
+				<script>
+					$(document).ready(
+							function() {
 
+								$('.star').on('click', function() {
+									$(this).toggleClass('star-checked');
+								});
+
+								$('.ckbox label').on(
+										'click',
+										function() {
+											$(this).parents('tr').toggleClass(
+													'selected');
+										});
+
+								$('.btn-filter').on(
+										'click',
+										function() {
+											var $target = $(this)
+													.data('target');
+											if ($target != 'all') {
+												$('.table tr').css('display',
+														'none');
+												$(
+														'.table tr[data-status="'
+																+ $target
+																+ '"]').fadeIn(
+														'slow');
+											} else {
+												$('.table tr').css('display',
+														'none').fadeIn('slow');
+											}
+										});
+
+							});
+				</script>
 </body>
 </html>

@@ -14,7 +14,7 @@
  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 
 
-<!-- calendar -->
+<!-- calendar 
 <style>
 .calendar-day {
   width: 100px;
@@ -102,7 +102,7 @@
   padding-bottom: 0;
 }
 
-</style>
+</style>-->
         
         
         
