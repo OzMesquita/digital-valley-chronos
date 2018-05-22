@@ -1,3 +1,5 @@
+<%@page import="br.ufc.russas.n2s.chronos.model.EnumTipoPagamento"%>
+<%@page import="br.ufc.russas.n2s.chronos.model.EnumTipoAtividade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
@@ -74,15 +76,11 @@
                         </div>
                         <br>
 							
-						 <label for="tipoAtividade">Tipo da Atividade*</label>
-    					<select class="form-control" id="tipoAtividadeImput">
-					      <option>Curso</option>
-					      <option>Encontro</option>
-					      <option>Minicurso </option>
-					      <option>Palestra</option>
-					      <option>Semana</option>
-					      <option>Visita Técnica</option>
-					      <option>Workshop</option>
+						<label for="tipoAtividadeInput">Tipo da Atividade*</label>
+    					<select name="tipoAtividade" class="form-control" id="tipoAtividadeInput">
+					      <c:forEach items="${EnumTipoAtividade.values()}" var="tipoAtividade">
+					      	<option>${tipoAtividade}</option>
+					      </c:forEach>
 					    </select>
 					    <br>
 					    
@@ -125,13 +123,13 @@
                         </div>
                         <br>        
                         
-                        <label for="categoriaInput">Forma de Pagamento*</label>
-                        <select type="text" name="tipoPagamento" class="form-control custom-select" id="categoriaInput" required>
-                            <option value="" selected="selected" disabled="disabled">Selecione a forma de pagamento da atividade</option>
-                            <option>Gratuito</option>
-                            <option>Dinheiro</option>
-                            <option>Doaçao</option>
+                        <label for="tipoPagamentoInput">Forma de Pagamento*</label>
+                        <select name="tipoPagamento" class="form-control custom-select" id="tipoPagamentoInput" required>
+                            <c:forEach items="${EnumTipoPagamento.values()}" var="tipoPagamento">
+					      	<option>${tipoPagamento}</option>
+					      </c:forEach>
                         </select>
+
                         <br> <br>
                           
                         

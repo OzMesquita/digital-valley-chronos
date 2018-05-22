@@ -1,5 +1,5 @@
-<%@page import="br.ufc.russas.n2s.chronos.service.AtividadeServiceImpl"%>
-<%@page import="br.ufc.russas.n2s.chronos.beans.AtividadeBeans"%>
+<%@page import="br.ufc.russas.n2s.chronos.model.EnumTipoPagamento"%>
+<%@page import="br.ufc.russas.n2s.chronos.model.EnumTipoAtividade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
@@ -46,66 +46,62 @@
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
-                    <form method="POST" action="cadastrarAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate> 
+                    <form method="POST" action="" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate> 
                         <label for="tituloInput">Nome*</label>
-                        <input type="text" name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" placeholder="Digite o nome da atividade" required>
+                        <input type="text" name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" placeholder="Digite o nome da atividade" required value="${atividade.nome}">
                         <small id="nomeHelp" class="form-text text-muted">Exemplo: Feira de incentivo a software livre</small>
                         <div class="invalid-feedback">
                         </div>
                         
                          <br>
                         <label for="descricaoInput">Descrição*</label>
-                        <textarea class="form-control" name="descricao" id="descricaoInput" placeholder="Digite uma breve descrição sobre a atividade" required></textarea>
+                        <textarea class="form-control" name="descricao" id="descricaoInput" placeholder="Digite uma breve descrição sobre a atividade" required>${atividade.descricao}</textarea>
                         <div class="invalid-feedback">
                             
                         </div>
                         <br>
-                        
-                        <c:if test="${not empty pai}">
+                        <!-- não é necessário pois a atividade pai não pode de forma alguma ser alterada -->
+                        <!-- <c:if test="${not empty pai}">
 			                        <label for="paiInput">Atividade pai*</label>
 			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" >
 			                        <small id="paiHelp" class="form-text text-muted">Exemplo: Semana de incetivo ao software livre</small>
 			                        <div class="invalid-feedback">
 			                        </div>
 			  						<br>
-  						 </c:if>   
+  						 </c:if>  --> 
                        
                         <label for="siglaInput">Sigla*</label>
-                        <textarea class="form-control" name="sigla" id="descricaoInput" placeholder="Digite uma sigla para a atividade" required></textarea>
+                        <input class="form-control" name="sigla" id="descricaoInput" placeholder="Digite uma sigla para a atividade" required value="${atividade.sigla}">
                         <div class="invalid-feedback">
                             
                         </div>
                         <br>
 							
-						 <label for="tipoAtividade">Tipo da Atividade*</label>
-    					<select class="form-control" id="tipoAtividadeImput">
-					      <option>Curso</option>
-					      <option>Encontro</option>
-					      <option>Minicurso </option>
-					      <option>Palestra</option>
-					      <option>Semana</option>
-					      <option>Visita Técnica</option>
-					      <option>Workshop</option>
+						 <label for="tipoAtividadeInput">Tipo da Atividade*</label>
+    					<select name="tipoAtividade" class="form-control" id="tipoAtividadeInput">
+					      <c:forEach items="${EnumTipoAtividade.values()}" var="tipoAtividade">
+					      	<option>${tipoAtividade}</option>
+					      </c:forEach>
 					    </select>
 					    <br>
 					    
 					    <br>
                         <label for="localDaAticidadeInput">Local da Atividade*</label>
-                        <input type="text" name="Local" class="form-control" id="localDaAtividadeInput" aria-describedby="localDaAtividadeHelp" placeholder="Digite o local em que a atividade será realizada">
+                        <input type="text" name="local" class="form-control" id="localDaAtividadeInput" aria-describedby="localDaAtividadeHelp" placeholder="Digite o local em que a atividade será realizada" value="${atividade.local}">
                         <small id="tituloHelp" class="form-text text-muted">Exemplo: Rua Felipe Santiago - N° 411, Cidade Universitária, Russas - CE, </small>
                         <div class="invalid-feedback">
                         </div>
                         <br>
 							
 						<label for="preRequisitosInput">Pré Requisitos</label>
-                        <textarea name="preRequisitos" class="form-control" id="preRequisitosInput" placeholder="Digite uma breve descrição sobre os pré requisitos para participar da atividade"></textarea>
+                        <textarea name="preRequisitos" class="form-control" id="preRequisitosInput" placeholder="Digite uma breve descrição sobre os pré requisitos para participar da atividade">${atividade.preRequisitos}</textarea>
                         <br>	
          
                         <div class="card">
                             <div class="card-header col-auto">
                                 
                                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" for="isVagasLimitadasInput">
-                                    <input type="checkbox" class="custom-control-input" id="isVagasLimitadasInput" onclick="habilitaCampoVagas()" alt="Definir número de vagas"/>
+                                    <input type="checkbox" class="custom-control-input" id="isVagasLimitadasInput" onclick="habilitaCampoVagas()" alt="Definir número de vagas" checked/>
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description" style="margin-top: 4px;">Definir o número de vagas</span>
                                 </label>
@@ -113,14 +109,14 @@
                             
                             <div class="card-body">
                                 <label for="vagasRemuneradasInput">Numero de vagas</label>
-                               <input type="number" name="totalVagas" class="form-control col-sm-2 disabled" id="vagasRemuneradasInput" value="0" min="0" max="100" disabled>
+                               <input type="number" name="totalVagas" value="${atividade.totalVagas}" class="form-control col-sm-2 disabled" id="vagasRemuneradasInput"  min="0" max="100" enable>
                                 <div class="invalid-feedback" >
                                     
                                 </div>
                                 <br>
 
                                 <label for="vagasVoluntariasInput">Número de vagas reservadas a comunidade</label>
-                                <input type="number" name="totalVagasComunidade" class="form-control col-sm-2 disabled" id="vagasVoluntariasInput" value="0" min="0" max="100" disabled>
+                                <input type="number" name="totalVagasComunidade" value="${atividade.totalVagasComunidade}" class="form-control col-sm-2 disabled" id="vagasVoluntariasInput"  min="0" max="100" enable>
                                 <div class="invalid-feedback">
                                     
                                 </div>
@@ -128,12 +124,11 @@
                         </div>
                         <br>        
                         
-                        <label for="categoriaInput">Forma de Pagamento*</label>
-                        <select type="text" name="tipoPagamento" class="form-control custom-select" id="categoriaInput" required>
-                            <option value="" selected="selected" disabled="disabled">Selecione a forma de pagamento da atividade</option>
-                            <option>Gratuito</option>
-                            <option>Dinheiro</option>
-                            <option>Doaçao</option>
+                        <label for="tipoPagamentoInput">Forma de Pagamento*</label>
+                        <select name="tipoPagamento" class="form-control custom-select" id="tipoPagamentoInput" required>
+                            <c:forEach items="${EnumTipoPagamento.values()}" var="tipoPagamento">
+					      	<option>${tipoPagamento}</option>
+					      </c:forEach>
                         </select>
                         <br> <br>
                           
@@ -142,7 +137,6 @@
                         <label for="responsavelInput">Organizadores</label>                           
                         <div class="form-row">
                             <select id="responsavelInput" class="form-control col-md-8" style="margin-left: 3px">
-                                <option value="" selected="selected" disabled="disabled">Selecione o organizador da atividade</option>
                             <c:forEach items="${organizador}" var="organizador">
                                 <option id="organizadorOption-${organizador.codUsuario}" value="${organizador.codUsuario}-${organizador.nome}">${organizador.nome}</option>
                             </c:forEach>
