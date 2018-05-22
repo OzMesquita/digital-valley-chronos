@@ -151,7 +151,7 @@
                         </ul>
 										
                         <br>
-                        <a href="/Chonos" type="button" id="enviar" class="btn btn-secondary">
+                        <a href="/Chronos/atividades/${atividade.codAtividade}" type="button" id="enviar" class="btn btn-secondary">
                             Cancelar
                         </a>
                         <input type="button"  class="btn btn-primary" value="Salvar e Continuar" data-toggle="modal" data-target="#confirmarSelecao" >
