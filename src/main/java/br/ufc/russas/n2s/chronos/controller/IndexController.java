@@ -30,7 +30,7 @@ import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 @RequestMapping("/")
 public class IndexController { 
 
- private AtividadeServiceIfc atividadeServiceIfc;
+	private AtividadeServiceIfc atividadeServiceIfc;
     
     public AtividadeServiceIfc getAtividadeServiceIfc(){
         return atividadeServiceIfc;
@@ -44,10 +44,10 @@ public class IndexController {
     @RequestMapping(method = RequestMethod.GET)
     public String getIndex(Model model) {
     	Atividade atividade = new Atividade();	
-    	 List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividades(atividade);
-         model.addAttribute("categoria", "Início");
-         model.addAttribute("estado", "início");
-         model.addAttribute("atividades", atividades);        
+		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividades(atividade);
+	    model.addAttribute("categoria", "Início");
+	    model.addAttribute("estado", "início");
+	    model.addAttribute("atividades", atividades);        
         return "inicio";
     }
     
@@ -59,7 +59,7 @@ public class IndexController {
     @RequestMapping(value="/{categoria}", method = RequestMethod.GET)
     public String getCategoria(Model model, @PathVariable String categoria) {
         Atividade atividade = new Atividade();
-        atividade.setTipoAtividade(EnumTipoAtividade.valueOf((categoria.replace("_", " ")).toUpperCase()));
+        //atividade.setTipoAtividade(EnumTipoAtividade.valueOf((categoria.replace("_", " ")).toUpperCase()));
         
         List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividades(atividade);
         model.addAttribute("categoria", "Início");

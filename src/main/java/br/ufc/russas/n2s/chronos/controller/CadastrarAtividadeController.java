@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -53,12 +54,8 @@ public class CadastrarAtividadeController {
 	public String adiciona(@ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
-		System.out.println("\n\n");
-		System.out.println(usuario.getNome());
-		System.out.println("\n\n");
 		this.atividadeServiceIfc.setUsuario(usuario);
 		String[] codOrganizadores = request.getParameterValues("codOrganizador");
-
 		ArrayList<OrganizadorBeans> organizadores = new ArrayList<>();
 		if (codOrganizadores!= null) {
 			for (String cod : codOrganizadores) {
@@ -66,13 +63,9 @@ public class CadastrarAtividadeController {
 				UsuarioBeans u = this.getUsuarioService().getUsuario(Long.parseLong(cod),0);
 				if (u != null) {
 					organizadorBeans.setUsuarioBeans(u);
-					
 				}
 			}
 		}
-		System.out.println("\n\n");
-		System.out.println(usuario.getNome());
-		System.out.println("\n\n");
 		atividade = this.getAtividadeService().adicionaAtividade(atividade);
 		if(!usuario.getPermissoes().contains(EnumPermissao. ADMINISTRADOR)) {
 			usuario.getPermissoes().add(EnumPermissao.ADMINISTRADOR);
@@ -86,9 +79,10 @@ public class CadastrarAtividadeController {
 		atividade = this.getAtividadeService().atualizaAtividade(atividade);
 		session.setAttribute("mensagem","Atividade cadastrada com sucesso!");
 		session.setAttribute("status", "sucess");
-		//return "atividade";
 		return ("redirect:atividades/" + atividade.getCodAtividade());
 	}
+	
+	
 
 
 }

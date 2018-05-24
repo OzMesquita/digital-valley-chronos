@@ -84,7 +84,7 @@ public class EditarAtividadeController {
 				 atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
 				 session.setAttribute("atividade", atividadeBeans);
 				 session.setAttribute("mensagem", "Atividade atualizada com sucesso!");
-				 session.setAttribute("status", "sucess");
+				 session.setAttribute("status", "success");
 				 return ("redirect:../atividades/" + atividade.getCodAtividade());
 			 }catch (IllegalAccessException e) {
 				 model.addAttribute("mensagem", e.getMessage());

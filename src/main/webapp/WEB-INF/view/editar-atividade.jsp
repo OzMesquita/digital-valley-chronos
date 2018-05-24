@@ -29,7 +29,8 @@
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Você está em: </li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="/digital-valley-chronos">Início</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="/Chronos/">Início</a></li>
+                         <li class="breadcrumb-item" aria-current="page"><a href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Editar Atividade</li>
                     </ol>
                 </nav>
@@ -181,7 +182,27 @@
 				</form>
                 </div>
             </div>
+            <div class="col-sm-2 sidebar-offcanvas">
+               
+            
+                <div class="card" >
+                    <div class="card-body">
+                        <h2 style="font-size: 15px; font-weight: bold;" class="text-center">Opções</h2>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                     	<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add realização</a><br>
+                     	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add subatividade</a>   
+                    	
+                    </ul>
+                </div>             
+               
+            </div>
         </div>
+        
+        
+        
+        
+        
     </div>
 
 

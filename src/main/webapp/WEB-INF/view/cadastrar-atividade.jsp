@@ -29,8 +29,14 @@
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Você está em: </li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="/digital-valley-chronos">Início</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="/Chronos">Início</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Cadastrar Atividade</li>
+                        
+                        <c:if test="${not empty pai}">
+	                    	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos/atividades/${pai.codAtividade}">${pai.nome}</a></li>
+	                    	 <li class="breadcrumb-item active" aria-current="page"><a href="/Chronos/editarAtividade/${pai.codAtividade}">Editar Atividade</a></li>
+	                        <li class="breadcrumb-item active" aria-current="page">Cadastrar subatividades</li>
+                         </c:if>
                     </ol>
                 </nav>
                 <c:if test="${not empty mensagem}">
@@ -59,10 +65,10 @@
                             
                         </div>
                         <br>
-                        
+                       
                         <c:if test="${not empty pai}">
 			                        <label for="paiInput">Atividade pai*</label>
-			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" >
+			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" value="${pai.nome}" >
 			                        <small id="paiHelp" class="form-text text-muted">Exemplo: Semana de incetivo ao software livre</small>
 			                        <div class="invalid-feedback">
 			                        </div>
