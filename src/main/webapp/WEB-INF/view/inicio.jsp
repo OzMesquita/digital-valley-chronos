@@ -21,7 +21,7 @@
         <c:import url="elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
         <div class="container-fluid">
             <div class="row row-offcanvas row-offcanvas-right">
-                <c:import url="elements/menu-lateral-esquerdo.jsp" charEncoding="UTF-8"></c:import>
+                <c:import url="elements/menu-lateral-esquerdo-inicio.jsp" charEncoding="UTF-8"></c:import>
                 <c:set var="titulo" value="${fn:replace(categoria, '_', ' ')}"></c:set>
                 <c:set var="titulo" value="${fn:replace(titulo, 'atividades', 'Atividades')}"></c:set>
                 <div class="col-sm-8">
