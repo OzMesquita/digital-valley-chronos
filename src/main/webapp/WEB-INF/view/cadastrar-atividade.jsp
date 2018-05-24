@@ -30,7 +30,9 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Você está em: </li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/Chronos">Início</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Cadastrar Atividade</li>
+                        <c:if test="${empty pai}">
+                        	<li class="breadcrumb-item active" aria-current="page">Cadastrar Atividade</li>
+                        </c:if>
                         
                         <c:if test="${not empty pai}">
 	                    	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos/atividades/${pai.codAtividade}">${pai.nome}</a></li>
@@ -51,7 +53,7 @@
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
-                    <form method="POST" action="cadastrarAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate> 
+                    <form method="POST" action="cadastrarAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
                         <label for="tituloInput">Nome*</label>
                         <input type="text" name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" placeholder="Digite o nome da atividade" required>
                         <small id="nomeHelp" class="form-text text-muted">Exemplo: Feira de incentivo a software livre</small>
@@ -65,15 +67,15 @@
                             
                         </div>
                         <br>
-                       
+						
                         <c:if test="${not empty pai}">
 			                        <label for="paiInput">Atividade pai*</label>
-			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" value="${pai.nome}" >
+			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" value="${pai.nome}" disabled>
 			                        <small id="paiHelp" class="form-text text-muted">Exemplo: Semana de incetivo ao software livre</small>
 			                        <div class="invalid-feedback">
 			                        </div>
 			  						<br>
-  						 </c:if>   
+  						 </c:if> 
                        
                         <label for="siglaInput">Sigla*</label>
                         <textarea class="form-control" name="sigla" id="descricaoInput" placeholder="Digite uma sigla para a atividade" required></textarea>

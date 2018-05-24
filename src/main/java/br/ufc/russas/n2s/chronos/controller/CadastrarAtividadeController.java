@@ -51,7 +51,7 @@ public class CadastrarAtividadeController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String adiciona(@ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{
+	public String adicionaAtividades(@ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);

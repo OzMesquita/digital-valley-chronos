@@ -9,6 +9,9 @@ package br.ufc.russas.n2s.chronos.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -52,7 +55,13 @@ public class IndexController {
     }
     
     @RequestMapping(value="/cadastrarAtividades", method = RequestMethod.GET)
-    public String getCadastro(Model model) {
+    public String getCadastro(Model model, HttpServletRequest request) {
+    	request.getSession().removeAttribute("pai");
+        return "cadastrar-atividade";
+    }
+    
+    @RequestMapping(value="/cadastrarSubAtividades", method = RequestMethod.GET)
+    public String getCadastroSub(Model model, HttpServletRequest request) {
         return "cadastrar-atividade";
     }
     

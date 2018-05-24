@@ -30,7 +30,7 @@
                     	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos">Início</a></li>
                     	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
                     	 <li class="breadcrumb-item active" aria-current="page"><a href="/Chronos/editarAtividade/${atividade.codAtividade}">Editar Atividade</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Cadastrar subatividades</li>
+                        <li class="breadcrumb-item active" aria-current="page">Cadastrar subatividade</li>
                 </nav>
                 <c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>
                 <c:if test="${not empty mensagem}">

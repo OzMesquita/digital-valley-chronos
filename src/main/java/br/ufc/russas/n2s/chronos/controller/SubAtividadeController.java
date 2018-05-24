@@ -37,13 +37,14 @@ public class SubAtividadeController {
     	
     	return "subatividade";
     }
+    
 	@RequestMapping(value="/cadastra/{codAtividade}",method = RequestMethod.GET)
 	public String adiciona(@PathVariable long codAtividade, Model model, HttpServletRequest request) throws IOException,IllegalAccessException{
 		
 		AtividadeBeans atividade = this.getAtividadeServiceIfc().getAtividade(codAtividade);
 		model.addAttribute("pai", atividade);
 		request.getSession().setAttribute("pai", atividade);
-		return ("redirect:/cadastrarAtividades/");
+		return ("redirect:/cadastrarSubAtividades/");
 	}
 	
 }
