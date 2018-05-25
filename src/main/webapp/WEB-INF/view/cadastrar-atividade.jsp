@@ -53,7 +53,13 @@
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
-                    <form method="POST" action="cadastrarAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+                    <c:if test="${empty pai}">
+                    	<form method="POST" action="cadastrarAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+                    </c:if>
+                    <c:if test="${not empty pai}">
+                    	<form method="POST" action="/Chronos/cadastrarAtividade/subAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+                    </c:if>
+                    
                         <label for="tituloInput">Nome*</label>
                         <input type="text" name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" placeholder="Digite o nome da atividade" required>
                         <small id="nomeHelp" class="form-text text-muted">Exemplo: Feira de incentivo a software livre</small>
@@ -70,7 +76,7 @@
 						
                         <c:if test="${not empty pai}">
 			                        <label for="paiInput">Atividade pai*</label>
-			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" value="${pai.nome}" disabled>
+			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" value="${pai.nome}" enable>
 			                        <small id="paiHelp" class="form-text text-muted">Exemplo: Semana de incetivo ao software livre</small>
 			                        <div class="invalid-feedback">
 			                        </div>

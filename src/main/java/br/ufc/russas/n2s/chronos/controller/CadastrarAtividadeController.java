@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.OrganizadorBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
+import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
@@ -82,7 +83,41 @@ public class CadastrarAtividadeController {
 		return ("redirect:atividades/" + atividade.getCodAtividade());
 	}
 	
-	
 
+	@RequestMapping(value = "/subAtividade", method = RequestMethod.POST)
+	public String adicionaSubAtividades(@ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{
+		HttpSession session = request.getSession();
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+		this.atividadeServiceIfc.setUsuario(usuario);
+		String[] codOrganizadores = request.getParameterValues("codOrganizador");
+		ArrayList<OrganizadorBeans> organizadores = new ArrayList<>();
+		if (codOrganizadores!= null) {
+			for (String cod : codOrganizadores) {
+				OrganizadorBeans organizadorBeans = new OrganizadorBeans();
+				UsuarioBeans u = this.getUsuarioService().getUsuario(Long.parseLong(cod),0);
+				if (u != null) {
+					organizadorBeans.setUsuarioBeans(u);
+				}
+			}
+		}
+		atividade = this.getAtividadeService().adicionaAtividade(atividade);
+		if(!usuario.getPermissoes().contains(EnumPermissao. ADMINISTRADOR)) {
+			usuario.getPermissoes().add(EnumPermissao.ADMINISTRADOR);
+		}
+		if(request.getSession().getAttribute("pai") != null) {
+			AtividadeBeans atvBeans = (AtividadeBeans) request.getSession().getAttribute("pai");
+			atividade.setPai((Atividade)atvBeans.toBusiness());
+		}
+		OrganizadorBeans orgBeans = new OrganizadorBeans();
+		orgBeans.setUsuarioBeans(usuario);
+		orgBeans.setPermissao(EnumPermissao.ADMINISTRADOR);
+		atividade.setOrganizadores(organizadores);
+		atividade.getOrganizadores().add(orgBeans);
+		atividade.setDivulgada(false);
+		atividade = this.getAtividadeService().atualizaAtividade(atividade);
+		session.setAttribute("mensagem","Atividade cadastrada com sucesso!");
+		session.setAttribute("status", "sucess");
+		return ("redirect:/subatividades/" + atividade.getPai().getCodAtividade());
+	}
 
 }
