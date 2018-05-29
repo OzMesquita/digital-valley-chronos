@@ -81,6 +81,16 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 		for(Atividade a : resultado) {
 			atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
 		}
+		return atividades;
+	}
+	public List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade){
+		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		List<Atividade> resultado = this.getAtividadeDAOIfc().listaAtividades(atividade);
+//		System.out.println(resultado.size());
+		for(Atividade a : resultado) {
+			if(a.getPai() == null) 
+				atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
+		}
 		return atividades;				
 	}
 

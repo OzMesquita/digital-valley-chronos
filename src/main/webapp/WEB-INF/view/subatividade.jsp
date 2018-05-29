@@ -64,6 +64,7 @@
                 <c:if test="${empty atividade.subAtividade}">
                     <p class="text-muted">Nenhuma subatividade cadastrada!</p>
                 </c:if>
+
                 <c:if test="${not empty atividade.subAtividade}">
                     <c:forEach var="subatividade" items="${atividade.subAtividade}">
                     <div class="card">
@@ -94,6 +95,8 @@
                 </c:if>
                  <li style="list-style: none; text-align: center;">
                  	<button class="btn btn-circle" >
+                 <li>
+                 	<button class="btn btn-circle">
                        <a href="/Chronos/subatividades/cadastra/${atividade.codAtividade}" class="timeline-badge primary" >
                            <i class="material-icons" title="Adicionar nova subatividade">add</i>
                        </a>

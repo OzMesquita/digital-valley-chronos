@@ -141,13 +141,26 @@
 
                         <br> <br>
                           
-                        
-                                           
-                        <label for="responsavelInput">Organizadores</label>                           
+                        <label for="responsavelInput">Responsável</label>                           
                         <div class="form-row">
-                            <select id="responsavelInput" class="form-control col-md-8" style="margin-left: 3px">
+                            <select id="responsavelInput" class="form-control col-md-8" style="margin-left: 3px; margin-bottom: 10px">
+                                <option value="" selected="selected" disabled="disabled">Selecione o Responsavel da atividade</option>
+                            <c:forEach items="${responsavel}" var="responsavel">
+                                <option id="responsavelOption-${responsavel.codUsuario}" value="${responsavel.codUsuario}-${responsavel.nome}">${responsavel.nome}</option>
+                            </c:forEach>
+                            </select>
+                            <label for="miniCirriculoInput"></label>
+                        <textarea name="miniCirriculo" class="form-control col-md-8" id="miniCirriculoInput" style="margin-left: 3px" placeholder="Digite uma breve descrição sobre o responsavel por essa atividade"></textarea> 	
+                        	&nbsp;&nbsp;
+                        	<input type="button" class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()" value="Adicionar">               
+                        </div>
+                        <br> 
+                                           
+                        <label for="organizadorlInput">Organizadores</label>                           
+                        <div class="form-row">
+                            <select id="organizadorlInput" class="form-control col-md-8" style="margin-left: 3px">
                                 <option value="" selected="selected" disabled="disabled">Selecione o organizador da atividade</option>
-                            <c:forEach items="${organizador}" var="organizador">
+                            <c:forEach items="${organizadores}" var="organizador">
                                 <option id="organizadorOption-${organizador.codUsuario}" value="${organizador.codUsuario}-${organizador.nome}">${organizador.nome}</option>
                             </c:forEach>
                             </select>
@@ -156,22 +169,21 @@
                         </div>
                         <br>
                         
-                            <!-- apoiadores -->
+                        <ul class="list-group col-md-8" id="listaOrganizador">
+                        </ul>
+								
+								 <!-- apoiadores -->
                             
                                <label for="anexoInput">Apoiadores</label>
                                <div class="form-row" style="margin-left: 0px;">
-                                   <input type="text" class="form-control col-md-5" id="nomeAnexoInput" placeholder=" Digite o nome do apoiador">&nbsp; &nbsp;
-                                   <input type="text" class="form-control col-md-3" id="linkAnexoInput" placeholder=" Função">&nbsp; &nbsp;
+                                   <input type="text" class="form-control col-md-8" id="nomeAnexoInput" placeholder=" Digite o nome do apoiador">&nbsp; &nbsp;
+                                   <!-- <input type="text" class="form-control col-md-3" id="linkAnexoInput" placeholder=" Função">&nbsp; &nbsp;  -->
                                    <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaAnexo()" value="Adicionar">                            
                                </div>
 
                                <br>
                             
-                            <!-- fim apoiadores -->
-                        
-                        <ul class="list-group col-md-8" id="listaOrganizador">
-                        </ul>
-										
+                            <!-- fim apoiadores -->		
                         <br>
                         <a href="/Chronos/" type="button" id="enviar" class="btn btn-secondary">
                             Cancelar

@@ -321,7 +321,7 @@ ul {
 				<p class="text-justify">
 				<hr>
 				<c:if test="${not empty atividade.pai}">
-					<b>EVENTO: </b> ${atividade.pai}<br />
+					<b>EVENTO: </b> ${pai.nome}<br />
 					<br />
 				</c:if>
 				<c:if test="${not empty atividade.tipoAtividade}">

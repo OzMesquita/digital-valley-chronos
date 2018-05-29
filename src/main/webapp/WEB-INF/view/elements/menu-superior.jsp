@@ -10,8 +10,8 @@
 <%@page import="br.ufc.russas.n2s.chronos.util.Constantes"%>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="<%=Constantes.getAppUrl() %>">
-        <img src="${pageContext.request.contextPath}/resources/img/cronos-logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo do módulo Chronos">
-        Chronos
+        <img src="${pageContext.request.contextPath}/resources/img/chronos.png" width="100" height="30" class="d-inline-block align-top" alt="Logo do módulo Chronos">
+        <!--Chronos-->
     </a>  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
                     Administração
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="<%=Constantes.getAppUrl() %>/cadastrarAtividades">Cadastrar Atividade</a>
+                    <a class="dropdown-item" href="<%=Constantes.getAppUrl() %>/cadastrarAtividade">Cadastrar Atividade</a>
                     
                     <c:if test="${fn:contains(permissoes, 'ADMINISTRADOR')}">
                     <div class="dropdown-divider"></div>
