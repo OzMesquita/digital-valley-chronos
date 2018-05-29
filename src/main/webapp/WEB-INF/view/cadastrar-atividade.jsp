@@ -41,6 +41,7 @@
                          </c:if>
                     </ol>
                 </nav>
+                   
                 <c:if test="${not empty mensagem}">
                 <div class="alert alert-${status} alert-dismissible fade show" role="alert">
                     ${mensagem}
@@ -48,8 +49,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                </c:if>   
-                <h1>Cadastrar Atividade</h1>
+                </c:if>  
+                <h1>Cadastrar Atividade  <c:if test="${not empty pai}">de ${pai.nome}</c:if></h1>
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
@@ -184,8 +185,7 @@
                                 </div>
                             </div>
                         </div>
-                         <hr/>  
-                      
+                         <hr/>    
 
 				</form>
                 </div>

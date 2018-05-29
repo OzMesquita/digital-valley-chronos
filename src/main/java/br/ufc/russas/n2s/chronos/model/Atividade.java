@@ -27,7 +27,7 @@ public class Atividade implements Comparable<Atividade>{
 	@Column(name="codAtividade")
 	private long codAtividade;
 	
-	@ManyToMany(targetEntity = Atividade.class, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = Atividade.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Fetch(FetchMode.SUBSELECT)
     @JoinTable(name = "subatividades_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
     inverseJoinColumns = {@JoinColumn(name = "subAtividade", referencedColumnName = "codAtividade")})

@@ -191,8 +191,8 @@
                         <h2 style="font-size: 15px; font-weight: bold;" class="text-center">Opções</h2>
                     </div>
                     <ul class="list-group list-group-flush">
-                     	<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add realização</a><br>
-                     	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add subatividade</a>   
+                     	<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Realizações</a><br>
+                     	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Subatividades</a>   
                     	
                     </ul>
                 </div>             

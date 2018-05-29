@@ -54,11 +54,7 @@ public class IndexController {
         return "inicio";
     }
     
-    @RequestMapping(value="/cadastrarAtividades", method = RequestMethod.GET)
-    public String getCadastro(Model model, HttpServletRequest request) {
-    	request.getSession().removeAttribute("pai");
-        return "cadastrar-atividade";
-    }
+   
     
     @RequestMapping(value="/cadastrarSubAtividades", method = RequestMethod.GET)
     public String getCadastroSub(Model model, HttpServletRequest request) {

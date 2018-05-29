@@ -45,6 +45,7 @@
                 </c:if>
                 <div class="row col-sm-12">
                     <h1 class="text-capitalize" >${atividade.nome}</h1>
+                    <br>
                     <c:if test="${not empty estado}"> 
                     <div class="dropdown right" style="right:-13px; position:absolute;">
                         <button class="btn dropdown-toggle btn-sm btn-icon filtro_tela" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,10 +64,38 @@
                 <c:if test="${empty atividade.subAtividade}">
                     <p class="text-muted">Nenhuma subatividade cadastrada!</p>
                 </c:if>
-                 <li>
-                 	<button class="btn btn-primary btn-circle">
+                <c:if test="${not empty atividade.subAtividade}">
+                    <c:forEach var="subatividade" items="${atividade.subAtividade}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row" style="padding-left: 13px;">
+                                <h2 class="card-title text-uppercase font-weight-bold">
+                                ${subatividade.nome} <small>(${subatividade.sigla})</small>
+                                </h2>
+                                                                
+                                
+                            </div>
+                            <h3 class="card-subtitle mb-2 text-muted">
+                                ${subatividade.tipoAtividade} - data aqui!!! 
+                              
+                            </h3>
+                            <p class="card-text text-justify">
+                                ${fn:substring(atividade.descricao, 0, 400)}
+                                <c:if test="${fn:length(atividade.descricao) > 400}">
+                                    [...]
+                                </c:if>
+                            </p>
+                            <c:set var = "nomeUrl" value = "${subatividade.nome}"/>
+                            <a href="/Chronos/atividades/${subatividade.codAtividade}" class="card-link">Mais informações</a>
+                        </div>
+                    </div>
+                </c:forEach>
+                <br/>
+                </c:if>
+                 <li style="list-style: none; text-align: center;">
+                 	<button class="btn btn-circle" >
                        <a href="/Chronos/subatividades/cadastra/${atividade.codAtividade}" class="timeline-badge primary" >
-                           <i class="material-icons">add</i>
+                           <i class="material-icons" title="Adicionar nova subatividade">add</i>
                        </a>
                     </button>
                    </li>  
@@ -78,8 +107,7 @@
                                 <h2 class="card-title text-uppercase font-weight-bold">
                                 ${atividade.nome} <small>(${atividade.sigla})</small>
                                 </h2>
-                                                                
-                                
+                                <span class="badge badge-pill badge-warning" style="right: 20px; font-size: 10px;position: absolute;">Remover</span>
                             </div>
                             <h3 class="card-subtitle mb-2 text-muted">
                                 ${atividade.tipoAtividade} - data aqui!!! 
@@ -93,6 +121,7 @@
                             </p>
                             <c:set var = "nomeUrl" value = "${atividade.nome}"/>
                             <a href="/Chronos/atividades/${atividade.codAtividade}" class="card-link">Mais informações</a>
+                            
                         </div>
                     </div>
                 </c:forEach>
