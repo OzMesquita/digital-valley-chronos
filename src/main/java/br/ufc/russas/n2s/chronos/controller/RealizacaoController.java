@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.service.RealizacaoServiceIfc;
 
-@Controller("realizacaoController")
-@RequestMapping("/realizacao")
+//@Controller("realizacaoController")
+//@RequestMapping("/realizacao")
 public class RealizacaoController {
 
 	private RealizacaoServiceIfc realizacaoServiceIfc;
