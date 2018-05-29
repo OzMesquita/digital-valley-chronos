@@ -151,11 +151,24 @@
                                 <option id="organizadorOption-${organizador.codUsuario}" value="${organizador.codUsuario}-${organizador.nome}">${organizador.nome}</option>
                             </c:forEach>
                             </select>
-                            
                             &nbsp;&nbsp;
                             <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()" value="Adicionar">                            
                         </div>
                         <br>
+                        
+                            <!-- apoiadores -->
+                            
+                               <label for="anexoInput">Apoiadores</label>
+                               <div class="form-row" style="margin-left: 0px;">
+                                   <input type="text" class="form-control col-md-5" id="nomeAnexoInput" placeholder=" Digite o nome do apoiador">&nbsp; &nbsp;
+                                   <input type="text" class="form-control col-md-3" id="linkAnexoInput" placeholder=" Função">&nbsp; &nbsp;
+                                   <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaAnexo()" value="Adicionar">                            
+                               </div>
+
+                               <br>
+                            
+                            <!-- fim apoiadores -->
+                        
                         <ul class="list-group col-md-8" id="listaOrganizador">
                         </ul>
 										
