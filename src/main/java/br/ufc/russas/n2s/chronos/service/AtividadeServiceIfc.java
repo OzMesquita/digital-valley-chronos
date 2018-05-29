@@ -16,5 +16,7 @@ public interface AtividadeServiceIfc extends ServiceIfc{
 	
 	List<AtividadeBeans> listaAtividades(Atividade atividade);
 	
+	List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade);
+	
 	AtividadeBeans getAtividade(long codAtividade);
 }

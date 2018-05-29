@@ -66,7 +66,6 @@
                 </c:if>
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
                 <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividades}">
-                    <!--<c:if test="${empty atividade.pai}">-->
 	                    <div class="card">
 	                        <div class="card-body">
 	                            <div class="row" style="padding-left: 13px;">
@@ -90,7 +89,6 @@
 	                            <a href="/Chronos/atividades/${atividade.codAtividade}" class="card-link">Mais informações</a>
 	                        </div>
 	                    </div>
-                    <!--</c:if>-->
                 </c:forEach>
                 <br/>
                 <nav aria-label="">
