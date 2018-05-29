@@ -64,7 +64,7 @@
                     <p class="text-muted">Nenhuma subatividade cadastrada!</p>
                 </c:if>
                  <li>
-                 	<button class="btn btn-primary btn-circle">
+                 	<button class="btn btn-circle">
                        <a href="/Chronos/subatividades/cadastra/${atividade.codAtividade}" class="timeline-badge primary" >
                            <i class="material-icons">add</i>
                        </a>
