@@ -7,7 +7,7 @@ public enum EnumTipoAtividade {
 	CURSO(4),
 	PALESTRA(5),
 	WORKSHOP(6),
-	VISITATECNICA(7);
+	VISITA_TÉCNICA(7);
 
 	private int valorTipo;
 	

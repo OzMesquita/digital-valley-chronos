@@ -66,29 +66,31 @@
                 </c:if>
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
                 <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividades}">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row" style="padding-left: 13px;">
-                                <h2 class="card-title text-uppercase font-weight-bold">
-                                ${atividade.nome} <small>(${atividade.sigla})</small>
-                                </h2>
-                                                                
-                                
-                            </div>
-                            <h3 class="card-subtitle mb-2 text-muted">
-                                ${atividade.tipoAtividade} - data aqui!!! 
-                              
-                            </h3>
-                            <p class="card-text text-justify">
-                                ${fn:substring(atividade.descricao, 0, 400)}
-                                <c:if test="${fn:length(atividade.descricao) > 400}">
-                                    [...]
-                                </c:if>
-                            </p>
-                            <c:set var = "nomeUrl" value = "${atividade.nome}"/>
-                            <a href="/Chronos/atividades/${atividade.codAtividade}" class="card-link">Mais informações</a>
-                        </div>
-                    </div>
+                    <!--<c:if test="${empty atividade.pai}">-->
+	                    <div class="card">
+	                        <div class="card-body">
+	                            <div class="row" style="padding-left: 13px;">
+	                                <h2 class="card-title text-uppercase font-weight-bold">
+	                                ${atividade.nome} <small>(${atividade.sigla})</small>
+	                                </h2>
+	                                                                
+	                                
+	                            </div>
+	                            <h3 class="card-subtitle mb-2 text-muted">
+	                                ${fn:replace(atividade.tipoAtividade, '_', ' ')} - data aqui!!! 
+	                              
+	                            </h3>
+	                            <p class="card-text text-justify">
+	                                ${fn:substring(atividade.descricao, 0, 400)}
+	                                <c:if test="${fn:length(atividade.descricao) > 400}">
+	                                    [...]
+	                                </c:if>
+	                            </p>
+	                            <c:set var = "nomeUrl" value = "${atividade.nome}"/>
+	                            <a href="/Chronos/atividades/${atividade.codAtividade}" class="card-link">Mais informações</a>
+	                        </div>
+	                    </div>
+                    <!--</c:if>-->
                 </c:forEach>
                 <br/>
                 <nav aria-label="">
