@@ -11,7 +11,7 @@
                 http://www.springframework.org/schema/beans/spring-beans.xsd
                 http://www.springframework.org/schema/mvc 
                 http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-		http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans 
                 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                 http://www.springframework.org/schema/context 
                 http://www.springframework.org/schema/context/spring-context-4.0.xsd
@@ -50,7 +50,9 @@
     <bean name="atividadeController" class="br.ufc.russas.n2s.chronos.controller.AtividadesController" />
     <bean name="inscricaoController" class="br.ufc.russas.n2s.chronos.controller.InscricaoController" />
     <bean name="subatividadeController" class="br.ufc.russas.n2s.chronos.controller.SubAtividadeController" />
+    <bean name="apoioController" class="br.ufc.russas.n2s.chronos.controller.ApoioController" />
     <bean name="cadastrarAtividadeController" class="br.ufc.russas.n2s.chronos.controller.CadastrarAtividadeController" />
+    <bean name="cadastrarApoioController" class="br.ufc.russas.n2s.chronos.controller.CadastrarApoioController" />
     <bean name="atividadeServiceIfc"  class = "br.ufc.russas.n2s.chronos.service.AtividadeServiceImpl" />
     <bean name="organizadorServiceIfc" class = "br.ufc.russas.n2s.chronos.service.OrganizadorServiceImpl" />
     <bean name="atividadeDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.AtividadeDAOImpl" />

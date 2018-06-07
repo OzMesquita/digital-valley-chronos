@@ -44,5 +44,15 @@ public enum EnumTipoAtividade {
 	
 	}
 	
+	public static EnumTipoAtividade valorEnumPeloNome(String nome)
+	{
+	    for(EnumTipoAtividade tipo : EnumTipoAtividade.values())
+	        if(tipo.name().equals(nome)){
+	            return tipo;
+	        }
+
+	    return null; //not found
+	}
+	
 
 }

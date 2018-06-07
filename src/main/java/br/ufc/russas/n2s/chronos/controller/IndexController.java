@@ -66,8 +66,9 @@ public class IndexController {
     public String getCategoria(Model model, @PathVariable String categoria) {
         Atividade atividade = new Atividade();
 
-        atividade.setTipoAtividade(EnumTipoAtividade.valueOf(categoria.toUpperCase()));
-
+        //<!-- atividade.setTipoAtividade(EnumTipoAtividade.valueOf(categoria.toUpperCase())); -->
+        atividade.setTipoAtividade(EnumTipoAtividade.valorEnumPeloNome(categoria.toUpperCase()));
+        
         List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
         model.addAttribute("categoria", "Início");
         model.addAttribute("estado", "início");

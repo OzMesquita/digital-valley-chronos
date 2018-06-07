@@ -80,41 +80,81 @@ function removeAditivo(nome) {
 }
 
 
-var listaResponsaveis = [];
-var codResponsaveis = [];
-var numResponsaveis = 0;
-function adicionaResponsavel() {
-    var responsavelInput = document.getElementById("responsavelInput").value;
-    var nomeResponsavel = responsavelInput.substring(responsavelInput.indexOf("-") + 1, responsavelInput.lenght);
-    var codResponsavel = responsavelInput.substring(0, responsavelInput.indexOf("-"));
-    if (nomeResponsavel !== "") {
-        listaResponsaveis[numResponsaveis] = nomeResponsavel;
-        codResponsaveis[numResponsaveis] = codResponsavel;
-        document.getElementById("responsavelOption-" + codResponsavel + "").disabled = "disabled";
-        numResponsaveis++;
+var listaOrganizadores = [];
+var codOrganizadores= [];
+var numOrganizadores = 0;
+function adicionaOrganizador() {
+    var organizadorInput = document.getElementById("organizadorInput").value;
+    var nomeOrganizador = organizadorInput.substring(organizadorInput.indexOf("-") + 1, organizadorInput.lenght);
+    var codOrganizador = organizadorInput.substring(0, organizadorInput.indexOf("-"));
+    if (nomeOrganizador !== "") {
+        listaOrganizadores[numOrganizadores] = nomeOrganizador;
+        codOrganizadores[numOrganizadores] = codOrganizador;
+        document.getElementById("organizadorOption-" + codOrganizador + "").disabled = "disabled";
+        numOrganizadores++;
     }
-    document.getElementById("responsavelInput").value = "";
-    atualizaResponsaveis();
+    document.getElementById("organizadorInput").value = "";
+    atualizaOrganizadores();
 
 }
-function atualizaResponsaveis() {
-    var list = document.getElementById("listaResponsaveis");
+function atualizaOrganizadores() {
+    var list = document.getElementById("listaOrganizadores");
     list.innerHTML = "";
-    for (i = 0; i < listaResponsaveis.length; i++) {
-        if (listaResponsaveis[i] !== "") {
-            list.innerHTML += '<li class="list-group-item"><input type="hidden" name="codResponsaveis" value="' + codResponsaveis[i] + '" style="display: none;"> ' + listaResponsaveis[i] + '<button type="button" class="btn btn-light btn-sm material-icons float-right" style="font-size: 15px;" onclick="removeResponsaveis(\'' + codResponsaveis[i] + '\')">clear</button></li>';
+    for (i = 0; i < listaOrganizadores.length; i++) {
+        if (listaOrganizadores[i] !== "") {
+            list.innerHTML += '<li class="list-group-item"><input type="hidden" name="codOrganizadores" value="' + codOrganizadores[i] + '" style="display: none;"> ' + listaOrganizadores[i] + '<button type="button" class="btn btn-light btn-sm material-icons float-right" style="font-size: 15px;" onclick="removeOrganizador(\'' + codOrganizadores[i] + '\')">clear</button></li>';
         }
     }
 }
-function removeResponsaveis(codResponsavel) {
-    for (i = 0; i < listaResponsaveis.length; i++) {
-        if (codResponsaveis[i] === codResponsavel) {
-            document.getElementById("responsavelOption-" + codResponsavel + "").disabled = "";
-            listaResponsaveis[i] = "";
-            codResponsaveis[i] = "";
+function removeOrganizador(codOrganizador) {
+    for (i = 0; i < listaOrganizadores.length; i++) {
+        if (codOrganizadores[i] === codOrganizador) {
+            document.getElementById("organizadorOption-" + codOrganizador + "").disabled = "";
+            listaOrganizadores[i] = "";
+            codOrganizadores[i] = "";
 
         }
     }
-    atualizaResponsaveis();
+    atualizaOrganizadores();
+}
+
+// listar apoiadores 
+
+var listaApoiadores = [];
+var codOrganizadores= [];
+var numApoiadores = 0;
+function adicionaApoiador() {
+    var apoiadorInput = document.getElementById("apoiadorInput").value;
+    var nomeApoiador = apoiadorInput.substring(apoiadorInput.indexOf("-") + 1, apoiadorInput.lenght);
+    //var codApoiador = apoiadorInput.substring(0, apoiadorInput.indexOf("-"));
+    if (nomeApoiador !== "") {
+        listaApoiadorres[numApoiadorres] = nomeApoiador;
+       // codOrganizadores[numOrganizadores] = codOrganizador;
+       // document.getElementById("organizadorOption-" + codOrganizador + "").disabled = "disabled";
+        numApoiadores++;
+    }
+    document.getElementById("apoiadorInput").value = "";
+    atualizaApoiadores();
+
+}
+function atualizaApoiadores() {
+    var list = document.getElementById("listaApoiadores");
+    list.innerHTML = "";
+    for (i = 0; i < listaApoiadores.length; i++) {
+        if (listaApoiadores[i] !== "") {
+            list.innerHTML += '<li class="list-group-item"><input type="hidden" name="listaApoiadores" value="' + listaApoiadores[i] + '" style="display: none;"> ' + listaApoiadores[i] + '<button type="button" class="btn btn-light btn-sm material-icons float-right" style="font-size: 15px;" onclick="removeApoiador(\'' + nomeApoiador[i] + '\')">clear</button></li>';
+        }
+    }
+}
+function removeOrganizador(codOrganizador) {
+    for (i = 0; i < listaOrganizadores.length; i++) {
+        if (codOrganizadores[i] === codOrganizador) {
+            document.getElementById("organizadorOption-" + codOrganizador + "").disabled = "";
+            listaOrganizadores[i] = "";
+            codOrganizadores[i] = "";
+
+        }
+    }
+    atualizaOrganizadores();
 }
 

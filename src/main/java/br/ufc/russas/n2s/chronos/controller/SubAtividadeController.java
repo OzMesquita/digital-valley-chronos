@@ -38,7 +38,6 @@ public class SubAtividadeController {
     	
     	
     	model.addAttribute("atividade", atividade);
-    	System.out.println("tamanho: "+atividade.getSubAtividade().size());
     	return "subatividade";
     }
     
