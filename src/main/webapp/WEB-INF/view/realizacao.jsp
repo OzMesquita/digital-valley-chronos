@@ -30,7 +30,7 @@
                     	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos">Início</a></li>
                     	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
                     	 <li class="breadcrumb-item active" aria-current="page"><a href="/Chronos/editarAtividade/${atividade.codAtividade}">Editar Atividade</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Cadastrar subatividade</li>
+                        <li class="breadcrumb-item active" aria-current="page">Cadastrar realizações</li>
                 </nav>
                 <c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>
                 <c:if test="${not empty mensagem}">
@@ -61,15 +61,53 @@
                     </c:if>
                 </div>
                 <c:if test="${empty atividade.subAtividade}">
-                    <p class="text-muted">Nenhuma subatividade cadastrada!</p>
+                    <p class="text-muted">Nenhuma Realização cadastrada!</p>
                 </c:if>
                  <li>
-                <button class="btn btn-circle"> 
-                 	 	<button class="btn btn btn-circle">
-                       <a href="/Chronos/subatividades/cadastra/${atividade.codAtividade}" class="timeline-badge primary" >
-                           <i class="material-icons">add</i>
-                       </a>
-                    </button>
+                 	 	<input type="button"  class="btn btn-circle" value="Adicionar Periodo" data-toggle="modal" data-target="#confirmarRealizacao" >
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="confirmarRealizacao" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Confirmar cadastro da Realizacao</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="periodoInput">Data*</label>
+				                        <div id="sandbox-container">
+				                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
+				                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataInicio" id="dataInicioInput" required/>
+				                                <span class="input-group-addon">até</span>
+				                                <input type="date" class="form-control text-left " placeholder="Digite a data de término desta etapa" name="dataTermino" id="dataTerminoInput" required/>
+				                                <div class="invalid-feedback">
+				                                </div>
+				                            </div>
+				                            <small id="periodoHelp" class="form-text text-muted">Selecione uma data para início e término</small>
+				                            </div>
+				                            <br>
+				                            <label for="periodoInput">Hora*</label>
+				                        <div id="sandbox-container">
+				                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
+				                                <input type="time" class="form-control text-left" placeholder="Digite a hora de início desta etapa" name="horaInicio" id="horaInicioInput" required/>
+				                                <span class="input-group-addon">até</span>
+				                                <input type="time" class="form-control text-left " placeholder="Digite a hora de término desta etapa" name="horaTermino" id="horaTerminoInput" required/>
+				                                <div class="invalid-feedback">
+				                                </div>
+				                            </div>
+				                            <small id="periodoHelp" class="form-text text-muted">Selecione a hora de início e término</small>
+				                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">Adicionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                    </li>  
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
                 <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividades}">

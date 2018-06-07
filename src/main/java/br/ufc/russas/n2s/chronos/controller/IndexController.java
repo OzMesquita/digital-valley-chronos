@@ -66,11 +66,16 @@ public class IndexController {
         return "cadastrar-atividade";
     }
     
+//    @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
+//    public String cadastraRealizacao(Model model, HttpServletRequest request) {
+//    	return "cadastrar-realizacao";
+//    }
+    
     @RequestMapping(value="/{categoria}", method = RequestMethod.GET)
     public String getCategoria(Model model, @PathVariable String categoria) {
         Atividade atividade = new Atividade();
 
-        atividade.setTipoAtividade(EnumTipoAtividade.valueOf(categoria.toUpperCase()));
+       // atividade.setTipoAtividade(EnumTipoAtividade.valueOf(categoria.toUpperCase()));
 
         List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
         model.addAttribute("categoria", "Início");

@@ -42,9 +42,9 @@ public class RealizacaoBeans implements Beans {
 	@Override
 	public Beans toBeans(Object object) {
         if(object == null)
-        	throw new IllegalArgumentException("O objeto a ser adicionado não é uma Realizacao!");
-        if(!(object instanceof Realizacao))
         	throw new NullPointerException("A Realizacao não pode ser nula!");
+        if(!(object instanceof Realizacao))
+        	throw new IllegalArgumentException("O objeto a ser adicionado não é uma Realizacao!");
 		
         Realizacao realizacao = (Realizacao) object;
 		
