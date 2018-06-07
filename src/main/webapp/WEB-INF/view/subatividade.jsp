@@ -65,8 +65,9 @@
                     <p class="text-muted">Nenhuma subatividade cadastrada!</p>
                 </c:if>
                  <li>
-                <button class="btn btn-circle"> 
-                 	 	<button class="btn btn btn-circle">
+                 
+                <!-- <button class="btn btn-circle">  -->  
+                 	 	
 
 
                 <c:if test="${not empty atividade.subAtividade}">
@@ -77,9 +78,11 @@
                                 <h2 class="card-title text-uppercase font-weight-bold">
                                 ${subatividade.nome} <small>(${subatividade.sigla})</small>
                                 </h2>
-                                                                
-                                
                             </div>
+                           
+                            
+                           <!--  <button class="btn btn btn-circle">  -->
+                            
                             <h3 class="card-subtitle mb-2 text-muted">
                                 ${subatividade.tipoAtividade} - data aqui!!! 
                               
@@ -126,7 +129,7 @@
                             </p>
                             <c:set var = "nomeUrl" value = "${atividade.nome}"/>
                             <a href="/Chronos/atividades/${atividade.codAtividade}" class="card-link">Mais informações</a>
-                            
+                            card-body
                         </div>
                     </div>
                 </c:forEach>
