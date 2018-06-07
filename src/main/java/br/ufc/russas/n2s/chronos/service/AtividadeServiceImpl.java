@@ -58,7 +58,7 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 
 	@Override
 	public void removeAtividade(AtividadeBeans atividade) {
-		this.getAtividadeDAOIfc().adicionaAtividade((Atividade) atividade.toBusiness());
+		this.getAtividadeDAOIfc().removeAtividade((Atividade) atividade.toBusiness());
 	}
 
 	@Override
@@ -75,6 +75,14 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 	
 	@Override
 	@Transactional
+	public List<AtividadeBeans> listaAtividadesHql(String string) {
+		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		List<Atividade> resultado = this.getAtividadeDAOIfc().listaHqlAtividade("from Atividade a where a.pai="+string);
+		for(Atividade a : resultado) {
+			atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
+		}
+		return atividades;
+	}
 	public List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade){
 		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
 		List<Atividade> resultado = this.getAtividadeDAOIfc().listaAtividades(atividade);
@@ -91,7 +99,9 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 	public AtividadeBeans getAtividade(long codAtividade) {
 		Atividade atividade = new Atividade();
 		atividade.setCodAtividade(codAtividade);
-		return (AtividadeBeans) new AtividadeBeans().toBeans(this.getAtividadeDAOIfc().getAtividade(atividade));
+		AtividadeBeans retorno = (AtividadeBeans) new AtividadeBeans().toBeans(this.getAtividadeDAOIfc().getAtividade(atividade));
+		retorno.setSubAtividade(this.listaAtividadesHql(codAtividade+""));
+		return retorno;
 	}
 
 

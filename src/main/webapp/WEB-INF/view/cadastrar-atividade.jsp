@@ -41,6 +41,7 @@
                          </c:if>
                     </ol>
                 </nav>
+                   
                 <c:if test="${not empty mensagem}">
                 <div class="alert alert-${status} alert-dismissible fade show" role="alert">
                     ${mensagem}
@@ -48,8 +49,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                </c:if>   
-                <h1>Cadastrar Atividade</h1>
+                </c:if>  
+                <h1>Cadastrar Atividade  <c:if test="${not empty pai}">de ${pai.nome}</c:if></h1>
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
@@ -155,11 +156,11 @@
                         </div>
                         <br> 
                                            
-                        <label for="organizadorlInput">Organizadores</label>                           
+                        <label for="organizadorInput">Organizadores</label>                           
                         <div class="form-row">
-                            <select id="organizadorlInput" class="form-control col-md-8" style="margin-left: 3px">
+                            <select id="organizadorInput" class="form-control col-md-8" style="margin-left: 3px">
                                 <option value="" selected="selected" disabled="disabled">Selecione o organizador da atividade</option>
-                            <c:forEach items="${organizador}" var="organizador">
+                            <c:forEach items="${organizadores}" var="organizador">
                                 <option id="organizadorOption-${organizador.codUsuario}" value="${organizador.codUsuario}-${organizador.nome}">${organizador.nome}</option>
                             </c:forEach>
                             </select>
@@ -168,19 +169,21 @@
                         </div>
                         <br>
                         
-                        <ul class="list-group col-md-8" id="listaOrganizador">
-                        </ul>
+                        <ul class="list-group col-md-8" id="listaOrganizadores">
+                        </ul><br>
 								
 								 <!-- apoiadores -->
                             
                                <label for="anexoInput">Apoiadores</label>
                                <div class="form-row" style="margin-left: 0px;">
-                                   <input type="text" class="form-control col-md-8" id="nomeAnexoInput" placeholder=" Digite o nome do apoiador">&nbsp; &nbsp;
-                                   <!-- <input type="text" class="form-control col-md-3" id="linkAnexoInput" placeholder=" Função">&nbsp; &nbsp;  -->
-                                   <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaAnexo()" value="Adicionar">                            
+                                   <input type="text" class="form-control col-md-8" id="apoiadorInput" placeholder=" Digite o nome do apoiador">&nbsp; &nbsp;
+                                   <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaApoiador()" value="Adicionar">                            
                                </div>
-
                                <br>
+                               
+								 <ul class="list-group col-md-8" id="listaApoiadores">
+								 </ul>
+                               	<br>
                             
                             <!-- fim apoiadores -->		
                         <br>
@@ -209,8 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                         <hr/>  
-                      
+                         <hr/>    
 
 				</form>
                 </div>

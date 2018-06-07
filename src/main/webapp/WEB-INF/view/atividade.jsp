@@ -281,6 +281,37 @@ ul {
 							class="btn btn-primary btn-sm"
 							style="height: 33px; margin-left: 30px; margin-top: -4px;">
 							Editar Atividade </a>
+							
+							<a 
+							class="btn btn-warning btn-sm"
+							style="height: 33px; margin-left: 30px; margin-top: -4px;" data-toggle="modal" data-target="#remover">
+							Remover Atividade </a>
+				
+							<!-- Modal -->
+							<div class="modal fade" id="remover" tabindex="-1" role="dialog"
+								aria-labelledby="modalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="modalLabel">Remover atividade</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p>Remover esta atividade implica em remover todas as suas subatividades cadastradas, e após concluida esta ação não podera ser desfeita!</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary btn-sm"
+												data-dismiss="modal">Cancelar</button>
+											<a class="btn btn-sm btn-warning"
+												href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
+												Remover atividade</a>
+										</div>
+									</div>
+								</div>
+							</div>
 					</c:if>
 
 				</div>
@@ -337,62 +368,70 @@ ul {
 				<hr />
 				</p>
 				<br />
-				<!-- lista de subatividades -->
-				<div class="container">
-					<div class="row col-md-12 col-md-offset-2 custyle">
-					<i class="glyphicon glyphicon-eye-open"></i>
-					<a href="#">Visualizar cronograma completo</a>
-						<table class="table table-striped custab">
-							<thead>
+				<c:if test="${empty atividade.subAtividade}">
+					<b style="text-align:center">Esta atividade não possui subatividades.</b>
+					<br>
+				</c:if>
+				
+				<c:if test="${not empty atividade.subAtividade}">
+					<!-- lista de subatividades -->
+					<div class="container">
+						<div class="row col-md-12 col-md-offset-2 custyle">
+						<i class="glyphicon glyphicon-eye-open"></i>
+						<a href="#">Visualizar cronograma completo</a>
+							<table class="table table-striped custab">
+								<thead>
+									<tr>
+										<th>Atividade</th>
+										<th>Responsável</th>
+										<th>Local</th>
+										<th>Data/Horário</th>
+										<th>Vagas</th>
+										<th class="text-center">Ação</th>
+									</tr>
+								</thead>
+							 <c:forEach var="atividades"  items="${atividade.subAtividade}">
 								<tr>
-									<th>Atividade</th>
-									<th>Responsável</th>
-									<th>Local</th>
-									<th>Data/Horário</th>
-									<th>Vagas</th>
-									<th class="text-center">Ação</th>
+									<td> ${atividades.nome}</td>
+									<td>${atividades.responsavel.nome}</td>
+									<td>${atividades.local}</td>
+									<td>22/05 - 08:00</td>
+									<td>20/20</td>
+									<td class="text-center"><a
+										href="#" class="btn btn-primary btn-sm"
+										style="height: 33px; margin-left: 30px; margin-top: -4px;">
+											Inscrever-se </a></td>
 								</tr>
-							</thead>
-							<tr>
-								<td>Palestra sobre horas complementares</td>
-								<td>Coordenador</td>
-								<td>SALA 8</td>
-								<td>22/05 - 08:00</td>
-								<td>20/20</td>
-								<td class="text-center"><a
-									href="/Chronos/editarAtividade/${atividade.codAtividade}"
-									class="btn btn-primary btn-sm"
-									style="height: 33px; margin-left: 30px; margin-top: -4px;">
-										Inscrever-se </a></td>
-							</tr>
-							<tr>
-								<td>Palestra sobre Engenharia de Software</td>
-								<td>Erley</td>
-								<td>SALA 7</td>
-								<td>22/05 - 08:00</td>
-								<td>20/20</td>
-								<td class="text-center"><a
-									href="/Chronos/editarAtividade/${atividade.codAtividade}"
-									class="btn btn-primary btn-sm"
-									style="height: 33px; margin-left: 30px; margin-top: -4px;">
-										Inscrever-se </a></td>
-							</tr>
-							<tr>
-								<td>Mini-curso de javascript</td>
-								<td>Isaias</td>
-								<td>LAB AUX</td>
-								<td>22/05 - 08:00</td>
-								<td>20/20</td>
-								<td class="text-center"><a
-									href="/Chronos/editarAtividade/${atividade.codAtividade}"
-									class="btn btn-primary btn-sm"
-									style="height: 33px; margin-left: 30px; margin-top: -4px;">
-										Inscrever-se </a></td>
-							</tr>
-						</table>
+							</c:forEach>
+							<!-- 	<tr>
+									<td>Palestra sobre Engenharia de Software</td>
+									<td>Erley</td>
+									<td>SALA 7</td>
+									<td>22/05 - 08:00</td>
+									<td>20/20</td>
+									<td class="text-center"><a
+										href="/Chronos/editarAtividade/${atividade.codAtividade}"
+										class="btn btn-primary btn-sm"
+										style="height: 33px; margin-left: 30px; margin-top: -4px;">
+											Inscrever-se </a></td>
+								</tr>
+								<tr>
+									<td>Mini-curso de javascript</td>
+									<td>Isaias</td>
+									<td>LAB AUX</td>
+									<td>22/05 - 08:00</td>
+									<td>20/20</td>
+									<td class="text-center"><a
+										href="/Chronos/editarAtividade/${atividade.codAtividade}"
+										class="btn btn-primary btn-sm"
+										style="height: 33px; margin-left: 30px; margin-top: -4px;">
+											Inscrever-se </a></td>
+								</tr>
+								 -->
+							</table>
+						</div>
 					</div>
-				</div>
-
+				</c:if>
 				<!-- 		
 				<div class="container">
 		<div class="row ">

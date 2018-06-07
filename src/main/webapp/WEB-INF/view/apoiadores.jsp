@@ -30,7 +30,7 @@
                     	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos">Início</a></li>
                     	 <li class="breadcrumb-item" aria-current="page"><a href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
                     	 <li class="breadcrumb-item active" aria-current="page"><a href="/Chronos/editarAtividade/${atividade.codAtividade}">Editar Atividade</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Cadastrar subatividade</li>
+                        <li class="breadcrumb-item active" aria-current="page">Cadastrar Apoiadores</li>
                 </nav>
                 <c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>
                 <c:if test="${not empty mensagem}">
@@ -44,68 +44,58 @@
                     <c:set scope="session" var="status" value=""></c:set>
                 </c:if>
                 <div class="row col-sm-12">
-                    <h1 class="text-capitalize" >${atividade.nome}</h1>
+                    <h1 class="text-capitalize" >Apoiadores</h1>
                     <br>
-                    <c:if test="${not empty estado}"> 
-                    <div class="dropdown right" style="right:-13px; position:absolute;">
-                        <button class="btn dropdown-toggle btn-sm btn-icon filtro_tela" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">filter_list</i>
-                            <span>Filtrar</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/Chronos">Todas as atividade</a>
-                            <a class="dropdown-item" href="/Chronos/estado/aberta">Atividades abertas</a>
-                            <a class="dropdown-item" href="/Chronos/estado/andamento">Atividades em andamento</a>
-                            <a class="dropdown-item" href="/Chronos/estado/finalizada">Atividades finalizadas</a>
-                        </div>
-                    </div>
-                    </c:if>
                 </div>
-                <c:if test="${empty atividade.subAtividade}">
-                    <p class="text-muted">Nenhuma subatividade cadastrada!</p>
+                
+                <c:if test="${empty atividade.apoiadores}">
+                    <p class="text-muted">Nenhum apoio cadastrado!</p>
                 </c:if>
-                 <li>
-                <button class="btn btn-circle"> 
-                 	 	<button class="btn btn btn-circle">
 
-
-                <c:if test="${not empty atividade.subAtividade}">
-                    <c:forEach var="subatividade" items="${atividade.subAtividade}">
+                <c:if test="${not empty atividade.apoiadores}">
+                    <c:forEach var="apoiador" items="${atividade.apoiadores}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row" style="padding-left: 13px;">
                                 <h2 class="card-title text-uppercase font-weight-bold">
-                                ${subatividade.nome} <small>(${subatividade.sigla})</small>
+                                ${apoiador.nomeInstituicao}
                                 </h2>
-                                                                
-                                
                             </div>
-                            <h3 class="card-subtitle mb-2 text-muted">
-                                ${subatividade.tipoAtividade} - data aqui!!! 
-                              
-                            </h3>
+                            
                             <p class="card-text text-justify">
-                                ${fn:substring(atividade.descricao, 0, 400)}
-                                <c:if test="${fn:length(atividade.descricao) > 400}">
-                                    [...]
-                                </c:if>
+                                ${apoiador.tipoApoio}
                             </p>
-                            <c:set var = "nomeUrl" value = "${subatividade.nome}"/>
-                            <a href="/Chronos/atividades/${subatividade.codAtividade}" class="card-link">Mais informações</a>
+                            
+                             <p class="card-text text-justify">
+                                ${apoiador.dataPagamento}
+                            </p>
+                            
+                            
+                            <h3 class="card-subtitle mb-2 text-muted">
+                                ${apoiador.dataPagamento} - data aqui!!! 
+                            </h3>
+                            
+                            <p class="card-text text-justify">
+                                ${apoiador.siteInstituicao}
+                            </p>
+                            
                         </div>
                     </div>
+                    
                 </c:forEach>
                 <br/>
+                
                 </c:if>
                  <li style="list-style: none; text-align: center;">
                  	<button class="btn btn-circle">
-                       <a href="/Chronos/subatividades/cadastra/${atividade.codAtividade}" class="timeline-badge primary" >
-                           <i class="material-icons" title="Adicionar nova subatividade">add</i>
+                       <a href="/Chronos/cadastrarApoio/${atividade.codAtividade}" class="timeline-badge primary" >
+                           <i class="material-icons" title="Adicionar novo apoio">add</i>
                        </a>
                     </button>
                    </li>  
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
-                <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividades}">
+               
+               <!-- <c:forEach var="apoio" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividade.apoiadores}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row" style="padding-left: 13px;">
@@ -129,14 +119,14 @@
                             
                         </div>
                     </div>
-                </c:forEach>
+                </c:forEach> -->
                 <br/>
                <!-- <c:if test="${(isResponsavel and (atividade.estado eq 'ESPERA')) or (fn:contains(permissoes, 'ADMINISTRADOR'))}">    --> 
                                              
                 <!--     </c:if> -->
                 
                 <br>
-                <nav aria-label="">
+              <!--   <nav aria-label="">
                 <c:if test="${titulo eq 'Início'}"><c:set value="" var="categoria"></c:set></c:if>
                 <c:if test="${titulo eq 'Minhas atividades'}"><c:set value="minhas_Atividades" var="categoria"></c:set></c:if>
                 
@@ -144,14 +134,14 @@
                         <li class="page-item "${(pagina <= 1 ? "disabled" : "")}">
                             <a class="page-link" href="/Chronos/${categoria}?pag=${pagina - 1}" tabindex="-1">Anterior</a>
                         </li>
-                    <c:forEach var="i" begin="1" end="${(fn:length(atividades)/5) + (fn:length(atividades)%5 == 0 ? 0 : 1)}">
+                    <c:forEach var="i" begin="1" end="${(fn:length(apoiadores)/5) + (fn:length(apoiadores)%5 == 0 ? 0 : 1)}">
                         <li class="page-item "${(pagina == i ? "active": "")}"><a class="page-link" href="/Chronos/${categoria}?pag=${i}">${i}</a></li>
                     </c:forEach>
-                        <li class="page-item  "${(pagina >= ((fn:length(atividades))/5) ? "disabled" : "")}">
+                        <li class="page-item  "${(pagina >= ((fn:length(apoiadores))/5) ? "disabled" : "")}">
                             <a class="page-link" href="/Chronos/${categoria}?pag=${pagina + 1}">Próximo</a>
                         </li>
                     </ul>
-                </nav>
+                </nav>-->
                 
                 </div>
             </div>

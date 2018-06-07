@@ -55,11 +55,7 @@ public class IndexController {
         return "inicio";
     }
     
-    @RequestMapping(value="/cadastrarAtividades", method = RequestMethod.GET)
-    public String getCadastro(Model model, HttpServletRequest request) {
-    	request.getSession().removeAttribute("pai");
-        return "cadastrar-atividade";
-    }
+   
     
     @RequestMapping(value="/cadastrarSubAtividades", method = RequestMethod.GET)
     public String getCadastroSub(Model model, HttpServletRequest request) {
@@ -75,8 +71,8 @@ public class IndexController {
     public String getCategoria(Model model, @PathVariable String categoria) {
         Atividade atividade = new Atividade();
 
-       // atividade.setTipoAtividade(EnumTipoAtividade.valueOf(categoria.toUpperCase()));
-
+        atividade.setTipoAtividade(EnumTipoAtividade.valorEnumPeloNome(categoria.toUpperCase()));
+        
         List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
         model.addAttribute("categoria", "Início");
         model.addAttribute("estado", "início");

@@ -98,22 +98,31 @@ public class EditarAtividadeController {
 	
 	@RequestMapping(value = "/divulga/{codAtividade}", method = RequestMethod.GET)
 	public String divulgaAtividade(@PathVariable long codAtividade, HttpServletRequest request) {
-	       AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
-	        HttpSession session = request.getSession();
-	        UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
-	        try{
-	            atividadeServiceIfc.setUsuario(usuario);
-	            atividade.setDivulgada(true);
-	            atividade = atividadeServiceIfc.atualizaAtividade(atividade);
-	            request.getSession().setAttribute("atividade", atividade);
-	            return "redirect:/atividades/" + atividade.getCodAtividade();
-	            
-	        }catch(IllegalAccessException e){
-	            e.printStackTrace();
-	            return "redirect:/atividades/" + atividade.getCodAtividade();
-	        }catch(Exception e){
-	            e.printStackTrace();
-	             return "redirect:/atividades/" + atividade.getCodAtividade();
-	        }
-	    }
+       AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
+        HttpSession session = request.getSession();
+        UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+        try{
+            atividadeServiceIfc.setUsuario(usuario);
+            atividade.setDivulgada(true);
+            atividade = atividadeServiceIfc.atualizaAtividade(atividade);
+            request.getSession().setAttribute("atividade", atividade);
+            return "redirect:/atividades/" + atividade.getCodAtividade();
+            
+        }catch(IllegalAccessException e){
+            e.printStackTrace();
+            return "redirect:/atividades/" + atividade.getCodAtividade();
+        }catch(Exception e){
+            e.printStackTrace();
+             return "redirect:/atividades/" + atividade.getCodAtividade();
+        }
+    }
+	
+	@RequestMapping(value = "/remover/{codAtividade}", method = RequestMethod.GET)
+	public String removeAtividade(@PathVariable long codAtividade, HttpServletRequest request) {
+		AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
+		atividadeServiceIfc.removeAtividade(atividade);
+		 request.getSession().setAttribute("mensagem", "Atividade removida com sucesso!");
+		 request.getSession().setAttribute("status", "success");
+	return "redirect:/inicio";
+	}
 }

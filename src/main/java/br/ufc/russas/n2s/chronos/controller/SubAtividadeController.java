@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
+import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
 @Controller("subatividadeController")
@@ -33,8 +34,10 @@ public class SubAtividadeController {
     @RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
     public String getSubatividades(@PathVariable long codAtividade, Model model){
     	AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
-    	model.addAttribute("atividade", atividade);
+  
     	
+    	
+    	model.addAttribute("atividade", atividade);
     	return "subatividade";
     }
     

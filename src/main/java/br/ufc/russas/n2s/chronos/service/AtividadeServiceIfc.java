@@ -3,7 +3,6 @@ package br.ufc.russas.n2s.chronos.service;
 import java.util.List;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
-import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 
 public interface AtividadeServiceIfc extends ServiceIfc{
@@ -16,6 +15,9 @@ public interface AtividadeServiceIfc extends ServiceIfc{
 	
 	List<AtividadeBeans> listaAtividades(Atividade atividade);
 	
+
+	List<AtividadeBeans> listaAtividadesHql(String string);
+
 	List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade);
 	
 	AtividadeBeans getAtividade(long codAtividade);
