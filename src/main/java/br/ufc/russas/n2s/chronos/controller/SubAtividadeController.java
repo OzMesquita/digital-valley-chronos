@@ -34,9 +34,6 @@ public class SubAtividadeController {
     @RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
     public String getSubatividades(@PathVariable long codAtividade, Model model){
     	AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
-  
-    	
-    	
     	model.addAttribute("atividade", atividade);
     	return "subatividade";
     }
