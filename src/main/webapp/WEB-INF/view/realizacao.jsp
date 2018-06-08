@@ -64,7 +64,11 @@
                     <p class="text-muted">Nenhuma Realização cadastrada!</p>
                 </c:if>
                 
-                   <br>
+               <br>
+                <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
+                 <!--######################-->
+                 <!-- DATA INICIAL E FINAL -->
+                 <!--######################-->
                    <table class="table table-striped custab">
                    	<tr>
                    		<td>
@@ -75,13 +79,19 @@
                    		</td>
                    		<td></td>
                    </tr>
-                   <c:forEach var="realiza"  items="${realizacao}">
-								<tr>
-									<td><fmt:parseDate value="${realiza.horaInicio}" pattern="yyyy-MM-dd" type="date" /> </td>
-									<td><fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd" type="date" /> </td>
+                <c:forEach var="realiza" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${realizacao}">
+                    <tr>
+						<td>
+							<fmt:parseDate value="${realiza.horaInicio}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+							<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
+						</td>
+						<td>
+						<fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+							<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
+						</td>
 									<td class="text-center">
 						                 	<form method="POST" action="editaRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
-						                 	 	<input type="button"  class="btn btn-circle" value="Editar" data-toggle="modal" data-target="#editarRealizacao" >
+						                 	 	<input type="button"  class="btn btn-primary" value="Editar" data-toggle="modal" data-target="#editarRealizacao" >
 						                        
 						                        <!-- Modal -->
 						                        <div class="modal fade" id="editarRealizacao" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -128,8 +138,12 @@
 						                   </form>
 									</td>
 								</tr>
-					</c:forEach>
-					</table>
+                </c:forEach>
+                </table>
+                 <br>
+					<!--######################-->
+                    <!-- ADICIONAR REALIZACAO -->
+                    <!--######################-->
 					 <li>
                  	<form method="POST" action="cadastraRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
                  	 	<input type="button"  class="btn btn-circle" value="Adicionar Periodo" data-toggle="modal" data-target="#confirmarRealizacao" >
@@ -178,34 +192,7 @@
                         </div>
                    </form>     
                    </li>
-
-                <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
-                <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividade.realizacao}">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row" style="padding-left: 13px;">
-                                <h2 class="card-title text-uppercase font-weight-bold">
-                                ${atividade.realizacao} <small>(${atividade.sigla})</small>
-                                
-                                </h2>
-                                                                
-                                
-                            </div>
-                            <h3 class="card-subtitle mb-2 text-muted">
-                                ${atividade.tipoAtividade} - data aqui!!! 
-                              
-                            </h3>
-                            <p class="card-text text-justify">
-                                ${fn:substring(atividade.descricao, 0, 400)}
-                                <c:if test="${fn:length(atividade.descricao) > 400}">
-                                    [...]
-                                </c:if>
-                            </p>
-                            <c:set var = "nomeUrl" value = "${atividade.nome}"/>
-                            <a href="/Chronos/atividades/${atividade.codAtividade}" class="card-link">Mais informações</a>
-                        </div>
-                    </div>
-                </c:forEach>
+				
                 <br/>
                <!-- <c:if test="${(isResponsavel and (atividade.estado eq 'ESPERA')) or (fn:contains(permissoes, 'ADMINISTRADOR'))}">    --> 
                                              
@@ -220,10 +207,10 @@
                         <li class="page-item "${(pagina <= 1 ? "disabled" : "")}">
                             <a class="page-link" href="/Chronos/${categoria}?pag=${pagina - 1}" tabindex="-1">Anterior</a>
                         </li>
-                    <c:forEach var="i" begin="1" end="${(fn:length(atividades)/5) + (fn:length(atividades)%5 == 0 ? 0 : 1)}">
+                    <c:forEach var="i" begin="1" end="${(fn:length(realizacao)/5) + (fn:length(realizacao)%5 == 0 ? 0 : 1)}">
                         <li class="page-item "${(pagina == i ? "active": "")}"><a class="page-link" href="/Chronos/${categoria}?pag=${i}">${i}</a></li>
                     </c:forEach>
-                        <li class="page-item  "${(pagina >= ((fn:length(atividades))/5) ? "disabled" : "")}">
+                        <li class="page-item  "${(pagina >= ((fn:length(realizacao))/5) ? "disabled" : "")}">
                             <a class="page-link" href="/Chronos/${categoria}?pag=${pagina + 1}">Próximo</a>
                         </li>
                     </ul>
