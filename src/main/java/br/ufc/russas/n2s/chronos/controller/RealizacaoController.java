@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,8 +60,8 @@ public class RealizacaoController {
 
 	@RequestMapping(value="/{codRealizacao}", method = RequestMethod.GET)
 	public String getRealizacoes(@PathVariable long codRealizacao, Model model){
-		//    	RealizacaoBeans realizacao = this.realizacaoServiceIfc.getRealizacao(codRealizacao);
-		//    	model.addAttribute("realizacao", realizacao);
+		    	List<RealizacaoBeans> realizacao = this.realizacaoServiceIfc.listaTodasRealizacoes();
+		    	model.addAttribute("realizacao", realizacao);
 
 		return "realizacao";
 	}
