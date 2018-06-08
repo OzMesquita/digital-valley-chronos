@@ -64,6 +64,7 @@
                     <p class="text-muted">Nenhuma Realização cadastrada!</p>
                 </c:if>
                  <li>
+                 	<form method="POST" action="cadastraRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
                  	 	<input type="button"  class="btn btn-circle" value="Adicionar Periodo" data-toggle="modal" data-target="#confirmarRealizacao" >
                         
                         <!-- Modal -->
@@ -82,7 +83,7 @@
 				                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
 				                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataInicio" id="dataInicioInput" required/>
 				                                <span class="input-group-addon">até</span>
-				                                <input type="date" class="form-control text-left " placeholder="Digite a data de término desta etapa" name="dataTermino" id="dataTerminoInput" required/>
+				                                <input type="date" class="form-control text-left " placeholder="Digite a data de término desta etapa" name="dataFinal" id="dataTerminoInput" required/>
 				                                <div class="invalid-feedback">
 				                                </div>
 				                            </div>
@@ -94,7 +95,7 @@
 				                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
 				                                <input type="time" class="form-control text-left" placeholder="Digite a hora de início desta etapa" name="horaInicio" id="horaInicioInput" required/>
 				                                <span class="input-group-addon">até</span>
-				                                <input type="time" class="form-control text-left " placeholder="Digite a hora de término desta etapa" name="horaTermino" id="horaTerminoInput" required/>
+				                                <input type="time" class="form-control text-left " placeholder="Digite a hora de término desta etapa" name="horaFinal" id="horaTerminoInput" required/>
 				                                <div class="invalid-feedback">
 				                                </div>
 				                            </div>
@@ -108,6 +109,7 @@
                                 </div>
                             </div>
                         </div>
+                   </form>     
                    </li>  
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
                 <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividades}">

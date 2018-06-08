@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="realizacao")
@@ -17,8 +21,12 @@ public class Realizacao {
 	@Column(name="codRealizacao")
 	private long codRealizacao;
 	
+//	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+//	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime horaInicio;
 	
+//	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+//	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime horaFinal;
 	
 	public Realizacao() {

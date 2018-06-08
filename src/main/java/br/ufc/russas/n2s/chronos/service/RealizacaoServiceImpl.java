@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
+import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.dao.RealizacaoDAOIfc;
 import br.ufc.russas.n2s.chronos.model.Realizacao;

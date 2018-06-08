@@ -1,6 +1,9 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +29,7 @@ import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.service.RealizacaoServiceIfc;
+import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
 @Controller("cadastrarRealizacaoController")
 @RequestMapping("/realizacao")
@@ -38,12 +42,16 @@ public class RealizacaoController {
 	public AtividadeServiceIfc getAtividadeServiceIfc(){
 		return atividadeServiceIfc;
 	}
-
+	
 	@Autowired(required = true)
 	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc")AtividadeServiceIfc atividadeServiceIfc){
 		this.atividadeServiceIfc = atividadeServiceIfc;
 	}
 
+	public RealizacaoServiceIfc getRealizacaoServiceIfc() {
+		return realizacaoServiceIfc;
+	}
+	
 	@Autowired(required = true)
 	public void setRealizacaoServiceIfc(@Qualifier("realizacaoServiceIfc")RealizacaoServiceIfc realizacaoServiceIfc){
 		this.realizacaoServiceIfc = realizacaoServiceIfc;
@@ -57,15 +65,39 @@ public class RealizacaoController {
 		return "realizacao";
 	}
 
-	@RequestMapping(value="/cadastraRealizacao/{codAtividade}",method = RequestMethod.GET)
-	public String adiciona(@PathVariable long codAtividade, Model model, HttpServletRequest request) throws IOException,IllegalAccessException{	
+	@RequestMapping(value="/cadastraRealizacao/{codAtividade}",method = RequestMethod.POST)
+	public String adiciona(@PathVariable long codAtividade, @ModelAttribute("realizacao") @Valid RealizacaoBeans realizacao, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{	
+		HttpSession session = request.getSession();
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+		this.atividadeServiceIfc.setUsuario(usuario);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		
+		//Pegando DATA e HORA do form
+		String[] dataI = request.getParameter("dataInicio").split("-");
+		String[] dataF = request.getParameter("dataFinal").split("-");
+		
+		String[] horaI = request.getParameter("horaInicio").split(":");
+		String[] horaF = request.getParameter("horaFinal").split(":");
+		
+		//DATAS
+		LocalDateTime dataInicial = LocalDateTime.of(Integer.parseInt(dataI[0]), Integer.parseInt(dataI[1]), Integer.parseInt(dataI[2]), Integer.parseInt(horaI[0]),Integer.parseInt(horaI[1]));	
+		LocalDateTime dataFinal = LocalDateTime.of(Integer.parseInt(dataF[0]), Integer.parseInt(dataF[1]), Integer.parseInt(dataF[2]), Integer.parseInt(horaF[0]),Integer.parseInt(horaF[1]));
 
-		return ("redirect:/realizacao/cadastrarRealizacoes/");
+		realizacao.setHoraInicio(dataInicial);
+		realizacao.setHoraFinal(dataFinal);
+		this.getRealizacaoServiceIfc().adicionaRealizacao(realizacao);
+	
+
+		session.setAttribute("mensagem","Realizacao cadastrada com sucesso!");
+		session.setAttribute("status", "sucess");
+		
+		return ("redirect:/realizacao/"+codAtividade);
 	}
 	
-    @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
-    public String cadastraRealizacao(Model model, HttpServletRequest request) {
-    	return "cadastrar-realizacao";
-    }
+//    @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
+//    public String cadastraRealizacao(Model model, HttpServletRequest request) {
+//    	return "realizacao";
+//    }
 
 }

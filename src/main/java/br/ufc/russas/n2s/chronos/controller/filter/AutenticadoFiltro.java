@@ -94,7 +94,7 @@ public class AutenticadoFiltro implements Filter {
                     }else if(session.getAttribute("usuarioChronos")!= null && DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId())!=null && ((Usuario)session.getAttribute("usuario")).getTokenUsuario().equals(DAOFactory.criarUsuarioDAO().buscarTokenTemp(((Usuario)session.getAttribute("usuario")).getPessoa().getId()))){
                     	chain.doFilter(request, response);
                     }else {
-                            ((HttpServletResponse) response).sendRedirect("http://localhost:8080/Controle_de_Acesso/");
+                            ((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao/");
                     }
             }				
 	}
