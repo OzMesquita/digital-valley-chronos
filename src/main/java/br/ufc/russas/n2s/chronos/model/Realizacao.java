@@ -21,12 +21,10 @@ public class Realizacao {
 	@Column(name="codRealizacao")
 	private long codRealizacao;
 	
-//	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-//	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime horaInicio;
 	
-//	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-//	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime horaFinal;
 	
 	public Realizacao() {

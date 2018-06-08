@@ -60,7 +60,7 @@
                     </div>
                     </c:if>
                 </div>
-                <c:if test="${empty atividade.subAtividade}">
+                <c:if test="${empty atividade.realizacao}">
                     <p class="text-muted">Nenhuma Realização cadastrada!</p>
                 </c:if>
                  <li>
@@ -111,13 +111,15 @@
                         </div>
                    </form>     
                    </li>  
+                   dasdasda
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
-                <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividades}">
+                <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividade.realizacao}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row" style="padding-left: 13px;">
                                 <h2 class="card-title text-uppercase font-weight-bold">
-                                ${atividade.nome} <small>(${atividade.sigla})</small>
+                                ${atividade.realizacao} <small>(${atividade.sigla})</small>
+                                
                                 </h2>
                                                                 
                                 
