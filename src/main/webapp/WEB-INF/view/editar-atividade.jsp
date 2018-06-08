@@ -196,9 +196,9 @@
                      	
                      	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add subatividade</a> 
                      	-->  
-                     	<a class="btn icon-btn btn-primary" href="/Chronos/realizacao/${atividade.codAtividade }"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add realização</a><br>
-                     	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add subatividade</a><br>   
-                     	<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Realizações</a><br>
+                     	<%-- <a class="btn icon-btn btn-primary" href="/Chronos/realizacao/${atividade.codAtividade }"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add realização</a><br>
+                     	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add subatividade</a><br>    --%>
+                     	<a class="btn icon-btn btn-primary" href="/Chronos/realizacao/${atividade.codAtividade }"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Realizações</a><br>
                      	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Subatividades</a><br>
                      	<c:if test="${empty atividade.pai}">
                      		<a class="btn icon-btn btn-primary" href="/Chronos/apoiadores/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Apoiadores</a>   
