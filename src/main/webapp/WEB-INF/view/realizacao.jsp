@@ -63,7 +63,74 @@
                 <c:if test="${empty atividade.realizacao}">
                     <p class="text-muted">Nenhuma Realização cadastrada!</p>
                 </c:if>
-                 <li>
+                
+                   <br>
+                   <table class="table table-striped custab">
+                   	<tr>
+                   		<td>
+                   			<b>Data Inicial</b>
+                   		</td>
+                   		<td>
+                   			<b>Data Final</b>
+                   		</td>
+                   		<td></td>
+                   </tr>
+                   <c:forEach var="realiza"  items="${realizacao}">
+								<tr>
+									<td><fmt:parseDate value="${realiza.horaInicio}" pattern="yyyy-MM-dd" type="date" /> </td>
+									<td><fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd" type="date" /> </td>
+									<td class="text-center">
+						                 	<form method="POST" action="editaRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+						                 	 	<input type="button"  class="btn btn-circle" value="Editar" data-toggle="modal" data-target="#editarRealizacao" >
+						                        
+						                        <!-- Modal -->
+						                        <div class="modal fade" id="editarRealizacao" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						                            <div class="modal-dialog" role="document">
+						                                <div class="modal-content">
+						                                    <div class="modal-header">
+						                                        <h5 class="modal-title" id="modalLabel">Editar cadastro da Realizacao</h5>
+						                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                                            <span aria-hidden="true">&times;</span>
+						                                        </button>
+						                                    </div>
+						                                    <div class="modal-body">
+						                                        <label for="periodoInput">Data*</label>
+										                        <div id="sandbox-container">
+										                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
+										                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataInicio" id="dataInicioInput" required/>
+										                                <span class="input-group-addon">até</span>
+										                                <input type="date" class="form-control text-left " placeholder="Digite a data de término desta etapa" name="dataFinal" id="dataTerminoInput" required/>
+										                                <div class="invalid-feedback">
+										                                </div>
+										                            </div>
+										                            <small id="periodoHelp" class="form-text text-muted">Selecione uma data para início e término</small>
+										                            </div>
+										                            <br>
+										                            <label for="periodoInput">Hora*</label>
+										                        <div id="sandbox-container">
+										                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
+										                                <input type="time" class="form-control text-left" placeholder="Digite a hora de início desta etapa" name="horaInicio" id="horaInicioInput" required/>
+										                                <span class="input-group-addon">até</span>
+										                                <input type="time" class="form-control text-left " placeholder="Digite a hora de término desta etapa" name="horaFinal" id="horaTerminoInput" required/>
+										                                <div class="invalid-feedback">
+										                                </div>
+										                            </div>
+										                            <small id="periodoHelp" class="form-text text-muted">Selecione a hora de início e término</small>
+										                        </div>
+						                                    </div>
+						                                    <div class="modal-footer">
+						                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+						                                        <button type="submit" class="btn btn-primary btn-sm">Confirmar</button>
+						                                    </div>
+						                                </div>
+						                            </div>
+						                        </div>
+						                   </form>
+									</td>
+								</tr>
+					</c:forEach>
+					</table>
+					 <li>
                  	<form method="POST" action="cadastraRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
                  	 	<input type="button"  class="btn btn-circle" value="Adicionar Periodo" data-toggle="modal" data-target="#confirmarRealizacao" >
                         
@@ -110,8 +177,8 @@
                             </div>
                         </div>
                    </form>     
-                   </li>  
-                   dasdasda
+                   </li>
+
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
                 <c:forEach var="atividade" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividade.realizacao}">
                     <div class="card">
