@@ -69,6 +69,7 @@
                  <!--######################-->
                  <!-- DATA INICIAL E FINAL -->
                  <!--######################-->
+                 <c:if test="${not empty atividade.realizacao}">
                    <table class="table table-striped custab">
                    	<tr>
                    		<td>
@@ -146,6 +147,7 @@
 								</tr>
                 </c:forEach>
                 </table>
+                </c:if>
                  <br>
 					<!--######################-->
                     <!-- ADICIONAR REALIZACAO -->
