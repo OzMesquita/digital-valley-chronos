@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +67,25 @@ public class RealizacaoController {
 
 		return "realizacao";
 	}
+	@RequestMapping(value="/removeRealizacao/{codAtividade}&{codRealizacao}", method = RequestMethod.POST)
+	public String removerRealizacao(@PathVariable long codAtividade, @PathVariable long codRealizacao, Model model,HttpServletRequest request) throws IllegalAccessException{
+		HttpSession session = request.getSession();
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+		this.atividadeServiceIfc.setUsuario(usuario);
+		
+		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
+		List<RealizacaoBeans> realizacaoBeans  = atividadeBeans.getRealizacao();
+		for (RealizacaoBeans realizacao : realizacaoBeans)
+			if(realizacao.getCodRealizacao()==codRealizacao)
+				realizacaoBeans.remove(realizacao);
+		atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
 
+		session.setAttribute("mensagem","Realizacao removida com sucesso!");
+		session.setAttribute("status", "success");
+		
+		return ("redirect:/realizacao/"+codAtividade);
+	}
+	
 	@RequestMapping(value="/cadastraRealizacao/{codAtividade}",method = RequestMethod.POST)
 	public String adiciona(@PathVariable long codAtividade, @ModelAttribute("realizacao") @Valid RealizacaoBeans realizacao, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{	
 		HttpSession session = request.getSession();

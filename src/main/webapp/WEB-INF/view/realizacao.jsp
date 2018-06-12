@@ -139,8 +139,8 @@
 						                   </form>
 									</td>
 									<td class="text-center">
-						                 	<form method="POST" action="removeRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
-						                 	 	<input type="button"  class="btn btn-primary" value="Remover" type="submit">
+						                 	<form method="POST" action="removeRealizacao/${atividade.codAtividade}&${realiza.codRealizacao}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+						                 	 	<input class="btn btn-primary" value="Remover" type="submit">
 						                   </form>
 									</td>
 								</tr>
