@@ -58,9 +58,10 @@ public class RealizacaoController {
 		this.realizacaoServiceIfc = realizacaoServiceIfc;
 	}
 
-	@RequestMapping(value="/{codRealizacao}", method = RequestMethod.GET)
-	public String getRealizacoes(@PathVariable long codRealizacao, Model model){
-		List<RealizacaoBeans> realizacao = this.realizacaoServiceIfc.listaTodasRealizacoes();
+	@RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
+	public String getRealizacoes(@PathVariable long codAtividade, Model model){
+		AtividadeBeans atividadeBeans = this.atividadeServiceIfc.getAtividade(codAtividade);
+		List<RealizacaoBeans> realizacao = atividadeBeans.getRealizacao();
 		model.addAttribute("realizacao", realizacao);
 
 		return "realizacao";
