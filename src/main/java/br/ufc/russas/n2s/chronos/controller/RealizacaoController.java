@@ -93,7 +93,7 @@ public class RealizacaoController {
 		atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
 
 		session.setAttribute("mensagem","Realizacao cadastrada com sucesso!");
-		session.setAttribute("status", "sucess");
+		session.setAttribute("status", "success");
 		
 		return ("redirect:/realizacao/"+codAtividade);
 	}
