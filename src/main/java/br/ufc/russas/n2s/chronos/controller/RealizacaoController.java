@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -75,9 +76,10 @@ public class RealizacaoController {
 		
 		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
 		List<RealizacaoBeans> realizacaoBeans  = atividadeBeans.getRealizacao();
-		for (RealizacaoBeans realizacao : realizacaoBeans)
-			if(realizacao.getCodRealizacao()==codRealizacao)
-				realizacaoBeans.remove(realizacao);
+		for (Iterator<RealizacaoBeans> iterator = realizacaoBeans.iterator(); iterator.hasNext();)
+		    if (iterator.next().getCodRealizacao()==codRealizacao)
+		        iterator.remove();
+		atividadeBeans.setRealizacao(realizacaoBeans);
 		atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
 
 		session.setAttribute("mensagem","Realizacao removida com sucesso!");
