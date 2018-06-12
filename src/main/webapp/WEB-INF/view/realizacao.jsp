@@ -79,6 +79,7 @@
                    			<b>Data Final</b>
                    		</td>
                    		<td></td>
+                   		<td></td>
                    </tr>
                 <c:forEach var="realiza" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${realizacao}">
                     <tr>
@@ -136,6 +137,11 @@
 						                                </div>
 						                            </div>
 						                        </div>
+						                   </form>
+									</td>
+									<td class="text-center">
+						                 	<form method="POST" action="removeRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+						                 	 	<input type="button"  class="btn btn-primary" value="Remover" type="submit">
 						                   </form>
 									</td>
 								</tr>
