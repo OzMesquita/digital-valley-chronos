@@ -45,7 +45,7 @@ public class RealizacaoController {
 	public AtividadeServiceIfc getAtividadeServiceIfc(){
 		return atividadeServiceIfc;
 	}
-	
+
 	@Autowired(required = true)
 	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc")AtividadeServiceIfc atividadeServiceIfc){
 		this.atividadeServiceIfc = atividadeServiceIfc;
@@ -54,7 +54,7 @@ public class RealizacaoController {
 	public RealizacaoServiceIfc getRealizacaoServiceIfc() {
 		return realizacaoServiceIfc;
 	}
-	
+
 	@Autowired(required = true)
 	public void setRealizacaoServiceIfc(@Qualifier("realizacaoServiceIfc")RealizacaoServiceIfc realizacaoServiceIfc){
 		this.realizacaoServiceIfc = realizacaoServiceIfc;
@@ -73,36 +73,80 @@ public class RealizacaoController {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);
-		
+
 		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
-		List<RealizacaoBeans> realizacaoBeans  = atividadeBeans.getRealizacao();
-		for (Iterator<RealizacaoBeans> iterator = realizacaoBeans.iterator(); iterator.hasNext();)
-		    if (iterator.next().getCodRealizacao()==codRealizacao)
-		        iterator.remove();
-		atividadeBeans.setRealizacao(realizacaoBeans);
+		//		List<RealizacaoBeans> realizacaoBeans  = atividadeBeans.getRealizacao();
+		for (Iterator<RealizacaoBeans> iterator = atividadeBeans.getRealizacao().iterator(); iterator.hasNext();)
+			if (iterator.next().getCodRealizacao()==codRealizacao)
+				iterator.remove();
+		//		atividadeBeans.setRealizacao(realizacaoBeans);
 		atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
 
 		session.setAttribute("mensagem","Realizacao removida com sucesso!");
 		session.setAttribute("status", "success");
-		
+
 		return ("redirect:/realizacao/"+codAtividade);
 	}
-	
+
+	@RequestMapping(value="/editarRealizacao/{codAtividade}&{codRealizacao}", method = RequestMethod.POST)
+	public String editarRealizacao(@PathVariable long codAtividade,@PathVariable long codRealizacao, @ModelAttribute("realizacao") @Valid RealizacaoBeans realizacao, BindingResult result, Model model, HttpServletResponse reponse, HttpServletRequest request ) throws  IllegalAccessException{
+		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
+		HttpSession session = request.getSession();
+
+		//Pegando DATA e HORA do form
+		String[] dataI = request.getParameter("dataInicio").split("-");
+		String[] dataF = request.getParameter("dataFinal").split("-");
+
+		String[] horaI = request.getParameter("horaInicio").split(":");
+		String[] horaF = request.getParameter("horaFinal").split(":");
+
+		//DATAS
+		LocalDateTime dataInicial = LocalDateTime.of(Integer.parseInt(dataI[0]), Integer.parseInt(dataI[1]), Integer.parseInt(dataI[2]), Integer.parseInt(horaI[0]),Integer.parseInt(horaI[1]));	
+		LocalDateTime dataFinal = LocalDateTime.of(Integer.parseInt(dataF[0]), Integer.parseInt(dataF[1]), Integer.parseInt(dataF[2]), Integer.parseInt(horaF[0]),Integer.parseInt(horaF[1]));
+
+		if(atividadeBeans != null) {
+			try {
+
+				for (Iterator<RealizacaoBeans> iterator = atividadeBeans.getRealizacao().iterator(); iterator.hasNext();) {
+					RealizacaoBeans realizacaoAUX = iterator.next();
+					if (realizacaoAUX.getCodRealizacao() ==codRealizacao) {
+						realizacaoAUX.setHoraInicio(dataInicial);
+						realizacaoAUX.setHoraFinal(dataFinal);
+					}	 
+				}
+				UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+				this.getAtividadeServiceIfc().setUsuario(usuario);
+				atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
+
+				session.setAttribute("realiza", atividadeBeans.getRealizacao());
+				session.setAttribute("mensagem", "Realizacao atualizada com sucesso!");
+				session.setAttribute("status", "success");
+				return ("redirect:/realizacao/"+codAtividade);
+			}catch (IllegalAccessException e) {
+				model.addAttribute("mensagem", e.getMessage());
+				model.addAttribute("status", "danger");
+				return ("redirect:/realizacao/"+codAtividade);
+			}
+		}
+		return ("redirect:/realizacao/"+codAtividade);
+	}
+
+
 	@RequestMapping(value="/cadastraRealizacao/{codAtividade}",method = RequestMethod.POST)
 	public String adiciona(@PathVariable long codAtividade, @ModelAttribute("realizacao") @Valid RealizacaoBeans realizacao, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{	
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);
-		
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-		
+
 		//Pegando DATA e HORA do form
 		String[] dataI = request.getParameter("dataInicio").split("-");
 		String[] dataF = request.getParameter("dataFinal").split("-");
-		
+
 		String[] horaI = request.getParameter("horaInicio").split(":");
 		String[] horaF = request.getParameter("horaFinal").split(":");
-		
+
 		//DATAS
 		LocalDateTime dataInicial = LocalDateTime.of(Integer.parseInt(dataI[0]), Integer.parseInt(dataI[1]), Integer.parseInt(dataI[2]), Integer.parseInt(horaI[0]),Integer.parseInt(horaI[1]));	
 		LocalDateTime dataFinal = LocalDateTime.of(Integer.parseInt(dataF[0]), Integer.parseInt(dataF[1]), Integer.parseInt(dataF[2]), Integer.parseInt(horaF[0]),Integer.parseInt(horaF[1]));
@@ -116,13 +160,13 @@ public class RealizacaoController {
 
 		session.setAttribute("mensagem","Realizacao cadastrada com sucesso!");
 		session.setAttribute("status", "success");
-		
+
 		return ("redirect:/realizacao/"+codAtividade);
 	}
-	
-//    @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
-//    public String cadastraRealizacao(Model model, HttpServletRequest request) {
-//    	return "realizacao";
-//    }
+
+	//    @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
+	//    public String cadastraRealizacao(Model model, HttpServletRequest request) {
+	//    	return "realizacao";
+	//    }
 
 }
