@@ -91,8 +91,12 @@
 							<fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
 							<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
 						</td>
-									<td class="text-center">
-						                 	<form method="POST" action="editaRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+						
+											<!--######################-->
+                    						<!-- EDITAR REALIZACAO -->
+                    						<!--######################-->
+										<td class="text-center">
+						                 	<form method="POST" action="editarRealizacao/${atividade.codAtividade}&${realiza.codRealizacao}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
 						                 	 	<input type="button"  class="btn btn-primary" value="Editar" data-toggle="modal" data-target="#editarRealizacao" >
 						                        
 						                        <!-- Modal -->
