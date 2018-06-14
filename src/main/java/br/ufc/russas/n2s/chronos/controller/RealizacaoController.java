@@ -65,7 +65,7 @@ public class RealizacaoController {
 		AtividadeBeans atividadeBeans = this.atividadeServiceIfc.getAtividade(codAtividade);
 		List<RealizacaoBeans> realizacao = atividadeBeans.getRealizacao();
 		model.addAttribute("realizacao", realizacao);
-
+System.out.println("fsdmklçsdfmklçsdfamklgfmklçfdsmksdfaklmfasdmkldfsamkldfmkldfmkldklmdfmklsdfmkllmklS");
 		return "realizacao";
 	}
 	@RequestMapping(value="/removeRealizacao/{codAtividade}&{codRealizacao}", method = RequestMethod.POST)

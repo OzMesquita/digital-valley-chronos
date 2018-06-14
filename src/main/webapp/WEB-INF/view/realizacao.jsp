@@ -88,7 +88,7 @@
 							<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
 						</td>
 						<td>
-						<fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+							<fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
 							<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
 						</td>
 									<td class="text-center">
@@ -109,9 +109,13 @@
 						                                        <label for="periodoInput">Data*</label>
 										                        <div id="sandbox-container">
 										                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
-										                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataInicio" id="dataInicioInput" required/>
+										                            	<fmt:parseDate value="${realiza.horaInicio}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+										                            	<fmt:formatDate pattern="yyyy-MM-dd" value="${ parsedDateTime }" var="dateTime"/>
+										                                <input value="${dateTime}" type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataInicio" id="dataInicioInput" value="" required/>
 										                                <span class="input-group-addon">até</span>
-										                                <input type="date" class="form-control text-left " placeholder="Digite a data de término desta etapa" name="dataFinal" id="dataTerminoInput" required/>
+										                                <fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+																		<fmt:formatDate pattern="yyyy-MM-dd" value="${ parsedDateTime }" var="dateTime"/>
+										                                <input value="${dateTime}" type="date" class="form-control text-left " placeholder="Digite a data de término desta etapa" name="dataFinal" id="dataTerminoInput" required/>
 										                                <div class="invalid-feedback">
 										                                </div>
 										                            </div>
@@ -121,9 +125,13 @@
 										                            <label for="periodoInput">Hora*</label>
 										                        <div id="sandbox-container">
 										                            <div class="input-daterange input-group " style="padding-left: 0px;" id="datepicker">
-										                                <input type="time" class="form-control text-left" placeholder="Digite a hora de início desta etapa" name="horaInicio" id="horaInicioInput" required/>
+										                            	<fmt:parseDate value="${realiza.horaInicio}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+										                            	<fmt:formatDate pattern="HH:mm" value="${ parsedDateTime }" var="dateTime"/>
+										                                <input value="${dateTime}" type="time" class="form-control text-left" placeholder="Digite a hora de início desta etapa" name="horaInicio" id="horaInicioInput" required/>
 										                                <span class="input-group-addon">até</span>
-										                                <input type="time" class="form-control text-left " placeholder="Digite a hora de término desta etapa" name="horaFinal" id="horaTerminoInput" required/>
+										                                <fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+										                            	<fmt:formatDate pattern="HH:mm" value="${ parsedDateTime }" var="dateTime"/>
+										                                <input value="${dateTime}" type="time" class="form-control text-left " placeholder="Digite a hora de término desta etapa" name="horaFinal" id="horaTerminoInput" required/>
 										                                <div class="invalid-feedback">
 										                                </div>
 										                            </div>
