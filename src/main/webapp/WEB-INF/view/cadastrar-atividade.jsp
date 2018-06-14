@@ -54,7 +54,12 @@
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
+                    <c:if test="${empty pai}">
                     <form method="POST" action="cadastrarAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+                    </c:if>
+                    <c:if test="${not empty pai}">
+                    <form method="POST" action="/Chronos/cadastrarAtividade/subAtividade" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+                    </c:if>
                         <label for="tituloInput">Nome*</label>
                         <input type="text" name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" placeholder="Digite o nome da atividade" required>
                         <small id="nomeHelp" class="form-text text-muted">Exemplo: Feira de incentivo a software livre</small>
