@@ -1,6 +1,7 @@
 package br.ufc.russas.n2s.chronos.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,14 +27,14 @@ public class Apoio implements Comparable<Apoio>{
 
 	private float valorApoio;
 
-	private LocalDate dataPagamento;
+	private LocalDateTime dataPagamento;
 
 	private String siteInstituicao;
 
 	public Apoio() {
 	}
 
-	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDate dataPagamento, String siteInstituicao) {
+	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDateTime dataPagamento, String siteInstituicao) {
 		setDataPagamento(dataPagamento);
 		setLogo(logo);
 		setNomeInstituicao(nomeInstituicao);
@@ -95,11 +96,11 @@ public class Apoio implements Comparable<Apoio>{
 			this.valorApoio = valorApoio;
 	}
 
-	public LocalDate getDataPagamento() {
+	public LocalDateTime getDataPagamento() {
 		return dataPagamento;
 	}
 
-	public void setDataPagamento(LocalDate dataPagamento) {
+	public void setDataPagamento(LocalDateTime dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 

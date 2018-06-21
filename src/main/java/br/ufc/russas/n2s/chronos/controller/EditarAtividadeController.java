@@ -1,6 +1,8 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
+import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
+import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
@@ -118,11 +122,48 @@ public class EditarAtividadeController {
     }
 	
 	@RequestMapping(value = "/remover/{codAtividade}", method = RequestMethod.GET)
-	public String removeAtividade(@PathVariable long codAtividade, HttpServletRequest request) {
+	public String removeAtividade(@PathVariable long codAtividade, HttpServletRequest request) throws IllegalAccessException {
 		AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
-		atividadeServiceIfc.removeAtividade(atividade);
-		 request.getSession().setAttribute("mensagem", "Atividade removida com sucesso!");
-		 request.getSession().setAttribute("status", "success");
-	return "redirect:/inicio";
+		
+		if(atividade.getPai() != null) {
+			List<Atividade> subAtividadesAUX = atividade.getPai().getSubAtividade();
+			
+			for (Iterator<Atividade> iterator = subAtividadesAUX.iterator(); iterator.hasNext();) {
+				Atividade atvAUX = iterator.next();
+				if (atvAUX.getCodAtividade() == codAtividade) {
+					iterator.remove();
+					
+					atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
+					
+					AtividadeBeans atividadeAUX = new AtividadeBeans();
+					atividadeAUX.toBeans(atvAUX);
+					atividadeServiceIfc.removeAtividade(atividadeAUX);
+					
+					try {
+						atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
+						request.getSession().setAttribute("mensagem", "Atividade removida com sucesso!");
+						request.getSession().setAttribute("status", "success");		
+						return "redirect:/inicio";
+					} catch (IllegalAccessException e) {
+						request.getSession().setAttribute("mensagem", "Erro ao remvoer SubAtividade!");
+						request.getSession().setAttribute("status", "danger");	
+						return "redirect:/inicio";
+					}
+				}
+			}
+		}else {
+			atividadeServiceIfc.removeAtividade(atividade);
+			try {
+				atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
+				request.getSession().setAttribute("mensagem", "Atividade removida com sucesso!");
+				request.getSession().setAttribute("status", "success");
+				return "redirect:/inicio";
+			} catch (IllegalAccessException e) {
+				request.getSession().setAttribute("mensagem", "Erro ao remover atividade!");
+				request.getSession().setAttribute("status", "danger");
+				return "redirect:/inicio";
+			}
+		}
+		return null;
 	}
 }

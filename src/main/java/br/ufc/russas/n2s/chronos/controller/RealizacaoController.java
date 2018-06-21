@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
+import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.OrganizadorBeans;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
@@ -61,12 +63,24 @@ public class RealizacaoController {
 	}
 
 	@RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
-	public String getRealizacoes(@PathVariable long codAtividade, Model model){
+	public String getRealizacoes(@PathVariable long codAtividade, Model model) throws IOException,IllegalAccessException{
 		AtividadeBeans atividadeBeans = this.atividadeServiceIfc.getAtividade(codAtividade);
-		List<RealizacaoBeans> realizacao = atividadeBeans.getRealizacao();
+		List<RealizacaoBeans> realizacao = Collections.synchronizedList(new ArrayList<RealizacaoBeans>());
+		realizacao = atividadeBeans.getRealizacao();
 		model.addAttribute("realizacao", realizacao);
 		return "realizacao";
 	}
+	
+
+//	@RequestMapping(value="/{codAtividade}", method = RequestMethod.POST)
+//	public String getRealizacoes2(@PathVariable long codAtividade, Model model) throws IOException,IllegalAccessException{
+//		AtividadeBeans atividadeBeans = this.atividadeServiceIfc.getAtividade(codAtividade);
+//		List<RealizacaoBeans> realizacao = Collections.synchronizedList(new ArrayList<RealizacaoBeans>());
+//		realizacao = atividadeBeans.getRealizacao();
+//		model.addAttribute("realizacao", realizacao);
+//		return "realizacao";
+//	}
+	
 	@RequestMapping(value="/removeRealizacao/{codAtividade}&{codRealizacao}", method = RequestMethod.POST)
 	public String removerRealizacao(@PathVariable long codAtividade, @PathVariable long codRealizacao, Model model,HttpServletRequest request) throws IllegalAccessException{
 		HttpSession session = request.getSession();
@@ -74,12 +88,19 @@ public class RealizacaoController {
 		this.atividadeServiceIfc.setUsuario(usuario);
 
 		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
-		//		List<RealizacaoBeans> realizacaoBeans  = atividadeBeans.getRealizacao();
-		for (Iterator<RealizacaoBeans> iterator = atividadeBeans.getRealizacao().iterator(); iterator.hasNext();)
-			if (iterator.next().getCodRealizacao()==codRealizacao)
+
+		for (Iterator<RealizacaoBeans> iterator = atividadeBeans.getRealizacao().iterator(); iterator.hasNext();) {
+			RealizacaoBeans realizacaoAUX = iterator.next();
+			if (realizacaoAUX.getCodRealizacao()==codRealizacao) {
 				iterator.remove();
-		//		atividadeBeans.setRealizacao(realizacaoBeans);
-		atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
+				atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
+				realizacaoServiceIfc.atualizaRealizacao(realizacaoAUX);			
+				realizacaoServiceIfc.removeRealizacao(realizacaoAUX);
+			}
+
+		}
+//				atividadeBeans = this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
+
 
 		session.setAttribute("mensagem","Realizacao removida com sucesso!");
 		session.setAttribute("status", "success");
@@ -130,42 +151,42 @@ public class RealizacaoController {
 		return ("redirect:/realizacao/"+codAtividade);
 	}
 
-
 	@RequestMapping(value="/cadastraRealizacao/{codAtividade}",method = RequestMethod.POST)
 	public String adiciona(@PathVariable long codAtividade, @ModelAttribute("realizacao") @Valid RealizacaoBeans realizacao, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{	
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
-		this.atividadeServiceIfc.setUsuario(usuario);
+		
+		try {
+			this.atividadeServiceIfc.setUsuario(usuario);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+			//Pegando DATA e HORA do form
+			String[] dataI = request.getParameter("dataInicio").split("-");
+			String[] dataF = request.getParameter("dataFinal").split("-");
 
-		//Pegando DATA e HORA do form
-		String[] dataI = request.getParameter("dataInicio").split("-");
-		String[] dataF = request.getParameter("dataFinal").split("-");
+			String[] horaI = request.getParameter("horaInicio").split(":");
+			String[] horaF = request.getParameter("horaFinal").split(":");
 
-		String[] horaI = request.getParameter("horaInicio").split(":");
-		String[] horaF = request.getParameter("horaFinal").split(":");
+			//DATAS
+			LocalDateTime dataInicial = LocalDateTime.of(Integer.parseInt(dataI[0]), Integer.parseInt(dataI[1]), Integer.parseInt(dataI[2]), Integer.parseInt(horaI[0]),Integer.parseInt(horaI[1]));	
+			LocalDateTime dataFinal = LocalDateTime.of(Integer.parseInt(dataF[0]), Integer.parseInt(dataF[1]), Integer.parseInt(dataF[2]), Integer.parseInt(horaF[0]),Integer.parseInt(horaF[1]));
 
-		//DATAS
-		LocalDateTime dataInicial = LocalDateTime.of(Integer.parseInt(dataI[0]), Integer.parseInt(dataI[1]), Integer.parseInt(dataI[2]), Integer.parseInt(horaI[0]),Integer.parseInt(horaI[1]));	
-		LocalDateTime dataFinal = LocalDateTime.of(Integer.parseInt(dataF[0]), Integer.parseInt(dataF[1]), Integer.parseInt(dataF[2]), Integer.parseInt(horaF[0]),Integer.parseInt(horaF[1]));
+			realizacao.setHoraInicio(dataInicial);
+			realizacao.setHoraFinal(dataFinal);
+			AtividadeBeans atividade = this.getAtividadeServiceIfc().getAtividade(codAtividade);
+			atividade.getRealizacao().add(realizacao);
+			atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
 
-		realizacao.setHoraInicio(dataInicial);
-		realizacao.setHoraFinal(dataFinal);
-		AtividadeBeans atividade = this.getAtividadeServiceIfc().getAtividade(codAtividade);
-		atividade.getRealizacao().add(realizacao);
+			session.setAttribute("mensagem","Realizacao cadastrada com sucesso!");
+			session.setAttribute("status", "success");
 
-		atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
-
-		session.setAttribute("mensagem","Realizacao cadastrada com sucesso!");
-		session.setAttribute("status", "success");
-
-		return ("redirect:/realizacao/"+codAtividade);
+			return ("redirect:/realizacao/"+codAtividade);
+			
+		}catch(IllegalArgumentException e){
+            session.setAttribute("mensagem",e.getMessage());
+			session.setAttribute("status", "danger");
+			return ("redirect:/realizacao/"+codAtividade);
+        }
 	}
-
-	//    @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
-	//    public String cadastraRealizacao(Model model, HttpServletRequest request) {
-	//    	return "realizacao";
-	//    }
 
 }

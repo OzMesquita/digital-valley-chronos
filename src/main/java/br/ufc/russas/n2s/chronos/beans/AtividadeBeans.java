@@ -228,7 +228,8 @@ public class AtividadeBeans implements Beans {
 				subAtividade.add((Atividade) this.getSubAtividade().get(i).toBusiness());
 		atividade.setSubAtividade(subAtividade);
 
-		List<Realizacao> realizacao = Collections.synchronizedList(new ArrayList<Realizacao>());
+//		List<Realizacao> realizacao = Collections.synchronizedList(new ArrayList<Realizacao>());
+		List<Realizacao> realizacao = new ArrayList<Realizacao>();
 		if (this.getRealizacao()!=null)
 			for (int i=0; i<this.getRealizacao().size();i++)
 				realizacao.add((Realizacao) this.getRealizacao().get(i).toBusiness());

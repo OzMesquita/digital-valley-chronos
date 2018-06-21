@@ -81,6 +81,7 @@ public class Atividade implements Comparable<Atividade>{
     @JoinTable(name = "organizadores_atividade", joinColumns = {@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")},
     inverseJoinColumns = {@JoinColumn(name = "organizador", referencedColumnName = "codOrganizador")})
 	private List<Organizador> organizadores;
+	
 	private boolean divulgada;
 	
 	@ManyToMany(targetEntity = UsuarioChronos.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)

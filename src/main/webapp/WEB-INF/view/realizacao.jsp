@@ -60,38 +60,35 @@
                     </div>
                     </c:if>
                 </div>
-                <c:if test="${empty atividade.realizacao}">
-                    <p class="text-muted">Nenhuma Realização cadastrada!</p>
-                </c:if>
-                
-               <br>
+             <br>
                 <c:set var="pagina" value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
+                
                  <!--######################-->
                  <!-- DATA INICIAL E FINAL -->
                  <!--######################-->
-                 <c:if test="${not empty atividade.realizacao}">
                    <table class="table table-striped custab">
-                   	<tr>
+					<tr>
                    		<td>
                    			<b>Data Inicial</b>
                    		</td>
                    		<td>
                    			<b>Data Final</b>
                    		</td>
+                   		
                    		<td></td>
                    		<td></td>
-                   </tr>
-                <c:forEach var="realiza" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${realizacao}">
-                    <tr>
-						<td>
-							<fmt:parseDate value="${realiza.horaInicio}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-							<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
-						</td>
-						<td>
-							<fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-							<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
-						</td>
-						
+                   	</tr>
+					<c:forEach var="realiza" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${realizacao}">
+		                    <tr>
+								<td>
+									<fmt:parseDate value="${realiza.horaInicio}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+									<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
+								</td>
+								<td>
+									<fmt:parseDate value="${realiza.horaFinal}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+									<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
+								</td>
+								
 											<!--######################-->
                     						<!-- EDITAR REALIZACAO -->
                     						<!--######################-->
@@ -158,16 +155,20 @@
 									</td>
 								</tr>
                 </c:forEach>
+                	
                 </table>
-                </c:if>
-                 <br>
+                <c:if test="${empty atividade.realizacao}">
+					<p class="text-muted">Nenhuma Realização cadastrada!</p>
+				</c:if>	
+				
+				<br>
 					<!--######################-->
                     <!-- ADICIONAR REALIZACAO -->
                     <!--######################-->
 					 <li>
                  	<form method="POST" action="cadastraRealizacao/${atividade.codAtividade}" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
-                 	 	<input type="button"  class="btn btn-circle" value="Adicionar Periodo" data-toggle="modal" data-target="#confirmarRealizacao" >
-                        
+               	 	<input type="button"  class="btn btn-circle" value="Adicionar Periodo" data-toggle="modal" data-target="#confirmarRealizacao" >
+                 	 	                        
                         <!-- Modal -->
                         <div class="modal fade" id="confirmarRealizacao" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -243,5 +244,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>      
-    </body>
+
+
+</body>
 </html>
