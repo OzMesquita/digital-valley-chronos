@@ -50,6 +50,7 @@ public class AtividadesController {
 		model.addAttribute("atividade", atividade);
 		model.addAttribute("isResponsavel", true);
 		session.setAttribute("atividade", atividade);
+		request.getSession().setAttribute("pai", atividade);
 		return "atividade";
 	}
 	

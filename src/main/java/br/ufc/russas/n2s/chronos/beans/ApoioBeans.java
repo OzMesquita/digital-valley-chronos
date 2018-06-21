@@ -1,6 +1,7 @@
 package br.ufc.russas.n2s.chronos.beans;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import br.ufc.russas.n2s.chronos.model.Apoio;
 
 public class ApoioBeans implements Beans{
@@ -15,7 +16,7 @@ public class ApoioBeans implements Beans{
 
 	private float valorApoio;
 
-	private LocalDate dataPagamento;
+	private LocalDateTime dataPagamento;
 
 	private String siteInstituicao;
 	
@@ -60,11 +61,11 @@ public class ApoioBeans implements Beans{
 		this.valorApoio = valorApoio;
 	}
 
-	public LocalDate getDataPagamento() {
+	public LocalDateTime getDataPagamento() {
 		return dataPagamento;
 	}
 
-	public void setDataPagamento(LocalDate dataPagamento) {
+	public void setDataPagamento(LocalDateTime dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 
@@ -79,10 +80,13 @@ public class ApoioBeans implements Beans{
 	@Override
 	public Object toBusiness() {
 		Apoio apoio = new Apoio();
-		
-		apoio.setCodApoio(this.getCodApoio());
+		if (this.getCodApoio() > 0) {
+			apoio.setCodApoio(this.getCodApoio());
+		}
+		if (this.getLogo() != null) {
+			apoio.setLogo(this.getLogo());
+		}
 		apoio.setNomeInstituicao(this.getNomeInstituicao());
-		apoio.setLogo(this.getLogo());
 		apoio.setTipoApoio(this.getTipoApoio());
 		apoio.setValorApoio(this.getValorApoio());
 		apoio.setDataPagamento(this.getDataPagamento());
@@ -99,10 +103,14 @@ public class ApoioBeans implements Beans{
         	throw new NullPointerException("O Apoio não pode ser nulo!");
 		
         Apoio apoio = (Apoio) object;
-		
-        this.setCodApoio(apoio.getCodApoio());
+        
+        if (apoio.getCodApoio() > 0) {
+			this.setCodApoio(apoio.getCodApoio());
+		}
+		if (apoio.getLogo() != null) {
+			this.setLogo(apoio.getLogo());
+		}
 		this.setNomeInstituicao(apoio.getNomeInstituicao());
-		this.setLogo(apoio.getLogo());
 		this.setTipoApoio(apoio.getTipoApoio());
 		this.setValorApoio(apoio.getValorApoio());
 		this.setDataPagamento(apoio.getDataPagamento());

@@ -74,6 +74,7 @@ public class CadastrarAtividadeController {
 				UsuarioBeans u = this.getUsuarioServiceIfc().getUsuario(Long.parseLong(cod),0);
 				if (u != null) {
 					organizadorBeans.setUsuarioBeans(u);
+					organizadores.add(organizadorBeans);
 				}
 			}
 		}
@@ -107,6 +108,7 @@ public class CadastrarAtividadeController {
 				UsuarioBeans u = this.getUsuarioServiceIfc().getUsuario(Long.parseLong(cod),0);
 				if (u != null) {
 					organizadorBeans.setUsuarioBeans(u);
+					organizadores.add(organizadorBeans);
 				}
 			}
 		}

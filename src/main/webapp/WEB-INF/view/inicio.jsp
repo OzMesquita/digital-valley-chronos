@@ -76,7 +76,8 @@
 	                                
 	                            </div>
 	                            <h3 class="card-subtitle mb-2 text-muted">
-	                                ${fn:replace(atividade.tipoAtividade, '_', ' ')} - data aqui!!! 
+	                                ${fn:replace(atividade.tipoAtividade, '_', ' ')} - <c:if test="${not empty atividade.realizacao}"><fmt:parseDate value=" ${atividade.realizacao[0].horaInicio}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+								<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy" value="${ parsedDateTime }" /></c:if> - data aqui!!! 
 	                              
 	                            </h3>
 	                            <p class="card-text text-justify">

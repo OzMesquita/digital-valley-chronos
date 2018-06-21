@@ -55,37 +55,37 @@
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
-                    <form method="POST" action="cadastrarApoio" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+                    <form method="post" action="cadastrarApoio" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
                         <label for="tituloInput">Nome da Instituição*</label>
-                        <input type="text" name="nomeInstituicao" class="form-control" id="nomeInstituicaoInput" aria-describedby="nomeHelp" placeholder="Digite o nome da instituição apoiadora" required>
-                        <small id="nomeHelp" class="form-text text-muted">Exemplo: Laboratório Interdisciplinar de Computação e Engenharia de Software</small>
+                        <input type="text" name="nomeInstituicao" class="form-control" id="nomeInstituicao" aria-describedby="nomeHelp" placeholder="Digite o nome da instituição apoiadora" required>
+                        <small id="nomeInstituicao" class="form-text text-muted">Exemplo: Laboratório Interdisciplinar de Computação e Engenharia de Software</small>
                         <div class="invalid-feedback">
                         </div>
 
 						<label for="emailInstituicaoInput">E-mail da Instituicao*</label>
 						<textarea class="form-control" name="emailInstituicao"
-							id="descricaoInput"
+							id="emailInstituicao"
 							placeholder="Digite o e-mail da instituição de apoio" required></textarea>
 						<div class="invalid-feedback"></div>
 
 						<br>
-                        <label for="tipoApoioInput">Tipo de Apoio*</label>
-                        <textarea class="form-control" name="descricao" id="tipoDeApoioInput" placeholder="Digite o tipo do apoio" required></textarea>
+                        <label for="tipoApoio">Tipo de Apoio*</label>
+                        <textarea class="form-control" name="tipoApoio" id="tipoApoio" placeholder="Digite o tipo do apoio" required></textarea>
                         <div class="invalid-feedback">
                             
                         </div>
                         <br>
-						<label for="valorApoioInput">Valor de Apoio*</label>
-                        <textarea class="form-control" name="valorApoio" id="descricaoInput" placeholder="Digite o valor do apoio" required></textarea>
+						<label for="valorApoio">Valor de Apoio*</label>
+                        <input type="number" class="form-control" name="valorApoio" id="valorApoio" placeholder="Digite o valor do apoio" required>
                         <div class="invalid-feedback">
                             
                         </div>
                         <br>
                       
-                       <label for="periodoInput">Data de Pagamento</label>
+                       <label for="dataPagamento">Data de Pagamento</label>
                         <div id="sandbox-container">
                             <div class="input-daterange input-group col-lg-3 align-left" style="padding-left: 0px;" id="datepicker">
-                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataInicio" id="dataInicioInput" required/>
+                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataPagamento" id="dataPagamento" required/>
                             </div>
                             <small id="periodoHelp" class="form-text text-muted">Selecione uma data</small>
                         </div>

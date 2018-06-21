@@ -53,7 +53,32 @@
                 </c:if>
 
                 <c:if test="${not empty atividade.apoiadores}">
+                <div class="row mb-2">
                     <c:forEach var="apoiador" items="${atividade.apoiadores}">
+                    
+                    <!-- ------------------------------------------- -->
+                    
+                    
+				        <div class="col-md-6">
+				          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+				            <div class="card-body d-flex flex-column align-items-start">
+				              <strong class="d-inline-block mb-2 text-primary">${apoiador.tipoApoio}</strong>
+				              <h3 class="mb-0">
+				                <a class="text-dark" href="#">${apoiador.nomeInstituicao}</a>
+				              </h3>
+				              <div class="mb-1 text-muted"><fmt:parseDate value=" ${apoiador.dataPagamento}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+								<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy" value="${ parsedDateTime }" /></div>
+				              <p class="card-text mb-auto">${apoiador.tipoApoio}</p>
+				              <a href="${apoiador.siteInstituicao}">Ir para o site</a>
+				            </div>
+				            <img class="card-img-right flex-auto d-none d-lg-block img-responsive" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 150px; height: 150px;" src="https://cache.olhardigital.com.br/uploads/acervo_imagens/2015/07/20150702113911_660_420.jpg" data-holder-rendered="true">
+				            
+				          </div>
+				        </div>
+			      
+                    
+                    <!-- __----------------------------------------------------------------
+                    
                     <div class="card">
                         <div class="card-body">
                             <div class="row" style="padding-left: 13px;">
@@ -63,16 +88,11 @@
                             </div>
                             
                             <p class="card-text text-justify">
-                                ${apoiador.tipoApoio}
+                                ${apoiador.tipoApoio} - R$ ${apoiador.valorApoio}
                             </p>
-                            
-                             <p class="card-text text-justify">
-                                ${apoiador.dataPagamento}
-                            </p>
-                            
-                            
                             <h3 class="card-subtitle mb-2 text-muted">
-                                ${apoiador.dataPagamento} - data aqui!!! 
+                            	<fmt:parseDate value=" ${apoiador.dataPagamento}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+								<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy" value="${ parsedDateTime }" />
                             </h3>
                             
                             <p class="card-text text-justify">
@@ -80,15 +100,26 @@
                             </p>
                             
                         </div>
+                        <div class="row" style="text-align: center;">
+                        	<a href="#"
+							class="btn btn-primary btn-sm"
+							style="height: 33px; margin-left: 30px; margin-top: -4px;">
+							Editar Apoio </a>
+							
+							<a 
+							class="btn btn-warning btn-sm"
+							style="height: 33px; margin-left: 30px; margin-top: -4px;" data-toggle="modal" data-target="#remover">
+							Remover Apoio </a>
+                        </div>
                     </div>
-                    
-                </c:forEach>
+                     -->
+                </c:forEach>  </div>
                 <br/>
                 
                 </c:if>
                  <li style="list-style: none; text-align: center;">
                  	<button class="btn btn-circle">
-                       <a href="/Chronos/cadastrarApoio/${atividade.codAtividade}" class="timeline-badge primary" >
+                       <a href="/Chronos/cadastrarApoio" class="timeline-badge primary" >
                            <i class="material-icons" title="Adicionar novo apoio">add</i>
                        </a>
                     </button>

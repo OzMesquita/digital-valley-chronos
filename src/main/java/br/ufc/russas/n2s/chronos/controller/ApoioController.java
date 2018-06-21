@@ -1,14 +1,23 @@
 package br.ufc.russas.n2s.chronos.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
+import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
 @Controller("apoioController")
@@ -29,10 +38,8 @@ public class ApoioController {
    @RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
    public String getApoiadores(@PathVariable long codAtividade, Model model){
 	   AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
-   	
-   	
-   	model.addAttribute("atividade", atividade);
-   	return "apoiadores";
+	   model.addAttribute("atividade", atividade);
+	   return "apoiadores";
    }
    
 }
