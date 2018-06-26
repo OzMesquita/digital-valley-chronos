@@ -177,20 +177,7 @@
                         <ul class="list-group col-md-8" id="listaOrganizadores">
                         </ul><br>
 								
-								 <!-- apoiadores -->
-                            
-                               <label for="anexoInput">Apoiadores</label>
-                               <div class="form-row" style="margin-left: 0px;">
-                                   <input type="text" class="form-control col-md-8" id="apoiadorInput" placeholder=" Digite o nome do apoiador">&nbsp; &nbsp;
-                                   <input type="button" class="btn btn-secondary btn-sm " onclick="adicionaApoiador()" value="Adicionar">                            
-                               </div>
-                               <br>
-                               
-								 <ul class="list-group col-md-8" id="listaApoiadores">
-								 </ul>
-                               	<br>
-                            
-                            <!-- fim apoiadores -->		
+								
                         <br>
                         <a href="/Chronos/" type="button" id="enviar" class="btn btn-secondary">
                             Cancelar
