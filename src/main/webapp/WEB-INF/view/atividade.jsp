@@ -690,6 +690,32 @@ ul {
             </div>
         </div>
          -->
+         <br><br>
+         
+         <div style="margin-right:30px;"><h2>Apoiadores</h2></div>
+         		<div class="container">
+	         		<%for(int i=0; i<3;i++){ %>
+	         		<div  style="width:10rem; position:relative; float:left; margin-right:10px;">
+			         		<div class="card">
+			         		<center><img class="card-img-top" src="http://lookperfeito.com/wp-content/uploads/2016/10/LABFANTASMA.jpg" style=" width:140px; height:80px; margin-top: 5px;" alt="Card image cap"></center>
+			         		</div>
+							  <div class="card-body" style="padding-top: 5px; padding-bottom: 0px;">
+							   <center><h6 class="card-title">LAB FANTASMA</h6></center>
+							  </div>
+				</div>
+					<%}%>
+				</div>	
+					
+					
+				  
+		    </div>   		
+         	</div>
+         	</div>
+         	</div>
+         
+         
+         
+         </div>
 				<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
 				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 					integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
