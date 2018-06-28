@@ -1,3 +1,4 @@
+<%@page import="br.ufc.russas.n2s.chronos.model.Atividade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
@@ -76,7 +77,9 @@
 	                                
 	                            </div>
 	                            <h3 class="card-subtitle mb-2 text-muted">
-	                                ${fn:replace(atividade.tipoAtividade, '_', ' ')} - data aqui!!! 
+	                                ${fn:replace(atividade.tipoAtividade, '_', ' ')} - 
+	                                <fmt:parseDate value="${atividade.realizacao[0].horaInicio}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+									<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy HH:mm" value="${ parsedDateTime }" />
 	                              
 	                            </h3>
 	                            <p class="card-text text-justify">
