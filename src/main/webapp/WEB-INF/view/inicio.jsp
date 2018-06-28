@@ -111,6 +111,110 @@
                 </div>
             </div>
         </div>
+        
+        <!--  to mexendo nisso -->
+        
+        <td class="text-center">
+			<form method="POST" action="a paradinha pra onde tem q ir" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+				<input type="button"  class="btn btn-primary" value="login" data-toggle="modal" data-target="#login" >
+						                        
+        
+					 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						                            <div class="modal-dialog" role="document">
+						                                <div class="modal-content">
+						                                    <div class="modal-header">
+						                                        <h5 class="modal-title" id="modalLabel">Login</h5>
+						                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                                            <span aria-hidden="true">&times;</span>
+						                                        </button>
+						                                    </div>
+						                                    <div class="modal-body">
+						                                    
+						                                         <div class="container">
+																    <label for="uname"><h6>Username</h6></label>
+																    <input type="text" placeholder="Enter Username" name="uname" required>
+																
+																    <label for="psw"><h6>Password</h6></label>
+																    <input type="password" placeholder="Enter Password" name="psw" required>
+																
+																  </div>
+																
+																  <div class="container">
+																    <button type="button" class="btn btn-danger" style="float: right; margin:5px;">Cancelar</button>
+																    <button type="submit" class="btn btn-primary" style="float: right;  margin:5px;">Login</button>
+  																</div>
+  																
+															</div>
+														</div>
+													</div>
+					</div>
+
+         	</form>
+         	
+         			<style rel="stylesheet" type="text/css">
+						input[type=text], input[type=password] {
+						    width: 100%;
+						    padding: 12px 20px;
+						    margin: 8px 0;
+						    display: inline-block;
+						    border: 1px solid #ccc;
+						    box-sizing: border-box;
+						}
+						
+						button1 {
+						    background-color: #4CAF50;
+						    color: white;
+						    padding: 14px 20px;
+						    margin: 8px 0;
+						    border: none;
+						    cursor: pointer;
+						    width: 100%;
+						}
+						
+						
+						button:hover {
+						    opacity: 0.8;
+						}
+						
+						.cancelbtn {
+						    width: auto;
+						    padding: 10px 18px;
+						    background-color: #f44336;
+						}
+						
+						.imgcontainer {
+						    text-align: center;
+						    margin: 24px 0 12px 0;
+						}
+						
+						img.avatar {
+						    width: 40%;
+						    border-radius: 50%;
+						}
+						
+						.container {
+						    padding: 16px;
+						}
+						
+						span.psw {
+						    float: right;
+						    padding-top: 16px;
+						}
+						
+						@media screen and (max-width: 300px) {
+						    span.psw {
+						        display: block;
+						        float: none;
+						    }
+						    .cancelbtn {
+						        width: 100%;
+						    }
+						}
+					</style>
+         	
+         	
+         	<!-- to mexendo nisso -->
+        
         <c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>  
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
