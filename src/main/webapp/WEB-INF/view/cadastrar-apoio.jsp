@@ -55,7 +55,7 @@
                 <p>Atenção: Os campos abaixo (*) são de preenchimento obrigatório</p>
                 <br>
                 <div class="form-group">
-                    <form method="post" action="cadastrarApoio" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+                    <form method="post" action="cadastrarApoio" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate enctype="multipart/form-data">
                         <label for="tituloInput">Nome da Instituição*</label>
                         <input type="text" name="nomeInstituicao" class="form-control" id="nomeInstituicao" aria-describedby="nomeHelp" placeholder="Digite o nome da instituição apoiadora" required>
                         <small id="nomeInstituicao" class="form-text text-muted">Exemplo: Laboratório Interdisciplinar de Computação e Engenharia de Software</small>
@@ -81,14 +81,28 @@
                             
                         </div>
                         <br>
+                      	
+						<label class="file-input">Selecione uma logo</label>
+						<input id="file" name="logoApoio"  class="form-control" type="file" accept=".png">
+						<small id="periodoHelp" class="form-text text-muted">O arquivo deve ser .png</small>
+						<script>
+						$(document).on('ready', function() {
+						    $("#file").fileinput({showCaption: false, dropZoneEnabled: false});
+						});
+						</script>
+						<br>
+					
                       
                        <label for="dataPagamento">Data de Pagamento</label>
-                        <div id="sandbox-container">
-                            <div class="input-daterange input-group col-lg-3 align-left" style="padding-left: 0px;" id="datepicker">
-                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataPagamento" id="dataPagamento" required/>
-                            </div>
-                            <small id="periodoHelp" class="form-text text-muted">Selecione uma data</small>
-                        </div>
+	                        <div id="sandbox-container">
+	                            <div class="input-daterange input-group col-lg-3 align-left" style="padding-left: 0px;" id="datepicker">
+	                                <input type="date" class="form-control text-left" placeholder="Digite a data de início desta etapa" name="dataPagamento" id="dataPagamento" required/>
+	                            </div>
+	                            <small id="periodoHelp" class="form-text text-muted">Selecione uma data</small>
+	                        </div>
+	                        
+                       
+                        
                         <br>
                         
                         <a href="/Chronos/" type="button" id="enviar" class="btn btn-secondary">
@@ -133,5 +147,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/resources/js/script.js" ></script>
     <script src="${pageContext.request.contextPath}/resources/js/scriptCadastrarSelecao.js" ></script>
+   
 </body>
 </html>

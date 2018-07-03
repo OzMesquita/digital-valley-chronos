@@ -1,4 +1,4 @@
-package br.ufc.russas.n2s.chronos.util;
+package util;
 import java.util.Map;
 
 import com.github.shyiko.dotenv.DotEnv;

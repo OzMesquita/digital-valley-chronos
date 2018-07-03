@@ -104,6 +104,27 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 		return retorno;
 	}
 
+/*	@Override
+    public List<AtividadeBeans> listaAtividadesAssociada(UsuarioBeans usuario) {
+        Atividade atividade = new Atividade();
+        UsuarioChronos user = (UsuarioChronos) usuario.toBusiness();
+        List<Atividade> selecoes = Collections.synchronizedList(new ArrayList());
+        List<Atividade> resultadoNaoDivulgadas = this.getAtividadeDAOIfc().listaAtividades(atividade);
+        List<AtividadeBeans> resultadoDivulgadas = this.listaTodasAtividades();
+        for (Selecao s : resultadoNaoDivulgadas) {
+            if (s.getResponsaveis().contains(user)) {
+                selecoes.add((SelecaoBeans) new SelecaoBeans().toBeans(s));
+            } 
+        }
+        for (SelecaoBeans s : resultadoDivulgadas) {
+            if (s.getResponsaveis().contains(usuario)) {
+                selecoes.add(s);
+            }
+        }
+       
+        return this.ordenaSelecoesPorData(selecoes);
+    }
+	*/
 
 
 }

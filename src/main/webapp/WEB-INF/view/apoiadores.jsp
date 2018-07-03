@@ -71,8 +71,12 @@
 				              <p class="card-text mb-auto">${apoiador.tipoApoio}</p>
 				              <a href="${apoiador.siteInstituicao}">Ir para o site</a>
 				            </div>
-				            <img class="card-img-right flex-auto d-none d-lg-block img-responsive" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 150px; height: 150px;" src="https://cache.olhardigital.com.br/uploads/acervo_imagens/2015/07/20150702113911_660_420.jpg" data-holder-rendered="true">
-				            
+				            <c:if test="${not empty apoiador.logo}">
+				            	<img class="card-img-right flex-auto d-none d-lg-block img-responsive" data-src="holder.js/200x250?theme=thumb" alt="logo" style="width: 150px; height: 150px;" src="${apoiador.logo}" data-holder-rendered="true">
+				            </c:if>
+				            <c:if test="${empty apoiador.logo}">
+				            	<img class="card-img-right flex-auto d-none d-lg-block img-responsive" data-src="holder.js/200x250?theme=thumb" alt="logo" style="width: 150px; height: 150px;" src="https://security.ufpb.br/labeet/contents/menu/acervos/acervo-brazinst/copy_of_cordofones/udecra/sem-imagem.jpg/@@images/07a73138-cc80-46c2-8841-5e49be49a8f8.jpeg" data-holder-rendered="true">
+				            </c:if>
 				          </div>
 				        </div>
 			      
