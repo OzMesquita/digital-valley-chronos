@@ -40,6 +40,7 @@
         </div>
         
     </div>
+    <c:if test="${session.usuario!=null}">
     <td class="text-center">
 			<form method="POST" action="a paradinha pra onde tem q ir" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
 				<input type="button"  class="btn btn-primary" value="login" data-toggle="modal" data-target="#login" style="max-width:51px; max-height:32px;padding-top:4px;padding-bottom:4px;padding-left:8px;padding-right:8px; float:right; margin-right:10px") >
@@ -74,7 +75,8 @@
 														</div>
 													</div>
 					</div>
-
+				
          	</form>
+         	</c:if>
     <a class="btn-sm btn-light text-right" href="<%=Constantes.getAppUrl() %>/sair">Sair</a>
 </nav>         
