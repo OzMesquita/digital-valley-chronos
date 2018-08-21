@@ -40,5 +40,41 @@
         </div>
         
     </div>
+    <td class="text-center">
+			<form method="POST" action="a paradinha pra onde tem q ir" accept-charset="UTF-8" enctype="multipart/form-data" id="needs-validation" novalidate>
+				<input type="button"  class="btn btn-primary" value="login" data-toggle="modal" data-target="#login" style="max-width:51px; max-height:32px;padding-top:4px;padding-bottom:4px;padding-left:8px;padding-right:8px; float:right; margin-right:10px") >
+						                        
+        
+					 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						                            <div class="modal-dialog" role="document">
+						                                <div class="modal-content">
+						                                    <div class="modal-header">
+						                                        <h5 class="modal-title" id="modalLabel">Login</h5>
+						                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                                            <span aria-hidden="true">&times;</span>
+						                                        </button>
+						                                    </div>
+						                                    <div class="modal-body">
+						                                    
+						                                         <div class="container">
+																    <label for="uname"><h6>Username</h6></label>
+																    <input type="text" placeholder="Enter Username" name="uname" required>
+																
+																    <label for="psw"><h6>Password</h6></label>
+																    <input type="password" placeholder="Enter Password" name="psw" required>
+																
+																  </div>
+																
+																  <div class="container">
+																    <button type="button" class="btn btn-danger" style="float: right; margin:5px;">Cancelar</button>
+																    <button type="submit" class="btn btn-primary" style="float: right;  margin:5px;">Login</button>
+  																</div>
+  																
+															</div>
+														</div>
+													</div>
+					</div>
+
+         	</form>
     <a class="btn-sm btn-light text-right" href="<%=Constantes.getAppUrl() %>/sair">Sair</a>
 </nav>         
