@@ -17,57 +17,53 @@ import org.springframework.beans.factory.annotation.Qualifier;
  *
  * @author Wallison Carlos
  */
-public class UsuarioDAOImpl implements UsuarioDAOIfc{
+public class UsuarioDAOImpl implements UsuarioDAOIfc {
+	private DAOIfc<UsuarioChronos> daoImpl;
 
-    private DAOIfc<UsuarioChronos> daoImpl;
+	@Autowired
+	public void setDAOIfc(@Qualifier("daoImpl") DAOIfc<UsuarioChronos> dao) {
+		this.daoImpl = dao;
+	}
 
-    @Autowired
-    public void setDAOIfc(@Qualifier("daoImpl")DAOIfc<UsuarioChronos> dao){
-        this.daoImpl = dao;
-    }
+	@Override
+	public UsuarioChronos adicionaUsuario(UsuarioChronos usuario) {
+		return this.daoImpl.adiciona(usuario);
+	}
 
-    @Override
-    public UsuarioChronos adicionaUsuario(UsuarioChronos usuario) {
-        return this.daoImpl.adiciona(usuario);
-    }
+	@Override
+	public UsuarioChronos atualizaUsuario(UsuarioChronos usuario) {
+		return this.daoImpl.atualiza(usuario);
+	}
 
-    @Override
-    public UsuarioChronos atualizaUsuario(UsuarioChronos usuario) {
-        return this.daoImpl.atualiza(usuario);
-    }
+	@Override
+	public void removeUsuario(UsuarioChronos usuario) {
+		this.daoImpl.remove(usuario);
+	}
 
-    @Override
-    public void removeUsuario(UsuarioChronos usuario) {
-        this.daoImpl.remove(usuario);
-    }
+	@Override
+	public List<UsuarioChronos> listaUsuarios(UsuarioChronos usuario) {
+		return this.daoImpl.lista(usuario);
+	}
 
-    @Override
-    public List<UsuarioChronos> listaUsuarios(UsuarioChronos usuario) {
-        return this.daoImpl.lista(usuario);
-    }
+	@Override
+	public UsuarioChronos getUsuario(UsuarioChronos usuario) {
+		return this.daoImpl.getObject(usuario, usuario.getCodUsuario());
+	}
 
-    @Override
-    public UsuarioChronos getUsuario(UsuarioChronos usuario) {
-        return this.daoImpl.getObject(usuario, usuario.getCodUsuario());
-    }
-
-    @Override
-    public UsuarioChronos getUsuarioControleDeAcesso(UsuarioChronos usuario) {
-        Session session = this.daoImpl.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        try {
-            Example example = Example.create(usuario);
-            usuario = (UsuarioChronos) session.createCriteria(UsuarioChronos.class).add(example).uniqueResult();
-            t.commit();
-            return usuario;
-        } catch(RuntimeException e) {
-            t.rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
-    }
-    
-    
-    
+	@Override
+	public UsuarioChronos getUsuarioControleDeAcesso(UsuarioChronos usuario) {
+		Session session = this.daoImpl.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			Example example = Example.create(usuario);
+			usuario = (UsuarioChronos) session.createCriteria(UsuarioChronos.class).add(example).uniqueResult();
+			t.commit();
+			return usuario;
+		} catch (RuntimeException e) {
+			t.rollback();
+			throw e;
+		} finally {
+			session.close();
+		}
+	}
 }

@@ -27,24 +27,27 @@ public class CadastrarApoioController {
 		return atividadeServiceIfc;
 	}
 
-	@Autowired(required=true)
+	@Autowired(required = true)
 	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc") AtividadeServiceIfc atividadeService) {
 		this.atividadeServiceIfc = atividadeService;
 
 	}
+
 	public UsuarioServiceIfc getUsuarioServiceIfc() {
 		return usuarioServiceIfc;
 	}
+
 	@Autowired(required = true)
-	public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc")UsuarioServiceIfc usuarioServiceIfc) {
+	public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc") UsuarioServiceIfc usuarioServiceIfc) {
 		this.usuarioServiceIfc = usuarioServiceIfc;
 	}
 
-	 @RequestMapping(value="/{codAtividade}",method = RequestMethod.GET)
-	    public String getCadastro(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
-	    	//request.getSession().removeAttribute("pai");
-	    	//List<UsuarioBeans> organizadores = this.getUsuarioServiceIfc().listaTodosUsuarios();
-	       // model.addAttribute("organizadores", organizadores);
-	        return "cadastrar-apoio";
-	    }
+	@RequestMapping(value = "/{codAtividade}", method = RequestMethod.GET)
+	public String getCadastro(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
+		// request.getSession().removeAttribute("pai");
+		// List<UsuarioBeans> organizadores =
+		// this.getUsuarioServiceIfc().listaTodosUsuarios();
+		// model.addAttribute("organizadores", organizadores);
+		return "cadastrar-apoio";
+	}
 }

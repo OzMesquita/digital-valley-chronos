@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package br.ufc.russas.n2s.chronos.model;
-
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 import java.util.List;
 import javax.persistence.Column;
@@ -18,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
 /**
  *
  * @author N2S

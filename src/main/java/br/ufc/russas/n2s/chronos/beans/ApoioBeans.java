@@ -4,28 +4,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import br.ufc.russas.n2s.chronos.model.Apoio;
-
 public class ApoioBeans implements Beans{
-	
 	private long codApoio;
-	
 	private String nomeInstituicao;
-
 	private String logo;
-
 	private String tipoApoio;
-
 	private float valorApoio;
-
 	private LocalDateTime dataPagamento;
-
 	private String siteInstituicao;
-	
-	
 	public long getCodApoio() {
 		return codApoio;
 	}
-
 	public void setCodApoio(long codApoio) {
 		this.codApoio = codApoio;
 	}
@@ -81,7 +70,6 @@ public class ApoioBeans implements Beans{
 	@Override
 	public Object toBusiness() {
 		Apoio apoio = new Apoio();
-		
 		apoio.setCodApoio(this.getCodApoio());
 		apoio.setNomeInstituicao(this.getNomeInstituicao());
 		apoio.setLogo(this.getLogo());
@@ -89,7 +77,6 @@ public class ApoioBeans implements Beans{
 		apoio.setValorApoio(this.getValorApoio());
 		apoio.setDataPagamento(this.getDataPagamento());
 		apoio.setSiteInstituicao(this.getSiteInstituicao());
-		
 		return apoio;
 	}
 
@@ -99,9 +86,7 @@ public class ApoioBeans implements Beans{
         	throw new IllegalArgumentException("O objeto a ser adicionado não é um Apoio!");
         if(!(object instanceof Apoio))
         	throw new NullPointerException("O Apoio não pode ser nulo!");
-		
         Apoio apoio = (Apoio) object;
-		
         this.setCodApoio(apoio.getCodApoio());
 		this.setNomeInstituicao(apoio.getNomeInstituicao());
 		this.setLogo(apoio.getLogo());
@@ -109,9 +94,6 @@ public class ApoioBeans implements Beans{
 		this.setValorApoio(apoio.getValorApoio());
 		this.setDataPagamento(apoio.getDataPagamento());
 		this.setSiteInstituicao(apoio.getSiteInstituicao());
-		
 		return this;
 	}
-	
-	
 }

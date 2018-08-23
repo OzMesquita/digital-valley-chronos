@@ -1,25 +1,22 @@
 package br.ufc.russas.n2s.chronos.model;
 
 public enum EnumTipoPagamento {
-	GRATUITO(1),
-	DINHEIRO(2),
-	DOACAO(3);
-
+	GRATUITO(1), DINHEIRO(2), DOACAO(3);
 	private int valorTipo;
-	
+
 	EnumTipoPagamento(int valor) {
-		if(valor<1&&valor>7)
+		if (valor < 1 && valor > 7)
 			valorTipo = 1;
 		else
-			valorTipo = valor;	
+			valorTipo = valor;
 	}
 
 	public int getValorTipo() {
 		return valorTipo;
 	}
-	
-	public static String value(Integer valor){
-		switch(valor){
+
+	public static String value(Integer valor) {
+		switch (valor) {
 		case 1:
 			return "Gratuito";
 		case 2:
@@ -29,6 +26,5 @@ public enum EnumTipoPagamento {
 		default:
 			return "";
 		}
-	
 	}
 }

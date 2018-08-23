@@ -7,8 +7,6 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
 <meta charset="UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +14,6 @@
 <meta name="author" content="n2s">
 <link rel="icon" href="favicon.ico">
 <title>Chronos - Sistema de Gerenciamento de Atividades</title>
-
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -28,7 +25,6 @@
 	href="${pageContext.request.contextPath}/resources/css/design.css" />
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/timeline.css" />
-
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
@@ -224,7 +220,6 @@ ul {
                         </div>
                     </div>
                 </c:if>-->
-
 				<!-- Mensagem de solicitando a divulgação da seleção -->
 				<c:if
 					test="${(fn:contains(permissoes, 'ADMINISTRADOR')) and (not atividade.divulgada)}">
@@ -241,7 +236,6 @@ ul {
 								atividade? <input type="button" style="font-size: 15px;"
 									class="btn btn-link" value="Divulgar a atividade"
 									data-toggle="modal" data-target="#divulgar">
-
 							</p>
 						</div>
 					</div>
@@ -272,7 +266,6 @@ ul {
 						</div>
 					</div>
 				</c:if>
-
 				<div class="row" style="padding-left: 15px;">
 					<h1 class="text-uppercase" style="font-size: 20px;">${atividade.nome}
 						(${atividade.sigla})</h1>
@@ -281,41 +274,39 @@ ul {
 							class="btn btn-primary btn-sm"
 							style="height: 33px; margin-left: 30px; margin-top: -4px;">
 							Editar Atividade </a>
-							
-							<a 
-							class="btn btn-warning btn-sm"
-							style="height: 33px; margin-left: 30px; margin-top: -4px;" data-toggle="modal" data-target="#remover">
-							Remover Atividade </a>
-				
-							<!-- Modal -->
-							<div class="modal fade" id="remover" tabindex="-1" role="dialog"
-								aria-labelledby="modalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="modalLabel">Remover atividade</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<p>Remover esta atividade implica em remover todas as suas subatividades cadastradas, e após concluida esta ação não podera ser desfeita!</p>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary btn-sm"
-												data-dismiss="modal">Cancelar</button>
-											<a class="btn btn-sm btn-warning"
-												href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
-												Remover atividade</a>
-										</div>
+						<a class="btn btn-warning btn-sm"
+							style="height: 33px; margin-left: 30px; margin-top: -4px;"
+							data-toggle="modal" data-target="#remover"> Remover Atividade
+						</a>
+						<!-- Modal -->
+						<div class="modal fade" id="remover" tabindex="-1" role="dialog"
+							aria-labelledby="modalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="modalLabel">Remover atividade</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>Remover esta atividade implica em remover todas as suas
+											subatividades cadastradas, e após concluida esta ação não
+											podera ser desfeita!</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary btn-sm"
+											data-dismiss="modal">Cancelar</button>
+										<a class="btn btn-sm btn-warning"
+											href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
+											Remover atividade</a>
 									</div>
 								</div>
 							</div>
+						</div>
 					</c:if>
-
 				</div>
-
 				<br>
 				<p class="text-justify">${atividade.descricao}</p>
 				<p class="text-justify">
@@ -369,16 +360,17 @@ ul {
 				</p>
 				<br />
 				<c:if test="${empty atividade.subAtividade}">
-					<b style="text-align:center">Esta atividade não possui subatividades.</b>
+					<b style="text-align: center">Esta atividade não possui
+						subatividades.</b>
 					<br>
 				</c:if>
-				
+
 				<c:if test="${not empty atividade.subAtividade}">
 					<!-- lista de subatividades -->
 					<div class="container">
 						<div class="row col-md-12 col-md-offset-2 custyle">
-						<i class="glyphicon glyphicon-eye-open"></i>
-						<a href="#">Visualizar cronograma completo</a>
+							<i class="glyphicon glyphicon-eye-open"></i> <a href="#">Visualizar
+								cronograma completo</a>
 							<table class="table table-striped custab">
 								<thead>
 									<tr>
@@ -390,20 +382,20 @@ ul {
 										<th class="text-center">Ação</th>
 									</tr>
 								</thead>
-							 <c:forEach var="atividades"  items="${atividade.subAtividade}">
-								<tr>
-									<td> ${atividades.nome}</td>
-									<td>${atividades.responsavel.nome}</td>
-									<td>${atividades.local}</td>
-									<td>22/05 - 08:00</td>
-									<td>20/20</td>
-									<td class="text-center"><a
-										href="#" class="btn btn-primary btn-sm"
-										style="height: 33px; margin-left: 30px; margin-top: -4px;">
-											Inscrever-se </a></td>
-								</tr>
-							</c:forEach>
-							<!-- 	<tr>
+								<c:forEach var="atividades" items="${atividade.subAtividade}">
+									<tr>
+										<td>${atividades.nome}</td>
+										<td>${atividades.responsavel.nome}</td>
+										<td>${atividades.local}</td>
+										<td>22/05 - 08:00</td>
+										<td>20/20</td>
+										<td class="text-center"><a href="#"
+											class="btn btn-primary btn-sm"
+											style="height: 33px; margin-left: 30px; margin-top: -4px;">
+												Inscrever-se </a></td>
+									</tr>
+								</c:forEach>
+								<!-- 	<tr>
 									<td>Palestra sobre Engenharia de Software</td>
 									<td>Erley</td>
 									<td>SALA 7</td>
@@ -485,9 +477,6 @@ ul {
 			</div>
 		</div>
 	</div>
-				
-				
-
 <!--  darwin
                     <c:if test="${(not empty selecao.etapas) or (not empty selecao.inscricao)}">
                         <ul class="timeline">
@@ -538,7 +527,6 @@ ul {
                                                 Avaliar
                                             </a>
                                         </c:if>
-
                                         <c:if test="${((estadoInscricao == 3) and (not selecao.inscricao.divulgadoResultado))}">
                                             <input type="button" style="font-size: 15px;" class="btn btn-primary btn-sm" value="Ver resultado" data-toggle="modal" data-target="#resultadoEtapa" >
                                             <div class="modal fade" id="resultadoEtapa" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -552,13 +540,7 @@ ul {
                                                         </div>
                                                         <div class="modal-body">
                                                             <p>
-                                                                 
-                                                                
                                                                 Colocar o resultado aqui!!!!!!!!!!!
-                                                                
-                                                                
-                                                                
-                                                                
                                                             </p>
                                                         </div>
                                                     </div>
@@ -690,99 +672,100 @@ ul {
             </div>
         </div>
          -->
-         <br><br>
-         
-         <div style="margin-right:30px;"><h2>Apoiadores</h2></div>
-         		<div class="container">
-	         		<%for(int i=0; i<3;i++){ %>
-	         		<div  style="width:10rem; position:relative; float:left; margin-right:10px;">
-			         		<div class="card">
-			         		<center><img class="card-img-top" src="http://lookperfeito.com/wp-content/uploads/2016/10/LABFANTASMA.jpg" style=" width:140px; height:80px; margin-top: 5px;" alt="Card image cap"></center>
-			         		</div>
-							  <div class="card-body" style="padding-top: 5px; padding-bottom: 0px;">
-							   <center><h6 class="card-title">LAB FANTASMA</h6></center>
-							  </div>
+				<br> <br>
+				<div style="margin-right: 30px;">
+					<h2>Apoiadores</h2>
 				</div>
-					<%}%>
-				</div>	
-					
-					
-				  
-		    </div>   		
-         	</div>
-         	</div>
-         	</div>
-         
-         
-         
-         </div>
-				<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
-				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-					integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-					crossorigin="anonymous"></script>
-				<script
-					src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-					integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-					crossorigin="anonymous"></script>
-				<script
-					src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-					integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-					crossorigin="anonymous"></script>
-				<script>
-					$("#navEtapas").addClass(function(index, currentClass) {
-						var addedClass;
-
-						if (screen.width <= 575) {
-							addedClass = "flex-column";
+				<div class="container">
+					<%
+						for (int i = 0; i < 3; i++) {
+					%>
+					<div
+						style="width: 10rem; position: relative; float: left; margin-right: 10px;">
+						<div class="card">
+							<center>
+								<img class="card-img-top"
+									src="http://lookperfeito.com/wp-content/uploads/2016/10/LABFANTASMA.jpg"
+									style="width: 140px; height: 80px; margin-top: 5px;"
+									alt="Card image cap">
+							</center>
+						</div>
+						<div class="card-body"
+							style="padding-top: 5px; padding-bottom: 0px;">
+							<center>
+								<h6 class="card-title">LAB FANTASMA</h6>
+							</center>
+						</div>
+					</div>
+					<%
 						}
+					%>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+		crossorigin="anonymous"></script>
+	<script>
+		$("#navEtapas").addClass(function(index, currentClass) {
+			var addedClass;
 
-						return addedClass;
+			if (screen.width <= 575) {
+				addedClass = "flex-column";
+			}
+
+			return addedClass;
+		});
+		$("#timeline").removeClass(function(index, currentClass) {
+			var addedClass;
+
+			if (screen.width <= 575) {
+				addedClass = "timeline";
+			}
+
+			return addedClass;
+		});
+	</script>
+	<script>
+		$(document).ready(
+				function() {
+
+					$('.star').on('click', function() {
+						$(this).toggleClass('star-checked');
 					});
-					$("#timeline").removeClass(function(index, currentClass) {
-						var addedClass;
 
-						if (screen.width <= 575) {
-							addedClass = "timeline";
-						}
-
-						return addedClass;
+					$('.ckbox label').on('click', function() {
+						$(this).parents('tr').toggleClass('selected');
 					});
-				</script>
-				<script>
-					$(document).ready(
+
+					$('.btn-filter').on(
+							'click',
 							function() {
-
-								$('.star').on('click', function() {
-									$(this).toggleClass('star-checked');
-								});
-
-								$('.ckbox label').on(
-										'click',
-										function() {
-											$(this).parents('tr').toggleClass(
-													'selected');
-										});
-
-								$('.btn-filter').on(
-										'click',
-										function() {
-											var $target = $(this)
-													.data('target');
-											if ($target != 'all') {
-												$('.table tr').css('display',
-														'none');
-												$(
-														'.table tr[data-status="'
-																+ $target
-																+ '"]').fadeIn(
-														'slow');
-											} else {
-												$('.table tr').css('display',
-														'none').fadeIn('slow');
-											}
-										});
-
+								var $target = $(this).data('target');
+								if ($target != 'all') {
+									$('.table tr').css('display', 'none');
+									$(
+											'.table tr[data-status="' + $target
+													+ '"]').fadeIn('slow');
+								} else {
+									$('.table tr').css('display', 'none')
+											.fadeIn('slow');
+								}
 							});
-				</script>
+
+				});
+	</script>
 </body>
 </html>

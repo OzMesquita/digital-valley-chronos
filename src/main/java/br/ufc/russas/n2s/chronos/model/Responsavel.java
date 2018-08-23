@@ -12,20 +12,19 @@ import model.Pessoa;
 import model.Usuario;
 
 @Entity
-@Table(name="responsavel")
-public class Responsavel extends Pessoa implements Comparable<Pessoa>{
+@Table(name = "responsavel")
+public class Responsavel extends Pessoa implements Comparable<Pessoa> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="codResponsavel")
+	@Column(name = "codResponsavel")
 	private long codResponsavel;
-	
 	private String miniCurriculo;
 
 	public Responsavel() {
-
 	}
 
-	public Responsavel(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento, String miniCurriculo) {
+	public Responsavel(String nome, String cpf, String email, Usuario usuario, LocalDate dataNascimento,
+			String miniCurriculo) {
 		super(nome, cpf, email, usuario, dataNascimento);
 		this.miniCurriculo = miniCurriculo;
 	}
@@ -33,19 +32,20 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	public long getCodResponsavel() {
 		return codResponsavel;
 	}
-	
+
 	public void setCodResponsavel(long codResponsavel) {
-		 if(codResponsavel>0)
-	            this.codResponsavel = codResponsavel;
-	        else
-	            throw new IllegalCodeException("Código do responsável deve ser maior de zero!");
+		if (codResponsavel > 0)
+			this.codResponsavel = codResponsavel;
+		else
+			throw new IllegalCodeException("Código do responsável deve ser maior de zero!");
 	}
+
 	public String getMiniCurriculo() {
 		return miniCurriculo;
 	}
 
 	public void setMiniCurriculo(String miniCurriculo) {
-		if(isEmpty(miniCurriculo))
+		if (isEmpty(miniCurriculo))
 			throw new IllegalArgumentException("Erro: o campo local não pode estar vazio.");
 		else
 			this.miniCurriculo = miniCurriculo;
@@ -55,8 +55,9 @@ public class Responsavel extends Pessoa implements Comparable<Pessoa>{
 	public int compareTo(Pessoa o) {
 		return this.getNome().compareTo(o.getNome());
 	}
+
 	public static boolean isEmpty(String string) {
-		if(string==null||string.equals(""))
+		if (string == null || string.equals(""))
 			return true;
 		return false;
 	}

@@ -1,29 +1,22 @@
 package br.ufc.russas.n2s.chronos.model;
 
 public enum EnumTipoAtividade {
-	ENCONTRO(1),
-	SEMANA(2),
-	MINICURSO(3),
-	CURSO(4),
-	PALESTRA(5),
-	WORKSHOP(6),
-	VISITA_TÉCNICA(7);
-
+	ENCONTRO(1), SEMANA(2), MINICURSO(3), CURSO(4), PALESTRA(5), WORKSHOP(6), VISITA_TÉCNICA(7);
 	private int valorTipo;
-	
+
 	EnumTipoAtividade(int valor) {
-		if(valor<1&&valor>7)
+		if (valor < 1 && valor > 7)
 			valorTipo = 2;
 		else
-			valorTipo = valor;	
+			valorTipo = valor;
 	}
 
 	public int getValorTipo() {
 		return valorTipo;
 	}
-	
-	public static String value(Integer valor){
-		switch(valor){
+
+	public static String value(Integer valor) {
+		switch (valor) {
 		case 1:
 			return "Encontro";
 		case 2:
@@ -41,18 +34,13 @@ public enum EnumTipoAtividade {
 		default:
 			return "";
 		}
-	
 	}
-	
-	public static EnumTipoAtividade valorEnumPeloNome(String nome)
-	{
-	    for(EnumTipoAtividade tipo : EnumTipoAtividade.values())
-	        if(tipo.name().equals(nome)){
-	            return tipo;
-	        }
 
-	    return null; //not found
+	public static EnumTipoAtividade valorEnumPeloNome(String nome) {
+		for (EnumTipoAtividade tipo : EnumTipoAtividade.values())
+			if (tipo.name().equals(nome)) {
+				return tipo;
+			}
+		return null; // not found
 	}
-	
-
 }

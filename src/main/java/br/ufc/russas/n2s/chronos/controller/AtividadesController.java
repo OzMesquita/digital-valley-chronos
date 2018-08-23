@@ -5,8 +5,6 @@
  */
 package br.ufc.russas.n2s.chronos.controller;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,31 +25,27 @@ import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
  */
 @Controller("atividadeController")
 @RequestMapping("/atividades")
-public class AtividadesController { 
+public class AtividadesController {
 
-    
 	private AtividadeServiceIfc atividadeServiceIfc;
 
 	public AtividadeServiceIfc getAtividadeService() {
 		return atividadeServiceIfc;
 	}
 
-	@Autowired(required=true)
+	@Autowired(required = true)
 	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc") AtividadeServiceIfc atividadeService) {
 		this.atividadeServiceIfc = atividadeService;
 
 	}
-	
-	@RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/{codAtividade}", method = RequestMethod.GET)
 	public String getAtividade(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
 		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
 		HttpSession session = request.getSession();
-		
 		model.addAttribute("atividade", atividade);
 		model.addAttribute("isResponsavel", true);
 		session.setAttribute("atividade", atividade);
 		return "atividade";
 	}
-	
-           
 }

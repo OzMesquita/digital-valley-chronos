@@ -11,13 +11,11 @@ import java.io.Serializable;
  *
  * @author N2S
  */
-public class IllegalCodeException extends IllegalArgumentException implements Serializable{
+public class IllegalCodeException extends IllegalArgumentException implements Serializable {
+	public IllegalCodeException() {
+	}
 
-    public IllegalCodeException() {
-
-    }
-
-    public IllegalCodeException(String message) {
-        super(message);
-    }
+	public IllegalCodeException(String message) {
+		super(message);
+	}
 }

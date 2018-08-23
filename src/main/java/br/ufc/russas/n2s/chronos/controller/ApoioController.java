@@ -16,23 +16,20 @@ import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 public class ApoioController {
 
 	private AtividadeServiceIfc atividadeServiceIfc;
-	
-	 public AtividadeServiceIfc getAtividadeServiceIfc(){
-       return atividadeServiceIfc;
-	 }
-   
-	 @Autowired(required = true)
-	    public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc")AtividadeServiceIfc atividadeServiceIfc){
-	        this.atividadeServiceIfc = atividadeServiceIfc;
-	 }
-	
-   @RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
-   public String getApoiadores(@PathVariable long codAtividade, Model model){
-	   AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
-   	
-   	
-   	model.addAttribute("atividade", atividade);
-   	return "apoiadores";
-   }
-   
+
+	public AtividadeServiceIfc getAtividadeServiceIfc() {
+		return atividadeServiceIfc;
+	}
+
+	@Autowired(required = true)
+	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc") AtividadeServiceIfc atividadeServiceIfc) {
+		this.atividadeServiceIfc = atividadeServiceIfc;
+	}
+
+	@RequestMapping(value = "/{codAtividade}", method = RequestMethod.GET)
+	public String getApoiadores(@PathVariable long codAtividade, Model model) {
+		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
+		model.addAttribute("atividade", atividade);
+		return "apoiadores";
+	}
 }

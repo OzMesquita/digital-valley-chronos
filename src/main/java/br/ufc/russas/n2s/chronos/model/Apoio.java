@@ -2,7 +2,6 @@ package br.ufc.russas.n2s.chronos.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,29 +11,24 @@ import javax.persistence.Table;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 
 @Entity
-@Table(name="apoio")
-public class Apoio implements Comparable<Apoio>{
+@Table(name = "apoio")
+public class Apoio implements Comparable<Apoio> {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="codApoio")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codApoio")
 	private long codApoio;
-	
 	private String nomeInstituicao;
-
 	private String logo;
-
 	private String tipoApoio;
-
 	private float valorApoio;
-
 	private LocalDateTime dataPagamento;
-
 	private String siteInstituicao;
 
 	public Apoio() {
 	}
 
-	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDateTime dataPagamento, String siteInstituicao) {
+	public Apoio(String nomeInstituicao, String logo, String tipoApoio, float valorApoio, LocalDateTime dataPagamento,
+			String siteInstituicao) {
 		setDataPagamento(dataPagamento);
 		setLogo(logo);
 		setNomeInstituicao(nomeInstituicao);
@@ -42,25 +36,24 @@ public class Apoio implements Comparable<Apoio>{
 		setTipoApoio(tipoApoio);
 		setValorApoio(valorApoio);
 	}
-	
+
 	public long getCodApoio() {
 		return codApoio;
 	}
-	
+
 	public void setCodApoio(long codApoio) {
-		 if(codApoio>0)
-	            this.codApoio = codApoio;
-	        else
-	            throw new IllegalCodeException("Código do apoio deve ser maior de zero!");
+		if (codApoio > 0)
+			this.codApoio = codApoio;
+		else
+			throw new IllegalCodeException("Código do apoio deve ser maior de zero!");
 	}
-	
 
 	public String getNomeInstituicao() {
 		return nomeInstituicao;
 	}
 
 	public void setNomeInstituicao(String nomeInstituicao) {
-		if(isEmpty(nomeInstituicao))
+		if (isEmpty(nomeInstituicao))
 			this.nomeInstituicao = nomeInstituicao;
 		else
 			throw new IllegalArgumentException("Erro: o campo nome da instituicao nao pode estar vazio");
@@ -79,7 +72,7 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setTipoApoio(String tipoApoio) {
-		if(isEmpty(tipoApoio))
+		if (isEmpty(tipoApoio))
 			this.tipoApoio = tipoApoio;
 		else
 			throw new IllegalArgumentException("Erro: o campo tipo de apoio nao pode estar vazio.");
@@ -90,7 +83,7 @@ public class Apoio implements Comparable<Apoio>{
 	}
 
 	public void setValorApoio(float valorApoio) {
-		if(valorApoio < 0) 
+		if (valorApoio < 0)
 			throw new IllegalArgumentException("Erro: o campo valor do apoio nao pode ser negativo.");
 		else
 			this.valorApoio = valorApoio;
@@ -116,8 +109,9 @@ public class Apoio implements Comparable<Apoio>{
 	public int compareTo(Apoio a) {
 		return this.getNomeInstituicao().compareTo(a.getNomeInstituicao());
 	}
+
 	public static boolean isEmpty(String string) {
-		if(string==null||string.equals(""))
+		if (string == null || string.equals(""))
 			return true;
 		return false;
 	}

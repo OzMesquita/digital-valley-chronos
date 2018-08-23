@@ -19,32 +19,30 @@ import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 @Controller("subatividadeController")
 @RequestMapping("/subatividades")
 public class SubAtividadeController {
-
 	private AtividadeServiceIfc atividadeServiceIfc;
-	
-	 public AtividadeServiceIfc getAtividadeServiceIfc(){
-        return atividadeServiceIfc;
-    }
-    
-    @Autowired(required = true)
-    public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc")AtividadeServiceIfc atividadeServiceIfc){
-        this.atividadeServiceIfc = atividadeServiceIfc;
-    }
-	
-    @RequestMapping(value="/{codAtividade}", method = RequestMethod.GET)
-    public String getSubatividades(@PathVariable long codAtividade, Model model){
-    	AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
-    	model.addAttribute("atividade", atividade);
-    	return "subatividade";
-    }
-    
-	@RequestMapping(value="/cadastra/{codAtividade}",method = RequestMethod.GET)
-	public String adiciona(@PathVariable long codAtividade, Model model, HttpServletRequest request) throws IOException,IllegalAccessException{
-		
+
+	public AtividadeServiceIfc getAtividadeServiceIfc() {
+		return atividadeServiceIfc;
+	}
+
+	@Autowired(required = true)
+	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc") AtividadeServiceIfc atividadeServiceIfc) {
+		this.atividadeServiceIfc = atividadeServiceIfc;
+	}
+
+	@RequestMapping(value = "/{codAtividade}", method = RequestMethod.GET)
+	public String getSubatividades(@PathVariable long codAtividade, Model model) {
+		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
+		model.addAttribute("atividade", atividade);
+		return "subatividade";
+	}
+
+	@RequestMapping(value = "/cadastra/{codAtividade}", method = RequestMethod.GET)
+	public String adiciona(@PathVariable long codAtividade, Model model, HttpServletRequest request)
+			throws IOException, IllegalAccessException {
 		AtividadeBeans atividade = this.getAtividadeServiceIfc().getAtividade(codAtividade);
 		model.addAttribute("pai", atividade);
 		request.getSession().setAttribute("pai", atividade);
 		return ("redirect:/cadastrarSubAtividades/");
 	}
-	
 }

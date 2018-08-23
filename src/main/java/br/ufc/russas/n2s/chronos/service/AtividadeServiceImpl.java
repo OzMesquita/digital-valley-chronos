@@ -3,12 +3,10 @@ package br.ufc.russas.n2s.chronos.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.dao.AtividadeDAOIfc;
@@ -19,7 +17,6 @@ import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 @Service("atividadeServiceIfc")
 @Transactional
 public class AtividadeServiceImpl implements AtividadeServiceIfc {
-
 	private AtividadeDAOIfc atividadeDAOIfc;
 	private UsuarioBeans usuario;
 
@@ -31,7 +28,7 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 	}
 
 	@Autowired(required = true)
-	public void setAtividadeDAOIfc(@Qualifier("atividadeDAOIfc")AtividadeDAOIfc atividadeDAOIfc){
+	public void setAtividadeDAOIfc(@Qualifier("atividadeDAOIfc") AtividadeDAOIfc atividadeDAOIfc) {
 		this.atividadeDAOIfc = atividadeDAOIfc;
 	}
 
@@ -66,32 +63,34 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 	public List<AtividadeBeans> listaAtividades(Atividade atividade) {
 		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
 		List<Atividade> resultado = this.getAtividadeDAOIfc().listaAtividades(atividade);
-//		System.out.println(resultado.size());
-		for(Atividade a : resultado) {
-			atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
-		}
-		return atividades;				
-	}
-	
-	@Override
-	@Transactional
-	public List<AtividadeBeans> listaAtividadesHql(String string) {
-		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
-		List<Atividade> resultado = this.getAtividadeDAOIfc().listaHqlAtividade("from Atividade a where a.pai="+string);
-		for(Atividade a : resultado) {
+		// System.out.println(resultado.size());
+		for (Atividade a : resultado) {
 			atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
 		}
 		return atividades;
 	}
-	public List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade){
+
+	@Override
+	@Transactional
+	public List<AtividadeBeans> listaAtividadesHql(String string) {
+		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		List<Atividade> resultado = this.getAtividadeDAOIfc()
+				.listaHqlAtividade("from Atividade a where a.pai=" + string);
+		for (Atividade a : resultado) {
+			atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
+		}
+		return atividades;
+	}
+
+	public List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade) {
 		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
 		List<Atividade> resultado = this.getAtividadeDAOIfc().listaAtividades(atividade);
-//		System.out.println(resultado.size());
-		for(Atividade a : resultado) {
-			if(a.getPai() == null) 
+		// System.out.println(resultado.size());
+		for (Atividade a : resultado) {
+			if (a.getPai() == null)
 				atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
 		}
-		return atividades;				
+		return atividades;
 	}
 
 	@Override
@@ -99,11 +98,9 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 	public AtividadeBeans getAtividade(long codAtividade) {
 		Atividade atividade = new Atividade();
 		atividade.setCodAtividade(codAtividade);
-		AtividadeBeans retorno = (AtividadeBeans) new AtividadeBeans().toBeans(this.getAtividadeDAOIfc().getAtividade(atividade));
-		retorno.setSubAtividade(this.listaAtividadesHql(codAtividade+""));
+		AtividadeBeans retorno = (AtividadeBeans) new AtividadeBeans()
+				.toBeans(this.getAtividadeDAOIfc().getAtividade(atividade));
+		retorno.setSubAtividade(this.listaAtividadesHql(codAtividade + ""));
 		return retorno;
 	}
-
-
-
 }

@@ -7,18 +7,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import br.ufc.russas.n2s.chronos.model.Realizacao;
 
-public class RealizacaoDAOImpl implements RealizacaoDAOIfc{
-
+public class RealizacaoDAOImpl implements RealizacaoDAOIfc {
 	private DAOIfc<Realizacao> daoImpl;
-	
+
 	@Autowired
-	public void setDAOIfc(@Qualifier("daoImpl")DAOIfc<Realizacao> dao) {
+	public void setDAOIfc(@Qualifier("daoImpl") DAOIfc<Realizacao> dao) {
 		this.daoImpl = dao;
 	}
-	
+
 	@Override
 	public void adicionaRealizacao(Realizacao realizacao) {
-		this.daoImpl.adiciona(realizacao);	
+		this.daoImpl.adiciona(realizacao);
 	}
 
 	@Override
@@ -28,9 +27,9 @@ public class RealizacaoDAOImpl implements RealizacaoDAOIfc{
 
 	@Override
 	public void removeRealizacao(Realizacao realizacao) {
-		this.daoImpl.remove(realizacao);;
+		this.daoImpl.remove(realizacao);
 	}
-	
+
 	@Override
 	public List<Realizacao> listaRealizacao(Realizacao realizacao) {
 		return this.daoImpl.lista(realizacao);
@@ -45,9 +44,4 @@ public class RealizacaoDAOImpl implements RealizacaoDAOIfc{
 	public Realizacao getRealizacao(Realizacao realizacao) {
 		return this.daoImpl.getObject(realizacao, realizacao.getCodRealizacao());
 	}
-
-
-
-	
-	
 }

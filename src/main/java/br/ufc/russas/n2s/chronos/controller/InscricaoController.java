@@ -20,32 +20,30 @@ public class InscricaoController {
 
 	private AtividadeServiceIfc atividadeServiceIfc;
 	private UsuarioServiceIfc usuarioServiceIfc;
-	
-	 public AtividadeServiceIfc getAtividadeServiceIfc(){
-	        return atividadeServiceIfc;
-	    }
-	    
-    @Autowired(required = true)
-    public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc")AtividadeServiceIfc atividadeServiceIfc){
-        this.atividadeServiceIfc = atividadeServiceIfc;
-    }
-    
-    public UsuarioServiceIfc getUsuarioServiceIfc(){
-        return usuarioServiceIfc;
-    }
-    
-    @Autowired(required = true)
-    public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc")UsuarioServiceIfc usuarioServiceIfc){
-        this.usuarioServiceIfc = usuarioServiceIfc;
-    }
 
-    @RequestMapping("/{codAtividade}")
+	public AtividadeServiceIfc getAtividadeServiceIfc() {
+		return atividadeServiceIfc;
+	}
+
+	@Autowired(required = true)
+	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc") AtividadeServiceIfc atividadeServiceIfc) {
+		this.atividadeServiceIfc = atividadeServiceIfc;
+	}
+
+	public UsuarioServiceIfc getUsuarioServiceIfc() {
+		return usuarioServiceIfc;
+	}
+
+	@Autowired(required = true)
+	public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc") UsuarioServiceIfc usuarioServiceIfc) {
+		this.usuarioServiceIfc = usuarioServiceIfc;
+	}
+
+	@RequestMapping("/{codAtividade}")
 	public String realizaInscricao(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
-    	UsuarioBeans usuario = (UsuarioBeans) request.getSession().getAttribute("usuarioChronos"); 
-    	AtividadeBeans atividade = this.getAtividadeServiceIfc().getAtividade(codAtividade);
-    	
+		UsuarioBeans usuario = (UsuarioBeans) request.getSession().getAttribute("usuarioChronos");
+		AtividadeBeans atividade = this.getAtividadeServiceIfc().getAtividade(codAtividade);
 		return null;
 	}
-    
-    
+
 }

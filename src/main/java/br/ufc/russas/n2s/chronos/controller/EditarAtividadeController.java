@@ -63,7 +63,6 @@ public class EditarAtividadeController {
 	public String atualizaAtividade(@PathVariable long codAtividade, @ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse reponse, HttpServletRequest request ) throws  IllegalAccessException{ 
 		 AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
 		 HttpSession session = request.getSession();
-		 
 		 System.out.println("\n\n\n");
 		 System.out.println(atividade.getNome());
 		 System.out.println(atividade.getDescricao());

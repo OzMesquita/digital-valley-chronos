@@ -5,8 +5,6 @@
  */
 package br.ufc.russas.n2s.chronos.controller;
 
-
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,63 +33,58 @@ import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
  */
 @Controller("indexController")
 @RequestMapping("/")
-public class IndexController { 
+public class IndexController {
 
 	private AtividadeServiceIfc atividadeServiceIfc;
-    
-    public AtividadeServiceIfc getAtividadeServiceIfc(){
-        return atividadeServiceIfc;
-    }
-    
-    @Autowired(required = true)
-    public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc")AtividadeServiceIfc atividadeServiceIfc){
-        this.atividadeServiceIfc = atividadeServiceIfc;
-    }
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public String getIndex(Model model) {
-    	Atividade atividade = new Atividade();
-    	atividade.setDivulgada(true);
+
+	public AtividadeServiceIfc getAtividadeServiceIfc() {
+		return atividadeServiceIfc;
+	}
+
+	@Autowired(required = true)
+	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc") AtividadeServiceIfc atividadeServiceIfc) {
+		this.atividadeServiceIfc = atividadeServiceIfc;
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String getIndex(Model model) {
+		Atividade atividade = new Atividade();
+		atividade.setDivulgada(true);
 		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
 		for (Iterator<AtividadeBeans> iterator = atividades.iterator(); iterator.hasNext();) {
-			AtividadeBeans atividadeBeans =  iterator.next();
-			List<RealizacaoBeans> realizacoes= atividadeBeans.getRealizacao();
+			AtividadeBeans atividadeBeans = iterator.next();
+			List<RealizacaoBeans> realizacoes = atividadeBeans.getRealizacao();
 			for (Iterator<RealizacaoBeans> iterator2 = realizacoes.iterator(); iterator2.hasNext();) {
 				RealizacaoBeans realizacaoBeans = iterator2.next();
-				//mantém a data mais recente na posição 0 para que possa ser exibida na pagina inicio.jsp para cada atividade
-				if(realizacaoBeans.getHoraInicio().isBefore(realizacoes.get(0).getHoraInicio()))
+				// mantém a data mais recente na posição 0 para que possa ser exibida na pagina
+				// inicio.jsp para cada atividade
+				if (realizacaoBeans.getHoraInicio().isBefore(realizacoes.get(0).getHoraInicio()))
 					realizacoes.set(0, realizacaoBeans);
 			}
 		}
-	    model.addAttribute("categoria", "Início");
-	    model.addAttribute("estado", "início");
-	    model.addAttribute("atividades", atividades);        
-        return "inicio";
-    }
-    
-   
-    
-    @RequestMapping(value="/cadastrarSubAtividades", method = RequestMethod.GET)
-    public String getCadastroSub(Model model, HttpServletRequest request) {
-        return "cadastrar-atividade";
-    }
-    
-//    @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
-//    public String cadastraRealizacao(Model model, HttpServletRequest request) {
-//    	return "cadastrar-realizacao";
-//    }
-    
-    @RequestMapping(value="/{categoria}", method = RequestMethod.GET)
-    public String getCategoria(Model model, @PathVariable String categoria) {
-        Atividade atividade = new Atividade();
+		model.addAttribute("categoria", "Início");
+		model.addAttribute("estado", "início");
+		model.addAttribute("atividades", atividades);
+		return "inicio";
+	}
 
-        atividade.setTipoAtividade(EnumTipoAtividade.valorEnumPeloNome(categoria.toUpperCase()));
-        
-        List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
-        model.addAttribute("categoria", "Início");
-        model.addAttribute("estado", "início");
-        model.addAttribute("atividades", atividades); 
-        return "inicio";
-    }
-           
+	@RequestMapping(value = "/cadastrarSubAtividades", method = RequestMethod.GET)
+	public String getCadastroSub(Model model, HttpServletRequest request) {
+		return "cadastrar-atividade";
+	}
+
+	// @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
+	// public String cadastraRealizacao(Model model, HttpServletRequest request) {
+	// return "cadastrar-realizacao";
+	// }
+	@RequestMapping(value = "/{categoria}", method = RequestMethod.GET)
+	public String getCategoria(Model model, @PathVariable String categoria) {
+		Atividade atividade = new Atividade();
+		atividade.setTipoAtividade(EnumTipoAtividade.valorEnumPeloNome(categoria.toUpperCase()));
+		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
+		model.addAttribute("categoria", "Início");
+		model.addAttribute("estado", "início");
+		model.addAttribute("atividades", atividades);
+		return "inicio";
+	}
 }

@@ -1,10 +1,9 @@
 package br.ufc.russas.n2s.chronos.util;
-import java.util.Map;
 
+import java.util.Map;
 import com.github.shyiko.dotenv.DotEnv;
 
 public class Constantes {
-
 	private static String APP_URL;
 	private static String APP_GUARDIAO_URL;
 	private static String APP_ASSETS_URL;
@@ -16,8 +15,8 @@ public class Constantes {
 	private static String DATABASE_CONF_DIR;
 	private static String PRE_URL;
 	private static String DOCUMENTS_DIR;
+
 	private Constantes() {
-		//
 	}
 
 	static {
@@ -41,21 +40,21 @@ public class Constantes {
 	public static String getAppUrl() {
 		return APP_URL;
 	}
-	
+
 	/**
 	 * @return the appUrl
 	 */
 	public static String getAppGuardiaoUrl() {
 		return APP_GUARDIAO_URL;
 	}
-	
-	
+
 	/**
 	 * @return the appUrl
 	 */
 	public static String getPreUrl() {
 		return PRE_URL;
 	}
+
 	/**
 	 * @return the appAssetsUrl
 	 */
@@ -104,11 +103,11 @@ public class Constantes {
 	public static String getDatabaseConfDir() {
 		return DATABASE_CONF_DIR;
 	}
+
 	/**
 	 * @return the documentsDir
 	 */
 	public static String getDocumentsDir() {
 		return DOCUMENTS_DIR;
 	}
-	
 }

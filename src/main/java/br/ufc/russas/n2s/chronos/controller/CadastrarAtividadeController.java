@@ -1,6 +1,5 @@
 package br.ufc.russas.n2s.chronos.controller;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,46 +38,49 @@ public class CadastrarAtividadeController {
 		return atividadeServiceIfc;
 	}
 
-	@Autowired(required=true)
+	@Autowired(required = true)
 	public void setAtividadeServiceIfc(@Qualifier("atividadeServiceIfc") AtividadeServiceIfc atividadeService) {
 		this.atividadeServiceIfc = atividadeService;
 
 	}
+
 	public UsuarioServiceIfc getUsuarioServiceIfc() {
 		return usuarioServiceIfc;
 	}
+
 	@Autowired(required = true)
-	public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc")UsuarioServiceIfc usuarioServiceIfc) {
+	public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc") UsuarioServiceIfc usuarioServiceIfc) {
 		this.usuarioServiceIfc = usuarioServiceIfc;
 	}
 
-	 @RequestMapping(method = RequestMethod.GET)
-	    public String getCadastro(Model model, HttpServletRequest request) {
-	    	request.getSession().removeAttribute("pai");
-	    	List<UsuarioBeans> organizadores = this.getUsuarioServiceIfc().listaTodosUsuarios();
-	        model.addAttribute("organizadores", organizadores);
-	        return "cadastrar-atividade";
-	    }
-	
-	
+	@RequestMapping(method = RequestMethod.GET)
+	public String getCadastro(Model model, HttpServletRequest request) {
+		request.getSession().removeAttribute("pai");
+		List<UsuarioBeans> organizadores = this.getUsuarioServiceIfc().listaTodosUsuarios();
+		model.addAttribute("organizadores", organizadores);
+		return "cadastrar-atividade";
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
-	public String adicionaAtividades(@ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{
+	public String adicionaAtividades(@ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result,
+			Model model, HttpServletResponse response, HttpServletRequest request)
+			throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);
 		String[] codOrganizadores = request.getParameterValues("codOrganizador");
 		ArrayList<OrganizadorBeans> organizadores = new ArrayList<>();
-		if (codOrganizadores!= null) {
+		if (codOrganizadores != null) {
 			for (String cod : codOrganizadores) {
 				OrganizadorBeans organizadorBeans = new OrganizadorBeans();
-				UsuarioBeans u = this.getUsuarioServiceIfc().getUsuario(Long.parseLong(cod),0);
+				UsuarioBeans u = this.getUsuarioServiceIfc().getUsuario(Long.parseLong(cod), 0);
 				if (u != null) {
 					organizadorBeans.setUsuarioBeans(u);
 				}
 			}
 		}
 		atividade = this.getAtividadeService().adicionaAtividade(atividade);
-		if(!usuario.getPermissoes().contains(EnumPermissao. ADMINISTRADOR)) {
+		if (!usuario.getPermissoes().contains(EnumPermissao.ADMINISTRADOR)) {
 			usuario.getPermissoes().add(EnumPermissao.ADMINISTRADOR);
 		}
 		OrganizadorBeans orgBeans = new OrganizadorBeans();
@@ -88,35 +90,36 @@ public class CadastrarAtividadeController {
 		atividade.getOrganizadores().add(orgBeans);
 		atividade.setDivulgada(false);
 		atividade = this.getAtividadeService().atualizaAtividade(atividade);
-		session.setAttribute("mensagem","Atividade cadastrada com sucesso!");
+		session.setAttribute("mensagem", "Atividade cadastrada com sucesso!");
 		session.setAttribute("status", "sucess");
 		return ("redirect:atividades/" + atividade.getCodAtividade());
 	}
-	
 
 	@RequestMapping(value = "/subAtividade", method = RequestMethod.POST)
-	public String adicionaSubAtividades(@ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request) throws IOException,IllegalAccessException{
+	public String adicionaSubAtividades(@ModelAttribute("atividade") @Valid AtividadeBeans atividade,
+			BindingResult result, Model model, HttpServletResponse response, HttpServletRequest request)
+			throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);
 		String[] codOrganizadores = request.getParameterValues("codOrganizador");
 		ArrayList<OrganizadorBeans> organizadores = new ArrayList<>();
-		if (codOrganizadores!= null) {
+		if (codOrganizadores != null) {
 			for (String cod : codOrganizadores) {
 				OrganizadorBeans organizadorBeans = new OrganizadorBeans();
-				UsuarioBeans u = this.getUsuarioServiceIfc().getUsuario(Long.parseLong(cod),0);
+				UsuarioBeans u = this.getUsuarioServiceIfc().getUsuario(Long.parseLong(cod), 0);
 				if (u != null) {
 					organizadorBeans.setUsuarioBeans(u);
 				}
 			}
 		}
 		atividade = this.getAtividadeService().adicionaAtividade(atividade);
-		if(!usuario.getPermissoes().contains(EnumPermissao. ADMINISTRADOR)) {
+		if (!usuario.getPermissoes().contains(EnumPermissao.ADMINISTRADOR)) {
 			usuario.getPermissoes().add(EnumPermissao.ADMINISTRADOR);
 		}
-		if(request.getSession().getAttribute("pai") != null) {
+		if (request.getSession().getAttribute("pai") != null) {
 			AtividadeBeans atvBeans = (AtividadeBeans) request.getSession().getAttribute("pai");
-			atividade.setPai((Atividade)atvBeans.toBusiness());
+			atividade.setPai((Atividade) atvBeans.toBusiness());
 		}
 		OrganizadorBeans orgBeans = new OrganizadorBeans();
 		orgBeans.setUsuarioBeans(usuario);
@@ -125,9 +128,8 @@ public class CadastrarAtividadeController {
 		atividade.getOrganizadores().add(orgBeans);
 		atividade.setDivulgada(false);
 		atividade = this.getAtividadeService().atualizaAtividade(atividade);
-		session.setAttribute("mensagem","Atividade cadastrada com sucesso!");
+		session.setAttribute("mensagem", "Atividade cadastrada com sucesso!");
 		session.setAttribute("status", "sucess");
 		return ("redirect:/subatividades/" + atividade.getPai().getCodAtividade());
 	}
-
 }

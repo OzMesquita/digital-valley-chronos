@@ -6,20 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import br.ufc.russas.n2s.chronos.model.Apoio;
 
-public class ApoioDAOImpl implements ApoioDAOIfc{
-
+public class ApoioDAOImpl implements ApoioDAOIfc {
 	private DAOIfc<Apoio> daoImpl;
-	
+
 	@Autowired
-	public void setDAOIfc(@Qualifier("daoImpl")DAOIfc<Apoio> dao) {
+	public void setDAOIfc(@Qualifier("daoImpl") DAOIfc<Apoio> dao) {
 		this.daoImpl = dao;
 	}
-	
-	public ApoioDAOImpl(){}
-	
+
+	public ApoioDAOImpl() {
+	}
+
 	@Override
 	public void adicionaApoio(Apoio apoio) {
-		this.daoImpl.adiciona(apoio);		
+		this.daoImpl.adiciona(apoio);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ApoioDAOImpl implements ApoioDAOIfc{
 	public void removeApoio(Apoio apoio) {
 		this.daoImpl.remove(apoio);
 	}
-	
+
 	@Override
 	public List<Apoio> listaApoio(Apoio apoio) {
 		return this.daoImpl.lista(apoio);
@@ -40,7 +40,7 @@ public class ApoioDAOImpl implements ApoioDAOIfc{
 	@Override
 	public List<Apoio> listaHqlApoio(String busca) {
 		return this.daoImpl.listaHqL(busca);
-	}	
+	}
 
 	@Override
 	public Apoio getApoio(Apoio apoio) {

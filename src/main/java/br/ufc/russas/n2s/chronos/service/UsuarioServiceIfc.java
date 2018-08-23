@@ -13,14 +13,22 @@ import java.util.List;
  *
  * @author N2S
  */
-public interface UsuarioServiceIfc extends ServiceIfc{
-    UsuarioBeans adicionaUsuario(UsuarioBeans usuario);
-    UsuarioBeans atualizaUsuario(UsuarioBeans usuario);
-    void removeUsuario(UsuarioBeans usuario);
-    List<UsuarioBeans> listaTodosUsuarios();
-    UsuarioBeans getUsuario(long codUsuario, long codUsuarioControleDeAcesso);
-    UsuarioBeans getUsuarioControleDeAcesso(long codUsuarioControleDeAcesso);
-    void adicionaNivel(UsuarioBeans usuario, EnumPermissao permissao) throws IllegalAccessException;
-    void removeNivel(UsuarioBeans usuario, EnumPermissao permissao) throws IllegalAccessException;
-    List<UsuarioBeans> listaAvaliadores();
+public interface UsuarioServiceIfc extends ServiceIfc {
+	UsuarioBeans adicionaUsuario(UsuarioBeans usuario);
+
+	UsuarioBeans atualizaUsuario(UsuarioBeans usuario);
+
+	void removeUsuario(UsuarioBeans usuario);
+
+	List<UsuarioBeans> listaTodosUsuarios();
+
+	UsuarioBeans getUsuario(long codUsuario, long codUsuarioControleDeAcesso);
+
+	UsuarioBeans getUsuarioControleDeAcesso(long codUsuarioControleDeAcesso);
+
+	void adicionaNivel(UsuarioBeans usuario, EnumPermissao permissao) throws IllegalAccessException;
+
+	void removeNivel(UsuarioBeans usuario, EnumPermissao permissao) throws IllegalAccessException;
+
+	List<UsuarioBeans> listaAvaliadores();
 }

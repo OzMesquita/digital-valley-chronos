@@ -1,7 +1,6 @@
 package br.ufc.russas.n2s.chronos.model;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,23 +9,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="realizacao")
+@Table(name = "realizacao")
 public class Realizacao {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="codRealizacao")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codRealizacao")
 	private long codRealizacao;
-	
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime horaInicio;
-	
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime horaFinal;
-	
+
 	public Realizacao() {
 	}
 
@@ -34,41 +30,42 @@ public class Realizacao {
 		setHoraInicio(horaInicio);
 		setHoraFinal(horaFinal);
 	}
-	
+
 	public long getCodRealizacao() {
 		return codRealizacao;
 	}
+
 	public void setCodRealizacao(long codRealizacao) {
-		if(codRealizacao>0) {
+		if (codRealizacao > 0) {
 			this.codRealizacao = codRealizacao;
 		}
 	}
-	
+
 	public LocalDateTime getHoraInicio() {
 		return horaInicio;
 	}
-	
+
 	public void setHoraInicio(LocalDateTime horaInicio) {
-		if(horaInicio == null)
+		if (horaInicio == null)
 			throw new IllegalArgumentException("Erro: o campo da hora inicial não pode estar vazio.");
-		else if(horaInicio.isBefore(LocalDateTime.now()) && horaInicio.isEqual(LocalDateTime.now()))
+		else if (horaInicio.isBefore(LocalDateTime.now()) && horaInicio.isEqual(LocalDateTime.now()))
 			throw new IllegalArgumentException("Erro: o campo da hora inicial deve ser posterior a data atual.");
 		else
-			this.horaInicio = horaInicio;		
+			this.horaInicio = horaInicio;
 	}
-	
+
 	public LocalDateTime getHoraFinal() {
 		return horaFinal;
 	}
-	
+
 	public void setHoraFinal(LocalDateTime horaFinal) {
-		if(horaFinal == null)
+		if (horaFinal == null)
 			throw new IllegalArgumentException("Erro: o campo hora final não pode estar vazio.");
-		else if(horaFinal.isEqual(horaInicio))
+		else if (horaFinal.isEqual(horaInicio))
 			throw new IllegalArgumentException("Erro: o campo hora final não pode ser igual ao campo da hora inicial.");
-		else if(horaFinal.isBefore(horaInicio))
-			throw new IllegalArgumentException("Erro: o campo hora final não pode ser antes do campo da hora inicial.");			
+		else if (horaFinal.isBefore(horaInicio))
+			throw new IllegalArgumentException("Erro: o campo hora final não pode ser antes do campo da hora inicial.");
 		else
 			this.horaFinal = horaFinal;
-	}	
+	}
 }

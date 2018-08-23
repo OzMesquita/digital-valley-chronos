@@ -7,15 +7,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import br.ufc.russas.n2s.chronos.model.Responsavel;
 
-public class ResponsavelDAOImpl implements ResponsavelDAOIfc{
-
+public class ResponsavelDAOImpl implements ResponsavelDAOIfc {
 	private DAOIfc<Responsavel> daoImpl;
-	
+
 	@Autowired
-	public void setDAOIfc(@Qualifier("daoImpl")DAOIfc<Responsavel> dao) {
+	public void setDAOIfc(@Qualifier("daoImpl") DAOIfc<Responsavel> dao) {
 		this.daoImpl = dao;
 	}
-	
+
 	@Override
 	public void adicionaResponsavel(Responsavel responsavel) {
 		this.daoImpl.adiciona(responsavel);
@@ -40,7 +39,7 @@ public class ResponsavelDAOImpl implements ResponsavelDAOIfc{
 	public List<Responsavel> listaHqlResponsavel(String busca) {
 		return this.daoImpl.listaHqL(busca);
 	}
-	
+
 	@Override
 	public Responsavel getResponsavel(Responsavel responsavel) {
 		return this.daoImpl.getObject(responsavel, responsavel.getCodResponsavel());
