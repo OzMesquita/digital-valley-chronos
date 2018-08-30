@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufc.russas.n2s.chronos.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
-/**
- *
- * @author N2S
- */
 @Controller("atividadeController")
 @RequestMapping("/atividades")
 public class AtividadesController {

@@ -1,10 +1,5 @@
 package br.ufc.russas.n2s.chronos.controller.filter;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
@@ -29,10 +24,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import util.Facade;
 
-/**
- *
- * @author N2S
- */
 public class AutenticadoFiltro implements Filter {
 	private UsuarioServiceIfc usuarioServiceIfc;
 

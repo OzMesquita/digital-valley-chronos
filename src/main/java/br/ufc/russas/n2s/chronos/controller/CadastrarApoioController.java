@@ -44,10 +44,6 @@ public class CadastrarApoioController {
 
 	@RequestMapping(value = "/{codAtividade}", method = RequestMethod.GET)
 	public String getCadastro(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
-		// request.getSession().removeAttribute("pai");
-		// List<UsuarioBeans> organizadores =
-		// this.getUsuarioServiceIfc().listaTodosUsuarios();
-		// model.addAttribute("organizadores", organizadores);
 		return "cadastrar-apoio";
 	}
 }

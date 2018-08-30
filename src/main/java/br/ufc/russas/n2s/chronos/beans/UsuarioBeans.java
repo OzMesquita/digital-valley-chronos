@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufc.russas.n2s.chronos.beans;
 
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import java.util.List;
 
-/**
- *
- * @author N2S
- */
 public class UsuarioBeans implements Beans {
 	private long codUsuario;
 	private long codUsuarioControleDeAcesso;

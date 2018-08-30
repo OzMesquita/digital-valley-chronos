@@ -75,15 +75,6 @@
 							required>${atividade.descricao}</textarea>
 						<div class="invalid-feedback"></div>
 						<br>
-						<!-- não é necessário pois a atividade pai não pode de forma alguma ser alterada -->
-						<!-- <c:if test="${not empty pai}">
-			                        <label for="paiInput">Atividade pai*</label>
-			                        <input type="text" name="pai" class="form-control" id="paiInput" aria-describedby="paiHelp" placeholder="Digite o nome da atividade que engloba esta atividade" >
-			                        <small id="paiHelp" class="form-text text-muted">Exemplo: Semana de incetivo ao software livre</small>
-			                        <div class="invalid-feedback">
-			                        </div>
-			  						<br>
-  						 </c:if>  -->
 						<label for="siglaInput">Sigla*</label> <input class="form-control"
 							name="sigla" id="descricaoInput"
 							placeholder="Digite uma sigla para a atividade" required
@@ -197,12 +188,6 @@
 							class="text-center">Opções</h2>
 					</div>
 					<ul class="list-group list-group-flush">
-						<!-- 
-	<a class="btn icon-btn btn-primary" href="/Chronos/realizacao/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add realização</a><br>
-                     	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add subatividade</a> 
-                     	-->
-						<%-- <a class="btn icon-btn btn-primary" href="/Chronos/realizacao/${atividade.codAtividade }"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add realização</a><br>
-                     	<a class="btn icon-btn btn-primary" href="/Chronos/subatividades/${atividade.codAtividade}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add subatividade</a><br>    --%>
 						<a class="btn icon-btn btn-primary"
 							href="/Chronos/realizacao/${atividade.codAtividade }"><span
 							class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Realizações</a>

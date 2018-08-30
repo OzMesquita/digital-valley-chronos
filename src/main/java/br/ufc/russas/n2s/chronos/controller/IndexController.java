@@ -27,10 +27,6 @@ import br.ufc.russas.n2s.chronos.model.EnumTipoAtividade;
 import br.ufc.russas.n2s.chronos.model.Realizacao;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
-/**
- *
- * @author N2S
- */
 @Controller("indexController")
 @RequestMapping("/")
 public class IndexController {
@@ -73,10 +69,6 @@ public class IndexController {
 		return "cadastrar-atividade";
 	}
 
-	// @RequestMapping(value = "/cadastrarRealizacoes", method = RequestMethod.GET)
-	// public String cadastraRealizacao(Model model, HttpServletRequest request) {
-	// return "cadastrar-realizacao";
-	// }
 	@RequestMapping(value = "/{categoria}", method = RequestMethod.GET)
 	public String getCategoria(Model model, @PathVariable String categoria) {
 		Atividade atividade = new Atividade();

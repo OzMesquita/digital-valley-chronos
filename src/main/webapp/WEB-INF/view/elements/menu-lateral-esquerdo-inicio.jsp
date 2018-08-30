@@ -1,8 +1,3 @@
-<%-- 
-    Document   : menu-lateral
-    Created on : 05/10/2017, 11:50:30
-    Author     : usuario
---%>
 <div class="col-12 col-md-3 col-xl-2 bd-sidebar"
 	style="margin-top: 5px;">
 	<div class="btn-group-vertical d-flex flex-column border" role="group">

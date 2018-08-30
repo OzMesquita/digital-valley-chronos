@@ -278,9 +278,8 @@
 							</div>
 						</div>
 					</form>
-				</li> <br />
-				<!-- <c:if test="${(isResponsavel and (atividade.estado eq 'ESPERA')) or (fn:contains(permissoes, 'ADMINISTRADOR'))}">    -->
-				<!--     </c:if> -->
+				</li>
+				<br />
 				<br>
 				<nav aria-label=""> <c:if test="${titulo eq 'Início'}">
 					<c:set value="" var="categoria"></c:set>

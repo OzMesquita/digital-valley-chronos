@@ -1,13 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufc.russas.n2s.chronos.util;
 
 import org.hibernate.Session;
@@ -17,10 +7,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-/**
- *
- * @author N2S
- */
 public class HibernateUtil {
 	private static final SessionFactory SESSION_FACTORY;
 	private static final ThreadLocal SESSION_THREAD = new ThreadLocal();

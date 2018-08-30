@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufc.russas.n2s.chronos.dao;
 
 import java.util.List;
@@ -15,11 +10,6 @@ import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-/**
- *
- * @author N2S
- * @param <T>
- */
 @Repository("daoImpl")
 public class DAOImpl<T> implements DAOIfc<T> {
 	private SessionFactory sessionFactory;
@@ -35,10 +25,6 @@ public class DAOImpl<T> implements DAOIfc<T> {
 		return sessionFactory;
 	}
 
-	/**
-	 *
-	 * @param sf
-	 */
 	@Autowired
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
@@ -146,10 +132,7 @@ public class DAOImpl<T> implements DAOIfc<T> {
 		Session session = getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
 		try {
-			// Example example = Example.create(object).excludeZeroes();
 			T o = (T) session.get(object.getClass(), codObject);
-			// T o = (T)
-			// session.createCriteria(object.getClass()).add(example).uniqueResult();
 			t.commit();
 			return o;
 		} catch (RuntimeException e) {

@@ -95,48 +95,8 @@
 				</li>
 				<c:set var="pagina"
 					value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
-				<!-- <c:forEach var="apoio" begin="${((pagina - 1) * 5)}" end="${((pagina - 1) * 5) + 4}" items="${atividade.apoiadores}">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row" style="padding-left: 13px;">
-                                <h2 class="card-title text-uppercase font-weight-bold">
-                                ${atividade.nome} <small>(${atividade.sigla})</small>
-                                </h2>
-                                <span class="badge badge-pill badge-warning" style="right: 20px; font-size: 10px;position: absolute;">Remover</span>
-                            </div>
-                            <h3 class="card-subtitle mb-2 text-muted">
-                                ${atividade.tipoAtividade} - data aqui!!! 
-                            </h3>
-                            <p class="card-text text-justify">
-                                ${fn:substring(atividade.descricao, 0, 400)}
-                                <c:if test="${fn:length(atividade.descricao) > 400}">
-                                    [...]
-                                </c:if>
-                            </p>
-                            <c:set var = "nomeUrl" value = "${atividade.nome}"/>
-                            <a href="/Chronos/atividades/${atividade.codAtividade}" class="card-link">Mais informações</a>
-                        </div>
-                    </div>
-                </c:forEach> -->
 				<br />
-				<!-- <c:if test="${(isResponsavel and (atividade.estado eq 'ESPERA')) or (fn:contains(permissoes, 'ADMINISTRADOR'))}">    -->
-				<!--     </c:if> -->
 				<br>
-				<!--   <nav aria-label="">
-                <c:if test="${titulo eq 'Início'}"><c:set value="" var="categoria"></c:set></c:if>
-                <c:if test="${titulo eq 'Minhas atividades'}"><c:set value="minhas_Atividades" var="categoria"></c:set></c:if>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item "${(pagina <= 1 ? "disabled" : "")}">
-                            <a class="page-link" href="/Chronos/${categoria}?pag=${pagina - 1}" tabindex="-1">Anterior</a>
-                        </li>
-                    <c:forEach var="i" begin="1" end="${(fn:length(apoiadores)/5) + (fn:length(apoiadores)%5 == 0 ? 0 : 1)}">
-                        <li class="page-item "${(pagina == i ? "active": "")}"><a class="page-link" href="/Chronos/${categoria}?pag=${i}">${i}</a></li>
-                    </c:forEach>
-                        <li class="page-item  "${(pagina >= ((fn:length(apoiadores))/5) ? "disabled" : "")}">
-                            <a class="page-link" href="/Chronos/${categoria}?pag=${pagina + 1}">Próximo</a>
-                        </li>
-                    </ul>
-                </nav>-->
 			</div>
 		</div>
 	</div>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufc.russas.n2s.chronos.model;
 import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
 import java.util.List;
@@ -17,10 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-/**
- *
- * @author N2S
- */
+
 @Entity
 @Table(name="usuario")
 public class UsuarioChronos {
@@ -89,7 +81,6 @@ public class UsuarioChronos {
             throw new IllegalArgumentException("Usuário não possui a permição de ".concat(permisao.toString()));
         }
     }
-    
     
     @Override
     public boolean equals(Object o){

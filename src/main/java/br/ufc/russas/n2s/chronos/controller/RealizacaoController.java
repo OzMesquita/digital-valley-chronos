@@ -70,18 +70,6 @@ public class RealizacaoController {
 		return "realizacao";
 	}
 
-	// @RequestMapping(value="/{codAtividade}", method = RequestMethod.POST)
-	// public String getRealizacoes2(@PathVariable long codAtividade, Model model)
-	// throws IOException,IllegalAccessException{
-	// AtividadeBeans atividadeBeans =
-	// this.atividadeServiceIfc.getAtividade(codAtividade);
-	// List<RealizacaoBeans> realizacao = Collections.synchronizedList(new
-	// ArrayList<RealizacaoBeans>());
-	// realizacao = atividadeBeans.getRealizacao();
-	// model.addAttribute("realizacao", realizacao);
-	// return "realizacao";
-	// }
-
 	@RequestMapping(value = "/removeRealizacao/{codAtividade}&{codRealizacao}", method = RequestMethod.POST)
 	public String removerRealizacao(@PathVariable long codAtividade, @PathVariable long codRealizacao, Model model,
 			HttpServletRequest request) throws IllegalAccessException {
@@ -99,8 +87,6 @@ public class RealizacaoController {
 			}
 
 		}
-		// atividadeBeans =
-		// this.getAtividadeServiceIfc().atualizaAtividade(atividadeBeans);
 		session.setAttribute("mensagem", "Realizacao removida com sucesso!");
 		session.setAttribute("status", "success");
 		return ("redirect:/realizacao/" + codAtividade);

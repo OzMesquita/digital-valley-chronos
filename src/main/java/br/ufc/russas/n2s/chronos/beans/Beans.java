@@ -5,10 +5,6 @@
  */
 package br.ufc.russas.n2s.chronos.beans;
 
-/**
- *
- * @author N2S
- */
 public interface Beans {
 	/**
 	 *
