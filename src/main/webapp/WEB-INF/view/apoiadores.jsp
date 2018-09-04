@@ -85,14 +85,13 @@
 					</c:forEach>
 					<br />
 				</c:if>
-				<li style="list-style: none; text-align: center;">
-					<button class="btn btn-circle">
-						<a href="/Chronos/cadastrarApoio/${atividade.codAtividade}"
-							class="timeline-badge primary"> <i class="material-icons"
-							title="Adicionar novo apoio">add</i>
-						</a>
-					</button>
-				</li>
+				<a href="/Chronos/cadastrarApoio/${atividade.codAtividade}"	class="timeline-badge primary">
+					<li style="list-style: none; text-align: center;">
+						<button class="btn btn-circle">
+							 <i class="material-icons" title="Adicionar novo apoio">add</i>
+						</button>
+					</li>
+				</a>
 				<c:set var="pagina"
 					value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
 				<br />
