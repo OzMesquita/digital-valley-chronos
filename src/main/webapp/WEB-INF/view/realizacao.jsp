@@ -214,14 +214,20 @@
 				<!--######################-->
 				<!-- ADICIONAR REALIZACAO -->
 				<!--######################-->
-				<li>
-					<form method="POST"
-						action="cadastraRealizacao/${atividade.codAtividade}"
-						accept-charset="UTF-8" enctype="multipart/form-data"
-						id="needs-validation" novalidate>
-						<input type="button" class="btn btn-circle"
-							value="Adicionar Periodo" data-toggle="modal"
-							data-target="#confirmarRealizacao">
+				
+				
+							
+						<li style="list-style: none; text-align: center;">
+							<button class="btn btn-circle" data-toggle="modal" data-target="#confirmarRealizacao">
+								<a
+																		
+									class="timeline-badge primary"> <i class="material-icons"
+									title="Adicionar Periodo">add</i>
+									
+								</a>
+							</button>
+						</li>	
+							
 						<!-- Modal -->
 						<div class="modal fade" id="confirmarRealizacao" tabindex="-1"
 							role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -277,8 +283,8 @@
 								</div>
 							</div>
 						</div>
-					</form>
-				</li>
+					
+				
 				<br />
 				<br>
 				<nav aria-label=""> <c:if test="${titulo eq 'Início'}">
