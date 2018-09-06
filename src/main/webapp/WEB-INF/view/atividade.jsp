@@ -184,6 +184,7 @@ ul {
 </style>
 </head>
 <body>
+
 	<c:import url="elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
 	<c:set var="permissoes"
 		value="${sessionScope.usuarioChronos.permissoes}"></c:set>
@@ -370,20 +371,25 @@ ul {
 										<th>Vagas</th>
 										<th class="text-center">Ação</th>
 									</tr>
-								</thead>
-								<c:forEach var="atividades" items="${atividade.subAtividade}">
-									<tr>
-										<td>${atividades.nome}</td>
-										<td>${atividades.responsavel.nome}</td>
-										<td>${atividades.local}</td>
-										<td>22/05 - 08:00</td>
-										<td>20/20</td>
-										<td class="text-center"><a href="#"
-											class="btn btn-primary btn-sm"
-											style="height: 33px; margin-left: 30px; margin-top: -4px;">
-												Inscrever-se </a></td>
-									</tr>
-								</c:forEach>
+								</thead>	
+								<%-- Verifica se o usuario é administrador e então exibe a opção de editar atividade --%> 														
+								<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+									<c:forEach var="atividades" items="${atividade.subAtividade}">
+										<tr>
+											<td>${atividades.nome}</td>
+											<td>${atividades.responsavel.nome}</td>
+											<td>${atividades.local}</td>
+											<td>22/05 - 08:00</td>
+											<td>20/20</td>
+											<td class="text-center"><a href="#"
+												class="btn btn-primary btn-sm"
+												style="height: 33px; margin-left: 30px; margin-top: -4px;">
+													Editar </a></td>
+										</tr>
+									</c:forEach>								
+								</c:if>							
+											
+								
 							</table>
 						</div>
 					</div>
