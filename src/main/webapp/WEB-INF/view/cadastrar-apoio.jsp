@@ -38,9 +38,17 @@
 						<li class="breadcrumb-item">Você está em:</li>
 						<li class="breadcrumb-item" aria-current="page"><a
 							href="/Chronos">Início</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a
+					href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
+						<li class="breadcrumb-item active" aria-current="page"><a
+							href="/Chronos/editarAtividade/${atividade.codAtividade}">Editar
+								Atividade</a></li>
+						<li class="breadcrumb-item" aria-current="page"><a
+							href="/Chronos/apoiadores/${atividade.codAtividade}">Cadastrar
+								Apoiadores</a></li>		
 						<c:if test="${empty pai}">
 							<li class="breadcrumb-item active" aria-current="page">Cadastrar
-								Apoiadores</li>
+								Apoiador</li>
 						</c:if>
 
 						<c:if test="${not empty pai}">

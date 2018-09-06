@@ -381,10 +381,10 @@ ul {
 											<td>${atividades.local}</td>
 											<td>22/05 - 08:00</td>
 											<td>20/20</td>
-											<td class="text-center"><a href="#"
+											<td class="text-center"><a href="/Chronos/editarAtividade/${atividades.codAtividade}"
 												class="btn btn-primary btn-sm"
 												style="height: 33px; margin-left: 30px; margin-top: -4px;">
-													Editar </a></td>
+													Editar </a></td>													
 										</tr>
 									</c:forEach>								
 								</c:if>							
