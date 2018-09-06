@@ -1,6 +1,5 @@
 package br.ufc.russas.n2s.chronos.beans;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import br.ufc.russas.n2s.chronos.model.Apoio;
@@ -83,9 +82,9 @@ public class ApoioBeans implements Beans{
 	@Override
 	public Beans toBeans(Object object) {
         if(object == null)
-        	throw new IllegalArgumentException("O objeto a ser adicionado não é um Apoio!");
-        if(!(object instanceof Apoio))
         	throw new NullPointerException("O Apoio não pode ser nulo!");
+        if(!(object instanceof Apoio))
+        	throw new IllegalArgumentException("O objeto a ser adicionado não é um Apoio!");
         Apoio apoio = (Apoio) object;
         this.setCodApoio(apoio.getCodApoio());
 		this.setNomeInstituicao(apoio.getNomeInstituicao());

@@ -47,7 +47,7 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://192.169.1.2:5432/chronos</property>
     <property name="hibernate.connection.username">n2s</property>
     <property name="hibernate.connection.password">N2S@UFC</property>
-    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.show_sql">false</property>
     <property name="hibernate.event.merge.entity_copy_observer">allow</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.current_session_context_class">thread</property>

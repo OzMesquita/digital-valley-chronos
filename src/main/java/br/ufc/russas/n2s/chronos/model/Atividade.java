@@ -57,7 +57,7 @@ public class Atividade implements Comparable<Atividade> {
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoPagamento tipoPagamento;
 	private String localPagamento;
-	@ManyToMany(targetEntity = Apoio.class, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = Apoio.class, fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	@JoinTable(name = "apoiadores_atividade", joinColumns = {
 			@JoinColumn(name = "atividade", referencedColumnName = "codAtividade") }, inverseJoinColumns = {

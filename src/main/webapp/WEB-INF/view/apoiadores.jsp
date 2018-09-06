@@ -74,10 +74,11 @@
 										${apoiador.nomeInstituicao}</h2>
 								</div>
 								<p class="card-text text-justify">${apoiador.tipoApoio}</p>
-								<p class="card-text text-justify">${apoiador.dataPagamento}
 								</p>
+								<fmt:parseDate value="${apoiador.dataPagamento}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+								<fmt:formatDate pattern="EEEE',' dd 'de' MMMM 'de' yyyy" value="${ parsedDateTime }" var="dateTime" />
 								<h3 class="card-subtitle mb-2 text-muted">
-									${apoiador.dataPagamento} - data aqui!!!</h3>
+									${dateTime}</h3>
 								<p class="card-text text-justify">
 									${apoiador.siteInstituicao}</p>
 							</div>

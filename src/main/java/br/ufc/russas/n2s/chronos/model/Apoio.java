@@ -1,6 +1,5 @@
 package br.ufc.russas.n2s.chronos.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import br.ufc.russas.n2s.chronos.model.exceptions.IllegalCodeException;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "apoio")
@@ -17,11 +16,17 @@ public class Apoio implements Comparable<Apoio> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codApoio")
 	private long codApoio;
+	@Column(name = "nomeInstituicao")
 	private String nomeInstituicao;
+	@Column(name = "logo")
 	private String logo;
+	@Column(name = "tipoApoio")
 	private String tipoApoio;
+	@Column(name = "valorApoio")
 	private float valorApoio;
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataPagamento;
+	@Column(name = "siteInstituicao")
 	private String siteInstituicao;
 
 	public Apoio() {
@@ -44,8 +49,6 @@ public class Apoio implements Comparable<Apoio> {
 	public void setCodApoio(long codApoio) {
 		if (codApoio > 0)
 			this.codApoio = codApoio;
-		else
-			throw new IllegalCodeException("Código do apoio deve ser maior de zero!");
 	}
 
 	public String getNomeInstituicao() {
@@ -54,9 +57,10 @@ public class Apoio implements Comparable<Apoio> {
 
 	public void setNomeInstituicao(String nomeInstituicao) {
 		if (isEmpty(nomeInstituicao))
-			this.nomeInstituicao = nomeInstituicao;
-		else
 			throw new IllegalArgumentException("Erro: o campo nome da instituicao nao pode estar vazio");
+		else
+			this.nomeInstituicao = nomeInstituicao;
+			
 	}
 
 	public String getLogo() {
@@ -73,9 +77,9 @@ public class Apoio implements Comparable<Apoio> {
 
 	public void setTipoApoio(String tipoApoio) {
 		if (isEmpty(tipoApoio))
-			this.tipoApoio = tipoApoio;
-		else
 			throw new IllegalArgumentException("Erro: o campo tipo de apoio nao pode estar vazio.");
+		else
+			this.tipoApoio = tipoApoio;
 	}
 
 	public float getValorApoio() {

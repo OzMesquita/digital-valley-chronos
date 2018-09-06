@@ -70,7 +70,7 @@
 					obrigatório</p>
 				<br>
 				<div class="form-group">
-					<form method="POST" action="cadastrarApoio" accept-charset="UTF-8"
+					<form method="POST" action="cadastraApoio/${atividade.codAtividade}" accept-charset="UTF-8"
 						enctype="multipart/form-data" id="needs-validation" novalidate>
 						<label for="tituloInput">Nome da Instituição*</label> <input
 							type="text" name="nomeInstituicao" class="form-control"
@@ -80,17 +80,17 @@
 							Laboratório Interdisciplinar de Computação e Engenharia de
 							Software</small>
 						<div class="invalid-feedback"></div>
-
-						<label for="emailInstituicaoInput">E-mail da Instituicao*</label>
-						<textarea class="form-control" name="emailInstituicao"
-							id="descricaoInput"
-							placeholder="Digite o e-mail da instituição de apoio" required></textarea>
-						<div class="invalid-feedback"></div>
-
-						<br> <label for="tipoApoioInput">Tipo de Apoio*</label>
-						<textarea class="form-control" name="descricao"
+						
+						<br> <label for="siteInstituicaoInput">Site da Instituicao*</label>
+						<textarea class="form-control" name="siteInstituicao"
 							id="tipoDeApoioInput" placeholder="Digite o tipo do apoio"
 							required></textarea>
+						
+						<br> <label for="tipoApoioInput">Tipo de Apoio*</label>
+						<textarea class="form-control" name="tipoApoio"
+							id="tipoDeApoioInput" placeholder="Digite o tipo do apoio"
+							required></textarea>
+						
 						<div class="invalid-feedback"></div>
 						<br> <label for="valorApoioInput">Valor de Apoio*</label>
 						<textarea class="form-control" name="valorApoio"
@@ -103,7 +103,7 @@
 								style="padding-left: 0px;" id="datepicker">
 								<input type="date" class="form-control text-left"
 									placeholder="Digite a data de início desta etapa"
-									name="dataInicio" id="dataInicioInput" required />
+									name="dataPagamento" id="dataPagamentoInput" required />
 							</div>
 							<small id="periodoHelp" class="form-text text-muted">Selecione
 								uma data</small>
@@ -129,8 +129,7 @@
 										<p>Você deseja confirmar o cadastro do apoio?</p>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary btn-sm"
-											data-dismiss="modal">Cancelar</button>
+										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
 										<button type="submit" class="btn btn-primary btn-sm">Confirmar</button>
 									</div>
 								</div>

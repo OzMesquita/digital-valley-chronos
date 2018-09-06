@@ -46,10 +46,8 @@ public class AutenticadoFiltro implements Filter {
 			throws IOException, ServletException {
 		String path = ((HttpServletRequest) request).getServletPath();
 		if (path.endsWith("/autentica")) {
-			System.out.println("foi nao");
 			chain.doFilter(request, response);
 		} else {
-			System.out.println("foi\n\n");
 			HttpSession session = ((HttpServletRequest) request).getSession();
 			if (request.getParameter("token") != null && request.getParameter("id") != null) {
 				String token = request.getParameter("token");
