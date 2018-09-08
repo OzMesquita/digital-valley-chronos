@@ -214,6 +214,7 @@
 				<!--######################-->
 				<!-- ADICIONAR REALIZACAO -->
 				<!--######################-->
+<<<<<<< HEAD
 				
 				<li>			
 					
@@ -228,6 +229,16 @@
 								</a>
 							</button>
 						</li>	
+=======
+				<li>
+					<form method="POST"
+						action="cadastraRealizacao/${atividade.codAtividade}"
+						accept-charset="UTF-8" enctype="multipart/form-data"
+						id="needs-validation" novalidate>
+						<input type="button" class="btn btn-circle"
+							value="Adicionar Periodo" data-toggle="modal"
+							data-target="#confirmarRealizacao">
+>>>>>>> parent of 7a08ae8... Botao Adicionar(REALIZAÇÃO) corrigido
 						<!-- Modal -->
 						<div class="modal fade" id="confirmarRealizacao" tabindex="-1"
 							role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -288,7 +299,11 @@
 								</div>
 							</div>
 						</div>
+<<<<<<< HEAD
 					
+=======
+					</form>
+>>>>>>> parent of 7a08ae8... Botao Adicionar(REALIZAÇÃO) corrigido
 				</li>
 				<br />
 				<br>
