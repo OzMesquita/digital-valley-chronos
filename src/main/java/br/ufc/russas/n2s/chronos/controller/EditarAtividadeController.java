@@ -1,6 +1,5 @@
 package br.ufc.russas.n2s.chronos.controller;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
-import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
@@ -49,8 +47,7 @@ public class EditarAtividadeController {
 	public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc")UsuarioServiceIfc usuarioServiceIfc) {
 		this.usuarioServiceIfc = usuarioServiceIfc;
 	}
-	
-	
+		
 	@RequestMapping(value="/{codAtividade}",method = RequestMethod.GET)
 	public String getIndex(@PathVariable long codAtividade, Model model, HttpServletRequest request ) {
 		 AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
@@ -123,7 +120,9 @@ public class EditarAtividadeController {
 	@RequestMapping(value = "/remover/{codAtividade}", method = RequestMethod.GET)
 	public String removeAtividade(@PathVariable long codAtividade, HttpServletRequest request) throws IllegalAccessException {
 		AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
-		
+		HttpSession session = request.getSession();
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+		this.atividadeServiceIfc.setUsuario(usuario);
 		if(atividade.getPai() != null) {
 			List<Atividade> subAtividadesAUX = atividade.getPai().getSubAtividade();
 			
