@@ -45,7 +45,7 @@
 
 		</div>
 	</div>
-	<c:if test="${session.usuario!=null}">
+	<%if(request.getSession().getAttribute("usuarioChronos") == null) {%>
 		<td class="text-center">
 			<form method="POST" action="a paradinha pra onde tem q ir"
 				accept-charset="UTF-8" enctype="multipart/form-data"
@@ -83,7 +83,9 @@
 					</div>
 				</div>
 			</form>
-	</c:if>
+	<%} %>
+	<%if(request.getSession().getAttribute("usuarioChronos") != null) {%>
 	<a class="btn-sm btn-light text-right"
 		href="<%=Constantes.getAppUrl()%>/sair">Sair</a>
+	<%} %>
 </nav>
