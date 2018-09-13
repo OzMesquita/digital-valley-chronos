@@ -81,6 +81,15 @@
 									${dateTime}</h3>
 								<p class="card-text text-justify">
 									${apoiador.siteInstituicao}</p>
+
+								<form method="POST" action="r" accept-charset="UTF-8"
+									enctype="multipart/form-data" id="needs-validation" novalidate>
+									<input class="btn btn-primary" value="Editar" type="submit">
+								</form>
+
+
+
+
 							</div>
 						</div>
 					</c:forEach>
