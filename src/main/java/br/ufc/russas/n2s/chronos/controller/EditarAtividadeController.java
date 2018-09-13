@@ -135,14 +135,12 @@ public class EditarAtividadeController {
 					
 					AtividadeBeans atividadeAUX = new AtividadeBeans();
 					atividadeAUX.toBeans(atvAUX);
-					atividadeServiceIfc.removeAtividade(atividadeAUX);
-					
 					try {
-						atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
+						atividadeServiceIfc.removeAtividade(atividadeAUX);
 						request.getSession().setAttribute("mensagem", "Atividade removida com sucesso!");
 						request.getSession().setAttribute("status", "success");		
 						return "redirect:/inicio";
-					} catch (IllegalAccessException e) {
+					} catch (Exception e) {
 						request.getSession().setAttribute("mensagem", "Erro ao remvoer SubAtividade!");
 						request.getSession().setAttribute("status", "danger");	
 						return "redirect:/inicio";
@@ -150,13 +148,12 @@ public class EditarAtividadeController {
 				}
 			}
 		}else {
-			atividadeServiceIfc.removeAtividade(atividade);
 			try {
-				atividade = this.getAtividadeServiceIfc().atualizaAtividade(atividade);
+				atividadeServiceIfc.removeAtividade(atividade);
 				request.getSession().setAttribute("mensagem", "Atividade removida com sucesso!");
 				request.getSession().setAttribute("status", "success");
 				return "redirect:/inicio";
-			} catch (IllegalAccessException e) {
+			} catch (Exception e) {
 				request.getSession().setAttribute("mensagem", "Erro ao remover atividade!");
 				request.getSession().setAttribute("status", "danger");
 				return "redirect:/inicio";
