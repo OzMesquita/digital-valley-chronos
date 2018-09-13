@@ -2,7 +2,6 @@ package br.ufc.russas.n2s.chronos.controller.filter;
 
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
-import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -14,7 +13,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import dao.UsuarioDAO;
 import model.Pessoa;
 import model.Usuario;
 import dao.DAOFactory;
@@ -54,7 +52,6 @@ public class AutenticadoFiltro implements Filter {
 				int id = Integer.parseInt(request.getParameter("id"));
 				Pessoa user = Facade.buscarPessoaPorId(id);
 				if (token.equals(user.getUsuario().getTokenUsuario()) && id == user.getId() && !token.equals("null")) {
-					UsuarioDAO userDAO = DAOFactory.criarUsuarioDAO();
 					session.setAttribute("usuario", user.getUsuario());
 					UsuarioBeans u = new UsuarioBeans();
 					if (this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()) == null) {

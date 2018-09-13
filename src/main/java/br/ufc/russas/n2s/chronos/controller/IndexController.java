@@ -5,12 +5,10 @@
  */
 package br.ufc.russas.n2s.chronos.controller;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +22,6 @@ import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.EnumTipoAtividade;
-import br.ufc.russas.n2s.chronos.model.Realizacao;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
 @Controller("indexController")

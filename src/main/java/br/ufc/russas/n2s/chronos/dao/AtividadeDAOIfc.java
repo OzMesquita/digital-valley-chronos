@@ -3,7 +3,6 @@ package br.ufc.russas.n2s.chronos.dao;
 import java.util.List;
 
 import br.ufc.russas.n2s.chronos.model.Atividade;
-import br.ufc.russas.n2s.chronos.model.Responsavel;
 
 public interface AtividadeDAOIfc {
 	Atividade adicionaAtividade(Atividade atividade);

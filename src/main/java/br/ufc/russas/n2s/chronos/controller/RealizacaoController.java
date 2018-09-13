@@ -1,14 +1,11 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,15 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
-import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
-import br.ufc.russas.n2s.chronos.beans.OrganizadorBeans;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
-import br.ufc.russas.n2s.chronos.model.Atividade;
-import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.service.RealizacaoServiceIfc;
-import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
 @Controller("cadastrarRealizacaoController")
 @RequestMapping("/realizacao")
@@ -143,7 +135,6 @@ public class RealizacaoController {
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		try {
 			this.atividadeServiceIfc.setUsuario(usuario);
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
 			// Pegando DATA e HORA do form
 			String[] dataI = request.getParameter("dataInicio").split("-");

@@ -66,7 +66,7 @@ public class EditarAtividadeController {
 		 System.out.println("Tipo"+ atividade.getTipoAtividade().toString());
 		 System.out.println("\n\n\n");
 		 
-		 if(atividade != null) {
+		 {
 			 try {
 				 atividadeBeans.setNome(atividade.getNome());
 				 atividadeBeans.setDescricao(atividade.getDescricao());
@@ -91,9 +91,7 @@ public class EditarAtividadeController {
 				 model.addAttribute("status", "danger");
 				 return ("redirect:../atividades/" + atividade.getCodAtividade());
 			}
-		 }
-		return "editar-atividade";
-		 
+		 } 
 	}
 	
 	@RequestMapping(value = "/divulga/{codAtividade}", method = RequestMethod.GET)
