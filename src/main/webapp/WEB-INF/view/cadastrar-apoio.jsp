@@ -39,13 +39,13 @@
 						<li class="breadcrumb-item" aria-current="page"><a
 							href="/Chronos">Início</a></li>
 						<li class="breadcrumb-item" aria-current="page"><a
-					href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
+							href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
 						<li class="breadcrumb-item active" aria-current="page"><a
 							href="/Chronos/editarAtividade/${atividade.codAtividade}">Editar
 								Atividade</a></li>
 						<li class="breadcrumb-item" aria-current="page"><a
 							href="/Chronos/apoiadores/${atividade.codAtividade}">Cadastrar
-								Apoiadores</a></li>		
+								Apoiadores</a></li>
 						<c:if test="${empty pai}">
 							<li class="breadcrumb-item active" aria-current="page">Cadastrar
 								Apoiador</li>
@@ -78,8 +78,10 @@
 					obrigatório</p>
 				<br>
 				<div class="form-group">
-					<form method="POST" action="cadastraApoio/${atividade.codAtividade}" accept-charset="UTF-8"
-						enctype="multipart/form-data" id="needs-validation" novalidate>
+					<form method="POST"
+						action="cadastraApoio/${atividade.codAtividade}"
+						accept-charset="UTF-8" enctype="multipart/form-data"
+						id="needs-validation" novalidate>
 						<label for="tituloInput">Nome da Instituição*</label> <input
 							type="text" name="nomeInstituicao" class="form-control"
 							id="nomeInstituicaoInput" aria-describedby="nomeHelp"
@@ -88,17 +90,18 @@
 							Laboratório Interdisciplinar de Computação e Engenharia de
 							Software</small>
 						<div class="invalid-feedback"></div>
-						
-						<br> <label for="siteInstituicaoInput">Site da Instituicao*</label>
+
+						<br> <label for="siteInstituicaoInput">Site da
+							Instituicao*</label>
 						<textarea class="form-control" name="siteInstituicao"
 							id="tipoDeApoioInput" placeholder="Digite o tipo do apoio"
 							required></textarea>
-						
+
 						<br> <label for="tipoApoioInput">Tipo de Apoio*</label>
 						<textarea class="form-control" name="tipoApoio"
 							id="tipoDeApoioInput" placeholder="Digite o tipo do apoio"
 							required></textarea>
-						
+
 						<div class="invalid-feedback"></div>
 						<br> <label for="valorApoioInput">Valor de Apoio*</label>
 						<textarea class="form-control" name="valorApoio"
@@ -115,6 +118,10 @@
 							</div>
 							<small id="periodoHelp" class="form-text text-muted">Selecione
 								uma data</small>
+						</div>
+						<div class="form-group">
+							<label for="image">Cadastrar logo: </label> <input
+								type="file" name="logo" id="logo">
 						</div>
 						<br> <a href="/Chronos/" type="button" id="enviar"
 							class="btn btn-secondary"> Cancelar </a> <input type="button"
@@ -137,7 +144,8 @@
 										<p>Você deseja confirmar o cadastro do apoio?</p>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+										<button type="button" class="btn btn-secondary btn-sm"
+											data-dismiss="modal">Cancelar</button>
 										<button type="submit" class="btn btn-primary btn-sm">Confirmar</button>
 									</div>
 								</div>

@@ -1,5 +1,7 @@
 package br.ufc.russas.n2s.chronos.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
@@ -17,12 +19,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
+import br.ufc.russas.n2s.chronos.util.Constantes;
 
 @Controller("cadastrarApoioController")
 @RequestMapping("/cadastrarApoio")
@@ -57,7 +62,7 @@ public class CadastrarApoioController {
 	@RequestMapping(value = "/cadastraApoio/{codAtividade}", method = RequestMethod.POST)
 	public String adiciona(@PathVariable long codAtividade,
 			@ModelAttribute("apoio") @Valid ApoioBeans apoio, BindingResult result, Model model,
-			HttpServletResponse response, HttpServletRequest request) throws IOException, IllegalAccessException {
+			HttpServletResponse response, HttpServletRequest request, @RequestParam("logo") MultipartFile logo) throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 
@@ -67,6 +72,28 @@ public class CadastrarApoioController {
 		LocalDateTime dataPagamento = LocalDateTime.of(Integer.parseInt(dataI[0]), Integer.parseInt(dataI[1]),
 				Integer.parseInt(dataI[2]), LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
 		apoio.setDataPagamento(dataPagamento);
+		
+		File dir = new File (Constantes.getLogoImgApoio()+File.separator);
+		
+		if(!dir.isDirectory()) {
+			dir.mkdirs();
+		}
+		
+		System.out.println(dir.getAbsolutePath());
+		
+        if (!logo.equals(null)) {
+        	File convFile = null;
+        	if(logo.getContentType().equals("image/png")) {
+        		convFile = File.createTempFile(apoio.getNomeInstituicao()+codAtividade, ".png", dir);
+        	}
+        	else if (logo.getContentType().equals("image/jpeg")) {
+        		convFile = File.createTempFile(apoio.getNomeInstituicao()+codAtividade, ".jpeg", dir);
+			}
+            FileOutputStream fos = new FileOutputStream(convFile); 
+            fos.write(logo.getBytes());
+            fos.close();
+            apoio.setLogo(convFile.getAbsolutePath());
+        } 
 		
 		System.out.println(apoio.getCodApoio());
 		System.out.println(apoio.getLogo());
