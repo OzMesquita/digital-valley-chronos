@@ -91,22 +91,22 @@
 						<div class="invalid-feedback"></div>
 						
 						<br> <label for="siteInstituicaoInput">Site da Instituicao*</label>
-						<textarea value="${apoio.siteInstituicao}"
+						<textarea 
 							class="form-control" name="siteInstituicao"
 							id="tipoDeApoioInput" placeholder="Digite o tipo do apoio"
-							required></textarea>
+							required>${apoio.siteInstituicao}</textarea>
 						
 						<br> <label for="tipoApoioInput">Tipo de Apoio* </label>
-						<textarea value="${apoio.tipoApoio}" 
+						<textarea 
 							class="form-control" name="tipoApoio"
 							id="tipoDeApoioInput" placeholder="Digite o tipo do apoio"
-							required></textarea>
+							required>${apoio.tipoApoio}</textarea>
 						
 						<div class="invalid-feedback"></div>
 						<br> <label for="valorApoioInput">Valor de Apoio*</label>
-						<textarea value="${apoio.valorApoio}" class="form-control" name="valorApoio"
+						<textarea class="form-control" name="valorApoio"
 							id="descricaoInput" placeholder="Digite o valor do apoio"
-							required></textarea>
+							required>${apoio.valorApoio}</textarea>
 						<div class="invalid-feedback"></div>
 						<br> <label for="periodoInput">Data de Pagamento</label>
 						<div id="sandbox-container">
