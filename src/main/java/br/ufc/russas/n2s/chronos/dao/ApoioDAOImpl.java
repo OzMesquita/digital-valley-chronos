@@ -4,8 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.ufc.russas.n2s.chronos.model.Apoio;
 
+@Service("apoioDAOIfc")
+@Transactional
 public class ApoioDAOImpl implements ApoioDAOIfc {
 	private DAOIfc<Apoio> daoImpl;
 
@@ -43,6 +48,7 @@ public class ApoioDAOImpl implements ApoioDAOIfc {
 	}
 
 	@Override
+	@Transactional
 	public Apoio getApoio(Apoio apoio) {
 		return this.daoImpl.getObject(apoio, apoio.getCodApoio());
 	}

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
+import br.ufc.russas.n2s.chronos.service.ApoioServiceIfc;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
@@ -32,6 +33,7 @@ import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 public class EditarApoioController {
 	private AtividadeServiceIfc atividadeServiceIfc;
 	private UsuarioServiceIfc usuarioServiceIfc;
+	private ApoioServiceIfc apoioServiceIfc;
 
 	public AtividadeServiceIfc getAtividadeService() {
 		return atividadeServiceIfc;
@@ -42,12 +44,21 @@ public class EditarApoioController {
 		this.atividadeServiceIfc = atividadeService;
 
 	}
+
+	public ApoioServiceIfc getApoioServiceIfc() {
+		return apoioServiceIfc;
+	}
+	
+	@Autowired(required = true)
+	public void setApoioServiceIfc(@Qualifier("apoioServiceIfc") ApoioServiceIfc apoioServiceIfc) {
+		this.apoioServiceIfc = apoioServiceIfc;
+	}
 	
 	@RequestMapping(value="/{codAtividade}&{codApoio}",method = RequestMethod.GET)
-	public String getIndex(@PathVariable long codAtividade, Model model, HttpServletRequest request ) {
-		 AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
-        request.getSession().setAttribute("atividade", atividade);
-		
+	public String getIndex(@PathVariable long codAtividade, @PathVariable long codApoio, Model model, HttpServletRequest request ) {
+		ApoioBeans apoioBeans;
+		apoioBeans = apoioServiceIfc.getApoio(codApoio);
+		request.getSession().setAttribute("apoio", apoioBeans);
 		return "editar-apoio";
 	}
 
@@ -105,4 +116,5 @@ public class EditarApoioController {
 		}
 		return null;
 	}
+
 }

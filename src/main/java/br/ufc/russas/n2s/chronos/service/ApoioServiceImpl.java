@@ -5,10 +5,15 @@ import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.dao.ApoioDAOIfc;
 import br.ufc.russas.n2s.chronos.model.Apoio;
 
+@Service("apoioServiceIfc")
+@Transactional
 public class ApoioServiceImpl implements ApoioServiceIfc {
 	private ApoioDAOIfc apoioDAOIfc;
 
@@ -50,6 +55,7 @@ public class ApoioServiceImpl implements ApoioServiceIfc {
 	}
 
 	@Override
+	@Transactional
 	public ApoioBeans getApoio(long codApoio) {
 		Apoio apoio = new Apoio();
 		apoio.setCodApoio(codApoio);

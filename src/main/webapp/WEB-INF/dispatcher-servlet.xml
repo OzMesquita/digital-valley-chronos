@@ -55,17 +55,20 @@
     <bean name="cadastrarAtividadeController" class="br.ufc.russas.n2s.chronos.controller.CadastrarAtividadeController" />
     <bean name="cadastrarRealizacaoController" class="br.ufc.russas.n2s.chronos.controller.RealizacaoController" />
     <bean name="cadastrarApoioController" class="br.ufc.russas.n2s.chronos.controller.CadastrarApoioController" />
+    <bean name="editarApoioController" class="br.ufc.russas.n2s.chronos.controller.EditarApoioController" />
 	
 	<!-- SERVICES -->
     <bean name="usuarioServiceIfc"  class = "br.ufc.russas.n2s.chronos.service.UsuarioServiceImpl" />
     <bean name="atividadeServiceIfc"  class = "br.ufc.russas.n2s.chronos.service.AtividadeServiceImpl" />
     <bean name="realizacaoServiceIfc" class = "br.ufc.russas.n2s.chronos.service.RealizacaoServiceImpl" />
     <bean name="organizadorServiceIfc" class = "br.ufc.russas.n2s.chronos.service.OrganizadorServiceImpl" />
+    <bean name="apoioServiceIfc" class = "br.ufc.russas.n2s.chronos.service.ApoioServiceImpl" />
 	
 	<!-- DAO'S -->
 	<bean name="realizacaoDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.RealizacaoDAOImpl" />
 	<bean name="usuarioDAOIfc"    class = "br.ufc.russas.n2s.chronos.dao.UsuarioDAOImpl" />
     <bean name="atividadeDAOIfc"  class = "br.ufc.russas.n2s.chronos.dao.AtividadeDAOImpl" />
     <bean name="organizadorDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.OrganizadorDAOImpl" />
+    <bean name="apoioDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.ApoioDAOImpl" />
     
 </beans>
