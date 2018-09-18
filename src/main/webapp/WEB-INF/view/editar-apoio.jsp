@@ -78,7 +78,7 @@
 					obrigatório</p>
 				<br>
 				<div class="form-group">
-					<form method="POST" action="cadastraApoio/${atividade.codAtividade}" accept-charset="UTF-8"
+					<form method="POST" action="editarApoio/${atividade.codAtividade}" accept-charset="UTF-8"
 						enctype="multipart/form-data" id="needs-validation" novalidate>
 						<label for="tituloInput">Nome da Instituição*</label> <input
 							value="${apoio.nomeInstituicao}"
@@ -119,6 +119,10 @@
 							</div>
 							<small id="periodoHelp" class="form-text text-muted">Selecione
 								uma data</small>
+						</div>
+						<div class="form-group">
+							<label for="image">Cadastrar logo: </label> <input
+								type="file" name="logo" id="logo">
 						</div>
 						<br> <a href="/Chronos/" type="button" id="enviar"
 							class="btn btn-secondary"> Cancelar </a> <input type="button"
