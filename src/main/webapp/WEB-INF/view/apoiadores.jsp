@@ -82,7 +82,7 @@
 								<p class="card-text text-justify">
 									${apoiador.siteInstituicao}</p>
 
-								<form method="POST" action="/Chronos/editarApoio/${atividade.codAtividade}&${apoio.codApoio}" accept-charset="UTF-8"
+								<form method="GET" action="/Chronos/editarApoio/${atividade.codAtividade}&${apoio.codApoio}" accept-charset="UTF-8"
 									enctype="multipart/form-data" id="needs-validation" novalidate>
 									<input class="btn btn-primary" value="Editar" type="submit">
 								</form>

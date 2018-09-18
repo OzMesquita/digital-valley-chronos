@@ -42,6 +42,14 @@ public class EditarApoioController {
 		this.atividadeServiceIfc = atividadeService;
 
 	}
+	
+	@RequestMapping(value="/{codAtividade}&{codApoio}",method = RequestMethod.GET)
+	public String getIndex(@PathVariable long codAtividade, Model model, HttpServletRequest request ) {
+		 AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
+        request.getSession().setAttribute("atividade", atividade);
+		
+		return "editar-apoio";
+	}
 
 	public UsuarioServiceIfc getUsuarioServiceIfc() {
 		return usuarioServiceIfc;
