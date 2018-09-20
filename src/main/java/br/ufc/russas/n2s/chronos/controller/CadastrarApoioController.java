@@ -84,10 +84,10 @@ public class CadastrarApoioController {
         if (!logo.equals(null)) {
         	File convFile = null;
         	if(logo.getContentType().equals("image/png")) {
-        		convFile = File.createTempFile(apoio.getNomeInstituicao()+codAtividade, ".png", dir);
+        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".png", dir);
         	}
         	else if (logo.getContentType().equals("image/jpeg")) {
-        		convFile = File.createTempFile(apoio.getNomeInstituicao()+codAtividade, ".jpeg", dir);
+        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".jpeg", dir);
 			}
             FileOutputStream fos = new FileOutputStream(convFile); 
             fos.write(logo.getBytes());
