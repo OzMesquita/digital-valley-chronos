@@ -264,7 +264,7 @@ ul {
 							class="btn btn-primary btn-sm"
 							style="height: 33px; margin-left: 30px; margin-top: 5px;">
 							Editar Atividade </a>
-						<a class="btn btn-danger"
+						<a class="btn btn-danger btn-sm"
 							style="height: 33px; margin-left: 30px; margin-top: 5px;"
 							data-toggle="modal" data-target="#remover"><font color="#FFFFFF"> Remover Atividade </font> 
 						</a>
@@ -288,7 +288,7 @@ ul {
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary btn-sm"
 											data-dismiss="modal">Cancelar</button>
-										<a class="btn btn-danger"
+										<a class="btn btn-danger btn-sm"
 											href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
 											Remover atividade</a>
 									</div>
@@ -385,7 +385,7 @@ ul {
 											<td class="text-center"><a href="/Chronos/editarAtividade/${atividades.codAtividade}"
 												class="btn btn-primary btn-sm">
 													Editar </a></td>
-											<td class="text-center"><a class="btn btn-danger"
+											<td class="text-center"><a class="btn btn-danger btn-sm"
 											href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
 											Remover</a></td>																
 										</tr>

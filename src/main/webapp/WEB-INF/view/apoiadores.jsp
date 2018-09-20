@@ -92,7 +92,7 @@
 										</th>
 									    <th></th>
 									    <th >
-									    	<form method="POST" action="/Chronos/removeApoio/${atividade.codAtividade}&${apoiador.codApoio}" accept-charset="UTF-8"
+									    	<form method="POST" action="/Chronos/editarApoio/remove/${atividade.codAtividade}&${apoiador.codApoio}" accept-charset="UTF-8"
 											enctype="multipart/form-data" id="needs-validation" novalidate>&nbsp
 											<input class="btn btn-danger" value="Remover" type="submit">
 											</form>
