@@ -1,5 +1,7 @@
 package br.ufc.russas.n2s.chronos.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Iterator;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
@@ -27,6 +31,7 @@ import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.service.ApoioServiceIfc;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
+import br.ufc.russas.n2s.chronos.util.Constantes;
 
 @Controller("editarApoioController")
 @RequestMapping("/editarApoio")
@@ -54,14 +59,6 @@ public class EditarApoioController {
 		this.apoioServiceIfc = apoioServiceIfc;
 	}
 	
-	@RequestMapping(value="/{codAtividade}&{codApoio}",method = RequestMethod.GET)
-	public String getIndex(@PathVariable long codAtividade, @PathVariable long codApoio, Model model, HttpServletRequest request ) {
-		ApoioBeans apoioBeans;
-		apoioBeans = apoioServiceIfc.getApoio(codApoio);
-		request.getSession().setAttribute("apoio", apoioBeans);
-		return "editar-apoio";
-	}
-
 	public UsuarioServiceIfc getUsuarioServiceIfc() {
 		return usuarioServiceIfc;
 	}
@@ -71,10 +68,18 @@ public class EditarApoioController {
 		this.usuarioServiceIfc = usuarioServiceIfc;
 	}
 	
-	@RequestMapping(value = "/editaApoio/{codAtividade}&{codApoio}", method = RequestMethod.POST)
+	@RequestMapping(value="/{codAtividade}&{codApoio}",method = RequestMethod.GET)
+	public String getIndex(@PathVariable long codAtividade, @PathVariable long codApoio, Model model, HttpServletRequest request ) {
+		ApoioBeans apoioBeans;
+		apoioBeans = apoioServiceIfc.getApoio(codApoio);
+		request.getSession().setAttribute("apoio", apoioBeans);
+		return "editar-apoio";
+	}
+	
+	@RequestMapping(value = "/{codAtividade}&{codApoio}", method = RequestMethod.POST)
 	public String adiciona(@PathVariable long codAtividade,@PathVariable long codApoio,
 			@ModelAttribute("apoio") @Valid ApoioBeans apoio, BindingResult result, Model model,
-			HttpServletResponse response, HttpServletRequest request) throws IOException, IllegalAccessException {
+			HttpServletResponse response, HttpServletRequest request, @RequestParam ("logo") MultipartFile logo) throws IOException, IllegalAccessException {
 		
 		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
 		HttpSession session = request.getSession();
@@ -94,11 +99,30 @@ public class EditarApoioController {
 					ApoioBeans apoioAUX = iterator.next();
 					if (apoioAUX.getCodApoio() == codApoio) {
 						apoioAUX.setDataPagamento(dataPagamento);
-						apoioAUX.setLogo(apoio.getLogo());
+						File dir = new File (Constantes.getLogoImgApoio()+File.separator);
+						
+						if(!dir.isDirectory()) {
+							dir.mkdirs();
+						}
+						
+				        if (!logo.equals(null)) {
+				        	File convFile = null;
+				        	if(logo.getContentType().equals("image/png")) {
+				        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".png", dir);
+				        	}
+				        	else if (logo.getContentType().equals("image/jpeg")) {
+				        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".jpeg", dir);
+							}
+				            FileOutputStream fos = new FileOutputStream(convFile); 
+				            fos.write(logo.getBytes());
+				            fos.close();
+				            apoio.setLogo(convFile.getAbsolutePath());
+				        }
 						apoioAUX.setNomeInstituicao(apoio.getNomeInstituicao());
 						apoioAUX.setSiteInstituicao(apoio.getSiteInstituicao());
 						apoioAUX.setTipoApoio(apoio.getTipoApoio());
 						apoioAUX.setValorApoio(apoio.getValorApoio());
+						break;
 					}
 				}
 				

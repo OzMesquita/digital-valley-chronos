@@ -78,7 +78,7 @@
 					obrigatório</p>
 				<br>
 				<div class="form-group">
-					<form method="POST" action="editarApoio/${atividade.codAtividade}" accept-charset="UTF-8"
+					<form method="POST" action="/Chronos/editarApoio/${atividade.codAtividade}&${apoio.codApoio}" accept-charset="UTF-8"
 						enctype="multipart/form-data" id="needs-validation" novalidate>
 						<label for="tituloInput">Nome da Instituição*</label> <input
 							value="${apoio.nomeInstituicao}"
