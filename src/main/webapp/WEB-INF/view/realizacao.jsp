@@ -201,7 +201,7 @@
 									action="removeRealizacao/${atividade.codAtividade}&${realiza.codRealizacao}"
 									accept-charset="UTF-8" enctype="multipart/form-data"
 									id="needs-validation" novalidate>
-									<input class="btn btn-primary" value="Remover" type="submit">
+									<input class="btn btn-danger" value="Remover" type="submit">
 								</form>
 							</td>
 						</tr>

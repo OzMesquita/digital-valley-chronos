@@ -264,9 +264,9 @@ ul {
 							class="btn btn-primary btn-sm"
 							style="height: 33px; margin-left: 30px; margin-top: 5px;">
 							Editar Atividade </a>
-						<a class="btn btn-warning btn-sm"
+						<a class="btn btn-danger"
 							style="height: 33px; margin-left: 30px; margin-top: 5px;"
-							data-toggle="modal" data-target="#remover"> Remover Atividade
+							data-toggle="modal" data-target="#remover"><font color="#FFFFFF"> Remover Atividade </font> 
 						</a>
 						<!-- Modal -->
 						<div class="modal fade" id="remover" tabindex="-1" role="dialog"
@@ -288,7 +288,7 @@ ul {
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary btn-sm"
 											data-dismiss="modal">Cancelar</button>
-										<a class="btn btn-sm btn-warning"
+										<a class="btn btn-danger"
 											href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
 											Remover atividade</a>
 									</div>
@@ -369,7 +369,8 @@ ul {
 										<th>Local</th>
 										<th>Data/Horário</th>
 										<th>Vagas</th>
-										<th class="text-center">Ação</th>
+										<th class="text-center">Editar</th>
+										<th class="text-center">Remover</th>
 									</tr>
 								</thead>	
 								<%-- Verifica se o usuario é administrador e então exibe a opção de editar atividade --%> 														
@@ -382,9 +383,11 @@ ul {
 											<td>22/05 - 08:00</td>
 											<td>20/20</td>
 											<td class="text-center"><a href="/Chronos/editarAtividade/${atividades.codAtividade}"
-												class="btn btn-primary btn-sm"
-												style="height: 33px; margin-left: 30px; margin-top: -4px;">
-													Editar </a></td>													
+												class="btn btn-primary btn-sm">
+													Editar </a></td>
+											<td class="text-center"><a class="btn btn-danger"
+											href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
+											Remover</a></td>																
 										</tr>
 									</c:forEach>								
 								</c:if>							
