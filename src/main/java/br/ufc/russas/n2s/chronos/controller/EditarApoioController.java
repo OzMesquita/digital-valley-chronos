@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
+import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.service.ApoioServiceIfc;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
@@ -66,6 +67,28 @@ public class EditarApoioController {
 	@Autowired(required = true)
 	public void setUsuarioServiceIfc(@Qualifier("usuarioServiceIfc") UsuarioServiceIfc usuarioServiceIfc) {
 		this.usuarioServiceIfc = usuarioServiceIfc;
+	}
+
+	@RequestMapping(value = "/removeApoio/{codAtividade}&{codApoio}", method = RequestMethod.POST)
+	public String removerApoio(@PathVariable long codAtividade, @PathVariable long codApoio, Model model,
+			HttpServletRequest request) throws IllegalAccessException {
+		HttpSession session = request.getSession();
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+		this.atividadeServiceIfc.setUsuario(usuario);
+		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
+		for (Iterator<ApoioBeans> iterator = atividadeBeans.getApoiadores().iterator(); iterator.hasNext();) {
+			ApoioBeans apoioAUX = iterator.next();
+			if (apoioAUX.getCodApoio() == codApoio) {
+				iterator.remove();
+				atividadeBeans = this.getAtividadeService().atualizaAtividade(atividadeBeans);
+				apoioServiceIfc.atualizaApoio(apoioAUX);
+				apoioServiceIfc.removeApoio(apoioAUX);
+			}
+		}
+		
+		session.setAttribute("mensagem", "Apoio removido com sucesso!");
+		session.setAttribute("status", "success");
+		return ("redirect:/apoiadores/" + codAtividade);
 	}
 	
 	@RequestMapping(value="/{codAtividade}&{codApoio}",method = RequestMethod.GET)
