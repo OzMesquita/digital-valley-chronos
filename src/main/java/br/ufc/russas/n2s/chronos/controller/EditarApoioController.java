@@ -105,7 +105,7 @@ public class EditarApoioController {
 							dir.mkdirs();
 						}
 						
-				        if (!logo.equals(null)) {
+				        if (!logo.isEmpty()) {
 				        	File convFile = null;
 				        	if(logo.getContentType().equals("image/png")) {
 				        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".png", dir);

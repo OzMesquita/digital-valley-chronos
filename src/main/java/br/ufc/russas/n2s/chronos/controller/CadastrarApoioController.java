@@ -81,7 +81,7 @@ public class CadastrarApoioController {
 		
 		System.out.println(dir.getAbsolutePath());
 		
-        if (!logo.equals(null)) {
+        if (!logo.isEmpty()) {
         	File convFile = null;
         	if(logo.getContentType().equals("image/png")) {
         		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".png", dir);
