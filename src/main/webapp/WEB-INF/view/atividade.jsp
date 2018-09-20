@@ -256,16 +256,16 @@ ul {
 						</div>
 					</div>
 				</c:if>
-				<div class="row" style="padding-left: 15px;">
+				<div class="column" style="padding-left: 15px;">
 					<h1 class="text-uppercase" style="font-size: 20px;">${atividade.nome}
 						(${atividade.sigla})</h1>
 					<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
 						<a href="/Chronos/editarAtividade/${atividade.codAtividade}"
 							class="btn btn-primary btn-sm"
-							style="height: 33px; margin-left: 30px; margin-top: -4px;">
+							style="height: 33px; margin-left: 30px; margin-top: 5px;">
 							Editar Atividade </a>
 						<a class="btn btn-warning btn-sm"
-							style="height: 33px; margin-left: 30px; margin-top: -4px;"
+							style="height: 33px; margin-left: 30px; margin-top: 5px;"
 							data-toggle="modal" data-target="#remover"> Remover Atividade
 						</a>
 						<!-- Modal -->

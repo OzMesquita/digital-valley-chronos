@@ -113,13 +113,13 @@
 						<br />
 					</c:if>
 				<li style="list-style: none; text-align: center;">
-					<button class="btn btn-circle">
-						<a
+				<a
 							href="/Chronos/subatividades/cadastra/${atividade.codAtividade}"
 							class="timeline-badge primary"> <i class="material-icons"
-							title="Adicionar nova subatividade">add</i>
-						</a>
-					</button>
+							title="Adicionar nova subatividade"><button class="btn btn-circle" style= "color:#007bff">add</button>
+							</i>
+					
+					</a>
 				</li>
 				<c:set var="pagina"
 					value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
