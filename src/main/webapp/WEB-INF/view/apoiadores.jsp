@@ -80,16 +80,26 @@
 								<h3 class="card-subtitle mb-2 text-muted">
 									${dateTime}</h3>
 								<p class="card-text text-justify">
-									${apoiador.siteInstituicao}</p>
-
-								<form method="GET" action="/Chronos/editarApoio/${atividade.codAtividade}&${apoiador.codApoio}" accept-charset="UTF-8"
-									enctype="multipart/form-data" id="needs-validation" novalidate>
-									<input class="btn btn-primary" value="Editar" type="submit">
-								</form>
-
-
-
-
+									${apoiador.siteInstituicao}</p>											 												
+																
+								<table>
+									  <tr>
+									    <th>
+									    	<form method="GET" action="/Chronos/editarApoio/${atividade.codAtividade}&${apoiador.codApoio}" accept-charset="UTF-8"
+											enctype="multipart/form-data" id="needs-validation" novalidate>
+											<input class="btn btn-primary" value="Editar" type="submit">&nbsp  
+											</form>
+										</th>
+									    <th></th>
+									    <th >
+									    	<form method="POST" action="/Chronos/removeApoio/${atividade.codAtividade}&${apoiador.codApoio}" accept-charset="UTF-8"
+											enctype="multipart/form-data" id="needs-validation" novalidate>&nbsp
+											<input class="btn btn-danger" value="Remover" type="submit">
+											</form>
+										</th>
+									  </tr>									  
+								</table>
+								
 							</div>
 						</div>
 					</c:forEach>
