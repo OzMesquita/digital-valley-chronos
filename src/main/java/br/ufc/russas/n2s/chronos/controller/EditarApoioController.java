@@ -69,7 +69,7 @@ public class EditarApoioController {
 		this.usuarioServiceIfc = usuarioServiceIfc;
 	}
 
-	@RequestMapping(value = "/removeApoio/{codAtividade}&{codApoio}", method = RequestMethod.POST)
+	@RequestMapping(value = "/remove/{codAtividade}&{codApoio}", method = RequestMethod.POST)
 	public String removerApoio(@PathVariable long codAtividade, @PathVariable long codApoio, Model model,
 			HttpServletRequest request) throws IllegalAccessException {
 		HttpSession session = request.getSession();
