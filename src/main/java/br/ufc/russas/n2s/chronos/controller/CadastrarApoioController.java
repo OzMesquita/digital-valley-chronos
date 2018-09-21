@@ -64,8 +64,7 @@ public class CadastrarApoioController {
 			@ModelAttribute("apoio") @Valid ApoioBeans apoio, BindingResult result, Model model,
 			HttpServletResponse response, HttpServletRequest request, @RequestParam("logo") MultipartFile logo) throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
-		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
-
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");		
 		// Pegando DATA e HORA do form
 		String[] dataI = request.getParameter("dataPagamento").split("-");
 		// DATAS
@@ -84,10 +83,11 @@ public class CadastrarApoioController {
         if (!logo.isEmpty()) {
         	File convFile = null;
         	if(logo.getContentType().equals("image/png")) {
-        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".png", dir);
+        		convFile = new File(dir+File.separator+apoio.getNomeInstituicao()+"_"+codAtividade+".png");    				   
+        		
         	}
         	else if (logo.getContentType().equals("image/jpeg")) {
-        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".jpeg", dir);
+        		convFile = new File(dir+File.separator+apoio.getNomeInstituicao()+"_"+codAtividade+".jpeg");        		
 			}
             FileOutputStream fos = new FileOutputStream(convFile); 
             fos.write(logo.getBytes());

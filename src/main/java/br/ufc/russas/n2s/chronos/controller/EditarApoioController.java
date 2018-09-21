@@ -100,7 +100,7 @@ public class EditarApoioController {
 	}
 	
 	@RequestMapping(value = "/{codAtividade}&{codApoio}", method = RequestMethod.POST)
-	public String adiciona(@PathVariable long codAtividade,@PathVariable long codApoio,
+	public String editaApoiador(@PathVariable int codAtividade,@PathVariable long codApoio,
 			@ModelAttribute("apoio") @Valid ApoioBeans apoio, BindingResult result, Model model,
 			HttpServletResponse response, HttpServletRequest request, @RequestParam ("logo") MultipartFile logo) throws IOException, IllegalAccessException {
 		
@@ -128,13 +128,14 @@ public class EditarApoioController {
 							dir.mkdirs();
 						}
 						
-				        if (!logo.isEmpty()) {
+						if (!logo.isEmpty()) {
 				        	File convFile = null;
 				        	if(logo.getContentType().equals("image/png")) {
-				        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".png", dir);
+				        		convFile = new File(dir+File.separator+apoio.getNomeInstituicao()+"_"+codAtividade+".png");    				   
+				        		
 				        	}
 				        	else if (logo.getContentType().equals("image/jpeg")) {
-				        		convFile = File.createTempFile(apoio.getNomeInstituicao()+"_"+codAtividade, ".jpeg", dir);
+				        		convFile = new File(dir+File.separator+apoio.getNomeInstituicao()+"_"+codAtividade+".jpeg");        		
 							}
 				            FileOutputStream fos = new FileOutputStream(convFile); 
 				            fos.write(logo.getBytes());
