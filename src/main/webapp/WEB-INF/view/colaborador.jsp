@@ -97,8 +97,8 @@
 					<c:forEach var="realiza" begin="${((pagina - 1) * 5)}"
 						end="${((pagina - 1) * 5) + 4}" items="${colaborador}">
 						<tr>
-							<td>GUTENBERG</td>
-							<td>Técnico</td>
+							<td>${colaborador.nome}</td>
+							<td>${colaborador.funcao}</td>
 							<!--######################-->
 							<!-- EDITAR REALIZACAO -->
 							<!--######################-->
@@ -177,7 +177,7 @@
 											
 						
 						<input type="button" class="btn btn-circle"							
-							value="Cadastrar Colaboradorr" data-toggle="modal"
+							value="Cadastrar Colaborador" data-toggle="modal"
 							data-target="#confirmarColaborador"/>
 							
 							
