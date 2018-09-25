@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import br.ufc.russas.n2s.chronos.model.Apoio;
 import br.ufc.russas.n2s.chronos.model.Atividade;
+import br.ufc.russas.n2s.chronos.model.Colaborador;
 import br.ufc.russas.n2s.chronos.model.EnumTipoAtividade;
 import br.ufc.russas.n2s.chronos.model.EnumTipoPagamento;
 import br.ufc.russas.n2s.chronos.model.Organizador;
@@ -29,6 +30,7 @@ public class AtividadeBeans implements Beans {
 	private EnumTipoPagamento tipoPagamento;
 	private List<ApoioBeans> apoiadores;
 	private List<OrganizadorBeans> organizadores;
+	private List<ColaboradorBeans> colaboradores;
 	private boolean divulgada;
 
 	public long getCodAtividade() {
@@ -165,6 +167,14 @@ public class AtividadeBeans implements Beans {
 
 	public void setOrganizadores(List<OrganizadorBeans> organizadores) {
 		this.organizadores = organizadores;
+	}
+	
+	public List<ColaboradorBeans> getColaboradores() {
+		return colaboradores;
+	}
+
+	public void setColaboradores(List<ColaboradorBeans> colaboradores) {
+		this.colaboradores = colaboradores;
 	}
 
 	public boolean isDivulgada() {

@@ -68,7 +68,11 @@ public class Atividade implements Comparable<Atividade> {
 	@JoinTable(name = "organizadores_atividade", joinColumns = {
 			@JoinColumn(name = "atividade", referencedColumnName = "codAtividade") }, inverseJoinColumns = {
 					@JoinColumn(name = "organizador", referencedColumnName = "codOrganizador") })
-	private List<Organizador> organizadores;
+	private List<Organizador> organizadores;	
+	@JoinTable(name = "colaboradores_atividade", joinColumns = {
+			@JoinColumn(name = "atividade", referencedColumnName = "codAtividade") }, inverseJoinColumns = {
+					@JoinColumn(name = "colaborador", referencedColumnName = "codColaborador") })
+	private List<Colaborador> colaboradores;
 	private boolean divulgada;
 	@ManyToMany(targetEntity = UsuarioChronos.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
@@ -334,6 +338,21 @@ public class Atividade implements Comparable<Atividade> {
 			throw new IllegalArgumentException("Erro: o campo organizador não pode ser nulo.");
 		else
 			organizadores.add(organizador);
+	}
+	
+	public List<Colaborador> getColaboradores() {
+		return colaboradores;
+	}
+
+	public void setColaboradores(List<Colaborador> colaboradores) {
+		this.colaboradores = colaboradores;
+	}
+	
+	public void addColaborador(Colaborador colaborador) {
+		if (colaborador == null)
+			throw new IllegalArgumentException("Erro: o campo colaborador não pode ser nulo.");
+		else
+			colaboradores.add(colaborador);
 	}
 
 	public Atividade adicionaAtividade() {
