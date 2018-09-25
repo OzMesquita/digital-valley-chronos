@@ -46,8 +46,7 @@ public class ColaboradorDAOImpl implements ColaboradorDAOIfc {
 
 	@Override
 	public Colaborador getColaborador(Colaborador colaborador) {
-		// TODO Auto-generated method stub
-		return this.daoImpl.getObject(colaborador, colaborador.getCodOrganizador());;
+		return this.daoImpl.getObject(colaborador, colaborador.getCodColaborador());
 	}
 
 	
