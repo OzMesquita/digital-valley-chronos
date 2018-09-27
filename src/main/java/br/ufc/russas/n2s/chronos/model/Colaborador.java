@@ -41,8 +41,8 @@ public class Colaborador implements Comparable<Colaborador>{
 	}
 
 
-	public void setCodColaborador(long codColaborador) {
-		CodColaborador = codColaborador;
+	public void setCodColaborador(long CodColaborador) {
+		this.CodColaborador = CodColaborador;
 	}
 
 
