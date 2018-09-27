@@ -43,7 +43,7 @@
 					href="/Chronos/editarAtividade/${atividade.codAtividade}">Editar
 						Atividade</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Cadastrar
-					realizações</li>
+					colaborador</li>
 				</nav>
 				<c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>	
 				<c:if test="${not empty mensagem}">
@@ -94,7 +94,7 @@
 						<td></td>
 						<td></td>
 					</tr>
-					<c:forEach var="realiza" begin="${((pagina - 1) * 5)}"
+					<c:forEach var="colaborador" begin="${((pagina - 1) * 5)}"
 						end="${((pagina - 1) * 5) + 4}" items="${colaborador}">
 						<tr>
 							<td>${colaborador.nome}</td>
@@ -104,7 +104,7 @@
 							<!--######################-->
 							<td class="text-center">
 								<form method="POST"
-									action="editarColaborador/${atividade.codAtividade}&${realiza.codColaborador}"
+									action="editarColaborador/${atividade.codAtividade}&${colaborador.codColaborador}"
 									accept-charset="UTF-8" enctype="multipart/form-data"
 									id="needs-validation" novalidate>
 									<input type="button" class="btn btn-primary" value="Editar"
@@ -153,7 +153,7 @@
 							</td>
 							<td class="text-center">
 								<form method="POST"
-									action="removeColaborador/${atividade.codAtividade}&${realiza.codColaborador}"
+									action="removeColaborador/${atividade.codAtividade}&${colaborador.codColaborador}"
 									accept-charset="UTF-8" enctype="multipart/form-data"
 									id="needs-validation" novalidate>
 									<input class="btn btn-danger" value="Remover" type="submit">
