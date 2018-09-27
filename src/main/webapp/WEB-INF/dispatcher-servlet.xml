@@ -58,6 +58,7 @@
     <bean name="editarApoioController" class="br.ufc.russas.n2s.chronos.controller.EditarApoioController" />
     <bean name="colaboradorController" class="br.ufc.russas.n2s.chronos.controller.ColaboradorController" />
 	<bean name="cadastrarColaboradorController" class="br.ufc.russas.n2s.chronos.controller.CadastrarColaboradorController" />
+	<bean name="editarColaboradorController" class="br.ufc.russas.n2s.chronos.controller.EditarColaboradorController" />
 	
 	<!-- SERVICES -->
     <bean name="usuarioServiceIfc"  class = "br.ufc.russas.n2s.chronos.service.UsuarioServiceImpl" />

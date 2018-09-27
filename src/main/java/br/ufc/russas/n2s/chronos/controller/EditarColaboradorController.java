@@ -1,7 +1,5 @@
 package br.ufc.russas.n2s.chronos.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -19,18 +17,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.ColaboradorBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
-import br.ufc.russas.n2s.chronos.service.ApoioServiceIfc;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.ColaboradorServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
-import br.ufc.russas.n2s.chronos.util.Constantes;
 
 @Controller("editarColaboradorController")
 @RequestMapping("/editarColaborador")
