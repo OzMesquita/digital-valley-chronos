@@ -171,7 +171,7 @@
 										
 				<li style="list-style: none; text-align: center;" >
 					<form method="POST"
-						action="cadastraColaborador/${atividade.codAtividade}"
+						action="/Chronos/cadastrarColaborador/cadastraColaborador/${atividade.codAtividade}"
 						accept-charset="UTF-8" enctype="multipart/form-data"
 						id="needs-validation" novalidate>				
 											
@@ -209,20 +209,15 @@
 										<div id="sandbox-container">
 											<div class=""
 												style="padding-left: 0px;" id="datepicker">
-												<input name="nome" class="form-control" id="funcaoInput" aria-describedby="nomeHelp" 
-												placeholder="Digite o nome do colaborador" required=""  type="text">
+												<input name="funcao" class="form-control" id="funcaoInput" aria-describedby="nomeHelp" 
+												placeholder="Digite a função do colaborador" required=""  type="text">
 											</div>											
 										</div>
 									</div>
 									<div class="modal-footer">
-										<form method="POST"
-										action="cadastraColaborador/${atividade.codAtividade}"
-										accept-charset="UTF-8" enctype="multipart/form-data"
-										id="needs-validation" novalidate>
 											<button type="button" class="btn btn-secondary btn-sm"
 												data-dismiss="modal">Cancelar</button>
 											<button type="submit" class="btn btn-primary btn-sm">Adicionar</button>
-										</form>
 									</div>
 								</div>
 							</div>
