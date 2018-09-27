@@ -1,9 +1,23 @@
 package br.ufc.russas.n2s.chronos.model;
 
-public class Colaborador implements Comparable<Colaborador>{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private long CodColaborador;
+@Entity
+@Table(name = "colaborador")
+public class Colaborador implements Comparable<Colaborador>{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codColaborador")
+	private long codColaborador;
+	@Column(name = "nome")
 	private String nome;
+	@Column(name = "funcao")
 	private String funcao;
 	
 	public Colaborador( String nome, String funcao) {
@@ -42,12 +56,12 @@ public class Colaborador implements Comparable<Colaborador>{
 
 
 	public void setCodColaborador(long codColaborador) {
-		CodColaborador = codColaborador;
+		this.codColaborador = codColaborador;
 	}
 
 
 	public long getCodColaborador() {
-		return this.CodColaborador;
+		return this.codColaborador;
 	}
 
 

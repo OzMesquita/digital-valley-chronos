@@ -65,7 +65,7 @@
     <bean name="atividadeServiceIfc"  class = "br.ufc.russas.n2s.chronos.service.AtividadeServiceImpl" />
     <bean name="realizacaoServiceIfc" class = "br.ufc.russas.n2s.chronos.service.RealizacaoServiceImpl" />
     <bean name="organizadorServiceIfc" class = "br.ufc.russas.n2s.chronos.service.OrganizadorServiceImpl" />
-    <bean name="ColaboradorServiceIfc" class = "br.ufc.russas.n2s.chronos.service.ColaboradorServiceImpl" />
+    <bean name="colaboradorServiceIfc" class = "br.ufc.russas.n2s.chronos.service.ColaboradorServiceImpl" />
     <bean name="apoioServiceIfc" class = "br.ufc.russas.n2s.chronos.service.ApoioServiceImpl" />
 	
 	<!-- DAO'S -->
@@ -73,7 +73,7 @@
 	<bean name="usuarioDAOIfc"    class = "br.ufc.russas.n2s.chronos.dao.UsuarioDAOImpl" />
     <bean name="atividadeDAOIfc"  class = "br.ufc.russas.n2s.chronos.dao.AtividadeDAOImpl" />
     <bean name="organizadorDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.OrganizadorDAOImpl" />
-    <bean name="ColaboradorDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.ColaboradorDAOImpl" />
+    <bean name="colaboradorDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.ColaboradorDAOImpl" />
     <bean name="apoioDAOIfc" class = "br.ufc.russas.n2s.chronos.dao.ApoioDAOImpl" />
     
 </beans>

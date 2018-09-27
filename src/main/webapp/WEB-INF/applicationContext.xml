@@ -49,6 +49,7 @@
                 <value>br.ufc.russas.n2s.chronos.model.Organizador</value>
                 <value>br.ufc.russas.n2s.chronos.model.Realizacao</value>
                 <value>br.ufc.russas.n2s.chronos.model.Responsavel</value>
+                <value>br.ufc.russas.n2s.chronos.model.Colaborador</value>
                 
             </list>
         </property>        

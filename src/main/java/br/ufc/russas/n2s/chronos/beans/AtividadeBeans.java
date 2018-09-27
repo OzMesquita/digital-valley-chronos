@@ -234,6 +234,11 @@ public class AtividadeBeans implements Beans {
 			for (int i = 0; i < this.getOrganizadores().size(); i++)
 				organizadores.add((Organizador) this.getOrganizadores().get(i).toBusiness());
 		atividade.setOrganizadores(organizadores);
+		List<Colaborador> colaboradores = Collections.synchronizedList(new ArrayList<Colaborador>());
+		if (this.getColaboradores() != null)
+			for (int i = 0; i < this.getColaboradores().size(); i++)
+				colaboradores.add((Colaborador) this.getColaboradores().get(i).toBusiness());
+		atividade.setColaboradores(colaboradores);
 
 		return atividade;
 	}
@@ -280,6 +285,12 @@ public class AtividadeBeans implements Beans {
 				organizadores
 						.add((OrganizadorBeans) new OrganizadorBeans().toBeans(atividade.getOrganizadores().get(i)));
 		this.setOrganizadores(organizadores);
+		List<ColaboradorBeans> colaboradores = Collections.synchronizedList(new ArrayList<ColaboradorBeans>());
+		if (atividade.getColaboradores() != null)
+			for (int i = 0; i < atividade.getColaboradores().size(); i++)
+				colaboradores
+						.add((ColaboradorBeans) new ColaboradorBeans().toBeans(atividade.getColaboradores().get(i)));
+		this.setColaboradores(colaboradores);
 		return this;
 	}
 }
