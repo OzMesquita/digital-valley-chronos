@@ -10,8 +10,8 @@ public class ColaboradorBeans implements Beans {
 	public long getCodColaborador() {
 		return CodColaborador;
 	}
-	public void setCodColaborador(long CodColaborador) {
-		this.CodColaborador = CodColaborador;
+	public void setCodColaborador(long codColaborador) {
+		CodColaborador = codColaborador;
 	}
 	public String getNome() {
 		return nome;
