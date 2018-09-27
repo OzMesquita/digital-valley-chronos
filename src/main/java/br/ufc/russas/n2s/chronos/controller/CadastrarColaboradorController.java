@@ -62,16 +62,14 @@ public class CadastrarColaboradorController {
 	@RequestMapping(value = "/cadastraColaborador/{codAtividade}", method = RequestMethod.POST)
 	public String adiciona(@PathVariable long codAtividade,
 			@ModelAttribute("colaborador") @Valid ColaboradorBeans colaborador, BindingResult result, Model model,
-			HttpServletResponse response, HttpServletRequest request, @RequestParam("logo") MultipartFile logo) throws IOException, IllegalAccessException {
+			HttpServletResponse response, HttpServletRequest request) throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");		
-
 
 		try {
 			this.atividadeServiceIfc.setUsuario(usuario);
 			AtividadeBeans atividade = this.getAtividadeService().getAtividade(codAtividade);
-			//Descomentar quando beans e model e service de colaborador estiverem finalizados
-			//atividade.getColaboradores().add(colaborador);
+			atividade.getColaboradores().add(colaborador);
 			atividade = this.getAtividadeService().atualizaAtividade(atividade);
 			session.setAttribute("mensagem", "Colaborador cadastrado com sucesso!");
 			session.setAttribute("status", "success");
