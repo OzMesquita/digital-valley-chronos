@@ -100,7 +100,7 @@ public class EditarColaboradorController {
 	}
 	
 	@RequestMapping(value = "/remove/{codAtividade}&{codColabordor}", method = RequestMethod.POST)
-	public String removerApoio(@PathVariable long codAtividade, @PathVariable long codColaborador, Model model,
+	public String removerColaborador(@PathVariable long codAtividade, @PathVariable long codColaborador, Model model,
 			HttpServletRequest request) throws IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
