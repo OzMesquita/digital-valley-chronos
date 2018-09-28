@@ -145,20 +145,23 @@
 								onclick="adicionaOrganizador()" value="Adicionar">
 						</div>
 				</div>
-				<br> <label for="colaboradorInput">Colaboradores</label>
-				<div class="form-row">
-					<select id="colaboradorInput" class="form-control col-md-8"
-						style="margin-left: 3px">
-						<option value="" selected="selected" disabled="disabled">Selecione
-							o colaborador da atividade</option>
-						<c:forEach items="${colaboradores}" var="colaborador">
-							<option id="colaboradorOption-${colaborador.codColaborador}"
-								value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
-						</c:forEach>
-					</select> &nbsp;&nbsp; <input type="button"
-						class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()"
-						value="Adicionar">
-				</div>
+				<c:if test="${!empty atividade.pai }">
+					<br>
+					<label for="colaboradorInput">Colaboradores</label>
+					<div class="form-row">
+						<select id="colaboradorInput" class="form-control col-md-8"
+							style="margin-left: 3px">
+							<option value="" selected="selected" disabled="disabled">Selecione
+								o colaborador da atividade</option>
+							<c:forEach items="${colaboradores}" var="colaborador">
+								<option id="colaboradorOption-${colaborador.codColaborador}"
+									value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
+							</c:forEach>
+						</select> &nbsp;&nbsp; <input type="button"
+							class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()"
+							value="Adicionar">
+					</div>
+				</c:if>
 				<br>
 				<ul class="list-group col-md-8" id="listaOrganizador">
 				</ul>
@@ -191,8 +194,6 @@
 						</div>
 					</div>
 				</div>
-				<hr />
-				</form>
 			</div>
 			<div class="col-sm-2 sidebar-offcanvas">
 				<div class="card">
@@ -221,8 +222,11 @@
 				</div>
 			</div>
 		</div>
+		<hr />
+		</form>
+
 	</div>
-	</div>
+
 	<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
