@@ -145,6 +145,22 @@
 								class="btn btn-secondary btn-sm "
 								onclick="adicionaOrganizador()" value="Adicionar">
 						</div>
+						
+						</div>
+						<br> <label for="colaboradorInput">Colaboradores</label>
+						<div class="form-row">
+							<select id="colaboradorInput" class="form-control col-md-8"
+								style="margin-left: 3px">
+								<option value="" selected="selected" disabled="disabled">Selecione
+									o colaborador da atividade</option>
+								<c:forEach items="${colaboradores}" var="colaborador">
+									<option id="colaboradorOption-${colaborador.codColaborador}"
+										value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
+								</c:forEach>
+							</select> &nbsp;&nbsp; <input type="button"
+								class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()"
+								value="Adicionar">
+						</div>
 						<br>
 						<ul class="list-group col-md-8" id="listaOrganizador">
 						</ul>
