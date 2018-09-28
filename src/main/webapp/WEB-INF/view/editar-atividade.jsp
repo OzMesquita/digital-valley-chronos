@@ -74,9 +74,8 @@
 							placeholder="Digite uma breve descrição sobre a atividade"
 							required>${atividade.descricao}</textarea>
 						<div class="invalid-feedback"></div>
-						<br>
-						<label for="siglaInput">Sigla*</label> <input class="form-control"
-							name="sigla" id="descricaoInput"
+						<br> <label for="siglaInput">Sigla*</label> <input
+							class="form-control" name="sigla" id="descricaoInput"
 							placeholder="Digite uma sigla para a atividade" required
 							value="${atividade.sigla}">
 						<div class="invalid-feedback"></div>
@@ -145,57 +144,55 @@
 								class="btn btn-secondary btn-sm "
 								onclick="adicionaOrganizador()" value="Adicionar">
 						</div>
-						
-						</div>
-						<br> <label for="colaboradorInput">Colaboradores</label>
-						<div class="form-row">
-							<select id="colaboradorInput" class="form-control col-md-8"
-								style="margin-left: 3px">
-								<option value="" selected="selected" disabled="disabled">Selecione
-									o colaborador da atividade</option>
-								<c:forEach items="${colaboradores}" var="colaborador">
-									<option id="colaboradorOption-${colaborador.codColaborador}"
-										value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
-								</c:forEach>
-							</select> &nbsp;&nbsp; <input type="button"
-								class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()"
-								value="Adicionar">
-						</div>
-						<br>
-						<ul class="list-group col-md-8" id="listaOrganizador">
-						</ul>
-						<br> <a href="/Chronos/atividades/${atividade.codAtividade}"
-							type="button" id="enviar" class="btn btn-secondary"> Cancelar
-						</a> <input type="button" class="btn btn-primary"
-							value="Salvar e Continuar" data-toggle="modal"
-							data-target="#confirmarSelecao">
-						<!-- Modal -->
-						<div class="modal fade" id="confirmarSelecao" tabindex="-1"
-							role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="modalLabel">Confirmar edição
-											da seleção</h5>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<p>Você deseja confirmar a edição da seleção?</p>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary btn-sm"
-											data-dismiss="modal">Cancelar</button>
-										<button type="submit" class="btn btn-primary btn-sm">Confirmar</button>
-									</div>
-								</div>
+				</div>
+				<br> <label for="colaboradorInput">Colaboradores</label>
+				<div class="form-row">
+					<select id="colaboradorInput" class="form-control col-md-8"
+						style="margin-left: 3px">
+						<option value="" selected="selected" disabled="disabled">Selecione
+							o colaborador da atividade</option>
+						<c:forEach items="${colaboradores}" var="colaborador">
+							<option id="colaboradorOption-${colaborador.codColaborador}"
+								value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
+						</c:forEach>
+					</select> &nbsp;&nbsp; <input type="button"
+						class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()"
+						value="Adicionar">
+				</div>
+				<br>
+				<ul class="list-group col-md-8" id="listaOrganizador">
+				</ul>
+				<br> <a href="/Chronos/atividades/${atividade.codAtividade}"
+					type="button" id="enviar" class="btn btn-secondary"> Cancelar </a>
+				<input type="button" class="btn btn-primary"
+					value="Salvar e Continuar" data-toggle="modal"
+					data-target="#confirmarSelecao">
+				<!-- Modal -->
+				<div class="modal fade" id="confirmarSelecao" tabindex="-1"
+					role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="modalLabel">Confirmar edição da
+									seleção</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Você deseja confirmar a edição da seleção?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary btn-sm"
+									data-dismiss="modal">Cancelar</button>
+								<button type="submit" class="btn btn-primary btn-sm">Confirmar</button>
 							</div>
 						</div>
-						<hr />
-					</form>
+					</div>
 				</div>
+				<hr />
+				</form>
 			</div>
 			<div class="col-sm-2 sidebar-offcanvas">
 				<div class="card">
@@ -216,16 +213,15 @@
 							<a class="btn icon-btn btn-primary"
 								href="/Chronos/apoiadores/${atividade.codAtividade}"><span
 								class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Apoiadores</a>
-						</c:if>
-						<c:if test="${empty atividade.pai }">
 							<a class="btn icon-btn btn-primary"
 								href="/Chronos/colaboradores/${atividade.codAtividade}"><span
 								class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Colaboradores</a>
-						</c:if>	
+						</c:if>
 					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
