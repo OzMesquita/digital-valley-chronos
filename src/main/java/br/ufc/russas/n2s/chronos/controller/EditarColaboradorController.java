@@ -65,7 +65,7 @@ public class EditarColaboradorController {
 		return "colaborador";
 	}
 
-	@RequestMapping(value = "/{codAtividade}&{codColaborador}", method = RequestMethod.POST)
+	@RequestMapping(value = "/{codAtividade}&{codColaborador}/editar", method = RequestMethod.POST)
 	public String editaColaborador(@PathVariable long codAtividade, @PathVariable long codColaborador,
 			@ModelAttribute("colaborador") @Valid ColaboradorBeans colaborador, BindingResult result, Model model,
 			HttpServletResponse response, HttpServletRequest request) throws IOException, IllegalAccessException {
@@ -99,7 +99,7 @@ public class EditarColaboradorController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/remove/{codAtividade}&{codColabordor}", method = RequestMethod.POST)
+	@RequestMapping(value = "/remove/{codAtividade}&{codColabordor}/remover", method = RequestMethod.POST)
 	public String removerColaborador(@PathVariable long codAtividade, @PathVariable long codColaborador, Model model,
 			HttpServletRequest request) throws IllegalAccessException {
 		HttpSession session = request.getSession();
@@ -118,6 +118,6 @@ public class EditarColaboradorController {
 		
 		session.setAttribute("mensagem", "Apoio removido com sucesso!");
 		session.setAttribute("status", "success");
-		return ("redirect:/apoiadores/" + codAtividade);
+		return ("redirect:/colaborador/" + codAtividade);
 	}
 }

@@ -104,7 +104,7 @@
 							<!--######################-->
 							<td class="text-center">
 								<form method="POST"
-									action="editarColaborador/${atividade.codAtividade}&${colaborador.codColaborador}"
+									action="/Chronos/editarColaborador/${atividade.codAtividade}&${colaborador.codColaborador}/editar"
 									accept-charset="UTF-8" enctype="multipart/form-data"
 									id="needs-validation" novalidate>
 									<input type="button" class="btn btn-primary" value="Editar"
@@ -128,7 +128,7 @@
 														<div class=" "
 															style="padding-left: 0px;" id="datepicker">
 															<input name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" 
-															placeholder="Digite o nome do colaborador" required=""  type="text">
+															placeholder="Digite o nome do colaborador" required=""  type="text" value="${colaborador.nome}">
 														</div>											
 													</div>
 													<br>
@@ -136,8 +136,8 @@
 													<div id="sandbox-container">
 														<div class=""
 															style="padding-left: 0px;" id="datepicker">
-															<input name="nome" class="form-control" id="funcaoInput" aria-describedby="nomeHelp" 
-															placeholder="Digite o nome do colaborador" required=""  type="text">
+															<input name="funcao" class="form-control" id="funcaoInput" aria-describedby="nomeHelp" 
+															placeholder="Digite o nome do colaborador" required=""  type="text" value="${colaborador.funcao}">
 														</div>											
 													</div>																	
 												</div>
@@ -153,7 +153,7 @@
 							</td>
 							<td class="text-center">
 								<form method="POST"
-									action="removeColaborador/${atividade.codAtividade}&${colaborador.codColaborador}"
+									action="/remove/${atividade.codAtividade}&${colaborador.codColaborador}/remover"
 									accept-charset="UTF-8" enctype="multipart/form-data"
 									id="needs-validation" novalidate>
 									<input class="btn btn-danger" value="Remover" type="submit">
