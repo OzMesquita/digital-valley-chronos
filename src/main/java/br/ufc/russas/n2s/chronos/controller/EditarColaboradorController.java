@@ -100,8 +100,9 @@ public class EditarColaboradorController {
 	}
 	
 	@RequestMapping(value = "/remove/{codAtividade}&{codColabordor}/remover", method = RequestMethod.POST)
-	public String removerColaborador(@PathVariable long codAtividade, @PathVariable long codColaborador, Model model,
-			HttpServletRequest request) throws IllegalAccessException {
+	public String removerColaborador(@PathVariable long codAtividade, @PathVariable long codColaborador, 
+			@ModelAttribute("colaborador") @Valid ColaboradorBeans colaborador, BindingResult result, Model model,
+			HttpServletResponse response, HttpServletRequest request) throws IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);
@@ -118,6 +119,6 @@ public class EditarColaboradorController {
 		
 		session.setAttribute("mensagem", "Apoio removido com sucesso!");
 		session.setAttribute("status", "success");
-		return ("redirect:/colaborador/" + codAtividade);
+		return ("redirect:/colaboradores/" + codAtividade);
 	}
 }

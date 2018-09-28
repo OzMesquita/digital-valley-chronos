@@ -45,7 +45,7 @@
 				<li class="breadcrumb-item active" aria-current="page">Cadastrar
 					colaborador</li>
 				</nav>
-				<c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>	
+				<c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>
 				<c:if test="${not empty mensagem}">
 					<div class="alert alert-${status} alert-dismissible fade show"
 						role="alert">
@@ -125,21 +125,22 @@
 												<div class="modal-body">
 													<label for="nomeInput">Nome</label>
 													<div id="sandbox-container">
-														<div class=" "
-															style="padding-left: 0px;" id="datepicker">
-															<input name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" 
-															placeholder="Digite o nome do colaborador" required=""  type="text" value="${colaborador.nome}">
-														</div>											
+														<div class=" " style="padding-left: 0px;" id="datepicker">
+															<input name="nome" class="form-control" id="nomeInput"
+																aria-describedby="nomeHelp"
+																placeholder="Digite o nome do colaborador" required=""
+																type="text" value="${colaborador.nome}">
+														</div>
 													</div>
-													<br>
-													<label for="funcaoInput">Função</label>
+													<br> <label for="funcaoInput">Função</label>
 													<div id="sandbox-container">
-														<div class=""
-															style="padding-left: 0px;" id="datepicker">
-															<input name="funcao" class="form-control" id="funcaoInput" aria-describedby="nomeHelp" 
-															placeholder="Digite o nome do colaborador" required=""  type="text" value="${colaborador.funcao}">
-														</div>											
-													</div>																	
+														<div class="" style="padding-left: 0px;" id="datepicker">
+															<input name="funcao" class="form-control"
+																id="funcaoInput" aria-describedby="nomeHelp"
+																placeholder="Digite o nome do colaborador" required=""
+																type="text" value="${colaborador.funcao}">
+														</div>
+													</div>
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary btn-sm"
@@ -153,7 +154,7 @@
 							</td>
 							<td class="text-center">
 								<form method="POST"
-									action="/remove/${atividade.codAtividade}&${colaborador.codColaborador}/remover"
+									action="/Chronos/editarColaborador/remove/${atividade.codAtividade}&${colaborador.codColaborador}/remover"
 									accept-charset="UTF-8" enctype="multipart/form-data"
 									id="needs-validation" novalidate>
 									<input class="btn btn-danger" value="Remover" type="submit">
@@ -162,25 +163,25 @@
 						</tr>
 					</c:forEach>
 				</table>
-				
+
 				<br>
 				<!--######################-->
 				<!-- ADICIONAR REALIZACAO -->
-				<!--######################-->		
-								
-										
-				<li style="list-style: none; text-align: center;" >
+				<!--######################-->
+
+
+				<li style="list-style: none; text-align: center;">
 					<form method="POST"
 						action="/Chronos/cadastrarColaborador/cadastraColaborador/${atividade.codAtividade}"
 						accept-charset="UTF-8" enctype="multipart/form-data"
-						id="needs-validation" novalidate>				
-											
-						
-						<input type="button" class="btn btn-circle"							
+						id="needs-validation" novalidate>
+
+
+						<input type="button" class="btn btn-circle"
 							value="Cadastrar Colaborador" data-toggle="modal"
-							data-target="#confirmarColaborador"/>
-							
-							
+							data-target="#confirmarColaborador" />
+
+
 
 						<!-- Modal -->
 						<div class="modal fade" id="confirmarColaborador" tabindex="-1"
@@ -198,36 +199,35 @@
 									<div class="modal-body">
 										<label for="nomeInput">Nome</label>
 										<div id="sandbox-container">
-											<div class=" "
-												style="padding-left: 0px;" id="datepicker">
-												<input name="nome" class="form-control" id="nomeInput" aria-describedby="nomeHelp" 
-												placeholder="Digite o nome do colaborador" required=""  type="text">
-											</div>											
+											<div class=" " style="padding-left: 0px;" id="datepicker">
+												<input name="nome" class="form-control" id="nomeInput"
+													aria-describedby="nomeHelp"
+													placeholder="Digite o nome do colaborador" required=""
+													type="text">
+											</div>
 										</div>
-										<br>
-										<label for="funcaoInput">Função</label>
+										<br> <label for="funcaoInput">Função</label>
 										<div id="sandbox-container">
-											<div class=""
-												style="padding-left: 0px;" id="datepicker">
-												<input name="funcao" class="form-control" id="funcaoInput" aria-describedby="nomeHelp" 
-												placeholder="Digite a função do colaborador" required=""  type="text">
-											</div>											
+											<div class="" style="padding-left: 0px;" id="datepicker">
+												<input name="funcao" class="form-control" id="funcaoInput"
+													aria-describedby="nomeHelp"
+													placeholder="Digite a função do colaborador" required=""
+													type="text">
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
-											<button type="button" class="btn btn-secondary btn-sm"
-												data-dismiss="modal">Cancelar</button>
-											<button type="submit" class="btn btn-primary btn-sm">Adicionar</button>
+										<button type="button" class="btn btn-secondary btn-sm"
+											data-dismiss="modal">Cancelar</button>
+										<button type="submit" class="btn btn-primary btn-sm">Adicionar</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</form>
 
-				</li>
-				<br />
-				<br>
-				
+				</li> <br /> <br>
+
 			</div>
 		</div>
 	</div>
