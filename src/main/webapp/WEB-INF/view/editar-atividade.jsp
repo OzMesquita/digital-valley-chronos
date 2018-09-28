@@ -201,9 +201,11 @@
 								href="/Chronos/apoiadores/${atividade.codAtividade}"><span
 								class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Apoiadores</a>
 						</c:if>
-						<a class="btn icon-btn btn-primary"
-							href="/Chronos/colaboradores/${atividade.codAtividade}"><span
-							class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Colaborador</a>
+						<c:if test="${empty atividade.pai }">
+							<a class="btn icon-btn btn-primary"
+								href="/Chronos/colaboradores/${atividade.codAtividade}"><span
+								class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Colaboradores</a>
+						</c:if>	
 					</ul>
 				</div>
 			</div>
