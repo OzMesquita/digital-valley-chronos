@@ -196,7 +196,7 @@
 					</div>
 					
 					</div>
-					<c:if test="${empty atividade.pai}">
+					<c:if test="${!empty atividade.pai}">
 						<br> <label for="colaboradorInput">Colaboradores</label>
 						<div class="form-row">
 							<select id="colaboradorInput" class="form-control col-md-8"
