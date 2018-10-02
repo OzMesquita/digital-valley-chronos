@@ -154,8 +154,8 @@
 							</td>
 							<td class="text-center">
 								<form method="POST"
-									action="/Chronos/editarColaborador/remove/${atividade.codAtividade}&${colaborador.codColaborador}/remover"
-									accept-charset="UTF-8" enctype="multipart/form-data"
+									action="/Chronos/editarColaborador/${atividade.codAtividade}&${colaborador.codColaborador}/remover"
+									accept-charset="UTF-8"
 									id="needs-validation" novalidate>
 									<input class="btn btn-danger" value="Remover" type="submit">
 								</form>
