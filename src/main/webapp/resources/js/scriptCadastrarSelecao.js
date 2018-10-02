@@ -158,3 +158,25 @@ function removeOrganizador(codOrganizador) {
     atualizaOrganizadores();
 }
 
+(function () {
+    $('#btnRight').click(function (e) {
+        var selectedOpts = $('#colaboradorInput1 option:selected');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+        $('#colaboradorInput2').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+    $('#btnLeft').click(function (e) {
+        var selectedOpts = $('#colaboradorInput2 option:selected');
+        if (selectedOpts.length == 0) {
+            alert("Nothing to move.");
+            e.preventDefault();
+        }
+        $('#colaboradorInput1').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+}(jQuery));

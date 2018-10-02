@@ -149,17 +149,19 @@
 					<br>
 					<label for="colaboradorInput">Colaboradores</label>
 					<div class="form-row">
-						<select id="colaboradorInput" class="form-control col-md-8"
-							style="margin-left: 3px">
-							<option value="" selected="selected" disabled="disabled">Selecione
-								o colaborador da atividade</option>
+						<select multiple="multiple" size="5" name="colaboradorInput1[]" id="colaboradorInput1" class="form-control col-md-4" style="margin-left: 3px">
+							<optgroup label="Colaboradores Disponíveis">
+							</optgroup>
 							<c:forEach items="${colaboradores}" var="colaborador">
-								<option id="colaboradorOption-${colaborador.codColaborador}"
-									value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
+								<option id="colaboradorOption-${colaborador.codColaborador}" value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
 							</c:forEach>
-						</select> &nbsp;&nbsp; <input type="button"
-							class="btn btn-secondary btn-sm " onclick="adicionaOrganizador()"
-							value="Adicionar">
+						</select> &nbsp;&nbsp;
+						  <input type="button" id="btnRight" value=">" class="btn btn-default" /><br />
+						  <input type="button" id="btnLeft" value="<" class="btn btn-default" /><br />
+						<select multiple="multiple" size="5" name="colaboradorInput2[]" id="colaboradorInput2" class="form-control col-md-4"	style="margin-left: 3px">
+							<optgroup label="Colaboradores Selecionados">
+							</optgroup>
+						</select>
 					</div>
 				</c:if>
 				<br>
