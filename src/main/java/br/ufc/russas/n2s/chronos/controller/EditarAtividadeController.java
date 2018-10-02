@@ -52,7 +52,9 @@ public class EditarAtividadeController {
 	public String getIndex(@PathVariable long codAtividade, Model model, HttpServletRequest request ) {
 		 AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
         request.getSession().setAttribute("atividade", atividade);
-		
+        if(atividade.getPai()!=null)
+        	request.getSession().setAttribute("colaboradores", atividade.getPai().getColaboradores());
+        
 		return "editar-atividade";
 	}
 	
