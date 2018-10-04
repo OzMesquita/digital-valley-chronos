@@ -1,19 +1,37 @@
 package br.ufc.russas.n2s.chronos.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "inscricao")
 public class InscricaoAtividade {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codInscricao")
+	private long codInscricao;
 	@ManyToOne(targetEntity = UsuarioChronos.class)
-	@JoinColumn(name = "participante", referencedColumnName = "codUsuarioChronos")
+	@JoinColumn(name = "participante", referencedColumnName = "codUsuario")
 	private UsuarioChronos participante;
 	@ManyToOne(targetEntity = Atividade.class)
 	@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")
 	private Atividade atividade;
 
 	public InscricaoAtividade() {
+	}
+
+	public long getCodInscricao() {
+		return codInscricao;
+	}
+
+	public void setCodInscricao(long codInscricao) {
+		this.codInscricao = codInscricao;
 	}
 
 	public UsuarioChronos getParticipante() {
