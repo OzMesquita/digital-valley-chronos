@@ -28,7 +28,7 @@ public class InscricaoAtividade {
 		}
 	}
 
-	public Atividade geAtividade() {
+	public Atividade getAtividade() {
 		return atividade;
 	}
 
