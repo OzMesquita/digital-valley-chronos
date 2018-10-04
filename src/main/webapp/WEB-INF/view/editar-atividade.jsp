@@ -149,20 +149,26 @@
 					<br>
 					<label for="colaboradorInput">Colaboradores</label>
 					<div class="form-row">
-						<select multiple="multiple" size="5" name="colaboradorInput1[]" id="colaboradorInput1" class="form-control col-md-4" style="margin-left: 3px">
+						<select multiple="multiple" size="5" name="colaboradorInput1[]"
+							id="colaboradorInput1" class="form-control col-md-4"
+							style="margin-left: 3px">
 							<optgroup label="Colaboradores Disponíveis">
 							</optgroup>
 							<c:forEach items="${colaboradores}" var="colaborador">
-								<option id="colaboradorOption-${colaborador.codColaborador}" value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
+								<option id="colaboradorOption-${colaborador.codColaborador}"
+									value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
 							</c:forEach>
-						</select> &nbsp;&nbsp;
-						  <input type="button" id="btnRight" value=">" class="btn btn-default" /><br />
-						  <input type="button" id="btnLeft" value="<" class="btn btn-default" /><br />
-						<select multiple="multiple" size="5" name="colaboradorInput2[]" id="colaboradorInput2" class="form-control col-md-4"	style="margin-left: 3px">
+						</select> &nbsp;&nbsp; <input type="button" id="btnRight" value=">"
+							class="btn btn-default" /><br /> <input type="button"
+							id="btnLeft" value="<" class=" btn btn-default" /><br /> <select
+							multiple="multiple" size="5" name="colaboradorInput2[]"
+							id="colaboradorInput2" class="form-control col-md-4"
+							style="margin-left: 3px">
 							<optgroup label="Colaboradores Selecionados">
 							</optgroup>
 						</select>
 					</div>
+
 				</c:if>
 				<br>
 				<ul class="list-group col-md-8" id="listaOrganizador">
@@ -244,5 +250,30 @@
 	<script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/scriptCadastrarSelecao.js"></script>
+	<script type="text/javascript">
+	$(function () {
+	    $('#btnRight').click(function (e) {
+	        var selectedOpts = $('#colaboradorInput1 option:selected');
+	        if (selectedOpts.length == 0) {
+	            alert("Nada para mover.");
+	            e.preventDefault();
+	        }
+	        $('#colaboradorInput2').append($(selectedOpts).clone());
+	        $(selectedOpts).remove();
+	        e.preventDefault();
+	    });
+	    $('#btnLeft').click(function (e) {
+	        var selectedOpts = $('#colaboradorInput2 option:selected');
+	        if (selectedOpts.length == 0) {
+	            alert("Nada para mover.");
+	            e.preventDefault();
+	        }
+	        $('#colaboradorInput1').append($(selectedOpts).clone());
+	        $(selectedOpts).remove();
+	        e.preventDefault();
+	    });
+	}(jQuery));
+	</script>	
+		
 </body>
 </html>

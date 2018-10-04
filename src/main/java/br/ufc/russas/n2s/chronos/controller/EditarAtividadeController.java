@@ -80,6 +80,7 @@ public class EditarAtividadeController {
 				 atividadeBeans.setTotalVagasComunidade(atividade.getTotalVagasComunidade());
 				 atividadeBeans.setTipoPagamento(atividade.getTipoPagamento());
 				 atividadeBeans.setOrganizadores(atividade.getOrganizadores());
+				 atividadeBeans.setColaboradores(atividade.getColaboradores());
 				 
 				 UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 				 this.getAtividadeServiceIfc().setUsuario(usuario);
