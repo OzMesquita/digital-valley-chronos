@@ -85,7 +85,7 @@
 					value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
 
 				<!--######################-->
-				<!-- DATA INICIAL E FINAL -->
+				<!-- EXIBE COLABORADORESL -->
 				<!--######################-->
 				<table class="table table-striped custab">
 					<tr>
@@ -100,7 +100,7 @@
 							<td>${colaborador.nome}</td>
 							<td>${colaborador.funcao}</td>
 							<!--######################-->
-							<!-- EDITAR REALIZACAO -->
+							<!-- EDITAR COLABORADOR -->
 							<!--######################-->
 							<td class="text-center">
 								<form method="POST"
@@ -166,7 +166,7 @@
 
 				<br>
 				<!--######################-->
-				<!-- ADICIONAR REALIZACAO -->
+				<!-- ADICIONAR COLABORADOR -->
 				<!--######################-->
 
 
