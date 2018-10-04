@@ -53,6 +53,7 @@
     <bean name="subatividadeController" class="br.ufc.russas.n2s.chronos.controller.SubAtividadeController" />
     <bean name="apoioController" class="br.ufc.russas.n2s.chronos.controller.ApoioController" />
     <bean name="cadastrarAtividadeController" class="br.ufc.russas.n2s.chronos.controller.CadastrarAtividadeController" />
+    <bean name="cadastrarInscricaoController" class="br.ufc.russas.n2s.chronos.controller.CadastrarInscricaoController" />
     <bean name="cadastrarRealizacaoController" class="br.ufc.russas.n2s.chronos.controller.RealizacaoController" />
     <bean name="cadastrarApoioController" class="br.ufc.russas.n2s.chronos.controller.CadastrarApoioController" />
     <bean name="editarApoioController" class="br.ufc.russas.n2s.chronos.controller.EditarApoioController" />
