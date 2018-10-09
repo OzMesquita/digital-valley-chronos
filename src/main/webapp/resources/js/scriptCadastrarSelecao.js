@@ -162,7 +162,7 @@ $(function () {
     $('#btnRight').click(function (e) {
         var selectedOpts = $('#colaboradorInput1 option:selected');
         if (selectedOpts.length == 0) {
-            alert("Nothing to move.");
+            alert("Selecione um Colaborador.");
             e.preventDefault();
         }
         $('#colaboradorInput2').append($(selectedOpts).clone());
@@ -172,7 +172,7 @@ $(function () {
     $('#btnLeft').click(function (e) {
         var selectedOpts = $('#colaboradorInput2 option:selected');
         if (selectedOpts.length == 0) {
-            alert("Nothing to move.");
+            alert("Selecione um Colaborador.");
             e.preventDefault();
         }
         $('#colaboradorInput1').append($(selectedOpts).clone());
