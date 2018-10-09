@@ -158,7 +158,7 @@ function removeOrganizador(codOrganizador) {
     atualizaOrganizadores();
 }
 
-(function () {
+$(function () {
     $('#btnRight').click(function (e) {
         var selectedOpts = $('#colaboradorInput1 option:selected');
         if (selectedOpts.length == 0) {
