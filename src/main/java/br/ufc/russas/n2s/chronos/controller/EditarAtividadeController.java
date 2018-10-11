@@ -1,5 +1,7 @@
 package br.ufc.russas.n2s.chronos.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,12 +17,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
+import br.ufc.russas.n2s.chronos.beans.ColaboradorBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
+import br.ufc.russas.n2s.chronos.model.Colaborador;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
@@ -52,14 +57,22 @@ public class EditarAtividadeController {
 	public String getIndex(@PathVariable long codAtividade, Model model, HttpServletRequest request ) {
 		 AtividadeBeans atividade = atividadeServiceIfc.getAtividade(codAtividade);
         request.getSession().setAttribute("atividade", atividade);
-        if(atividade.getPai()!=null)
-        	request.getSession().setAttribute("colaboradores", atividade.getPai().getColaboradores());
-        
+        if(atividade.getPai()!=null) {
+        	request.getSession().setAttribute("colaboradoresselecionados", atividade.getColaboradores());
+        	List<Colaborador> colaboradores = atividade.getPai().getColaboradores();
+        	for (Iterator<ColaboradorBeans> iterator = atividade.getColaboradores().iterator(); iterator.hasNext();)
+        		for (Iterator<Colaborador> iterator2 = colaboradores.iterator(); iterator2.hasNext();)
+					if(iterator.next().getCodColaborador()==iterator2.next().getCodColaborador())
+						iterator2.remove();
+			request.getSession().setAttribute("colaboradores", colaboradores);
+        }
 		return "editar-atividade";
 	}
 	
 	@RequestMapping(value="/{codAtividade}",method = RequestMethod.POST)
-	public String atualizaAtividade(@PathVariable long codAtividade, @ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse reponse, HttpServletRequest request ) throws  IllegalAccessException{ 
+	public String atualizaAtividade(@PathVariable long codAtividade, @ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse reponse, HttpServletRequest request 
+			,@RequestParam(value = "colaboradorInput2", required = true) String[] colaboradores
+			) throws  IllegalAccessException{ 
 		 AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
 		 HttpSession session = request.getSession();
 		 System.out.println("\n\n\n");
@@ -80,7 +93,18 @@ public class EditarAtividadeController {
 				 atividadeBeans.setTotalVagasComunidade(atividade.getTotalVagasComunidade());
 				 atividadeBeans.setTipoPagamento(atividade.getTipoPagamento());
 				 atividadeBeans.setOrganizadores(atividade.getOrganizadores());
-				 atividadeBeans.setColaboradores(atividade.getColaboradores());
+				 
+				 if(atividadeBeans.getPai()!=null) {
+					 for (Colaborador colaboradordisponivel : atividadeBeans.getPai().getColaboradores()) {
+						for(String codcolaborador : colaboradores)
+							if(colaboradordisponivel.getCodColaborador()==Long.parseLong(codcolaborador)) {
+								ColaboradorBeans colaboradorBeans = new ColaboradorBeans();
+								colaboradorBeans.toBeans(colaboradordisponivel);
+								atividadeBeans.getColaboradores().add(colaboradorBeans);
+								System.out.println("adicionado "+ colaboradordisponivel.getNome());
+							}
+					 }
+				 }
 				 
 				 UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 				 this.getAtividadeServiceIfc().setUsuario(usuario);

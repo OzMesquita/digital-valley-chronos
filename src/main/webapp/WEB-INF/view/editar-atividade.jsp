@@ -149,23 +149,27 @@
 					<br>
 					<label for="colaboradorInput">Colaboradores</label>
 					<div class="form-row">
-						<select multiple="multiple" size="5" name="colaboradorInput1[]"
+						<select multiple="multiple" size="5" name="colaboradorInput1"
 							id="colaboradorInput1" class="form-control col-md-4"
 							style="margin-left: 3px">
 							<optgroup label="Colaboradores Disponíveis">
 							</optgroup>
 							<c:forEach items="${colaboradores}" var="colaborador">
 								<option id="colaboradorOption-${colaborador.codColaborador}"
-									value="${colaborador.codColaborador}-${colaborador.nome}">${colaborador.nome}</option>
+									value="${colaborador.codColaborador}">${colaborador.nome}</option>
 							</c:forEach>
 						</select> &nbsp;&nbsp; <input type="button" id="btnRight" value=">"
 							class="btn btn-default" /><br /> <input type="button"
 							id="btnLeft" value="<" class=" btn btn-default" /><br /> <select
-							multiple="multiple" size="5" name="colaboradorInput2[]"
+							multiple="multiple" size="5" name="colaboradorInput2"
 							id="colaboradorInput2" class="form-control col-md-4"
 							style="margin-left: 3px">
 							<optgroup label="Colaboradores Selecionados">
 							</optgroup>
+							<c:forEach items="${colaboradoresselecionados}" var="colaboradorsel">
+								<option id="colaboradorOption-${colaboradorsel.codColaborador}"
+									value="${colaboradorsel.codColaborador}">${colaboradorsel.nome}</option>
+							</c:forEach>
 						</select>
 					</div>
 
@@ -177,7 +181,7 @@
 					type="button" id="enviar" class="btn btn-secondary"> Cancelar </a>
 				<input type="button" class="btn btn-primary"
 					value="Salvar e Continuar" data-toggle="modal"
-					data-target="#confirmarSelecao">
+					data-target="#confirmarSelecao" Onclick="setSelecionados()">
 				<!-- Modal -->
 				<div class="modal fade" id="confirmarSelecao" tabindex="-1"
 					role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
