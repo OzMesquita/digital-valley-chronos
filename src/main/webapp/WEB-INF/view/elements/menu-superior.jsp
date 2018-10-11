@@ -85,7 +85,7 @@
 			</form>
 	<%} %>
 	<%if(request.getSession().getAttribute("usuarioChronos") != null) {%>
-	<a class="btn-sm btn-light text-right"
+	<a class="btn btn-danger"
 		href="<%=Constantes.getAppUrl()%>/sair">Sair</a>
 	<%} %>
 </nav>
