@@ -5,16 +5,16 @@ import br.ufc.russas.n2s.chronos.model.InscricaoAtividade;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 
 public class InscricaoAtividadeBeans implements Beans {
-	private long codColaborador;
+	private long codInscricao;
 	private UsuarioChronos participante;
 	private Atividade atividade;
 
-	public long getCodColaborador() {
-		return codColaborador;
+	public long getCodInscricao() {
+		return codInscricao;
 	}
 
-	public void setCodColaborador(long codColaborador) {
-		this.codColaborador = codColaborador;
+	public void setCodInscricao(long codInscricao) {
+		this.codInscricao = codInscricao;
 	}
 
 	public UsuarioChronos getParticipante() {
