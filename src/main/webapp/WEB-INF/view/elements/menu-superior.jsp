@@ -86,6 +86,6 @@
 	<%} %>
 	<%if(request.getSession().getAttribute("usuarioChronos") != null) {%>
 	<a class="btn btn-danger"
-		href="<%=Constantes.getAppUrl()%>/sair">Sair</a>
+		href="http://192.169.1.2:8080/guardiao/logout">Sair</a>
 	<%} %>
 </nav>
