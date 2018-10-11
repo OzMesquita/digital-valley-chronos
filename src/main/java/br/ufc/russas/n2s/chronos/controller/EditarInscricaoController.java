@@ -26,6 +26,7 @@ import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.ColaboradorServiceIfc;
+import br.ufc.russas.n2s.chronos.service.InscricaoServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
 @Controller("editarInscricaoController")
@@ -91,5 +92,27 @@ public class EditarInscricaoController {
 			}
 		}
 		return null;
+	}
+	
+	@RequestMapping(value = "/{codAtividade}&{codInscricao}/remover", method = RequestMethod.POST)
+	public String removerInscricao(@PathVariable long codAtividade, @PathVariable long codInscricao, 
+			@ModelAttribute("inscricao") @Valid InscricaoAtividadeBeans inscricao, BindingResult result, Model model,
+			HttpServletResponse response, HttpServletRequest request) throws IllegalAccessException {
+		HttpSession session = request.getSession();
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+		this.atividadeServiceIfc.setUsuario(usuario);
+		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
+		for (Iterator<ColaboradorBeans> iterator = atividadeBeans.getInscricoes().iterator(); iterator.hasNext();) {
+			InscricaoAtividadeBeans inscricaoAUX = iterator.next();
+			if (inscricaoAUX.getCodInscricao() == codInscricao) {
+				iterator.remove();
+				atividadeBeans = this.getAtividadeService().atualizaAtividade(atividadeBeans);
+				InscricaoServiceIfc.atualizaInscricao(inscricaoAUX);
+				InscricaoServiceIfc.removeInscricao(inscricaoAUX);
+			}
+		}
+		session.setAttribute("mensagem", "inscricao cancelada com sucesso!");
+		session.setAttribute("status", "success");
+		return ("redirect:/atividades/" + atividadeBeans.getCodAtividade());
 	}
 }
