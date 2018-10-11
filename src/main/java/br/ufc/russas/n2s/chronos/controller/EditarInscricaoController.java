@@ -19,13 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
-import br.ufc.russas.n2s.chronos.beans.ColaboradorBeans;
 import br.ufc.russas.n2s.chronos.beans.InscricaoAtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
-import br.ufc.russas.n2s.chronos.service.ColaboradorServiceIfc;
 import br.ufc.russas.n2s.chronos.service.InscricaoServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
@@ -54,14 +52,14 @@ public class EditarInscricaoController {
 		this.usuarioServiceIfc = usuarioServiceIfc;
 	}
 
-	@RequestMapping(value = "/{codAtividade}&{codColaborador}", method = RequestMethod.GET)
-	public String getCadastro(@PathVariable long codAtividade, @PathVariable long codColaborador, Model model,
+	@RequestMapping(value = "/{codAtividade}&{codInscricao}", method = RequestMethod.GET)
+	public String getCadastro(@PathVariable long codAtividade, @PathVariable long codInscricao, Model model,
 			HttpServletRequest request) {
-		return "colaborador";
+		return "inscricao";
 	}
 	//Funciona quando o model e o Bean de atividade for alterado para refletir a inscrição
 	@RequestMapping(value = "/{codAtividade}&{codInscricao}/editar", method = RequestMethod.POST)
-	public String editaColaborador(@PathVariable long codAtividade, @PathVariable long codInscricao,
+	public String editaInscricao(@PathVariable long codAtividade, @PathVariable long codInscricao,
 			@ModelAttribute("participante") @Valid UsuarioChronos participante, @ModelAttribute("atividade") @Valid Atividade atividade, BindingResult result, Model model,
 			HttpServletResponse response, HttpServletRequest request) throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
@@ -70,25 +68,25 @@ public class EditarInscricaoController {
 		AtividadeBeans atividadeBeans = this.getAtividadeService().getAtividade(codAtividade);
 		if (atividadeBeans != null) {
 			try {
-				for (Iterator<InscricaoAtividadeBeans> iterator = atividadeBeans.getInscricoes().iterator(); iterator
-						.hasNext();) {
-					InscricaoAtividadeBeans inscricaoAUX = iterator.next();
-					if (inscricaoAUX.getCodInscricao() == codInscricao) {
-						inscricaoAUX.setParticipante(participante);
-						inscricaoAUX.setAtividade(atividade);
-						break;
-					}
-				}
+//				for (Iterator<InscricaoAtividadeBeans> iterator = atividadeBeans.getInscricoes().iterator(); iterator
+//						.hasNext();) {
+//					InscricaoAtividadeBeans inscricaoAUX = iterator.next();
+//					if (inscricaoAUX.getCodInscricao() == codInscricao) {
+//						inscricaoAUX.setParticipante(participante);
+//						inscricaoAUX.setAtividade(atividade);
+//						break;
+//					}
+//				}
 				atividadeBeans = this.getAtividadeService().atualizaAtividade(atividadeBeans);
 				session.setAttribute("mensagem", "Inscricao editada com sucesso!");
 				session.setAttribute("status", "success");
-				return ("redirect:/colaboradores/" + codAtividade);
+				return ("redirect:/inscricoes/" + codAtividade);
 			}
 
 			catch (IllegalArgumentException e) {
 				session.setAttribute("mensagem", e.getMessage());
 				session.setAttribute("status", "danger");
-				return ("redirect:/colaboradores/" + codAtividade);
+				return ("redirect:/inscricoes/" + codAtividade);
 			}
 		}
 		return null;
@@ -102,15 +100,15 @@ public class EditarInscricaoController {
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);
 		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
-		for (Iterator<ColaboradorBeans> iterator = atividadeBeans.getInscricoes().iterator(); iterator.hasNext();) {
-			InscricaoAtividadeBeans inscricaoAUX = iterator.next();
-			if (inscricaoAUX.getCodInscricao() == codInscricao) {
-				iterator.remove();
-				atividadeBeans = this.getAtividadeService().atualizaAtividade(atividadeBeans);
-				InscricaoServiceIfc.atualizaInscricao(inscricaoAUX);
-				InscricaoServiceIfc.removeInscricao(inscricaoAUX);
-			}
-		}
+//		for (Iterator<InscricaoAtividadeBeans> iterator = atividadeBeans.getInscricoes().iterator(); iterator.hasNext();) {
+//			InscricaoAtividadeBeans inscricaoAUX = iterator.next();
+//			if (inscricaoAUX.getCodInscricao() == codInscricao) {
+//				iterator.remove();
+//				atividadeBeans = this.getAtividadeService().atualizaAtividade(atividadeBeans);
+//				InscricaoServiceIfc.atualizaInscricao(inscricaoAUX);
+//				InscricaoServiceIfc.removeInscricao(inscricaoAUX);
+//			}
+//		}
 		session.setAttribute("mensagem", "inscricao cancelada com sucesso!");
 		session.setAttribute("status", "success");
 		return ("redirect:/atividades/" + atividadeBeans.getCodAtividade());
