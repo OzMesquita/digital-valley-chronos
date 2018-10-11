@@ -188,12 +188,13 @@ ul {
 	<c:import url="elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
 	<c:set var="permissoes"
 		value="${sessionScope.usuarioChronos.permissoes}"></c:set>
+		<c:set var = "nome" scope = "session" value = "${sessionScope.usuarioChronos.nome}"/>
 	<div class="container-fluid">
 		<div class="row row-offcanvas row-offcanvas-right">
 			<c:import url="elements/menu-lateral-esquerdo.jsp"
 				charEncoding="UTF-8"></c:import>
 			<div class="col-sm-8">
-				<nav class="breadcrumb"> <span class="breadcrumb-item">Você
+				<nav class="breadcrumb"> <span class="breadcrumb-item">Olá ${usuarioChronos.nome}. Você
 					está em:</span> <a class="breadcrumb-item" href="/Chronos">Início</a>
 					<c:if test="${atividade.pai!=null}"><a
 					class="breadcrumb-item" href="${atividade.pai.codAtividade}">${atividade.pai.nome}</a><a
