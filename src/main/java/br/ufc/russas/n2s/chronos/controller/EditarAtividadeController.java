@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,10 +61,12 @@ public class EditarAtividadeController {
         if(atividade.getPai()!=null) {
         	request.getSession().setAttribute("colaboradoresselecionados", atividade.getColaboradores());
         	List<Colaborador> colaboradores = atividade.getPai().getColaboradores();
-        	for (Iterator<ColaboradorBeans> iterator = atividade.getColaboradores().iterator(); iterator.hasNext();)
+        	for (Iterator<ColaboradorBeans> iterator = atividade.getColaboradores().iterator(); iterator.hasNext();) {
+        		long codcolaborador = iterator.next().getCodColaborador();
         		for (Iterator<Colaborador> iterator2 = colaboradores.iterator(); iterator2.hasNext();)
-					if(iterator.next().getCodColaborador()==iterator2.next().getCodColaborador())
+					if(codcolaborador==iterator2.next().getCodColaborador())
 						iterator2.remove();
+        	}
 			request.getSession().setAttribute("colaboradores", colaboradores);
         }
 		return "editar-atividade";
@@ -71,7 +74,8 @@ public class EditarAtividadeController {
 	
 	@RequestMapping(value="/{codAtividade}",method = RequestMethod.POST)
 	public String atualizaAtividade(@PathVariable long codAtividade, @ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse reponse, HttpServletRequest request 
-			,@RequestParam(value = "colaboradorInput2", required = true) String[] colaboradores
+			,@RequestParam(value = "colaboradorInput2") String[] colaboradoresSelecionados
+			,@RequestParam(value = "colaboradorInput1") String[] colaboradoresDisponiveis
 			) throws  IllegalAccessException{ 
 		 AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
 		 HttpSession session = request.getSession();
@@ -95,15 +99,23 @@ public class EditarAtividadeController {
 				 atividadeBeans.setOrganizadores(atividade.getOrganizadores());
 				 
 				 if(atividadeBeans.getPai()!=null) {
-					 for (Colaborador colaboradordisponivel : atividadeBeans.getPai().getColaboradores()) {
-						for(String codcolaborador : colaboradores)
-							if(colaboradordisponivel.getCodColaborador()==Long.parseLong(codcolaborador)) {
-								ColaboradorBeans colaboradorBeans = new ColaboradorBeans();
-								colaboradorBeans.toBeans(colaboradordisponivel);
-								atividadeBeans.getColaboradores().add(colaboradorBeans);
-								System.out.println("adicionado "+ colaboradordisponivel.getNome());
+					 for (Colaborador colaboradorDisp : atividadeBeans.getPai().getColaboradores()) {
+						for(String codcolaborador : colaboradoresSelecionados)
+							if(colaboradorDisp.getCodColaborador()==Long.parseLong(codcolaborador)) {
+								try {
+								atividadeBeans.getColaboradores().add((ColaboradorBeans) new ColaboradorBeans().toBeans(colaboradorDisp));
+								}catch (Exception e) {
+									// TODO: handle exception
+								}
+								System.out.println("adicionado "+ colaboradorDisp.getNome());
 							}
 					 }
+					for(String codcolaboradorDisponivel : colaboradoresDisponiveis)
+						for (Iterator<ColaboradorBeans> iterator = atividadeBeans.getColaboradores().iterator(); iterator.hasNext();)
+							if(iterator.next().getCodColaborador()==Long.parseLong(codcolaboradorDisponivel)) {
+								iterator.remove();
+							    System.out.println("removido "+ codcolaboradorDisponivel);
+						    }
 				 }
 				 
 				 UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
