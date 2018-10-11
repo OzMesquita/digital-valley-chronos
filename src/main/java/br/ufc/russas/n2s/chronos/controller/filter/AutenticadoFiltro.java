@@ -62,13 +62,8 @@ public class AutenticadoFiltro implements Filter {
 						u.setPermissoes(permissoes);
 						this.getUsuarioServiceIfc().adicionaUsuario(u);
 					}
-					System.out.println("\n\n");
-					System.out.println(this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()));
-					System.out.println(u.getCodUsuario());
-					System.out.println(u.getNome());
 					session.setAttribute("usuarioChronos",
 							this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()));
-					System.out.println(((UsuarioBeans) session.getAttribute("usuarioChronos")).getNome());
 					chain.doFilter(request, response);
 				} else {
 					((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao//");

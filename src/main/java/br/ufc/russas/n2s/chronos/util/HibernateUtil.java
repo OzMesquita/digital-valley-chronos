@@ -34,7 +34,6 @@ public class HibernateUtil {
 					.applySettings(configuration.getProperties()).build();
 			SESSION_FACTORY = configuration.configure("/hibernate.cfg.xml").buildSessionFactory(serviceRegistry);
 		} catch (Throwable ex) {
-			System.out.println("teste");
 			throw new ExceptionInInitializerError(ex);
 		}
 	}

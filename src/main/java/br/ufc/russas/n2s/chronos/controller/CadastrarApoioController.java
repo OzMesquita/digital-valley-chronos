@@ -78,8 +78,6 @@ public class CadastrarApoioController {
 			dir.mkdirs();
 		}
 		
-		System.out.println(dir.getAbsolutePath());
-		
         if (!logo.isEmpty()) {
         	File convFile = null;
         	if(logo.getContentType().equals("image/png")) {
@@ -93,15 +91,7 @@ public class CadastrarApoioController {
             fos.write(logo.getBytes());
             fos.close();
             apoio.setLogo(convFile.getAbsolutePath());
-        } 
-		
-		System.out.println(apoio.getCodApoio());
-		System.out.println(apoio.getLogo());
-		System.out.println(apoio.getNomeInstituicao());
-		System.out.println(apoio.getSiteInstituicao());
-		System.out.println(apoio.getTipoApoio());
-		System.out.println(apoio.getValorApoio());
-		System.out.println(apoio.getDataPagamento());
+        }
 		try {
 			this.atividadeServiceIfc.setUsuario(usuario);
 			AtividadeBeans atividade = this.getAtividadeService().getAtividade(codAtividade);

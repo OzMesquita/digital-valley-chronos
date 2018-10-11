@@ -97,16 +97,13 @@ public class EditarAtividadeController {
 										if(iterator.next().getCodColaborador()==colaboradorDisp.getCodColaborador())
 											iterator.remove();
 									atividadeBeans.getColaboradores().add((ColaboradorBeans) new ColaboradorBeans().toBeans(colaboradorDisp));
-									System.out.println("adicionado "+ colaboradorDisp.getNome());
 								}
 						 }
 					 if(colaboradoresDisponiveis!=null)
 						 for(String codcolaboradorDisponivel : colaboradoresDisponiveis)
 							for (Iterator<ColaboradorBeans> iterator = atividadeBeans.getColaboradores().iterator(); iterator.hasNext();)
-								if(iterator.next().getCodColaborador()==Long.parseLong(codcolaboradorDisponivel)) {
+								if(iterator.next().getCodColaborador()==Long.parseLong(codcolaboradorDisponivel))
 									iterator.remove();
-								    System.out.println("removido "+ codcolaboradorDisponivel);
-							    }
 				 }
 				 
 				 UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
