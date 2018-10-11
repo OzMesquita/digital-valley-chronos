@@ -73,17 +73,11 @@ public class EditarAtividadeController {
 	}
 	
 	@RequestMapping(value="/{codAtividade}",method = RequestMethod.POST)
-	public String atualizaAtividade(@PathVariable long codAtividade, @ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse reponse, HttpServletRequest request 
-			,@RequestParam(value = "colaboradorInput2") String[] colaboradoresSelecionados
-			,@RequestParam(value = "colaboradorInput1") String[] colaboradoresDisponiveis
-			) throws  IllegalAccessException{ 
+	public String atualizaAtividade(@PathVariable long codAtividade, @ModelAttribute("atividade") @Valid AtividadeBeans atividade, BindingResult result, Model model, HttpServletResponse reponse, HttpServletRequest request ) throws  IllegalAccessException{ 
 		 AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
 		 HttpSession session = request.getSession();
-		 System.out.println("\n\n\n");
-		 System.out.println(atividade.getNome());
-		 System.out.println(atividade.getDescricao());
-		 System.out.println("Tipo"+ atividade.getTipoAtividade().toString());
-		 System.out.println("\n\n\n");
+		 String[] colaboradoresDisponiveis = request.getParameterValues("colaboradorInput1");
+		 String[] colaboradoresSelecionados = request.getParameterValues("colaboradorInput2");
 		 
 		 {
 			 try {
@@ -99,23 +93,24 @@ public class EditarAtividadeController {
 				 atividadeBeans.setOrganizadores(atividade.getOrganizadores());
 				 
 				 if(atividadeBeans.getPai()!=null) {
-					 for (Colaborador colaboradorDisp : atividadeBeans.getPai().getColaboradores()) {
-						for(String codcolaborador : colaboradoresSelecionados)
-							if(colaboradorDisp.getCodColaborador()==Long.parseLong(codcolaborador)) {
-								try {
-								atividadeBeans.getColaboradores().add((ColaboradorBeans) new ColaboradorBeans().toBeans(colaboradorDisp));
-								}catch (Exception e) {
-									// TODO: handle exception
+					 if(colaboradoresSelecionados!=null)
+						 for (Colaborador colaboradorDisp : atividadeBeans.getPai().getColaboradores()) {
+							for(String codcolaborador : colaboradoresSelecionados)
+								if(colaboradorDisp.getCodColaborador()==Long.parseLong(codcolaborador)) {
+									for (Iterator<ColaboradorBeans> iterator = atividadeBeans.getColaboradores().iterator(); iterator.hasNext();)
+										if(iterator.next().getCodColaborador()==colaboradorDisp.getCodColaborador())
+											iterator.remove();
+									atividadeBeans.getColaboradores().add((ColaboradorBeans) new ColaboradorBeans().toBeans(colaboradorDisp));
+									System.out.println("adicionado "+ colaboradorDisp.getNome());
 								}
-								System.out.println("adicionado "+ colaboradorDisp.getNome());
-							}
-					 }
-					for(String codcolaboradorDisponivel : colaboradoresDisponiveis)
-						for (Iterator<ColaboradorBeans> iterator = atividadeBeans.getColaboradores().iterator(); iterator.hasNext();)
-							if(iterator.next().getCodColaborador()==Long.parseLong(codcolaboradorDisponivel)) {
-								iterator.remove();
-							    System.out.println("removido "+ codcolaboradorDisponivel);
-						    }
+						 }
+					 if(colaboradoresDisponiveis!=null)
+						 for(String codcolaboradorDisponivel : colaboradoresDisponiveis)
+							for (Iterator<ColaboradorBeans> iterator = atividadeBeans.getColaboradores().iterator(); iterator.hasNext();)
+								if(iterator.next().getCodColaborador()==Long.parseLong(codcolaboradorDisponivel)) {
+									iterator.remove();
+								    System.out.println("removido "+ codcolaboradorDisponivel);
+							    }
 				 }
 				 
 				 UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
