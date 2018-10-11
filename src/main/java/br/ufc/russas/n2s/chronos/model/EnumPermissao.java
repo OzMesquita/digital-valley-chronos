@@ -1,7 +1,7 @@
 package br.ufc.russas.n2s.chronos.model;
 
 public enum EnumPermissao {
-	ADMINISTRADOR(1), APOIO(2);
+	ADMINISTRADOR(1), APOIO(2), PARTICIPANTE(3);
 	private int nivel;
 
 	EnumPermissao() {
@@ -16,7 +16,7 @@ public enum EnumPermissao {
 	}
 
 	public void setNivel(int nivel) {
-		if (nivel >= 1 && nivel <= 2) {
+		if (nivel >= 1 && nivel <= 3) {
 			this.nivel = nivel;
 		} else {
 			throw new IllegalArgumentException(
@@ -31,6 +31,8 @@ public enum EnumPermissao {
 				p = EnumPermissao.ADMINISTRADOR;
 			} else if (valor == 2) {
 				p = EnumPermissao.APOIO;
+			} else if (valor == 3) {
+				p = EnumPermissao.PARTICIPANTE;
 			}
 			return p;
 		} else {
