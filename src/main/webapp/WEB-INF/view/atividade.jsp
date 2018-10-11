@@ -299,7 +299,9 @@ ul {
 								</div>
 							</div>
 						</div>
-					</c:if>
+					</c:if>	
+					
+					
 				</div>
 				<br>
 				<p class="text-justify">${atividade.descricao}</p>
@@ -373,8 +375,9 @@ ul {
 										<th>Local</th>
 										<th>Data/Horário</th>
 										<th>Vagas</th>
-										<th class="text-center">Editar</th>
-										<th class="text-center">Remover</th>
+										<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
+											<th class="text-center">Inscrição</th>											
+										</c:if>	
 									</tr>
 								</thead>	
 								<%-- Verifica se o usuario é administrador e então exibe a opção de editar atividade --%> 														
@@ -394,7 +397,21 @@ ul {
 											Remover</a></td>																
 										</tr>
 									</c:forEach>								
-								</c:if>							
+								</c:if>	
+								<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
+									<c:forEach var="atividades" items="${atividade.subAtividade}">
+										<tr>
+											<td>${atividades.nome}</td>
+											<td>${atividades.responsavel.nome}</td>
+											<td>${atividades.local}</td>
+											<td>22/05 - 08:00</td>
+											<td>20/20</td>
+											<td class="text-center"><a href="/Chronos/cadastrarInscricao/cadastraInscricao/${atividade.codAtividade}""
+												class="btn btn-success">
+													Inscrever-se </a></td>																											
+										</tr>
+									</c:forEach>	
+								</c:if>						
 											
 								
 							</table>
