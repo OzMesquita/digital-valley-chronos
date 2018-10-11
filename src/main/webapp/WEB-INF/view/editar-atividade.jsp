@@ -37,8 +37,14 @@
 						<li class="breadcrumb-item">Você está em:</li>
 						<li class="breadcrumb-item" aria-current="page"><a
 							href="/Chronos/">Início</a></li>
-						<li class="breadcrumb-item" aria-current="page"><a
-							href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li>
+						<c:if test="${atividade.pai!=null}">
+				<li class="breadcrumb-item" aria-current="page"><a
+					href="/Chronos/atividades/${atividade.pai.codAtividade}">${atividade.pai.nome}</a></li>	
+				<li class="breadcrumb-item" aria-current="page"><a
+					href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li></c:if>
+					<c:if test="${atividade.pai==null}">
+				<li class="breadcrumb-item" aria-current="page"><a
+					href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li></c:if>
 						<li class="breadcrumb-item active" aria-current="page">Editar
 							Atividade</li>
 					</ol>

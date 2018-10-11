@@ -194,8 +194,12 @@ ul {
 				charEncoding="UTF-8"></c:import>
 			<div class="col-sm-8">
 				<nav class="breadcrumb"> <span class="breadcrumb-item">Você
-					está em:</span> <a class="breadcrumb-item" href="/Chronos">Início</a> <a
-					class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a>
+					está em:</span> <a class="breadcrumb-item" href="/Chronos">Início</a>
+					<c:if test="${atividade.pai!=null}"><a
+					class="breadcrumb-item" href="${atividade.pai.codAtividade}">${atividade.pai.nome}</a><a
+					class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a></c:if> 
+					<c:if test="${atividade.pai==null}"><a
+					class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a></c:if> 
 				</nav>
 				<c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>
 				<c:if test="${not empty mensagem}">
