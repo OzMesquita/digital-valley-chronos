@@ -8,6 +8,7 @@ import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.Colaborador;
 import br.ufc.russas.n2s.chronos.model.EnumTipoAtividade;
 import br.ufc.russas.n2s.chronos.model.EnumTipoPagamento;
+import br.ufc.russas.n2s.chronos.model.InscricaoAtividade;
 import br.ufc.russas.n2s.chronos.model.Organizador;
 import br.ufc.russas.n2s.chronos.model.Realizacao;
 import br.ufc.russas.n2s.chronos.model.Responsavel;
@@ -31,6 +32,7 @@ public class AtividadeBeans implements Beans {
 	private List<ApoioBeans> apoiadores;
 	private List<OrganizadorBeans> organizadores;
 	private List<ColaboradorBeans> colaboradores;
+	private List<InscricaoAtividadeBeans> participantes;
 	private boolean divulgada;
 
 	public long getCodAtividade() {
@@ -239,7 +241,12 @@ public class AtividadeBeans implements Beans {
 			for (int i = 0; i < this.getColaboradores().size(); i++)
 				colaboradores.add((Colaborador) this.getColaboradores().get(i).toBusiness());
 		atividade.setColaboradores(colaboradores);
-
+		List<InscricaoAtividade> participantes = Collections.synchronizedList(new ArrayList<InscricaoAtividade>());
+		if (this.getParticipantes() != null)
+			for (int i = 0; i < this.getParticipantes().size(); i++)
+				participantes.add((InscricaoAtividade) this.getParticipantes().get(i).toBusiness());
+		atividade.setParticipantes(participantes);
+		
 		return atividade;
 	}
 
@@ -291,6 +298,20 @@ public class AtividadeBeans implements Beans {
 				colaboradores
 						.add((ColaboradorBeans) new ColaboradorBeans().toBeans(atividade.getColaboradores().get(i)));
 		this.setColaboradores(colaboradores);
+		List<InscricaoAtividadeBeans> participantes = Collections.synchronizedList(new ArrayList<InscricaoAtividadeBeans>());
+		if (atividade.getParticipantes() != null)
+			for (int i = 0; i < atividade.getParticipantes().size(); i++)
+				participantes
+						.add((InscricaoAtividadeBeans) new InscricaoAtividadeBeans().toBeans(atividade.getParticipantes().get(i)));
+		this.setParticipantes(participantes);
 		return this;
+	}
+
+	public List<InscricaoAtividadeBeans> getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipantes(List<InscricaoAtividadeBeans> participantes) {
+		this.participantes = participantes;
 	}
 }
