@@ -27,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
-import br.ufc.russas.n2s.chronos.beans.ApoioBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.service.ApoioServiceIfc;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;

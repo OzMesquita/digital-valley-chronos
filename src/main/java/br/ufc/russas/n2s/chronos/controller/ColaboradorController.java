@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.ColaboradorBeans;
-import br.ufc.russas.n2s.chronos.beans.ColaboradorBeans;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
 @Controller("colaboradorController")

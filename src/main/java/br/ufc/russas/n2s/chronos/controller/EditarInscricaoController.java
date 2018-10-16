@@ -1,7 +1,6 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.io.IOException;
-import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +23,6 @@ import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
-import br.ufc.russas.n2s.chronos.service.InscricaoServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
 @Controller("editarInscricaoController")
