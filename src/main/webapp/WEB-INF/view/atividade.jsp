@@ -407,9 +407,8 @@ ul {
 											<td>${atividades.local}</td>
 											<td>22/05 - 08:00</td>
 											<td>20/20</td>
-											<td class="text-center"><a href="/Chronos/cadastrarInscricao/cadastraInscricao/${atividade.codAtividade}""
-												class="btn btn-success">
-													Inscrever-se </a></td>																											
+											<td class="text-center"><form action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}" method="POST">
+											<input type="submit" class="btn btn-success" value="Inscrever-se"></form></td>																											
 										</tr>
 									</c:forEach>	
 								</c:if>						

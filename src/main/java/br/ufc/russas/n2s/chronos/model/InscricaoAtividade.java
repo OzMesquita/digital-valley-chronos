@@ -9,15 +9,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import model.Pessoa;
+
 @Entity
 @Table(name = "inscricao")
-public class InscricaoAtividade {
+public class InscricaoAtividade extends Pessoa implements Comparable<Pessoa>  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codInscricao")
 	private long codInscricao;
 	@ManyToOne(targetEntity = UsuarioChronos.class)
-	@JoinColumn(name = "participante", referencedColumnName = "codUsuario")
+	@JoinColumn(name = "codUsuario", referencedColumnName = "codUsuario")
 	private UsuarioChronos participante;
 	@ManyToOne(targetEntity = Atividade.class)
 	@JoinColumn(name = "atividade", referencedColumnName = "codAtividade")
@@ -57,5 +59,10 @@ public class InscricaoAtividade {
 		} else {
 			throw new IllegalArgumentException("Atividade não pode ser nula!");
 		}
+	}
+
+	@Override
+	public int compareTo(Pessoa o) {
+		return this.getNome().compareTo(o.getNome());
 	}
 }

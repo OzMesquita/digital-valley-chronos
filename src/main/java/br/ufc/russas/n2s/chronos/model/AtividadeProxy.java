@@ -31,7 +31,10 @@ public class AtividadeProxy {
 	public Atividade atualizaAtividade(Atividade atividade) throws IllegalAccessException {
 		if (this.getUsuario().getPermissoes().contains(EnumPermissao.ADMINISTRADOR)) {
 			return atividade.atualizaAtividade();
-		} else {
+		}else if(this.getUsuario().getPermissoes().contains(EnumPermissao.PARTICIPANTE)) {
+			return atividade.atualizaAtividade();
+		}
+		else {
 			throw new IllegalAccessException(
 					"Você não é o responsável por esta atividade: <b> ".concat(atividade.getNome()).concat("</b>"));
 		}
