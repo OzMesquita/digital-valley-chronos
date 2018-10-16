@@ -36,7 +36,7 @@
 						<c:if test="${fn:contains(permissoes, 'ADMINISTRADOR')}">
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item"
-								href="<%=Constantes.getAppUrl()%>/permissoes">Gerenciar
+								href="<%=Constantes.getAppUrl() %>/permissoes">Gerenciar
 								permissões</a>
 						</c:if>
 					</div>
