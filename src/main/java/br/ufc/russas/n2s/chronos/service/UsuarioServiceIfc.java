@@ -25,5 +25,7 @@ public interface UsuarioServiceIfc extends ServiceIfc {
 
 	void atualizaNiveis(UsuarioBeans usuario, List<EnumPermissao> permisoesAtualizadas) throws IllegalAccessException;
 
+	Object BuscaUsuariosPorNome(String nome);
+
 	
 }

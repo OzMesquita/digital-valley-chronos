@@ -59,7 +59,10 @@
 				<div class="col-sm-8">                                       
                     <div class="row">
                         <h1 class="col-sm-8">Gerenciar Permissões</h1>
-                       
+                       	<form class="form-inline" action="permissoes/busca" method="get">
+                            <input class="form-control" style="width: 250px;" type="search" name="nomeUsuario" placeholder="Nome do usuário">&nbsp;
+                            <button class="btn btn-sm btn-primary" type="submit">Procurar</button>
+                        </form>
                     </div>
 					<br>
 					<table class="table table-striped  table-responsive">

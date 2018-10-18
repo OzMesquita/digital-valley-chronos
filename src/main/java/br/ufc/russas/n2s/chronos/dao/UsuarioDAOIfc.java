@@ -53,4 +53,6 @@ public interface UsuarioDAOIfc {
 	 * @return Etapa
 	 */
 	UsuarioChronos getUsuarioControleDeAcesso(UsuarioChronos usuario);
+
+	List<UsuarioChronos> BuscaUsuariosPorNome(String nome);
 }

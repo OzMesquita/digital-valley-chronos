@@ -2,11 +2,17 @@ package br.ufc.russas.n2s.chronos.dao;
 
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import java.util.List;
+
+import javax.persistence.criteria.Order;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
 
 /**
  *
@@ -60,5 +66,24 @@ public class UsuarioDAOImpl implements UsuarioDAOIfc {
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public List<UsuarioChronos> BuscaUsuariosPorNome(String nome) {
+		Session session = this.daoImpl.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        try {
+            List<UsuarioChronos> usuarios;
+            Criteria c = session.createCriteria(UsuarioChronos.class);
+        	c.add(Restrictions.ilike("nome", "%"+nome+"%"));
+        	c.addOrder(org.hibernate.criterion.Order.asc("nome"));
+        	usuarios = (List<UsuarioChronos>) c.list();
+            return usuarios;
+        } catch(RuntimeException e) {
+            t.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
 	}
 }

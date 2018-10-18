@@ -117,5 +117,15 @@ public class UsuarioServiceImpl implements UsuarioServiceIfc {
 		
 	}
 
+	@Override
+	public Object BuscaUsuariosPorNome(String nome) {
+		List<UsuarioChronos> result = this.getUsuarioDAOIfc().BuscaUsuariosPorNome(nome);
+        List<UsuarioBeans> usuarios = Collections.synchronizedList(new ArrayList<UsuarioBeans>());
+        for(UsuarioChronos usuario : result){
+            usuarios.add((UsuarioBeans) new UsuarioBeans().toBeans(usuario));
+        }
+        return usuarios;
+	}
+
 	
 }

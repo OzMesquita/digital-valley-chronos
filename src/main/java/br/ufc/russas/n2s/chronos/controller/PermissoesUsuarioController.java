@@ -25,7 +25,7 @@ import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
 /**
  *
- * @author Wallison Carlos, Gilberto
+ * @author Wallison Carlos, Gilberto ajustado por Gutenberg
  */
 @Controller("permissoesUsuarioController")
 @RequestMapping("/permissoes")
@@ -43,11 +43,11 @@ public class PermissoesUsuarioController {
         return "acessarPermissoes"; 
     }
     
-    /*@RequestMapping(value="/busca",method = RequestMethod.GET)
+    @RequestMapping(value="/busca",method = RequestMethod.GET)
     public String getCampoDeBusca(Model model, @RequestParam("nomeUsuario") String nome) {
     	model.addAttribute("usuarios", this.usuarioServiceIfc.BuscaUsuariosPorNome(nome));
     	return "acessarPermissoes";
-    }*/
+    }
     
     @RequestMapping(method = RequestMethod.POST)
     public String getIndexSelectedUser(Model model, HttpServletRequest request) {
