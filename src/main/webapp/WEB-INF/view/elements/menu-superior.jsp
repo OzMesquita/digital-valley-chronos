@@ -19,7 +19,7 @@
 			<c:set var="permissoes"
 				value="${sessionScope.usuarioChronos.permissoes}"></c:set>
 			<a class="nav-item nav-link"
-				href="<%=Constantes.getAppGuardiaoUrl()%>">Guardião</a> <a
+				href="http://192.169.1.2:8080/guardiao/">Guardião</a> <a
 				class="nav-item nav-link"
 				href="<%=Constantes.getAppUrl()%>/minhasAtividades">Minhas
 				Atividades</a>
