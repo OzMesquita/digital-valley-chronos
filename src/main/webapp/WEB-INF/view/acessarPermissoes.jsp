@@ -68,7 +68,7 @@
 								<th class="text-center" scope="col">Usuário</th>
 								<!--     <th class="text-center" scope="col">Participante</th>  -->
 								<th class="text-center" scope="col">Apoiador</th>
-								<th class="text-center" scope="col">Responsável</th>
+								<th class="text-center" scope="col">Participante</th>
 								<th class="text-center" scope="col">Administrador</th>
 							</tr>
 						</thead>
@@ -82,7 +82,7 @@
 								<c:set var="permissoes" value="${usuario.permissoes}"></c:set>
 								<tr>
 									<form method="POST" id="permissaoUser-${usuario.codUsuario}"
-										action="/Darwin/permissoes/atualizar"
+										action="permissoes/atualizar"
 										enctype="multipart/form-data">
 										<input type="hidden" value="${usuario.codUsuario}"
 											name="codUsuario" />
@@ -95,7 +95,7 @@
 												<input class="form-check-input" type="checkbox" value="2"
 													name="codPermissao"
 													onclick="submeteAtualizacaoDePermissao('permissaoUser-${usuario.codUsuario}')"
-													${(fn:contains(permissoes, 'AVALIADOR') ? 'checked': '')} />
+													${(fn:contains(permissoes, 'APOIO') ? 'checked': '')} />
 											</center>
 										</td>
 										<td>
@@ -103,7 +103,7 @@
 												<input class="form-check-input" type="checkbox" value="3"
 													name="codPermissao"
 													onclick="submeteAtualizacaoDePermissao('permissaoUser-${usuario.codUsuario}')"
-													${(fn:contains(permissoes, 'RESPONSAVEL') ? 'checked': '')} />
+													${(fn:contains(permissoes, 'PARTICIPANTE') ? 'checked': '')} />
 											</center>
 										</td>
 										<td>

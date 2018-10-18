@@ -22,4 +22,8 @@ public interface UsuarioServiceIfc extends ServiceIfc {
 	void removeNivel(UsuarioBeans usuario, EnumPermissao permissao) throws IllegalAccessException;
 
 	List<UsuarioBeans> listaAvaliadores();
+
+	void atualizaNiveis(UsuarioBeans usuario, List<EnumPermissao> permisoesAtualizadas) throws IllegalAccessException;
+
+	
 }

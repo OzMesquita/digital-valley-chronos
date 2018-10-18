@@ -93,4 +93,14 @@ public class UsuarioChronos {
         hash = 23 * hash + (int) (this.codUsuario ^ (this.codUsuario >>> 32));
         return hash;
     }
+    
+    public UsuarioChronos atualizaNiveis(UsuarioChronos usuario, List<EnumPermissao> permissoes) throws IllegalAccessException{
+        if (usuario!= null && permissoes!= null) {
+            usuario.setPermissoes(permissoes);
+            return usuario;
+        } else {
+            throw new IllegalArgumentException("Erro ao tentar atualizar as permissões do usuário");
+        }
+    }
 }
+

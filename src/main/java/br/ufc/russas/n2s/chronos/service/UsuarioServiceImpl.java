@@ -107,4 +107,15 @@ public class UsuarioServiceImpl implements UsuarioServiceIfc {
 		}
 		return avaliadores;
 	}
+
+	@Override
+	public void atualizaNiveis(UsuarioBeans usuario, List<EnumPermissao> permisoesAtualizadas) throws IllegalAccessException {
+		UsuarioChronos u = (UsuarioChronos) this.usuario.toBusiness();
+		UsuarioChronosProxy up = new UsuarioChronosProxy(u);
+        usuario  = (UsuarioBeans) usuario.toBeans(up.atualizaNiveis((UsuarioChronos)usuario.toBusiness(), permisoesAtualizadas));
+        atualizaUsuario(usuario);
+		
+	}
+
+	
 }

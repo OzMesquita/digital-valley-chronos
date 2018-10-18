@@ -61,11 +61,10 @@ public class PermissoesUsuarioController {
         HttpSession session = request.getSession();
         try {
 
-            UsuarioBeans autenticado = (UsuarioBeans) session.getAttribute("usuarioDarwin");
+            UsuarioBeans autenticado = (UsuarioBeans) session.getAttribute("usuarioChronos");
             usuarioServiceIfc.setUsuario(autenticado);
             UsuarioBeans usuario = usuarioServiceIfc.getUsuario(codUsuario, 0);
-            String[] permissoes  = request.getParameterValues("codPermissao");
-            String[] permissoes  = request.getParameterValues("codPermissoes");
+            String[] permissoes  = request.getParameterValues("codPermissao");          
             List<EnumPermissao> permisoesAtualizadas = new ArrayList<>();
             if (permissoes != null) {
             	 EnumPermissao p = null;
@@ -75,7 +74,7 @@ public class PermissoesUsuarioController {
                     permisoesAtualizadas.add(p);
                 }
             }
-            //usuarioServiceIfc.atualizaNiveis(usuario, permisoesAtualizadas);
+            usuarioServiceIfc.atualizaNiveis(usuario, permisoesAtualizadas);
             session.setAttribute("mensagem", "Permissões do usuário '<b>"+usuario.getNome()+"</b>' atualizadas com sucesso!");
             session.setAttribute("status", "success");
             model.addAttribute("usuarios", this.usuarioServiceIfc.listaTodosUsuarios());
@@ -85,7 +84,7 @@ public class PermissoesUsuarioController {
             session.setAttribute("mensagem", e.getMessage());
             session.setAttribute("status", "danger");
             return "redirect:/permissoes";
-        } catch (IllegalArgumentException | IllegalAccessException e) {
+        } catch (IllegalArgumentException e) {
             session.setAttribute("mensagem", e.getMessage());
             session.setAttribute("status", "danger");
             return "redirect:/permissoes";
