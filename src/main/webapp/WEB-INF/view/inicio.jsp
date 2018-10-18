@@ -76,7 +76,12 @@
 					</c:if>
 				</div>
 				<c:if test="${empty atividades}">
-					<p class="text-muted">Nenhuma atividade cadastrada!</p>
+					<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
+						<p class="text-muted">Você não está inscrito em nenhuma atividade!</p>
+					</c:if>
+					<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+						<p class="text-muted">Nenhuma atividade cadastrada!</p>
+					</c:if>
 				</c:if>
 				<c:set var="pagina"
 					value="${(((not empty param.pag) and (param.pag >= 1)) ? param.pag : 1)}"></c:set>
