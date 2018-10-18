@@ -122,26 +122,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<nav aria-label=""> <c:if test="${titulo eq 'Início'}">
-						<c:set value="" var="categoria"></c:set>
-						</c:if> <c:if test="${titulo eq 'Minhas atividades'}">
-						<c:set value="minhas_Atividades" var="categoria"></c:set>
-						</c:if>
-						<ul class="pagination justify-content-center">
-							<li class="page-item "${(pagina <= 1 ? "disabled" : "")}"><a
-								class="page-link" href="/Chronos/${categoria}?pag=${pagina - 1}"
-								tabindex="-1">Anterior</a></li>
-							<c:forEach var="i" begin="1"
-								end="${(fn:length(atividades)/5) + (fn:length(atividades)%5 == 0 ? 0 : 1)}">
-								<li class="page-item "${(pagina == i ? "active": "")}"><a
-									class="page-link" href="/Chronos/${categoria}?pag=${i}">${i}</a></li>
-							</c:forEach>
-							<li class="page-item  "${(pagina >= ((fn:length(atividades))/5) ? "disabled" : "")}">
-								<a class="page-link"
-								href="/Chronos/${categoria}?pag=${pagina + 1}">Próximo</a>
-							</li>
-						</ul>
-					</nav>
+					
 	</div>   			
 			</div>			
 		</div>
