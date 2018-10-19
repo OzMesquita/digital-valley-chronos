@@ -70,9 +70,9 @@
 							<tr>
 								<th class="text-center" scope="col">Usuário</th>
 								<!--     <th class="text-center" scope="col">Participante</th>  -->
-								<th class="text-center" scope="col">Apoiador</th>
-								<th class="text-center" scope="col">Participante</th>
 								<th class="text-center" scope="col">Administrador</th>
+								<th class="text-center" scope="col">Participante</th>
+								<th class="text-center" scope="col">Apoiador</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -95,10 +95,10 @@
 			                         	       </td> -->
 										<td>
 											<center>
-												<input class="form-check-input" type="checkbox" value="2"
+												<input class="form-check-input" type="checkbox" value="1"
 													name="codPermissao"
 													onclick="submeteAtualizacaoDePermissao('permissaoUser-${usuario.codUsuario}')"
-													${(fn:contains(permissoes, 'APOIO') ? 'checked': '')} />
+													${(fn:contains(permissoes, 'ADMINISTRADOR') ? 'checked': '')} />
 											</center>
 										</td>
 										<td>
@@ -111,10 +111,10 @@
 										</td>
 										<td>
 											<center>
-												<input class="form-check-input" type="checkbox" value="1"
+												<input class="form-check-input" type="checkbox" value="2"
 													name="codPermissao"
 													onclick="submeteAtualizacaoDePermissao('permissaoUser-${usuario.codUsuario}')"
-													${(fn:contains(permissoes, 'ADMINISTRADOR') ? 'checked': '')} />
+													${(fn:contains(permissoes, 'APOIO') ? 'checked': '')} />
 											</center>
 										</td>
 									</form>
