@@ -25,7 +25,7 @@ public enum EnumPermissao {
 	}
 
 	public static EnumPermissao getValor(int valor) {
-		if (valor >= 1 && valor <= 2) {
+		if (valor >= 1 && valor <= 3) {
 			EnumPermissao p = null;
 			if (valor == 1) {
 				p = EnumPermissao.ADMINISTRADOR;
