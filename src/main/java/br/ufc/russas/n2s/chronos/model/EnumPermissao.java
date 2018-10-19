@@ -20,7 +20,7 @@ public enum EnumPermissao {
 			this.nivel = nivel;
 		} else {
 			throw new IllegalArgumentException(
-					"Crit√©rio de avalia√ß√£o deve ser maior igual a um e menor igual a quatro!");
+					"N„o foi possÌvel alterar a permiss„o do usu·rio!");
 		}
 	}
 
@@ -37,7 +37,7 @@ public enum EnumPermissao {
 			return p;
 		} else {
 			throw new IllegalArgumentException(
-					"Crit√©rio de avalia√ß√£o deve ser maior igual a um e menor igual a quatro!");
+					"N„o foi possÌvel alterar a permiss„o do usu·rio!");
 		}
 	}
 }
