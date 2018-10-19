@@ -24,6 +24,8 @@ public enum EnumNivel {
 			return "Administrador";
 		case 2:
 			return "Apoio";
+		case 3:
+			return "Participante";
 		default:
 			return "";
 		}

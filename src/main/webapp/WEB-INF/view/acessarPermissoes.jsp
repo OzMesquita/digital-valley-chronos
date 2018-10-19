@@ -111,7 +111,7 @@
 										</td>
 										<td>
 											<center>
-												<input class="form-check-input" type="checkbox" value="4"
+												<input class="form-check-input" type="checkbox" value="1"
 													name="codPermissao"
 													onclick="submeteAtualizacaoDePermissao('permissaoUser-${usuario.codUsuario}')"
 													${(fn:contains(permissoes, 'ADMINISTRADOR') ? 'checked': '')} />
