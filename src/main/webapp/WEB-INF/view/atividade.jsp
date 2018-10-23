@@ -407,8 +407,18 @@ ul {
 											<td>${atividades.local}</td>
 											<td>22/05 - 08:00</td>
 											<td>20/20</td>
-											<td class="text-center"><form action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}" method="POST">
-											<input type="submit" class="btn btn-success" value="Inscrever-se"></form></td>																											
+											<td class="text-center">
+												<c:if test="${not (fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
+													<form action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}" method="POST">
+														<input type="submit" class="btn btn-success" value="Inscrever-se">
+													</form>
+												</c:if>
+												<c:if test="${(fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
+													<form action="/Chronos/editarInscricao/${atividades.codAtividade}&${sessionScope.usuarioChronos.codUsuario}/remover" method="POST">
+														<input type="submit" class="btn btn-danger" value="Cancelar Inscrição">
+													</form>
+												</c:if>	
+											</td>																											
 										</tr>
 									</c:forEach>	
 								</c:if>						
