@@ -329,4 +329,9 @@ public class AtividadeBeans implements Beans {
 	public void setParticipantes(List<UsuarioBeans> participantes) {
 		this.participantes = participantes;
 	}
+
+	public void addParticipante(UsuarioBeans usuario) {
+		this.participantes.add(usuario);
+		
+	}
 }
