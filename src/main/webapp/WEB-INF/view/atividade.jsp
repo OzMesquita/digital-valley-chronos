@@ -381,47 +381,35 @@ ul {
 										</c:if>	
 									</tr>
 								</thead>	
-								<%-- Verifica se o usuario é administrador e então exibe a opção de editar atividade --%> 														
-								<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+								<%-- Verifica se o usuario é administrador e então exibe a opção de editar atividade --%>
 									<c:forEach var="atividades" items="${atividade.subAtividade}">
 										<tr>
 											<td>${atividades.nome}</td>
 											<td>${atividades.responsavel.nome}</td>
 											<td>${atividades.local}</td>
 											<td>22/05 - 08:00</td>
-											<td>20/20</td>
-											<td class="text-center"><a href="/Chronos/editarAtividade/${atividades.codAtividade}"
-												class="btn btn-primary btn-sm">
-													Editar </a></td>
-											<td class="text-center"><a class="btn btn-danger btn-sm"
-											href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
-											Remover</a></td>																
-										</tr>
-									</c:forEach>								
-								</c:if>	
-								<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
-									<c:forEach var="atividades" items="${atividade.subAtividade}">
-										<tr>
-											<td>${atividades.nome}</td>
-											<td>${atividades.responsavel.nome}</td>
-											<td>${atividades.local}</td>
-											<td>22/05 - 08:00</td>
-											<td>20/20</td>
-											<td class="text-center">
-												<c:if test="${not (fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
-													<form action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}" method="POST">
-														<input type="submit" class="btn btn-success" value="Inscrever-se">
-													</form>
-												</c:if>
-												<c:if test="${(fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
-													<form action="/Chronos/editarInscricao/${atividades.codAtividade}&${sessionScope.usuarioChronos.codUsuario}/remover" method="POST">
-														<input type="submit" class="btn btn-danger" value="Cancelar Inscrição">
-													</form>
-												</c:if>	
-											</td>																											
+											<td>${atividades.totalVagas-atividades.participantes.size()} / ${atividades.totalVagas}</td>
+											<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
+												<td class="text-center">
+													<c:if test="${not (fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
+														<form action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}" method="POST">
+															<input type="submit" class="btn btn-success" value="Inscrever-se">
+														</form>
+													</c:if>
+													<c:if test="${(fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
+														<form action="/Chronos/editarInscricao/${atividades.codAtividade}&${sessionScope.usuarioChronos.codUsuario}/remover" method="POST">
+															<input type="submit" class="btn btn-danger" value="Cancelar Inscrição">
+														</form>
+													</c:if>
+												</td>
+											</c:if>
+											<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+												<td class="text-center"><a href="/Chronos/editarAtividade/${atividades.codAtividade}" class="btn btn-primary btn-sm"> Editar </a></td>
+												<td class="text-center"><a class="btn btn-danger btn-sm" href="/Chronos/editarAtividade/remover/${atividade.codAtividade}"> Remover</a></td>
+											</c:if>																											
 										</tr>
 									</c:forEach>	
-								</c:if>						
+														
 											
 								
 							</table>
