@@ -1,6 +1,7 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -97,15 +98,13 @@ public class EditarInscricaoController {
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		this.atividadeServiceIfc.setUsuario(usuario);
 		AtividadeBeans atividadeBeans = atividadeServiceIfc.getAtividade(codAtividade);
-//		for (Iterator<InscricaoAtividadeBeans> iterator = atividadeBeans.getInscricoes().iterator(); iterator.hasNext();) {
-//			InscricaoAtividadeBeans inscricaoAUX = iterator.next();
-//			if (inscricaoAUX.getCodInscricao() == codInscricao) {
-//				iterator.remove();
-//				atividadeBeans = this.getAtividadeService().atualizaAtividade(atividadeBeans);
-//				InscricaoServiceIfc.atualizaInscricao(inscricaoAUX);
-//				InscricaoServiceIfc.removeInscricao(inscricaoAUX);
-//			}
-//		}
+		for (Iterator<UsuarioBeans> iterator = atividadeBeans.getParticipantes().iterator(); iterator.hasNext();) {
+			UsuarioBeans inscricaoAUX = iterator.next();
+			if (inscricaoAUX.getCodUsuario() == codInscricao) {
+				iterator.remove();
+				atividadeBeans = this.getAtividadeService().atualizaAtividade(atividadeBeans);
+			}
+		}
 		session.setAttribute("mensagem", "inscricao cancelada com sucesso!");
 		session.setAttribute("status", "success");
 		return ("redirect:/atividades/" + atividadeBeans.getCodAtividade());
