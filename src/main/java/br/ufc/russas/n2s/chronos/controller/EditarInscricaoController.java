@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
-import br.ufc.russas.n2s.chronos.beans.InscricaoAtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
@@ -92,7 +91,7 @@ public class EditarInscricaoController {
 	
 	@RequestMapping(value = "/{codAtividade}&{codInscricao}/remover", method = RequestMethod.POST)
 	public String removerInscricao(@PathVariable long codAtividade, @PathVariable long codInscricao, 
-			@ModelAttribute("inscricao") @Valid InscricaoAtividadeBeans inscricao, BindingResult result, Model model,
+			@ModelAttribute("inscricao") @Valid UsuarioBeans inscricao, BindingResult result, Model model,
 			HttpServletResponse response, HttpServletRequest request) throws IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");

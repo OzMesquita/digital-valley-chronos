@@ -76,12 +76,12 @@ public class Atividade implements Comparable<Atividade> {
 					@JoinColumn(name = "colaborador", referencedColumnName = "codColaborador") })
 	private List<Colaborador> colaboradores;
 	private boolean divulgada;
-	@ManyToMany(targetEntity = InscricaoAtividade.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = UsuarioChronos.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	@JoinTable(name = "participantes_atividade", joinColumns = {
 			@JoinColumn(name = "atividade", referencedColumnName = "codAtividade") }, inverseJoinColumns = {
 					@JoinColumn(name = "participantes", referencedColumnName = "codUsuario") })
-	private List<InscricaoAtividade> participantes;
+	private List<UsuarioChronos> participantes;
 
 	// Construir primeiro o numero total de vagas de cada de atividade e depois o
 	// total de vagas da comunidade.
@@ -350,11 +350,11 @@ public class Atividade implements Comparable<Atividade> {
 		this.colaboradores = colaboradores;
 	}
 	
-	public List<InscricaoAtividade> getParticipantes() {
+	public List<UsuarioChronos> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(List<InscricaoAtividade> participantes) {
+	public void setParticipantes(List<UsuarioChronos> participantes) {
 		this.participantes = participantes;
 	}
 

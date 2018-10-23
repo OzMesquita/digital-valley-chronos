@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
-import br.ufc.russas.n2s.chronos.beans.InscricaoAtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
-import br.ufc.russas.n2s.chronos.model.Atividade;
-import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
@@ -55,7 +52,7 @@ public class CadastrarInscricaoController {
 
 	@RequestMapping(value = "/cadastraInscricao/{codAtividade}", method = RequestMethod.POST)
 	public String adiciona(@PathVariable long codAtividade,
-			@ModelAttribute("inscricao") @Valid InscricaoAtividadeBeans inscricao, BindingResult result, Model model,
+			Model model,
 			HttpServletResponse response, HttpServletRequest request) throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
@@ -63,9 +60,7 @@ public class CadastrarInscricaoController {
 		try {
 			this.atividadeServiceIfc.setUsuario(usuario);
 			AtividadeBeans atividade = this.getAtividadeService().getAtividade(codAtividade);
-			inscricao.setParticipante((UsuarioChronos)usuario.toBusiness());
-			inscricao.setAtividade((Atividade)atividade.toBusiness());
-			atividade.getParticipantes().add(inscricao);
+			atividade.getParticipantes().add(usuario);
 			atividade = this.getAtividadeService().atualizaAtividade(atividade);
 			session.setAttribute("mensagem", "Inscrição realizada com sucesso!");
 			session.setAttribute("status", "success");
