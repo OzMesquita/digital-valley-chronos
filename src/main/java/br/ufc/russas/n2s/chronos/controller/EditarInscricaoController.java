@@ -107,6 +107,6 @@ public class EditarInscricaoController {
 		}
 		session.setAttribute("mensagem", "inscricao cancelada com sucesso!");
 		session.setAttribute("status", "success");
-		return ("redirect:/atividades/" + atividadeBeans.getCodAtividade());
+		return ("redirect:/atividades/" + this.getAtividadeService().getAtividade(codAtividade).getPai().getCodAtividade());
 	}
 }

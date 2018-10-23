@@ -64,11 +64,11 @@ public class CadastrarInscricaoController {
 			atividade = this.getAtividadeService().atualizaAtividade(atividade);
 			session.setAttribute("mensagem", "Inscrição realizada com sucesso!");
 			session.setAttribute("status", "success");
-			return ("redirect:/atividades/" + codAtividade);
+			return ("redirect:/atividades/" + this.getAtividadeService().getAtividade(codAtividade).getPai().getCodAtividade());
 		} catch (IllegalAccessException e) {
 			session.setAttribute("mensagem", e.getMessage());
 			session.setAttribute("status", "danger");
-			return ("redirect:/atividades/" + codAtividade);
+			return ("redirect:/atividades/" + this.getAtividadeService().getAtividade(codAtividade).getPai().getCodAtividade());
 		}
 	}
 }
