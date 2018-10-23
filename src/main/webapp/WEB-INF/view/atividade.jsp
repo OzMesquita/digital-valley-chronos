@@ -387,7 +387,10 @@ ul {
 											<td>${atividades.nome}</td>
 											<td>${atividades.responsavel.nome}</td>
 											<td>${atividades.local}</td>
-											<td>22/05 - 08:00</td>
+											<td>
+												<fmt:parseDate value="${atividades.getDataInicial()}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${ parsedDateTime }" />
+											</td>
 											<td>${atividades.totalVagas-atividades.participantes.size()} / ${atividades.totalVagas}</td>
 											<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
 												<td class="text-center">

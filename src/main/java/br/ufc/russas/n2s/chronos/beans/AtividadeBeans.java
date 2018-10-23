@@ -1,7 +1,9 @@
 package br.ufc.russas.n2s.chronos.beans;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import br.ufc.russas.n2s.chronos.model.Apoio;
 import br.ufc.russas.n2s.chronos.model.Atividade;
@@ -38,7 +40,20 @@ public class AtividadeBeans implements Beans {
 	public long getCodAtividade() {
 		return codAtividade;
 	}
-
+	
+	public LocalDateTime getDataInicial() {
+		LocalDateTime min = null;
+		if (realizacao.size()>0) {
+			min=realizacao.get(0).getHoraInicio();
+			for (Iterator<RealizacaoBeans> iterator = realizacao.iterator(); iterator.hasNext();) {
+				RealizacaoBeans teste = iterator.next();
+				if(teste.getHoraInicio().isBefore(min))
+					min=teste.getHoraInicio();
+			}
+		}
+		return min;
+	}
+	
 	public void setCodAtividade(long codAtividade) {
 		this.codAtividade = codAtividade;
 	}
