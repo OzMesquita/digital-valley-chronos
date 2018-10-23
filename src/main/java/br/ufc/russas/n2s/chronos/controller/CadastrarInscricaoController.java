@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
+import br.ufc.russas.n2s.chronos.model.exceptions.AtividadeException;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
 
@@ -60,12 +61,16 @@ public class CadastrarInscricaoController {
 		try {
 			this.atividadeServiceIfc.setUsuario(usuario);
 			AtividadeBeans atividade = this.getAtividadeService().getAtividade(codAtividade);
-			atividade.getParticipantes().add(usuario);
+			atividade.addParticipante(usuario);
 			atividade = this.getAtividadeService().atualizaAtividade(atividade);
 			session.setAttribute("mensagem", "Inscrição realizada com sucesso!");
 			session.setAttribute("status", "success");
 			return ("redirect:/atividades/" + this.getAtividadeService().getAtividade(codAtividade).getPai().getCodAtividade());
 		} catch (IllegalAccessException e) {
+			session.setAttribute("mensagem", e.getMessage());
+			session.setAttribute("status", "danger");
+			return ("redirect:/atividades/" + this.getAtividadeService().getAtividade(codAtividade).getPai().getCodAtividade());
+		} catch (AtividadeException e) {
 			session.setAttribute("mensagem", e.getMessage());
 			session.setAttribute("status", "danger");
 			return ("redirect:/atividades/" + this.getAtividadeService().getAtividade(codAtividade).getPai().getCodAtividade());

@@ -14,6 +14,7 @@ import br.ufc.russas.n2s.chronos.model.Organizador;
 import br.ufc.russas.n2s.chronos.model.Realizacao;
 import br.ufc.russas.n2s.chronos.model.Responsavel;
 import br.ufc.russas.n2s.chronos.model.UsuarioChronos;
+import br.ufc.russas.n2s.chronos.model.exceptions.AtividadeException;
 
 public class AtividadeBeans implements Beans {
 	private long codAtividade;
@@ -330,8 +331,10 @@ public class AtividadeBeans implements Beans {
 		this.participantes = participantes;
 	}
 
-	public void addParticipante(UsuarioBeans usuario) {
-		this.participantes.add(usuario);
+	public void addParticipante(UsuarioBeans usuario) throws AtividadeException {
+		if(participantes.size()<this.totalVagas)
+			this.participantes.add(usuario);
+		else throw new AtividadeException("As vagas estão esgotadas");
 		
 	}
 }
