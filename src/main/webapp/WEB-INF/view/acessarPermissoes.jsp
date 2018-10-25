@@ -34,7 +34,7 @@
 			<c:set var="titulo"
 				value="${fn:replace(titulo, 'atividades', 'Atividades')}"></c:set>
 			<div class="col-sm-8">
-				<nav class="breadcrumb"> <span class="breadcrumb-item">Olá ${usuarioChronos.nome}. Você
+				<nav class="breadcrumb"> <span class="breadcrumb-item">Você
 					está em:</span> <a
 					class="breadcrumb-item ${titulo eq 'Início' ? 'active': ''}"
 					href="/Chronos">Início</a> <c:if test="${not (titulo eq 'Início')}">

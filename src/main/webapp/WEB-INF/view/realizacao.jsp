@@ -33,7 +33,7 @@
 			<c:set var="titulo"
 				value="${fn:replace(titulo, 'atividades', 'Atividades')}"></c:set>
 			<div class="col-sm-8">
-				<nav class="breadcrumb"> <span class="breadcrumb-item">Olá ${usuarioChronos.nome}. Você
+				<nav class="breadcrumb"> <span class="breadcrumb-item">Você
 					está em:</span>
 				<li class="breadcrumb-item" aria-current="page"><a
 					href="/Chronos">Início</a></li>
