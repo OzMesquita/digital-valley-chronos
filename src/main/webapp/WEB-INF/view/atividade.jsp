@@ -194,7 +194,7 @@ ul {
 			<c:import url="elements/menu-lateral-esquerdo.jsp"
 				charEncoding="UTF-8"></c:import>
 			<div class="col-sm-8">
-				<nav class="breadcrumb"> <span class="breadcrumb-item">Olá ${usuarioChronos.nome}. Você
+				<nav class="breadcrumb"> <span class="breadcrumb-item">Você
 					está em:</span> <a class="breadcrumb-item" href="/Chronos">Início</a>
 					<c:if test="${atividade.pai!=null}"><a
 					class="breadcrumb-item" href="${atividade.pai.codAtividade}">${atividade.pai.nome}</a><a

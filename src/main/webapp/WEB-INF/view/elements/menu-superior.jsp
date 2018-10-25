@@ -85,7 +85,14 @@
 			</form>
 	<%} %>
 	<%if(request.getSession().getAttribute("usuarioChronos") != null) {%>
-	<a class="btn btn-danger"
-		href="http://192.169.1.2:8080/guardiao/logout">Sair</a>
+		<div class="btn-group">
+			<img src="http://192.169.1.2:8080/guardiao/view/imagem_perfil_usuario?id_usuario=${usuarioChronos.codUsuarioControleDeAcesso}" style="border-radius: 5px; width: 40px; height:40px;"> &nbsp;
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				${usuarioChronos.nome}
+			</button>
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" href="http://192.169.1.2:8080/guardiao/logout">Sair</a>
+			</div>
+		</div>
 	<%} %>
 </nav>
