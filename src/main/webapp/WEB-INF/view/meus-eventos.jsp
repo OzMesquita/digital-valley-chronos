@@ -26,7 +26,7 @@
             <div class="col-sm-8">
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Olá ${usuarioChronos.nome}. Você está em: </li>
+                        <li class="breadcrumb-item">Você está em: </li>
                         <li class="breadcrumb-item" aria-current="page"><a href="/digital-valley-chronos">Início</a></li>
                         <li class="breadcrumb-item active" aria-current="page">meus eventos</li>
                     </ol>
