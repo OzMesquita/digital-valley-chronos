@@ -384,7 +384,7 @@ ul {
 								<%-- Verifica se o usuario é administrador e então exibe a opção de editar atividade --%>
 									<c:forEach var="atividades" items="${atividade.subAtividade}">
 										<tr>
-											<td>${atividades.nome}</td>
+											<td><a href= "/Chronos/atividades/${atividades.codAtividade}">${atividades.nome}</a></td>
 											<td>${atividades.responsavel.nome}</td>
 											<td>${atividades.local}</td>
 											<td>
