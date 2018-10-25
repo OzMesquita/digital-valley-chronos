@@ -42,11 +42,20 @@
 								Atividade</li>
 						</c:if>
 						<c:if test="${not empty pai}">
-							<li class="breadcrumb-item" aria-current="page"><a
-								href="/Chronos/atividades/${pai.codAtividade}">${pai.nome}</a></li>
+							<c:if test="${atividade.pai!=null}">
+								<li class="breadcrumb-item" aria-current="page"><a
+									href="/Chronos/atividades/${atividade.pai.codAtividade}">${atividade.pai.nome}</a></li>	
+								<li class="breadcrumb-item" aria-current="page"><a
+									href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li></c:if>
+									<c:if test="${atividade.pai==null}">
+								<li class="breadcrumb-item" aria-current="page"><a
+									href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a></li></c:if>
 							<li class="breadcrumb-item active" aria-current="page"><a
 								href="/Chronos/editarAtividade/${pai.codAtividade}">Editar
 									Atividade</a></li>
+							<li class="breadcrumb-item active" aria-current="page"><a
+								href="/Chronos/subatividades/${pai.codAtividade}">Cadastrar
+									subatividade</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Cadastrar
 								subatividades</li>
 						</c:if>
