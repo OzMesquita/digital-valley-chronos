@@ -128,7 +128,7 @@ public class CadastrarAtividadeController {
 		atividade.setDivulgada(false);
 		atividade = this.getAtividadeService().atualizaAtividade(atividade);
 		session.setAttribute("mensagem", "Atividade cadastrada com sucesso!");
-		session.setAttribute("status", "sucess");
+		session.setAttribute("status", "success");
 		return ("redirect:/subatividades/" + atividade.getPai().getCodAtividade());
 	}
 }
