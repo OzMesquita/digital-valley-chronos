@@ -188,20 +188,21 @@ ul {
 	<c:import url="elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
 	<c:set var="permissoes"
 		value="${sessionScope.usuarioChronos.permissoes}"></c:set>
-		<c:set var = "nome" scope = "session" value = "${sessionScope.usuarioChronos.nome}"/>
+	<c:set var="nome" scope="session"
+		value="${sessionScope.usuarioChronos.nome}" />
 	<div class="container-fluid">
 		<div class="row row-offcanvas row-offcanvas-right">
 			<c:import url="elements/menu-lateral-esquerdo.jsp"
 				charEncoding="UTF-8"></c:import>
 			<div class="col-sm-8">
 				<nav class="breadcrumb"> <span class="breadcrumb-item">Você
-					está em:</span> <a class="breadcrumb-item" href="/Chronos">Início</a>
-					<c:if test="${atividade.pai!=null}"><a
-					class="breadcrumb-item" href="${atividade.pai.codAtividade}">${atividade.pai.nome}</a><a
-					class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a></c:if> 
-					<c:if test="${atividade.pai==null}"><a
-					class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a></c:if> 
-				</nav>
+					está em:</span> <a class="breadcrumb-item" href="/Chronos">Início</a> <c:if
+					test="${atividade.pai!=null}">
+					<a class="breadcrumb-item" href="${atividade.pai.codAtividade}">${atividade.pai.nome}</a>
+					<a class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a>
+				</c:if> <c:if test="${atividade.pai==null}">
+					<a class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a>
+				</c:if> </nav>
 				<c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>
 				<c:if test="${not empty mensagem}">
 					<div class="alert alert-${status} alert-dismissible fade show"
@@ -271,8 +272,8 @@ ul {
 							Editar Atividade </a>
 						<a class="btn btn-danger btn-sm"
 							style="height: 33px; margin-left: 30px; margin-top: 5px;"
-							data-toggle="modal" data-target="#remover"><font color="#FFFFFF"> Remover Atividade </font> 
-						</a>
+							data-toggle="modal" data-target="#remover"><font
+							color="#FFFFFF"> Remover Atividade </font> </a>
 						<!-- Modal -->
 						<div class="modal fade" id="remover" tabindex="-1" role="dialog"
 							aria-labelledby="modalLabel" aria-hidden="true">
@@ -300,9 +301,9 @@ ul {
 								</div>
 							</div>
 						</div>
-					</c:if>	
-					
-					
+					</c:if>
+
+
 				</div>
 				<br>
 				<p class="text-justify">${atividade.descricao}</p>
@@ -377,44 +378,55 @@ ul {
 										<th>Data/Horário</th>
 										<th>Vagas</th>
 										<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
-											<th class="text-center">Inscrição</th>											
-										</c:if>	
+											<th class="text-center">Inscrição</th>
+										</c:if>
 									</tr>
-								</thead>	
+								</thead>
 								<%-- Verifica se o usuario é administrador e então exibe a opção de editar atividade --%>
-									<c:forEach var="atividades" items="${atividade.subAtividade}">
-										<tr>
-											<td><a href= "/Chronos/atividades/${atividades.codAtividade}">${atividades.nome}</a></td>
-											<td>${atividades.responsavel.nome}</td>
-											<td>${atividades.local}</td>
-											<td>
-												<fmt:parseDate value="${atividades.getDataInicial()}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${ parsedDateTime }" />
-											</td>
-											<td>${atividades.totalVagas-atividades.participantes.size()} / ${atividades.totalVagas}</td>
-											<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
-												<td class="text-center">
-													<c:if test="${not (fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
-														<form action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}" method="POST">
-															<input type="submit" class="btn btn-success" value="Inscrever-se">
-														</form>
-													</c:if>
-													<c:if test="${(fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
-														<form action="/Chronos/editarInscricao/${atividades.codAtividade}&${sessionScope.usuarioChronos.codUsuario}/remover" method="POST">
-															<input type="submit" class="btn btn-danger" value="Cancelar Inscrição">
-														</form>
-													</c:if>
-												</td>
-											</c:if>
-											<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
-												<td class="text-center"><a href="/Chronos/editarAtividade/${atividades.codAtividade}" class="btn btn-primary btn-sm"> Editar </a></td>
-												<td class="text-center"><a class="btn btn-danger btn-sm" href="/Chronos/editarAtividade/remover/${atividade.codAtividade}"> Remover</a></td>
-											</c:if>																											
-										</tr>
-									</c:forEach>	
-														
-											
-								
+								<c:forEach var="atividades" items="${atividade.subAtividade}">
+									<tr>
+										<td><a
+											href="/Chronos/atividades/${atividades.codAtividade}">${atividades.nome}</a></td>
+										<td>${atividades.responsavel.nome}</td>
+										<td>${atividades.local}</td>
+										<td><fmt:parseDate value="${atividades.getDataInicial()}"
+												pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
+												type="both" /> <fmt:formatDate pattern="dd/MM/yyyy HH:mm"
+												value="${ parsedDateTime }" /></td>
+										<td>${atividades.totalVagas-atividades.participantes.size()}
+											/ ${atividades.totalVagas}</td>
+										<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
+											<td class="text-center"><c:if
+													test="${not (fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
+													<form
+														action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}"
+														method="POST">
+														<input type="submit" class="btn btn-success"
+															value="Inscrever-se">
+													</form>
+												</c:if> <c:if
+													test="${(fn:contains(atividades.participantes, sessionScope.usuarioChronos))}">
+													<form
+														action="/Chronos/editarInscricao/${atividades.codAtividade}&${sessionScope.usuarioChronos.codUsuario}/remover"
+														method="POST">
+														<input type="submit" class="btn btn-danger"
+															value="Cancelar Inscrição">
+													</form>
+												</c:if></td>
+										</c:if>
+										<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+											<td class="text-center"><a
+												href="/Chronos/editarAtividade/${atividades.codAtividade}"
+												class="btn btn-primary btn-sm"> Editar </a></td>
+											<td class="text-center"><a class="btn btn-danger btn-sm"
+												href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
+													Remover</a></td>
+										</c:if>
+									</tr>
+								</c:forEach>
+
+
+
 							</table>
 						</div>
 					</div>
@@ -424,29 +436,32 @@ ul {
 					<h2>Apoiadores</h2>
 				</div>
 				<div class="container">
-					<%
-						for (int i = 0; i < 3; i++) {
-					%>
-					<div
-						style="width: 10rem; position: relative; float: left; margin-right: 10px;">
-						<div class="card">
-							<center>
-								<img class="card-img-top"
-									src="http://lookperfeito.com/wp-content/uploads/2016/10/LABFANTASMA.jpg"
-									style="width: 140px; height: 80px; margin-top: 5px;"
-									alt="Card image cap">
-							</center>
-						</div>
-						<div class="card-body"
-							style="padding-top: 5px; padding-bottom: 0px;">
-							<center>
-								<h6 class="card-title">LAB FANTASMA</h6>
-							</center>
-						</div>
-					</div>
-					<%
-						}
-					%>
+					<c:if test="${empty atividade.apoiadores}">
+						<b style="text-align: center">Esta atividade não possui
+							apoiadores</b>
+					</c:if>
+					<c:if test="${not empty atividade.apoiadores}">
+						<c:forEach var="apoiador" items="${atividade.apoiadores}">
+							<div
+								style="width: 10rem; position: relative; float: left; margin-right: 10px;">
+								<div class="card">
+									<center>
+										<img class="card-img-top"
+											src="${apoiador.logo}"
+											style="width: 140px; height: 80px; margin-top: 5px;"
+											alt="${apoiador.nomeInstituicao}">
+									</center>
+								</div>
+								<div class="card-body"
+									style="padding-top: 5px; padding-bottom: 0px;">
+									<center>
+										<h6 class="card-title">${apoiador.nomeInstituicao}</h6>
+									</center>
+								</div>
+							</div>
+						</c:forEach>
+					</c:if>
+
 				</div>
 			</div>
 		</div>
