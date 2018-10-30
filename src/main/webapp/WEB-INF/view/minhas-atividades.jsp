@@ -36,8 +36,8 @@
 			<div class="col-sm-8">
 				<nav class="breadcrumb"> <span class="breadcrumb-item">Você
 					está em:</span> <a
-					class="breadcrumb-item ${titulo eq 'Início' ? 'active': ''}"
-					href="/Chronos">Início</a></nav>
+					class="breadcrumb-item ${titulo eq 'Minhas Atividades' ? 'active': ''}"
+					href="/Chronos/atividades/minhas-atividades">Minhas Atividades</a></nav>
 				<c:set var="mensagem" value="${sessionScope.mensagem}"></c:set>
 				<c:if test="${not empty mensagem}">
 					<div class="alert alert-${status} alert-dismissible fade show"
