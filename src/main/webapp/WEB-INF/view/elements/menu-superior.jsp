@@ -21,7 +21,7 @@
 			<a class="nav-item nav-link"
 				href="http://192.169.1.2:8080/guardiao/">Guardião</a> <a
 				class="nav-item nav-link"
-				href="<%=Constantes.getAppUrl()%>/minhasAtividades">Minhas
+				href="<%=Constantes.getAppUrl()%>/atividades/minhas-atividades">Minhas
 				Atividades</a>
 			<c:if
 				test="${fn:contains(permissoes, 'APOIO') or fn:contains(permissoes, 'ADMINISTRADOR')}">
