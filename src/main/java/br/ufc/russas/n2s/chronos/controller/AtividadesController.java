@@ -1,5 +1,6 @@
 package br.ufc.russas.n2s.chronos.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
+import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
@@ -50,24 +52,29 @@ public class AtividadesController {
 	}
 	
 	@RequestMapping(value = "/minhas-atividades", method = RequestMethod.GET)	
-	public String getIndex(Model model) {
+	public String getIndex(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		Atividade atividade = new Atividade();
 		atividade.setDivulgada(true);
-		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
-		for (Iterator<AtividadeBeans> iterator = atividades.iterator(); iterator.hasNext();) {
-			AtividadeBeans atividadeBeans = iterator.next();
-			List<RealizacaoBeans> realizacoes = atividadeBeans.getRealizacao();
-			for (Iterator<RealizacaoBeans> iterator2 = realizacoes.iterator(); iterator2.hasNext();) {
-				RealizacaoBeans realizacaoBeans = iterator2.next();
-				// mantém a data mais recente na posição 0 para que possa ser exibida na pagina
-				// inicio.jsp para cada atividade
-				if (realizacaoBeans.getHoraInicio().isBefore(realizacoes.get(0).getHoraInicio()))
-					realizacoes.set(0, realizacaoBeans);
-			}
-		}
+		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividades(atividade);	
+		List<AtividadeBeans> novasatividades = new ArrayList<>();
+		
+        //Verifica se o participante está inscrito na atividade
+        for (AtividadeBeans atividadebeans : atividades ) {
+        	for(UsuarioBeans participante : atividadebeans.getParticipantes()) {
+        		if (usuario.getCodUsuario()==participante.getCodUsuario()) {        				
+        			novasatividades.add(atividadebeans);
+        			break;        					
+        		}        				
+        	}
+        }   		
+        
 		model.addAttribute("categoria", "Início");
 		model.addAttribute("estado", "início");
-		model.addAttribute("atividades", atividades);
+		model.addAttribute("atividades", novasatividades);
+		
 		return "minhas-atividades";
 	}
+	
 }
