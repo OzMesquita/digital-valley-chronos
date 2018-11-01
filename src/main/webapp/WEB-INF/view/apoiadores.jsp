@@ -107,7 +107,7 @@
 				</c:if>
 				<a href="/Chronos/cadastrarApoio/${atividade.codAtividade}"	class="timeline-badge primary">
 					<li style="list-style: none; text-align: center;">
-						<button class="btn btn-circle">
+						<button class="btn btn-circle" style= "color:#007bff">
 							 <i class="material-icons" title="Adicionar novo apoio">add</i>
 						</button>
 					</li>
