@@ -377,6 +377,10 @@ ul {
 										<th>Local</th>
 										<th>Data/Horário</th>
 										<th>Vagas</th>
+										<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+											<th class="text-center">Editar</th>
+											<th class="text-center">Remover</th>
+										</c:if>
 										<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
 											<th class="text-center">Inscrição</th>
 										</c:if>
