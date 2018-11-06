@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
+import br.ufc.russas.n2s.chronos.beans.OrganizadorBeans;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
@@ -65,6 +66,12 @@ public class AtividadesController {
         			novasatividades.add(atividadebeans);
         			break;        					
         		}        				
+        	}
+        	for(OrganizadorBeans organizador : atividadebeans.getOrganizadores()) {
+        		if(usuario.getCodUsuario()==organizador.getUsuarioBeans().getCodUsuario()) {
+        			novasatividades.add(atividadebeans);
+        			break;
+        		}
         	}
         }   		
         
