@@ -80,6 +80,30 @@ public class AtividadeServiceImpl implements AtividadeServiceIfc {
 		}
 		return atividades;
 	}
+	
+	@Override
+	@Transactional
+	public List<AtividadeBeans> listaTodasAtividadesHql() {
+		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		List<Atividade> resultado = this.getAtividadeDAOIfc()
+				.listaHqlAtividade("from Atividade a");
+		for (Atividade a : resultado) {
+			atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
+		}
+		return atividades;
+	}
+	
+	@Override
+	@Transactional
+	public List<AtividadeBeans> listaAtividadesPorParticipanteHql(String string) {
+		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());
+		List<Atividade> resultado = this.getAtividadeDAOIfc()
+				.listaHqlAtividade("select * from participantes_atividade a where a.participantes=" + string);
+		for (Atividade a : resultado) {
+			atividades.add((AtividadeBeans) new AtividadeBeans().toBeans(a));
+		}
+		return atividades;
+	}
 
 	public List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade) {
 		List<AtividadeBeans> atividades = Collections.synchronizedList(new ArrayList<AtividadeBeans>());

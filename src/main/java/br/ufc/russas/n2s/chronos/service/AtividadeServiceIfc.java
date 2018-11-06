@@ -8,6 +8,8 @@ public interface AtividadeServiceIfc extends ServiceIfc{
 	void removeAtividade(AtividadeBeans atividade);
 	List<AtividadeBeans> listaAtividades(Atividade atividade);
 	List<AtividadeBeans> listaAtividadesHql(String string);
+	List<AtividadeBeans> listaTodasAtividadesHql();
+	List<AtividadeBeans> listaAtividadesPorParticipanteHql(String string);
 	List<AtividadeBeans> listaAtividadesOrfans(Atividade atividade);
 	AtividadeBeans getAtividade(long codAtividade);
 }

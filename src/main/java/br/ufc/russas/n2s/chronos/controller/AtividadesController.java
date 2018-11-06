@@ -55,9 +55,7 @@ public class AtividadesController {
 	public String getIndex(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
-		Atividade atividade = new Atividade();
-		atividade.setDivulgada(true);
-		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividades(atividade);	
+		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaTodasAtividadesHql();
 		List<AtividadeBeans> novasatividades = new ArrayList<>();
 		
         //Verifica se o participante está inscrito na atividade
