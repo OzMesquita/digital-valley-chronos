@@ -5,6 +5,8 @@
  */
 package br.ufc.russas.n2s.chronos.controller;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
+import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.Atividade;
+import br.ufc.russas.n2s.chronos.model.EnumEstadoAtividade;
 import br.ufc.russas.n2s.chronos.model.EnumTipoAtividade;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 
@@ -28,6 +32,9 @@ import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 @RequestMapping("/")
 public class IndexController {
 
+	private static final EnumEstadoAtividade ABERTA = null;
+	private static final EnumEstadoAtividade ANDAMENTO = null;
+	private static final EnumEstadoAtividade FINALIZADA = null;
 	private AtividadeServiceIfc atividadeServiceIfc;
 
 	public AtividadeServiceIfc getAtividadeServiceIfc() {
@@ -76,4 +83,90 @@ public class IndexController {
 		model.addAttribute("atividades", atividades);
 		return "inicio";
 	}
-}
+	
+	@RequestMapping(value = "/estado/{estado}", method = RequestMethod.GET)
+    public String getEstados(Model model, @PathVariable String estado){
+        Atividade atividade = new Atividade();
+        atividade.setDivulgada(true);
+        EnumEstadoAtividade e = null;
+        List<AtividadeBeans> listaDeAtividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);   
+        List<AtividadeBeans> novasatividades = new ArrayList<>();
+        
+        if (estado.equals("aberta")){   	// ATIVIDADES ABERTAS
+        	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
+        		if(atividadebeans.getRealizacao()!=null) {
+        			for(RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {
+        				LocalDateTime inicio = realizacao.getHoraInicio();
+                		if(inicio.isAfter(LocalDateTime.now())) {
+                			novasatividades.add(atividadebeans);
+                			break;
+                		}
+        			}
+        			
+        		}
+        		
+        	}
+        	
+            e = ABERTA;
+            model.addAttribute("categoria", "Atividade abertas");
+            model.addAttribute("estado", e);            
+            System.out.println("Entrou em abertas");
+            
+            
+        } else if( estado.equals("andamento")) {  // ATIVIDADES EM ANDAMENTO
+        	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
+        		if(atividadebeans.getRealizacao()!=null) {
+        			for(RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {
+        				LocalDateTime termino = realizacao.getHoraFinal();
+                    	LocalDateTime inicio = realizacao.getHoraInicio();
+                		if(termino.isAfter(LocalDateTime.now()) && inicio.isBefore(LocalDateTime.now()) || inicio.isEqual(LocalDateTime.now())) {
+                			novasatividades.add(atividadebeans);
+                		}
+        			}
+        			
+        		}
+        		
+        	}
+        	
+            e = ANDAMENTO;
+            model.addAttribute("categoria", "Atividades em andamento");
+            model.addAttribute("estado", e);
+            
+            System.out.println("Entrou em Adamento");
+            
+            
+        } else if (estado.equals("finalizada")) { // ATIVIDADES FINALIZADAS
+        	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
+        		if(atividadebeans.getRealizacao()!=null) {
+        			for(RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {
+        				LocalDateTime termino = realizacao.getHoraFinal();    		
+            			if(termino.isBefore(LocalDateTime.now())){ // data de termino da atividade é antes da data atual
+            				novasatividades.add(atividadebeans);
+            				System.out.println("FINALIZADA: Entrou no if / Termino"+termino);    		            
+            		    }
+        			}
+        			
+        		}
+        		
+        	}
+        	
+            e = FINALIZADA;
+            model.addAttribute("categoria", "Atividades finalizadas");
+            model.addAttribute("estado", e);
+            
+            System.out.println("Entrou em finalizada");
+        } 
+        //atividade.setEstado(e);
+        //AtividadeBeans atividadebeans = new AtividadeBeans();
+        model.addAttribute("atividades", novasatividades);
+        
+        
+        
+        return "inicio";
+	}
+        
+ }
+
+
+	
+

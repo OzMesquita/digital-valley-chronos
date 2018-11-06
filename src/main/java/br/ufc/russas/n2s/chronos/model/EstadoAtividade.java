@@ -1,5 +1,12 @@
 package br.ufc.russas.n2s.chronos.model;
 
-public class EstadoAtividade {
-	
+import javax.persistence.Embeddable;
+
+/**
+ *
+ * @author Lavínia Matoso ajustado por Gutenberg
+ */
+
+public interface EstadoAtividade {
+    EnumEstadoAtividade execute(Atividade atividade);
 }
