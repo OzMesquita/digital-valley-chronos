@@ -75,7 +75,7 @@ public class AtividadesController {
         	}
         }   		
         
-		model.addAttribute("categoria", "Início");
+		model.addAttribute("categoria", "atividades/minhas-atividades");
 		model.addAttribute("estado", "início");
 		model.addAttribute("atividades", novasatividades);
 		
