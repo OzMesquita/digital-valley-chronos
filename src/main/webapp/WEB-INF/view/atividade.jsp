@@ -233,6 +233,9 @@ ul {
 									class="btn btn-link" value="Divulgar a atividade"
 									data-toggle="modal" data-target="#divulgar">
 							</p>
+							<p style="font-size: 15px;">
+								<b>PS: A ATIVIDADE SÓ PODERÁ SER DIVULGADA SE JÁ TIVER SIDO ADICIONADA UMA REALIZAÇÃO À MESMA.</b>
+							</p>
 						</div>
 					</div>
 					<!-- Modal -->
@@ -377,12 +380,12 @@ ul {
 										<th>Local</th>
 										<th>Data/Horário</th>
 										<th>Vagas</th>
+										<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
+											<th class="text-center">Inscrição</th>
+										</c:if>
 										<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
 											<th class="text-center">Editar</th>
 											<th class="text-center">Remover</th>
-										</c:if>
-										<c:if test="${(fn:contains(permissoes, 'PARTICIPANTE'))}">
-											<th class="text-center">Inscrição</th>
 										</c:if>
 									</tr>
 								</thead>
