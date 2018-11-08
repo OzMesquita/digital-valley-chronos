@@ -51,20 +51,22 @@ public class IndexController {
 		Atividade atividade = new Atividade();
 		atividade.setDivulgada(true);
 		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
-		for (Iterator<AtividadeBeans> iterator = atividades.iterator(); iterator.hasNext();) {
-			AtividadeBeans atividadeBeans = iterator.next();
-			List<RealizacaoBeans> realizacoes = atividadeBeans.getRealizacao();
-			for (Iterator<RealizacaoBeans> iterator2 = realizacoes.iterator(); iterator2.hasNext();) {
-				RealizacaoBeans realizacaoBeans = iterator2.next();
+		List<AtividadeBeans> novasatividades = new ArrayList<>();
+		for (AtividadeBeans atividadebeans : atividades) {				
+			 	
+			for (RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {				
 				// mantém a data mais recente na posição 0 para que possa ser exibida na pagina
 				// inicio.jsp para cada atividade
-				if (realizacaoBeans.getHoraInicio().isBefore(realizacoes.get(0).getHoraInicio()))
-					realizacoes.set(0, realizacaoBeans);
+				LocalDateTime termino = realizacao.getHoraFinal(); 				
+				if(!termino.isBefore(LocalDateTime.now())){
+					novasatividades.add(atividadebeans);					
+				}
+				break;
 			}
 		}
 		model.addAttribute("categoria", "Início");
 		model.addAttribute("estado", "início");
-		model.addAttribute("atividades", atividades);
+		model.addAttribute("atividades", novasatividades);
 		return "inicio";
 	}
 
@@ -97,7 +99,8 @@ public class IndexController {
         		if(atividadebeans.getRealizacao()!=null) {
         			for(RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {
         				LocalDateTime inicio = realizacao.getHoraInicio();
-                		if(inicio.isAfter(LocalDateTime.now())) {
+        				LocalDateTime termino = realizacao.getHoraFinal();
+                		if(inicio.isAfter(LocalDateTime.now()) && termino.isAfter(LocalDateTime.now()) ) {
                 			novasatividades.add(atividadebeans);
                 			break;
                 		}
@@ -121,6 +124,7 @@ public class IndexController {
                     	LocalDateTime inicio = realizacao.getHoraInicio();
                 		if(termino.isAfter(LocalDateTime.now()) && inicio.isBefore(LocalDateTime.now()) || inicio.isEqual(LocalDateTime.now())) {
                 			novasatividades.add(atividadebeans);
+                			break;
                 		}
         			}
         			
@@ -142,7 +146,8 @@ public class IndexController {
         				LocalDateTime termino = realizacao.getHoraFinal();    		
             			if(termino.isBefore(LocalDateTime.now())){ // data de termino da atividade é antes da data atual
             				novasatividades.add(atividadebeans);
-            				System.out.println("FINALIZADA: Entrou no if / Termino"+termino);    		            
+            				System.out.println("FINALIZADA: Entrou no if / Termino"+termino);    
+            				break;
             		    }
         			}
         			
