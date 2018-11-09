@@ -127,11 +127,20 @@ public class EditarAtividadeController {
         HttpSession session = request.getSession();
         UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
         try{
-            atividadeServiceIfc.setUsuario(usuario);
-            atividade.setDivulgada(true);
-            atividade = atividadeServiceIfc.atualizaAtividade(atividade);
-            request.getSession().setAttribute("atividade", atividade);
-            return "redirect:/atividades/" + atividade.getCodAtividade();
+        	if(atividade.getRealizacao()!=null) {
+        		atividadeServiceIfc.setUsuario(usuario);
+                atividade.setDivulgada(true);
+                atividade = atividadeServiceIfc.atualizaAtividade(atividade);
+                request.getSession().setAttribute("atividade", atividade);
+                request.getSession().setAttribute("mensagem", "Atividade divulgada com sucesso!");
+				request.getSession().setAttribute("status", "success");	
+                return "redirect:/atividades/" + atividade.getCodAtividade();
+        	}else {
+        		request.getSession().setAttribute("mensagem", "Adicione pelo menos uma realização antes de divulgar a atividade!");
+				request.getSession().setAttribute("status", "danger");        		
+        		return "redirect:/atividades/" + atividade.getCodAtividade();
+        	}
+            
             
         }catch(IllegalAccessException e){
             e.printStackTrace();
