@@ -54,15 +54,7 @@ public class IndexController {
 		List<AtividadeBeans> novasatividades = new ArrayList<>();
 		for (AtividadeBeans atividadebeans : atividades) {				
 			 	
-			for (RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {				
-				// mantém a data mais recente na posição 0 para que possa ser exibida na pagina
-				// inicio.jsp para cada atividade
-				LocalDateTime termino = realizacao.getHoraFinal(); 				
-				if(!termino.isBefore(LocalDateTime.now())){
-					novasatividades.add(atividadebeans);					
-				}
-				break;
-			}
+			novasatividades.add(atividadebeans);	
 		}
 		model.addAttribute("categoria", "Início");
 		model.addAttribute("estado", "início");
@@ -93,17 +85,29 @@ public class IndexController {
         EnumEstadoAtividade e = null;
         List<AtividadeBeans> listaDeAtividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);   
         List<AtividadeBeans> novasatividades = new ArrayList<>();
+        int i = 0;
+        int aux = 0;
+        LocalDateTime inicio=null;
+        LocalDateTime termino = null;
         
         if (estado.equals("aberta")){   	// ATIVIDADES ABERTAS
         	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
         		if(atividadebeans.getRealizacao()!=null) {
         			for(RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {
-        				LocalDateTime inicio = realizacao.getHoraInicio();
-        				LocalDateTime termino = realizacao.getHoraFinal();
-                		if(inicio.isAfter(LocalDateTime.now()) && termino.isAfter(LocalDateTime.now()) ) {
-                			novasatividades.add(atividadebeans);
-                			break;
-                		}
+        				if(i==0) {
+        					inicio = realizacao.getHoraInicio();
+        				}
+        				if(i==atividadebeans.getRealizacao().size()) {
+        					termino = realizacao.getHoraFinal();
+        				}        				
+                    	if(inicio!=null && termino !=null ) {
+                    		if(inicio.isAfter(LocalDateTime.now()) && termino.isAfter(LocalDateTime.now()) ) {
+                    			novasatividades.add(atividadebeans);
+                    			break;
+                    		}
+                    	}        				
+        				
+                		i++;
         			}
         			
         		}
@@ -120,16 +124,25 @@ public class IndexController {
         	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
         		if(atividadebeans.getRealizacao()!=null) {
         			for(RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {
-        				LocalDateTime termino = realizacao.getHoraFinal();
-                    	LocalDateTime inicio = realizacao.getHoraInicio();
-                		if(termino.isAfter(LocalDateTime.now()) && inicio.isBefore(LocalDateTime.now()) || inicio.isEqual(LocalDateTime.now())) {
-                			novasatividades.add(atividadebeans);
-                			break;
-                		}
-        			}
-        			
+        				if(i==0) {
+        					inicio = realizacao.getHoraInicio();
+        				}
+        				if(i==atividadebeans.getRealizacao().size()) {
+        					termino = realizacao.getHoraFinal();
+        					aux=0;
+        				}
+        				
+                    	if(inicio!=null && termino !=null ) {
+                    		if(termino.isAfter(LocalDateTime.now()) && inicio.isBefore(LocalDateTime.now()) || inicio.isEqual(LocalDateTime.now())) {
+                    			novasatividades.add(atividadebeans);
+                    			break;
+                    		}
+                    	}
+                		
+                		i++;
+        			}        			
         		}
-        		
+        		i=aux;    			
         	}
         	
             e = ANDAMENTO;
@@ -143,12 +156,21 @@ public class IndexController {
         	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
         		if(atividadebeans.getRealizacao()!=null) {
         			for(RealizacaoBeans realizacao : atividadebeans.getRealizacao()) {
-        				LocalDateTime termino = realizacao.getHoraFinal();    		
-            			if(termino.isBefore(LocalDateTime.now())){ // data de termino da atividade é antes da data atual
-            				novasatividades.add(atividadebeans);
-            				System.out.println("FINALIZADA: Entrou no if / Termino"+termino);    
-            				break;
-            		    }
+        				if(i==0) {
+        					inicio = realizacao.getHoraInicio();
+        				}
+        				if(i==atividadebeans.getRealizacao().size()) {
+        					termino = realizacao.getHoraFinal();
+        				}
+        				
+                    	if(inicio!=null && termino !=null ) {
+                    		if(termino.isBefore(LocalDateTime.now())){ // data de termino da atividade é antes da data atual
+                				novasatividades.add(atividadebeans);
+                				System.out.println("FINALIZADA: Entrou no if / Termino"+termino);    
+                				break;
+                		    }
+                    	}        				 		
+            			i++;
         			}
         			
         		}
