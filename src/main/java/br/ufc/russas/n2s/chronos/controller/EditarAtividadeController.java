@@ -127,7 +127,7 @@ public class EditarAtividadeController {
         HttpSession session = request.getSession();
         UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
         try{
-        	if(atividade.getRealizacao()!=null) {
+        	if(!atividade.getRealizacao().isEmpty()) {
         		atividadeServiceIfc.setUsuario(usuario);
                 atividade.setDivulgada(true);
                 atividade = atividadeServiceIfc.atualizaAtividade(atividade);
