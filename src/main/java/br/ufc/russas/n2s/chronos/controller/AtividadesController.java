@@ -1,6 +1,7 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,6 +51,29 @@ public class AtividadesController {
 		model.addAttribute("isResponsavel", true);
 		session.setAttribute("atividade", atividade);
 		return "atividade";
+	}
+	
+	@RequestMapping(value = "listar/{codAtividade}", method = RequestMethod.GET)
+	public String getLista(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
+		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
+		HttpSession session = request.getSession();
+		HashSet<UsuarioBeans> participantes = new HashSet<>();
+		if(!atividade.getParticipantes().isEmpty()) {
+			participantes.addAll(atividade.getParticipantes());
+		}
+		if(!atividade.getSubAtividade().isEmpty()) {
+			for(AtividadeBeans subatividade : atividade.getSubAtividade()) {
+				if(!subatividade.getParticipantes().isEmpty()) {
+					participantes.addAll(subatividade.getParticipantes());
+				}
+			}
+		}
+		model.addAttribute("participantes", participantes);
+		model.addAttribute("atividade", atividade);
+		model.addAttribute("isResponsavel", true);
+		session.setAttribute("participantes", participantes);
+		session.setAttribute("atividade", atividade);
+		return "listaParticipantes";
 	}
 	
 	@RequestMapping(value = "/minhas-atividades", method = RequestMethod.GET)	

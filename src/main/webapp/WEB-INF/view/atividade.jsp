@@ -234,7 +234,8 @@ ul {
 									data-toggle="modal" data-target="#divulgar">
 							</p>
 							<p style="font-size: 15px;">
-								<b>PS: A ATIVIDADE SÓ PODERÁ SER DIVULGADA SE JÁ TIVER SIDO ADICIONADA UMA REALIZAÇÃO À MESMA.</b>
+								<b>PS: A ATIVIDADE SÓ PODERÁ SER DIVULGADA SE JÁ TIVER SIDO
+									ADICIONADA UMA REALIZAÇÃO À MESMA.</b>
 							</p>
 						</div>
 					</div>
@@ -269,6 +270,10 @@ ul {
 					<h1 class="text-uppercase" style="font-size: 20px;">${atividade.nome}
 						(${atividade.sigla})</h1>
 					<c:if test="${(fn:contains(permissoes, 'ADMINISTRADOR'))}">
+						<a href="/Chronos/atividades/listar/${atividade.codAtividade}"
+							class="btn btn-success btn-sm"
+							style="height: 33px; margin-left: 30px; margin-top: 5px;">
+							Listar Participantes </a>
 						<a href="/Chronos/editarAtividade/${atividade.codAtividade}"
 							class="btn btn-primary btn-sm"
 							style="height: 33px; margin-left: 30px; margin-top: 5px;">
@@ -408,7 +413,7 @@ ul {
 													<form
 														action="/Chronos/cadastrarInscricao/cadastraInscricao/${atividades.codAtividade}"
 														method="POST">
-														<input type="submit" class="btn btn-success"
+														<input type="submit" class="btn btn-success btn-sm"
 															value="Inscrever-se">
 													</form>
 												</c:if> <c:if
