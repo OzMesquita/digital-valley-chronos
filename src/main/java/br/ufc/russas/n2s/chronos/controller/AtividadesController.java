@@ -60,6 +60,9 @@ public class AtividadesController {
 		HashSet<UsuarioBeans> participantes = new HashSet<>();
 		if(!atividade.getParticipantes().isEmpty()) {
 			participantes.addAll(atividade.getParticipantes());
+		}else {
+			session.setAttribute("mensagem", "Não há nenhum participante inscrito na atividade!");
+			session.setAttribute("status", "danger");
 		}
 		if(!atividade.getSubAtividade().isEmpty()) {
 			for(AtividadeBeans subatividade : atividade.getSubAtividade()) {
@@ -72,7 +75,7 @@ public class AtividadesController {
 		model.addAttribute("atividade", atividade);
 		model.addAttribute("isResponsavel", true);
 		session.setAttribute("participantes", participantes);
-		session.setAttribute("atividade", atividade);
+		session.setAttribute("atividade", atividade);		
 		return "listaParticipantes";
 	}
 	

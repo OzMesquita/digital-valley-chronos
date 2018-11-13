@@ -264,6 +264,16 @@ ul {
 								</div>
 							</div>
 						</div>
+					</div>					
+				</c:if>
+				<c:if test="${not empty mensagem}">
+					<div class="alert alert-${status} alert-dismissible fade show"
+						role="alert">
+						${mensagem}
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 				</c:if>
 				<div class="column" style="padding-left: 15px;">
@@ -458,7 +468,9 @@ ul {
 								style="width: 10rem; position: relative; float: left; margin-right: 10px;">
 								<div class="card">
 									<center>
-										<img class="card-img-top" src="/Chronos/apoiadores/images/uploads/${fn:replace(apoiador.logo, 'C:\\n2s\\img\\chronos\\', '')}" style="width: 140px; height: 80px; margin-top: 5px;" alt="${apoiador.nomeInstituicao}">
+										<img class="card-img-top" src="${apoiador.logo}"
+											style="width: 140px; height: 80px; margin-top: 5px;"
+											alt="${apoiador.nomeInstituicao}">
 									</center>
 								</div>
 								<div class="card-body"
