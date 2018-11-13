@@ -453,10 +453,7 @@ ul {
 								style="width: 10rem; position: relative; float: left; margin-right: 10px;">
 								<div class="card">
 									<center>
-										<img class="card-img-top"
-											src="${apoiador.logo}"
-											style="width: 140px; height: 80px; margin-top: 5px;"
-											alt="${apoiador.nomeInstituicao}">
+										<img class="card-img-top" src="/Chronos/apoiadores/images/uploads/${fn:replace(apoiador.logo, 'C:\\n2s\\img\\chronos\\', '')}" style="width: 140px; height: 80px; margin-top: 5px;" alt="${apoiador.nomeInstituicao}">
 									</center>
 								</div>
 								<div class="card-body"
