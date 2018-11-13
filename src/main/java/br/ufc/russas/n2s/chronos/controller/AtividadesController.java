@@ -52,6 +52,29 @@ public class AtividadesController {
 		return "atividade";
 	}
 	
+	@RequestMapping(value = "listar/{codAtividade}", method = RequestMethod.GET)
+	public String getLista(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
+		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
+		HttpSession session = request.getSession();
+		List<UsuarioBeans> participantes = new ArrayList<>();
+		if(!atividade.getParticipantes().isEmpty()) {
+			participantes.addAll(atividade.getParticipantes());
+		}
+		if(!atividade.getSubAtividade().isEmpty()) {
+			for(AtividadeBeans subatividade : atividade.getSubAtividade()) {
+				if(!subatividade.getParticipantes().isEmpty()) {
+					participantes.addAll(subatividade.getParticipantes());
+				}
+			}
+		}
+		model.addAttribute("participantes", participantes);
+		model.addAttribute("atividade", atividade);
+		model.addAttribute("isResponsavel", true);
+		session.setAttribute("participantes", participantes);
+		session.setAttribute("atividade", atividade);
+		return "listaParticipantes";
+	}
+	
 	@RequestMapping(value = "/minhas-atividades", method = RequestMethod.GET)	
 	public String getIndex(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
