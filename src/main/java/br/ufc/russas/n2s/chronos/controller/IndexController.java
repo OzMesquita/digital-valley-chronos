@@ -92,7 +92,7 @@ public class IndexController {
         
         if (estado.equals("aberta")){   	// ATIVIDADES ABERTAS
         	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
-        		if(atividadebeans.getRealizacao()!=null && atividadebeans.getRealizacao().size()>1) {
+        		if(atividadebeans.getRealizacao()!=null) {
         			Iterator<RealizacaoBeans> iteratorR = atividadebeans.getRealizacao().iterator();
         			while(iteratorR.hasNext()) {
         				RealizacaoBeans realizacao = iteratorR.next();        			
@@ -123,7 +123,7 @@ public class IndexController {
             
         } else if( estado.equals("andamento")) {  // ATIVIDADES EM ANDAMENTO
         	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
-        		if(atividadebeans.getRealizacao()!=null && atividadebeans.getRealizacao().size()>1) {
+        		if(atividadebeans.getRealizacao()!=null) {
         			Iterator<RealizacaoBeans> iteratorR = atividadebeans.getRealizacao().iterator();
         			while(iteratorR.hasNext()) {
         				RealizacaoBeans realizacao = iteratorR.next();        			
@@ -154,7 +154,7 @@ public class IndexController {
             
         } else if (estado.equals("finalizada")) { // ATIVIDADES FINALIZADAS
         	for (AtividadeBeans atividadebeans : listaDeAtividades ) {
-        		if(atividadebeans.getRealizacao()!=null && atividadebeans.getRealizacao().size()>1) {
+        		if(atividadebeans.getRealizacao()!=null) {
         			Iterator<RealizacaoBeans> iteratorR = atividadebeans.getRealizacao().iterator();
         			while(iteratorR.hasNext()) {
         				RealizacaoBeans realizacao = iteratorR.next();        			
