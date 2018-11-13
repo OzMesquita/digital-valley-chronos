@@ -1,6 +1,7 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class AtividadesController {
 	public String getLista(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
 		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
 		HttpSession session = request.getSession();
-		List<UsuarioBeans> participantes = new ArrayList<>();
+		HashSet<UsuarioBeans> participantes = new HashSet<>();
 		if(!atividade.getParticipantes().isEmpty()) {
 			participantes.addAll(atividade.getParticipantes());
 		}
