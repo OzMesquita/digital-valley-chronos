@@ -441,7 +441,7 @@ ul {
 												href="/Chronos/editarAtividade/${atividades.codAtividade}"
 												class="btn btn-primary btn-sm"> Editar </a></td>
 											<td class="text-center"><a class="btn btn-danger btn-sm"
-												href="/Chronos/editarAtividade/remover/${atividade.codAtividade}">
+												href="/Chronos/editarAtividade/remover/${atividades.codAtividade}">
 													Remover</a></td>
 										</c:if>
 									</tr>
