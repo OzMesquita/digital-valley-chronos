@@ -175,6 +175,7 @@ public class IndexController {
         				}
         				if(!iteratorR.hasNext()) {
         					termino = realizacao.getHoraFinal();
+        					i=0;
         				}
         				if(inicio!=null && termino !=null ) {
                     		if(inicio.isAfter(LocalDateTime.now()) && termino.isAfter(LocalDateTime.now()) ) {
@@ -206,6 +207,7 @@ public class IndexController {
         				}
         				if(!iteratorR.hasNext()) {
         					termino = realizacao.getHoraFinal();
+        					i=0;
         				}
         				if(inicio!=null && termino !=null ) {
                     		if(termino.isAfter(LocalDateTime.now()) && inicio.isBefore(LocalDateTime.now()) || inicio.isEqual(LocalDateTime.now())) {
@@ -237,6 +239,7 @@ public class IndexController {
         				}
         				if(!iteratorR.hasNext()) {
         					termino = realizacao.getHoraFinal();
+        					i=0;
         				}
         				if(inicio!=null && termino !=null ) {
                     		if(termino.isBefore(LocalDateTime.now())){ // data de termino da atividade é antes da data atual
