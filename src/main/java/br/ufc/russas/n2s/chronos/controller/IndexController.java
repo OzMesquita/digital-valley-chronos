@@ -70,11 +70,84 @@ public class IndexController {
 	@RequestMapping(value = "/{categoria}", method = RequestMethod.GET)
 	public String getCategoria(Model model, @PathVariable String categoria) {
 		Atividade atividade = new Atividade();
+		atividade.setDivulgada(true);
 		atividade.setTipoAtividade(EnumTipoAtividade.valorEnumPeloNome(categoria.toUpperCase()));
 		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);
-		model.addAttribute("categoria", "Início");
-		model.addAttribute("estado", "início");
-		model.addAttribute("atividades", atividades);
+		List<AtividadeBeans> novasatividades = new ArrayList<>();
+		if(categoria.equals("curso")) {
+			for (AtividadeBeans atividadebeans : atividades ) {
+				if(atividadebeans.getTipoAtividade()==atividadebeans.getTipoAtividade().CURSO) {
+					novasatividades.add(atividadebeans);
+				}
+			}
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("estado", "início");
+			model.addAttribute("atividades", novasatividades);
+			
+		}else if(categoria.equals("semana")) {
+			for (AtividadeBeans atividadebeans : atividades ) {
+				if(atividadebeans.getTipoAtividade()==atividadebeans.getTipoAtividade().SEMANA) {
+					novasatividades.add(atividadebeans);
+				}
+			}
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("estado", "início");
+			model.addAttribute("atividades", novasatividades);
+			
+		}else if(categoria.equals("encontro")) {
+			for (AtividadeBeans atividadebeans : atividades ) {
+				if(atividadebeans.getTipoAtividade()==atividadebeans.getTipoAtividade().ENCONTRO) {
+					novasatividades.add(atividadebeans);
+				}
+			}
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("estado", "início");
+			model.addAttribute("atividades", novasatividades);
+			
+		}else if(categoria.equals("minicurso")) {
+			for (AtividadeBeans atividadebeans : atividades ) {
+				if(atividadebeans.getTipoAtividade()==atividadebeans.getTipoAtividade().MINICURSO) {
+					novasatividades.add(atividadebeans);
+				}
+			}
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("estado", "início");
+			model.addAttribute("atividades", novasatividades);
+			
+		}else if(categoria.equals("palestra")) {
+			for (AtividadeBeans atividadebeans : atividades ) {
+				if(atividadebeans.getTipoAtividade()==atividadebeans.getTipoAtividade().PALESTRA) {
+					novasatividades.add(atividadebeans);
+				}
+			}
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("estado", "início");
+			model.addAttribute("atividades", novasatividades);
+			
+		}
+		else if(categoria.equals("visita_técnica")) {
+			for (AtividadeBeans atividadebeans : atividades ) {
+				if(atividadebeans.getTipoAtividade()==atividadebeans.getTipoAtividade().VISITA_TÉCNICA) {
+					novasatividades.add(atividadebeans);
+				}
+			}
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("estado", "início");
+			model.addAttribute("atividades", novasatividades);
+			
+		}else if(categoria.equals("workshop")) {
+			for (AtividadeBeans atividadebeans : atividades ) {
+				if(atividadebeans.getTipoAtividade()==atividadebeans.getTipoAtividade().WORKSHOP) {
+					novasatividades.add(atividadebeans);
+				}
+			}
+			model.addAttribute("categoria", categoria);
+			model.addAttribute("estado", "início");
+			model.addAttribute("atividades", novasatividades);
+			
+		}
+		
+		
 		return "inicio";
 	}
 	
