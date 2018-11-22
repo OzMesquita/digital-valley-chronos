@@ -1,6 +1,9 @@
 package br.ufc.russas.n2s.chronos.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
+import br.ufc.russas.n2s.chronos.beans.RealizacaoBeans;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
+import br.ufc.russas.n2s.chronos.model.Atividade;
+import br.ufc.russas.n2s.chronos.model.Realizacao;
 import br.ufc.russas.n2s.chronos.model.exceptions.AtividadeException;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
@@ -57,10 +63,38 @@ public class CadastrarInscricaoController {
 			HttpServletResponse response, HttpServletRequest request) throws IOException, IllegalAccessException {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
+		int i = 0;        
+        LocalDateTime inicio=null;
+        LocalDateTime termino = null;
 
 		try {
 			this.atividadeServiceIfc.setUsuario(usuario);
-			AtividadeBeans atividade = this.getAtividadeService().getAtividade(codAtividade);
+			AtividadeBeans atividade = this.getAtividadeService().getAtividade(codAtividade);		
+			
+			Iterator<Realizacao> iteratorR = atividade.getPai().getRealizacao().iterator();
+			while(iteratorR.hasNext()) {
+				Realizacao realizacao = iteratorR.next();        			
+				if(i==0){ // Se for a primeira realização
+					inicio = realizacao.getHoraInicio();
+					i=-1;
+				}
+				if(!iteratorR.hasNext()) {
+					termino = realizacao.getHoraFinal();
+					i=0;
+				}				 
+			} 
+			if(termino.isBefore(LocalDateTime.now()) || inicio.isBefore(LocalDateTime.now())) {
+				session.setAttribute("mensagem", "Não foi possível realizar a inscrição! A atividade já foi finalizada ou está em andamento.");
+				session.setAttribute("status", "danger");
+				return ("redirect:/atividades/" + this.getAtividadeService().getAtividade(codAtividade).getPai().getCodAtividade());
+			}else {
+				atividade.addParticipante(usuario);
+				atividade = this.getAtividadeService().atualizaAtividade(atividade);
+				session.setAttribute("mensagem", "Inscrição realizada com sucesso!");
+				session.setAttribute("status", "success");
+				
+			}
+			
 			atividade.addParticipante(usuario);
 			atividade = this.getAtividadeService().atualizaAtividade(atividade);
 			session.setAttribute("mensagem", "Inscrição realizada com sucesso!");

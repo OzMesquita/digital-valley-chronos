@@ -158,8 +158,7 @@ public class IndexController {
         EnumEstadoAtividade e = null;
         List<AtividadeBeans> listaDeAtividades = this.getAtividadeServiceIfc().listaAtividadesOrfans(atividade);   
         List<AtividadeBeans> novasatividades = new ArrayList<>();
-        int i = 0;
-        int aux = 0;
+        int i = 0;        
         LocalDateTime inicio=null;
         LocalDateTime termino = null;
         
