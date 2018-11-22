@@ -32,9 +32,9 @@ import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 @RequestMapping("/")
 public class IndexController {
 
-	private static final EnumEstadoAtividade ABERTA = null;
-	private static final EnumEstadoAtividade ANDAMENTO = null;
-	private static final EnumEstadoAtividade FINALIZADA = null;
+	private static final EnumEstadoAtividade ABERTA = EnumEstadoAtividade.ABERTA;
+	private static final EnumEstadoAtividade ANDAMENTO = EnumEstadoAtividade.ANDAMENTO;
+	private static final EnumEstadoAtividade FINALIZADA = EnumEstadoAtividade.FINALIZADA;
 	private AtividadeServiceIfc atividadeServiceIfc;
 
 	public AtividadeServiceIfc getAtividadeServiceIfc() {
