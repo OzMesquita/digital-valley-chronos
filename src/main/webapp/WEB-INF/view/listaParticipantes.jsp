@@ -200,7 +200,7 @@ ul {
 					<a class="breadcrumb-item" href="${atividade.pai.codAtividade}">${atividade.pai.nome}</a>
 					<a class="breadcrumb-item" href="${atividade.codAtividade}">${atividade.nome}</a>
 				</c:if> <c:if test="${atividade.pai==null}">
-					<a class="breadcrumb-item active" href="${atividade.codAtividade}">${atividade.nome}</a>
+					<a class="breadcrumb-item" href="/Chronos/atividades/${atividade.codAtividade}">${atividade.nome}</a>
 				</c:if>
 				<a class="breadcrumb-item active" href="/Chronos/atividades/listar/${atividade.codAtividade}">Lista de Participantes</a>
 				 </nav>
