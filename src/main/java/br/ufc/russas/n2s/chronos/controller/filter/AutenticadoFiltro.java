@@ -3,6 +3,8 @@ package br.ufc.russas.n2s.chronos.controller.filter;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
+import br.ufc.russas.n2s.chronos.util.Constantes;
+
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -66,7 +68,7 @@ public class AutenticadoFiltro implements Filter {
 							this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()));
 					chain.doFilter(request, response);
 				} else {
-					((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao//");
+					((HttpServletResponse) response).sendRedirect(Constantes.getAppGuardiaoUrl()+"/");
 				}
 			} else if (session.getAttribute("usuarioChronos") != null
 					&& DAOFactory.criarUsuarioDAO()
@@ -75,7 +77,7 @@ public class AutenticadoFiltro implements Filter {
 							.buscarTokenTemp(((Usuario) session.getAttribute("usuario")).getPessoa().getId()))) {
 				chain.doFilter(request, response);
 			} else {
-				((HttpServletResponse) response).sendRedirect("http://192.169.1.2:8080/guardiao/");
+				((HttpServletResponse) response).sendRedirect(Constantes.getAppGuardiaoUrl()+"/");
 			}
 		}
 	}

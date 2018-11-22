@@ -19,7 +19,7 @@
 			<c:set var="permissoes"
 				value="${sessionScope.usuarioChronos.permissoes}"></c:set>
 			<a class="nav-item nav-link"
-				href="http://192.169.1.2:8080/guardiao/">Guardião</a> <a
+				href="<%=Constantes.getAppGuardiaoUrl()%>/">Guardião</a> <a
 				class="nav-item nav-link"
 				href="<%=Constantes.getAppUrl()%>/atividades/minhas-atividades">Minhas
 				Atividades</a>
@@ -86,12 +86,12 @@
 	<%} %>
 	<%if(request.getSession().getAttribute("usuarioChronos") != null) {%>
 		<div class="btn-group">
-			<img src="http://192.169.1.2:8080/guardiao/view/imagem_perfil_usuario?id_usuario=${usuarioChronos.codUsuarioControleDeAcesso}" style="border-radius: 5px; width: 40px; height:40px;"> &nbsp;
+			<img src="<%=Constantes.getAppGuardiaoUrl()%>/view/imagem_perfil_usuario?id_usuario=${usuarioChronos.codUsuarioControleDeAcesso}" style="border-radius: 5px; width: 40px; height:40px;"> &nbsp;
 			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				${usuarioChronos.nome}
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" href="http://192.169.1.2:8080/guardiao/logout">Sair</a>
+				<a class="dropdown-item" href="<%=Constantes.getAppGuardiaoUrl()%>/logout">Sair</a>
 			</div>
 		</div>
 	<%} %>
