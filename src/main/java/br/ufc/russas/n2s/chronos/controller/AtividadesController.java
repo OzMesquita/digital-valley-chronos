@@ -32,7 +32,7 @@ public class AtividadesController {
 	public AtividadeServiceIfc getAtividadeService() {
 		return atividadeServiceIfc;
 	}
-	
+
 	public AtividadeServiceIfc getAtividadeServiceIfc() {
 		return atividadeServiceIfc;
 	}
@@ -52,61 +52,62 @@ public class AtividadesController {
 		session.setAttribute("atividade", atividade);
 		return "atividade";
 	}
-	
+
 	@RequestMapping(value = "listar/{codAtividade}", method = RequestMethod.GET)
 	public String getLista(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
 		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
 		HttpSession session = request.getSession();
 		HashSet<UsuarioBeans> participantes = new HashSet<>();
-		if(!atividade.getParticipantes().isEmpty()) {
+		if (!atividade.getParticipantes().isEmpty()) {
 			participantes.addAll(atividade.getParticipantes());
-		}else {
-			session.setAttribute("mensagem", "Não há nenhum participante inscrito na atividade!");
-			session.setAttribute("status", "danger");
 		}
-		if(!atividade.getSubAtividade().isEmpty()) {
-			for(AtividadeBeans subatividade : atividade.getSubAtividade()) {
-				if(!subatividade.getParticipantes().isEmpty()) {
+		if (!atividade.getSubAtividade().isEmpty()) {
+			for (AtividadeBeans subatividade : atividade.getSubAtividade()) {
+				if (!subatividade.getParticipantes().isEmpty()) {
 					participantes.addAll(subatividade.getParticipantes());
 				}
 			}
+		}
+		if (participantes.isEmpty()) {
+			session.setAttribute("mensagem", "Não há nenhum participante inscrito na atividade!");
+			session.setAttribute("status", "danger");
 		}
 		model.addAttribute("participantes", participantes);
 		model.addAttribute("atividade", atividade);
 		model.addAttribute("isResponsavel", true);
 		session.setAttribute("participantes", participantes);
-		session.setAttribute("atividade", atividade);		
+		session.setAttribute("atividade", atividade);
 		return "listaParticipantes";
 	}
-	
-	@RequestMapping(value = "/minhas-atividades", method = RequestMethod.GET)	
+
+	@RequestMapping(value = "/minhas-atividades", method = RequestMethod.GET)
 	public String getIndex(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UsuarioBeans usuario = (UsuarioBeans) session.getAttribute("usuarioChronos");
 		List<AtividadeBeans> atividades = this.getAtividadeServiceIfc().listaTodasAtividadesHql();
 		List<AtividadeBeans> novasatividades = new ArrayList<>();
-		
-        //Verifica se o participante está inscrito na atividade
-        for (AtividadeBeans atividadebeans : atividades ) {
-        	for(UsuarioBeans participante : atividadebeans.getParticipantes()) {
-        		if (usuario.getCodUsuario()==participante.getCodUsuario()) {        				
-        			novasatividades.add(atividadebeans);
-        			break;        					
-        		}        				
-        	}
-        	for(OrganizadorBeans organizador : atividadebeans.getOrganizadores()) {
-        		if(usuario.getCodUsuario()==organizador.getUsuarioBeans().getCodUsuario()) {
-        			novasatividades.add(atividadebeans);
-        			break;
-        		}
-        	}
-        }   		
-        
+
+		// Verifica se o participante está inscrito na atividade
+		for (AtividadeBeans atividadebeans : atividades) {
+			for (UsuarioBeans participante : atividadebeans.getParticipantes()) {
+				if (usuario.getCodUsuario() == participante.getCodUsuario()) {
+					novasatividades.add(atividadebeans);
+					break;
+				}
+			}
+			for (OrganizadorBeans organizador : atividadebeans.getOrganizadores()) {
+				if (usuario.getCodUsuario() == organizador.getUsuarioBeans().getCodUsuario()) {
+					novasatividades.add(atividadebeans);
+					break;
+				}
+			}
+		}
+
 		model.addAttribute("categoria", "atividades/minhas-atividades");
 		model.addAttribute("estado", "início");
 		model.addAttribute("atividades", novasatividades);
-		
+
 		return "minhas-atividades";
 	}
-	
+
 }
