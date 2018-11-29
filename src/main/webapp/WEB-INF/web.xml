@@ -110,6 +110,16 @@
 
     <filter-mapping>
         <filter-name>FiltroAutenticado</filter-name>
+        <url-pattern>/view/restritas/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>FiltroClienteAutenticado</filter-name>
+        <filter-class>br.ufc.russas.n2s.chronos.controller.filter.CriaUsuarioFiltro</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FiltroClienteAutenticado</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
