@@ -19,7 +19,9 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
+import dao.DAOFactory;
 import model.Pessoa;
+import model.Usuario;
 import util.Facade;
 
 public class CriaUsuarioFiltro implements Filter {
@@ -62,8 +64,13 @@ public class CriaUsuarioFiltro implements Filter {
 							this.getUsuarioServiceIfc().getUsuarioControleDeAcesso(user.getId()));
 					chain.doFilter(request, response);
 				}
-			}
-			else {
+			} else if (session.getAttribute("usuarioChronos") != null
+					&& DAOFactory.criarUsuarioDAO()
+							.buscarTokenTemp(((Usuario) session.getAttribute("usuario")).getPessoa().getId()) != null
+					&& ((Usuario) session.getAttribute("usuario")).getTokenUsuario().equals(DAOFactory.criarUsuarioDAO()
+							.buscarTokenTemp(((Usuario) session.getAttribute("usuario")).getPessoa().getId()))) {
+				chain.doFilter(request, response);
+			} else {
 				session.removeAttribute("usuarioChronos");
 				chain.doFilter(request, response);
 			}
