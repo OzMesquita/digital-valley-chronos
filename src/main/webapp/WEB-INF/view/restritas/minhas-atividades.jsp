@@ -25,10 +25,10 @@
 	href="${pageContext.request.contextPath}/resources/css/design.css" />
 </head>
 <body>
-	<c:import url="elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
+	<c:import url="../elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
 	<div class="container-fluid">
 		<div class="row row-offcanvas row-offcanvas-right">
-			<c:import url="elements/menu-lateral-esquerdo-inicio.jsp"
+			<c:import url="../elements/menu-lateral-esquerdo-inicio.jsp"
 				charEncoding="UTF-8"></c:import>
 			<c:set var="titulo" value="Minhas Atividades"></c:set>
 			<c:set var="titulo"
@@ -191,7 +191,7 @@ span.psw {
 	}
 }
 </style>
-	<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
+	<c:import url="../elements/rodape.jsp" charEncoding="UTF-8"></c:import>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

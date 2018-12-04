@@ -27,10 +27,10 @@
 	href="${pageContext.request.contextPath}/resources/css/design.css" />
 </head>
 <body>
-	<c:import url="elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
+	<c:import url="../elements/menu-superior.jsp" charEncoding="UTF-8"></c:import>
 	<div class="container-fluid">
 		<div class="row row-offcanvas row-offcanvas-right">
-			<c:import url="elements/menu-lateral-esquerdo.jsp"
+			<c:import url="../elements/menu-lateral-esquerdo.jsp"
 				charEncoding="UTF-8"></c:import>
 			<div class="col-sm-8">
 				<nav aria-label="breadcrumb" role="navigation">
@@ -157,7 +157,7 @@
 			</div>
 		</div>
 	</div>
-	<c:import url="elements/rodape.jsp" charEncoding="UTF-8"></c:import>
+	<c:import url="../elements/rodape.jsp" charEncoding="UTF-8"></c:import>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
