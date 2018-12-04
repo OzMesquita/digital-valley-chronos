@@ -31,7 +31,7 @@ import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.service.ApoioServiceIfc;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
-import br.ufc.russas.n2s.chronos.util.Constantes;
+import util.Constantes;
 
 @Controller("editarApoioController")
 @RequestMapping("/editarApoio")

@@ -3,7 +3,6 @@ package br.ufc.russas.n2s.chronos.controller.filter;
 import br.ufc.russas.n2s.chronos.beans.UsuarioBeans;
 import br.ufc.russas.n2s.chronos.model.EnumPermissao;
 import br.ufc.russas.n2s.chronos.service.UsuarioServiceIfc;
-import br.ufc.russas.n2s.chronos.util.Constantes;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -22,6 +21,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import util.Constantes;
 import util.Facade;
 
 public class AutenticadoFiltro implements Filter {
