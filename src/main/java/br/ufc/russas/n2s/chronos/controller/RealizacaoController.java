@@ -59,7 +59,7 @@ public class RealizacaoController {
 		List<RealizacaoBeans> realizacao = Collections.synchronizedList(new ArrayList<RealizacaoBeans>());
 		realizacao = atividadeBeans.getRealizacao();
 		model.addAttribute("realizacao", realizacao);
-		return "realizacao";
+		return "restritas/realizacao";
 	}
 
 	@RequestMapping(value = "/removeRealizacao/{codAtividade}&{codRealizacao}", method = RequestMethod.POST)

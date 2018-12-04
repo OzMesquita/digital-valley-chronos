@@ -37,6 +37,6 @@ public class ColaboradorController {
 		List<ColaboradorBeans> colaborador = Collections.synchronizedList(new ArrayList<ColaboradorBeans>());
 		colaborador = atividadeBeans.getColaboradores();
 		model.addAttribute("colaborador", colaborador);
-		return "colaborador";
+		return "restritas/colaborador";
 	}
 }

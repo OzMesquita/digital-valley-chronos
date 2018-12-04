@@ -95,7 +95,7 @@ public class EditarApoioController {
 		ApoioBeans apoioBeans;
 		apoioBeans = apoioServiceIfc.getApoio(codApoio);
 		request.getSession().setAttribute("apoio", apoioBeans);
-		return "editar-apoio";
+		return "restritas/editar-apoio";
 	}
 	
 	@RequestMapping(value = "/{codAtividade}&{codApoio}", method = RequestMethod.POST)

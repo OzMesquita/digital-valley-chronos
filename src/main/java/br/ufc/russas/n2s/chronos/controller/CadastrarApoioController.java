@@ -56,7 +56,7 @@ public class CadastrarApoioController {
 
 	@RequestMapping(value = "/{codAtividade}", method = RequestMethod.GET)
 	public String getCadastro(@PathVariable long codAtividade, Model model, HttpServletRequest request) {
-		return "cadastrar-apoio";
+		return "restritas/cadastrar-apoio";
 	}
 	
 	@RequestMapping(value = "/cadastraApoio/{codAtividade}", method = RequestMethod.POST)

@@ -62,7 +62,7 @@ public class EditarColaboradorController {
 	@RequestMapping(value = "/{codAtividade}&{codColaborador}", method = RequestMethod.GET)
 	public String getCadastro(@PathVariable long codAtividade, @PathVariable long codColaborador, Model model,
 			HttpServletRequest request) {
-		return "colaborador";
+		return "restritas/colaborador";
 	}
 
 	@RequestMapping(value = "/{codAtividade}&{codColaborador}/editar", method = RequestMethod.POST)

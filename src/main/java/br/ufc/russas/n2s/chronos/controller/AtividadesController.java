@@ -77,7 +77,7 @@ public class AtividadesController {
 		model.addAttribute("isResponsavel", true);
 		session.setAttribute("participantes", participantes);
 		session.setAttribute("atividade", atividade);
-		return "listaParticipantes";
+		return "restritas/listaParticipantes";
 	}
 
 	@RequestMapping(value = "/minhas-atividades", method = RequestMethod.GET)
@@ -107,7 +107,7 @@ public class AtividadesController {
 		model.addAttribute("estado", "início");
 		model.addAttribute("atividades", novasatividades);
 
-		return "minhas-atividades";
+		return "restritas/minhas-atividades";
 	}
 
 }

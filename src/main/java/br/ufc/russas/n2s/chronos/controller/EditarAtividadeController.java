@@ -67,7 +67,7 @@ public class EditarAtividadeController {
 			}
 			request.getSession().setAttribute("colaboradores", colaboradores);
 		}
-		return "editar-atividade";
+		return "restritas/editar-atividade";
 	}
 
 	@RequestMapping(value = "/{codAtividade}", method = RequestMethod.POST)

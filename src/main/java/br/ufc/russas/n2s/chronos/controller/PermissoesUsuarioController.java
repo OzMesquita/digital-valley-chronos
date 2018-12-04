@@ -40,20 +40,20 @@ public class PermissoesUsuarioController {
     @RequestMapping(method = RequestMethod.GET)
     public String getIndex(Model model, HttpServletRequest request) {
         model.addAttribute("usuarios", this.usuarioServiceIfc.listaTodosUsuarios());
-        return "acessarPermissoes"; 
+        return "restritas/acessarPermissoes"; 
     }
     
     @RequestMapping(value="/busca",method = RequestMethod.GET)
     public String getCampoDeBusca(Model model, @RequestParam("nomeUsuario") String nome) {
     	model.addAttribute("usuarios", this.usuarioServiceIfc.BuscaUsuariosPorNome(nome));
-    	return "acessarPermissoes";
+    	return "restritas/acessarPermissoes";
     }
     
     @RequestMapping(method = RequestMethod.POST)
     public String getIndexSelectedUser(Model model, HttpServletRequest request) {
         model.addAttribute("usuarios", this.usuarioServiceIfc.listaTodosUsuarios());
         model.addAttribute("usuarioSelecionado", this.usuarioServiceIfc.getUsuario(Long.parseLong(request.getParameter("usuario")), 0));
-        return "acessarPermissoes"; 
+        return "restritas/acessarPermissoes"; 
     }
     
     @RequestMapping(value = "/atualizar", method = RequestMethod.POST)

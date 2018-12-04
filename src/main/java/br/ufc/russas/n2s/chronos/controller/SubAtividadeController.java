@@ -33,7 +33,7 @@ public class SubAtividadeController {
 	public String getSubatividades(@PathVariable long codAtividade, Model model) {
 		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
 		model.addAttribute("atividade", atividade);
-		return "subatividade";
+		return "restritas/subatividade";
 	}
 
 	@RequestMapping(value = "/cadastra/{codAtividade}", method = RequestMethod.GET)

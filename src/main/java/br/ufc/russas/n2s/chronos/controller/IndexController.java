@@ -64,7 +64,7 @@ public class IndexController {
 
 	@RequestMapping(value = "/cadastrarSubAtividades", method = RequestMethod.GET)
 	public String getCadastroSub(Model model, HttpServletRequest request) {
-		return "cadastrar-atividade";
+		return "restritas/cadastrar-atividade";
 	}
 
 	@RequestMapping(value = "/{categoria}", method = RequestMethod.GET)

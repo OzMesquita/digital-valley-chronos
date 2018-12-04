@@ -47,7 +47,7 @@ public class ApoioController {
 	public String getApoiadores(@PathVariable long codAtividade, Model model) {
 		AtividadeBeans atividade = this.atividadeServiceIfc.getAtividade(codAtividade);
 		model.addAttribute("atividade", atividade);
-		return "apoiadores";
+		return "restritas/apoiadores";
 	}
 
 	@RequestMapping(value = "/images/uploads/{imageID}", method = RequestMethod.GET)

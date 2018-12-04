@@ -57,7 +57,7 @@ public class CadastrarAtividadeController {
 		request.getSession().removeAttribute("pai");
 		List<UsuarioBeans> organizadores = this.getUsuarioServiceIfc().listaTodosUsuarios();
 		model.addAttribute("organizadores", organizadores);
-		return "cadastrar-atividade";
+		return "restritas/cadastrar-atividade";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
