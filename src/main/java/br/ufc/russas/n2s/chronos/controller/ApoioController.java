@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.ufc.russas.n2s.chronos.beans.AtividadeBeans;
 import br.ufc.russas.n2s.chronos.service.AtividadeServiceIfc;
-import br.ufc.russas.n2s.chronos.util.Constantes;
+import util.Constantes;
 
 @Controller("apoioController")
 @RequestMapping("/apoiadores")

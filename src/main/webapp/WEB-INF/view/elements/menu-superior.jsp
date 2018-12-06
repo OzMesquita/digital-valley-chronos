@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.ufc.russas.n2s.chronos.beans.UsuarioBeans"%>
-<%@page import="br.ufc.russas.n2s.chronos.util.Constantes"%>
+<%@page import="util.Constantes"%>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="<%=Constantes.getAppUrl()%>"> <img
 		src="${pageContext.request.contextPath}/resources/img/chronos.png"
