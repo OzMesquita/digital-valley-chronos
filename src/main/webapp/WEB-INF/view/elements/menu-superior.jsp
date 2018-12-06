@@ -50,7 +50,7 @@
 			<form method="POST" action="a paradinha pra onde tem q ir"
 				accept-charset="UTF-8" enctype="multipart/form-data"
 				id="needs-validation" novalidate>
-				<input type="button" class="btn btn-primary" value="login"
+				<input type="button" class="btn btn-primary" value="Login"
 					data-toggle="modal" data-target="#login"
 					style="max-width: 51px; max-height: 32px; padding-top: 4px; padding-bottom: 4px; padding-left: 8px; padding-right: 8px; float: right; margin-right: 10px") >
 				<div class="modal fade" id="login" tabindex="-1" role="dialog"

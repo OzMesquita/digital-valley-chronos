@@ -375,8 +375,7 @@ ul {
 					<!-- lista de subatividades -->
 					<div class="container">
 						<div class="row col-md-12 col-md-offset-2 custyle">
-							<i class="glyphicon glyphicon-eye-open"></i> <a href="#">Visualizar
-								cronograma completo</a>
+							
 							<table class="table table-striped custab">
 								<thead>
 									<tr>
